@@ -1,7 +1,7 @@
 // Function to launch prompts and inject link
 function launchPrompts() {
   // Prompt for page title
-  let pageTitle = prompt("Enter page title (leave blank for default):");
+  let pageTitle = prompt("Enter Page Title (leave blank for default):");
   if (!pageTitle) {
     pageTitle = "Google";
   }
