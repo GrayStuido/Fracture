@@ -1,3 +1,23 @@
+// Check if the image link is saved in local storage
+var savedImageLink = localStorage.getItem("imageLink");
+
+// If the image link is not saved in local storage or is invalid, launch a prompt to ask for it
+if (!savedImageLink || !isValidImageLink(savedImageLink)) {
+  savedImageLink = prompt("Please enter the link of the image to use:");
+  if (!savedImageLink || !isValidImageLink(savedImageLink)) {
+    // If the user enters an invalid image link or cancels the prompt, default to a set image link
+    savedImageLink = "https://cdn.discordapp.com/attachments/1019813222884323360/1090460201431343216/image.png";
+  }
+  localStorage.setItem("imageLink", savedImageLink);
+}
+
+// Function to check if a given image link is valid
+function isValidImageLink(link) {
+  var validExtensions = ["jpg", "jpeg", "png", "gif"];
+  var extension = link.substring(link.lastIndexOf(".") + 1);
+  return validExtensions.includes(extension.toLowerCase());
+}
+
 // Function to display the black overlay with the image
 function displayOverlay(locked) {
   var overlay = document.createElement("div");
