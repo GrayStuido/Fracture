@@ -1,7 +1,16 @@
 
 // testing 123
 
-// wait for the DOM to load before running the script
+
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'm') {
+    OpenModMenu();
+  }
+});
+
+
+
 Function OpenModMenu() {
   // create a container div element
   const container = document.createElement('div');
