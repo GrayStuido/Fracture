@@ -1,37 +1,4 @@
-// File Locking Feature
-
-// Check if the "File-Locked-DoNotOpen" value in Local Storage is set to "true"
-if (localStorage.getItem("File-Locked-DoNotOpen") === "true") {
-var lockedBody = document.createElement("body");
-  lockedBody.id = "Locked";
-  document.documentElement.insertBefore(lockedBody, document.body);
-  // Show the div with a white background
-  var lockedDiv = document.createElement("div");
-  lockedDiv.style.backgroundColor = "black";
-  lockedDiv.style.width = "100%";
-  lockedDiv.style.height = "100%";
-  lockedDiv.style.position = "fixed";
-  lockedDiv.style.top = "0";
-  lockedDiv.style.left = "0";
-  lockedDiv.style.zIndex = "9999";
-  lockedDiv.classList.add("overlay");
-      var image = document.createElement("img");
-    image.src = "https://cdn.discordapp.com/attachments/1019813222884323360/1090460201431343216/image.png";
-    image.style.position = "absolute";
-    image.style.top = "50%";
-    image.style.left = "50%";
-    image.style.transform = "translate(-50%, -50%)";
-    lockedDiv.appendChild(image);
-  document.head.appendChild(lockedDiv);
-  document.body.appendChild(lockedDiv);
-
-  // Wait for 5 seconds
-  var timeoutID = setTimeout(function() {
-    // If the user hasn't pressed Ctrl + M within 5 seconds, redirect them to another page
-    window.location.href = "https://www.wikipedia.com/";
-  }, 2200);
-
-  // Listen for the Ctrl + M key combination
+// Listen for the Ctrl + M key combination
   var ctrlPressed = false;
   document.addEventListener("keydown", function(event) {
     if (event.keyCode === 17) { // Ctrl key
