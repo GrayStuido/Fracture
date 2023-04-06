@@ -31,7 +31,7 @@ document.head.appendChild(script);
 
 
 // set the link variable
-var InjectLink2 = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/ModMenuController.js';
+var InjectLink2 = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/ModMenu.js';
 // create a script element
 var script = document.createElement('script');
 
