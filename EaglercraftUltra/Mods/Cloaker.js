@@ -1,9 +1,7 @@
 // Listen for the Ctrl + M key combination
   var ctrlPressed = false;
   document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 17) { // Ctrl key
-      ctrlPressed = true;
-    } else if (event.keyCode === 77 && ctrlPressed) { // M key while Ctrl is pressed
+if (event.ctrlKey && event.key === 'i') { // M key while Ctrl is pressed
       clearTimeout(timeoutID);
       lockedDiv.style.display = "none";
 	  localStorage.setItem("File-Locked-DoNotOpen", "false");
@@ -12,10 +10,8 @@
 }
 document.addEventListener("keydown", function(event) {
 if (localStorage.getItem("File-Locked-DoNotOpen") === "false") {
-  if (event.keyCode === 17) { // Ctrl key
-    var ctrlPressed = true;
     document.addEventListener("keydown", function(event) {
-      if (event.keyCode === 77 && ctrlPressed) { // M key while Ctrl is pressed
+      if (event.ctrlKey && event.key === 'i') { // M key while Ctrl is pressed
         localStorage.setItem("File-Locked-DoNotOpen", "true");
         alert("The file has been locked. Please do not open it.");
 		localStorage.setItem("File-Locked-DoNotOpen", "true");
