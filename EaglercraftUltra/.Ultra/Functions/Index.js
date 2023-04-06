@@ -1,18 +1,8 @@
-// create a new button element
-const button = document.createElement('button');
-button.textContent = 'Click Me';
-
-// add an event listener to the button element
-button.addEventListener('click', function() {
-  // call your function here
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'KeyG') {
   OpenModMenu();
-  console.log('ModMenu Opened!');
+  }
 });
-
-// insert the button into the head of the HTML document
-const head = document.getElementsByTagName('head')[0];
-head.appendChild(button);
-
 
 // set the link variable
 var InjectLink = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/Cloaker.js';
