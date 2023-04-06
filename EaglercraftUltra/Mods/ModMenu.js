@@ -2,7 +2,7 @@
 // testing 123
 
 // wait for the DOM to load before running the script
-document.addEventListener('DOMContentLoaded', () => {
+Function OpenModMenu() {
   // create a container div element
   const container = document.createElement('div');
   container.style.display = 'flex';
