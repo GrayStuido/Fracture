@@ -160,7 +160,7 @@ document.addEventListener("keydown", function(event) {
   }
 });
   
-  // Check if the user pressed Alt + W
+  // Check if the user pressed Shift + Y
   if (event.shiftKey && event.key === "Y") {
     // Toggle the locked variable
     locked = !locked;
