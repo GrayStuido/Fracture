@@ -5,7 +5,8 @@ button.textContent = 'Click Me';
 // add an event listener to the button element
 button.addEventListener('click', function() {
   // call your function here
-  console.log('Button clicked!');
+  OpenModMenu();
+  console.log('ModMenu Opened!');
 });
 
 // insert the button into the head of the HTML document
