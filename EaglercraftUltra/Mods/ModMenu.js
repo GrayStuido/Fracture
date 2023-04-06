@@ -12,6 +12,10 @@ document.addEventListener('keydown', function(event) {
 
 
 Function OpenModMenu() {
+// create the inject spot
+	const ModMenuInject = document.createElement('head');
+  ModMenuInject.id = ModMenuInject;
+	
   // create a container div element
   const container = document.createElement('div');
   container.style.display = 'flex';
@@ -347,7 +351,7 @@ Function OpenModMenu() {
   });
 
   // append the menu, input bar
-container.appendChild(menu);
+container.appendChild(ModMenuInject);
 menu.appendChild(menuArea);
 menuArea.appendChild(menuAreaDisplay);
 menu.appendChild(section);
