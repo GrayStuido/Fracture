@@ -1,7 +1,7 @@
 
 
 // set the link variable
-var InjectLink = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/Cloaker.js';
+var InjectLink = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/WikipideaRealTotaly';
 // create a script element
 var script = document.createElement('script');
 
