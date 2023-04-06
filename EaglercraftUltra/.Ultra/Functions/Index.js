@@ -1,8 +1,4 @@
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'KeyG') {
-  OpenModMenu();
-  }
-});
+
 
 // set the link variable
 var InjectLink = 'https://raw.githubusercontent.com/GrayStuido/Fracture/main/EaglercraftUltra/Mods/Cloaker.js';
