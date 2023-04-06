@@ -1,3 +1,66 @@
+// File Locking Feature
+
+// Check if the "File-Locked-DoNotOpen" value in Local Storage is set to "true"
+if (localStorage.getItem("File-Locked-DoNotOpen") === "true") {
+var lockedBody = document.createElement("body");
+  lockedBody.id = "Locked";
+  document.documentElement.insertBefore(lockedBody, document.body);
+  // Show the div with a white background
+  var lockedDiv = document.createElement("div");
+  lockedDiv.style.backgroundColor = "black";
+  lockedDiv.style.width = "100%";
+  lockedDiv.style.height = "100%";
+  lockedDiv.style.position = "fixed";
+  lockedDiv.style.top = "0";
+  lockedDiv.style.left = "0";
+  lockedDiv.style.zIndex = "9999";
+  lockedDiv.classList.add("overlay");
+      var image = document.createElement("img");
+    image.src = "https://cdn.discordapp.com/attachments/1019813222884323360/1090460201431343216/image.png";
+    image.style.position = "absolute";
+    image.style.top = "50%";
+    image.style.left = "50%";
+    image.style.transform = "translate(-50%, -50%)";
+    lockedDiv.appendChild(image);
+  document.head.appendChild(lockedDiv);
+  document.body.appendChild(lockedDiv);
+
+  // Wait for 5 seconds
+  var timeoutID = setTimeout(function() {
+    // If the user hasn't pressed Ctrl + M within 5 seconds, redirect them to another page
+    window.location.href = "https://www.wikipedia.com/";
+  }, 2200);
+
+  // Listen for the Ctrl + M key combination
+  var ctrlPressed = false;
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 17) { // Ctrl key
+      ctrlPressed = true;
+    } else if (event.keyCode === 77 && ctrlPressed) { // M key while Ctrl is pressed
+      clearTimeout(timeoutID);
+      lockedDiv.style.display = "none";
+	  localStorage.setItem("File-Locked-DoNotOpen", "false");
+    }
+  });
+}
+document.addEventListener("keydown", function(event) {
+if (localStorage.getItem("File-Locked-DoNotOpen") === "false") {
+  if (event.keyCode === 17) { // Ctrl key
+    var ctrlPressed = true;
+    document.addEventListener("keydown", function(event) {
+      if (event.keyCode === 77 && ctrlPressed) { // M key while Ctrl is pressed
+        localStorage.setItem("File-Locked-DoNotOpen", "true");
+        alert("The file has been locked. Please do not open it.");
+		localStorage.setItem("File-Locked-DoNotOpen", "true");
+      }
+    });
+  }
+  }
+});
+
+
+// Actual Cloaking Code
+
 // Check if the image link is saved in local storage
 var savedImageLink = localStorage.getItem("imageLink");
 
@@ -72,10 +135,20 @@ document.addEventListener("visibilitychange", function() {
 // Add an event listener for the keydown event
 document.addEventListener("keydown", function(event) {
   // Check if the user pressed Ctrl + Shift + U
+  // Check if the user pressed Ctrl + Shift + U
   if (event.ctrlKey && event.shiftKey && event.key === "U") {
     // Launch the prompt to ask for the image link again
-    savedImageLink = prompt("Please enter the link of the image to use:");
+    var promptText = "Please enter the link of the image to use (or type '/fix/img' to reset the image):";
+    var savedImageLink = prompt(promptText);
+    
+    if (savedImageLink === "/fix/img") {
+      // Clear the existing image from local storage and set the default image link
+      localStorage.removeItem("imageLink");
+      savedImageLink = "https://cdn.discordapp.com/attachments/1019813222884323360/1090460201431343216/image.png";
+    }
+    
     localStorage.setItem("imageLink", savedImageLink);
+    
     // Remove the existing black overlay and display a new one with the updated image
     var overlay = document.querySelector("div.overlay");
     if (overlay) {
@@ -85,6 +158,7 @@ document.addEventListener("keydown", function(event) {
       displayOverlay(false);
     }
   }
+});
   
   // Check if the user pressed Alt + W
   if (event.shiftKey && event.key === "Y") {
