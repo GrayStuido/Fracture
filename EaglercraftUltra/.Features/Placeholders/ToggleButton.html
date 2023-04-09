@@ -1,0 +1,48 @@
+	<style>
+		#toggle-btn {
+			background-color: #ff6347;
+			color: white;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.5s ease, border-width 0.5s ease;
+		}
+
+		#toggle-btn.active {
+			background-color: #4CAF50;
+			border-width: 5px;
+		}
+	</style>
+<button id="toggle-btn">Click me!</button>
+
+	<script>
+		var button = document.getElementById("toggle-btn");
+		var state = false;
+		
+		button.addEventListener("click", function() {
+
+
+
+			if (state) {
+				// Run second function
+				button.classList.remove("active");
+
+
+			} else {
+
+				// Run first function
+				button.classList.add("active");
+
+
+			}
+
+
+
+			state = !state;
+		});
+	</script>
+
+<script>
+
+</script>
