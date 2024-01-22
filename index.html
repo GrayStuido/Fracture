@@ -1,0 +1,316 @@
+<html>
+<head>
+    <title>Fracture</title>
+</head>
+<body>
+
+</body>
+	<h1></h1>
+	<br>
+		<h1></h1>
+	<br>
+<body>
+  <center>
+    <input style="color: Black;" class="searchbar" placeholder="Search Games" />
+  </center>
+
+  <div class="game-container">
+    <div class="game-square" data-url="games/agar.html">
+      <img class="game-image" src="https://via.placeholder.com/160x240.png?text=Game1" />
+      <div class="game-name">EaglercraftUltra</div>
+    </div>
+
+    <div class="game-square" data-url="games/game2.html">
+      <img class="game-image" src="https://via.placeholder.com/160x240.png?text=Game2" />
+      <div class="game-name">Tetra Legends</div>
+    </div>
+
+    <div class="game-square" data-url="games/game2.html">
+      <img class="game-image" src="https://via.placeholder.com/160x240.png?text=Game3" />
+      <div class="game-name">GBA</div>
+    </div>
+
+<div class="game-square" data-url="games/game2.html">
+      <img class="game-image" src="https://via.placeholder.com/160x240.png?text=Game4" />
+      <div class="game-name">Retro Bowl</div>
+    </div>
+
+<div class="game-square" data-url="games/game2.html">
+      <img class="game-image" src="https://via.placeholder.com/160x240.png?text=Game5" />
+      <div class="game-name">Webretro</div>
+    </div>
+
+  </div>	
+  </div>
+
+  <div class="nogames">
+    <h1>¯\_(ツ)_/¯</h1>
+    <p>No results found. If you want to add a game, please make a suggestion to our <a class="linkiebtn" href="https://anthonyc60.wixsite.com/my-site-1/group/fracture-exploits-and-games/">Group</a>.</p>
+  </div>
+
+
+  <script>
+    const searchbar = document.querySelector(".searchbar");
+    const games = document.querySelectorAll(".game-square");
+    const noGames = document.querySelector(".nogames");
+
+    searchbar.addEventListener("keyup", function(event) {
+      const query = event.target.value.toLowerCase();
+      let numGames = 0;
+      games.forEach(function(game) {
+        const name = game.querySelector(".game-name").textContent.toLowerCase();
+        if (name.includes(query)) {
+          game.style.display = "block";
+          numGames++;
+        } else {
+          game.style.display = "none";
+        }
+      });
+      if (numGames === 0) {
+        noGames.style.display = "block";
+      } else {
+        noGames.style.display = "none";
+      }
+    });
+	    games.forEach(function(game) {
+      const url = game.getAttribute("data-url");
+      game.addEventListener("click", function() {
+        window.location.href = url;
+      });
+    });
+  </script>
+</body>
+</html>
+<style>
+		body {
+			color: white;
+			margin: 0;
+			padding: 0;
+}
+		@font-face {
+  font-family: 'Lexend Semi-Bold';
+  src: url('path/to/lexend-semibold.woff2') format('woff2'), /* Modern Browsers */
+       url('path/to/lexend-semibold.woff') format('woff'); /* Older Browsers */
+  font-weight: 600; /* Specify the font weight */
+  font-style: normal; /* Specify the font style */
+}
+
+
+  /* Styles for searchbar */
+    .searchbar {
+	color: black;
+      width: 80%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid black;
+      border-radius: 12px;
+      font-size: 19px;
+      background-color: rgb(215, 107, 255);
+    }
+
+    .game-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .game-square {
+      position: relative;
+      width: 170px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid black;
+      border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+	  margin-top: 8px;
+	  margin-bottom: 8px;
+	  margin-left: 8px;
+	  margin-right: 8px;
+	  background-color: rgb(54, 13, 69);
+    }
+
+    .game-square:hover {
+      transform: scale(1.1);
+	    transition: all 0.2s ease-in-out;
+  animation: rainbow 5s linear infinite;
+  	text-align: center;
+				font-weight: bold;
+    }
+
+    .game-name {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 6px;
+	  align-items: center;
+color: white;
+	  
+    }
+
+
+    /* Styles for nogames section */
+    .nogames {
+      text-align: center;
+      margin-top: 50px;
+	  display: none;
+    }
+
+    .nogames h1 {
+	text-align: center;
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .game-image {
+      position: relative;
+	  margin-top: 8px;
+	  margin-right: auto;
+      width: 90%;
+      height: 80%;
+      align-items: center;
+	  margin-left: 8px;
+	  margin-right: 8px;
+	  border: 2px solid black;
+      border-radius: 5px;
+	  object-fit: cover;
+	  display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+/* Bounce effect */
+.game-square:hover .game-image {
+  animation: bounce 0.5s ease-out;
+}
+
+	@keyframes bounce {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -10px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(0, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Set the width and color of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgb(0, 170, 215);
+}
+
+/* Add a darker color on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 164, 208);
+}
+
+/* Set the color of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(119, 0, 163);
+  border-radius: 10px;
+}
+
+/* Set the color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #1c1c1c;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+</style>
+
+  <script>
+    const searchbar = document.querySelector(".searchbar");
+    const games = document.querySelectorAll(".game-square");
+    const noGames = document.querySelector(".nogames");
+
+    searchbar.addEventListener("keyup", function(event) {
+      const query = event.target.value.toLowerCase();
+      let numGames = 0;
+      games.forEach(function(game) {
+        const name = game.querySelector(".game-name").textContent.toLowerCase();
+        if (name.includes(query)) {
+          game.style.display = "block";
+          numGames++;
+        } else {
+          game.style.display = "none";
+        }
+      });
+      if (numGames === 0) {
+        noGames.style.display = "block";
+      } else {
+        noGames.style.display = "none";
+      }
+    });
+	    games.forEach(function(game) {
+      const url = game.getAttribute("data-url");
+      game.addEventListener("click", function() {
+        window.location.href = url;
+      });
+    });
+  </script>
+
+<div class="background">
+  <canvas id="MatrixBackground"></canvas>
+</div>
+
+ <script>
+      window.onload = function() {
+        const canvas = document.getElementById('MatrixBackground');
+        const chars = 'abcdefgyzhijklmnopQRSTUVABCDEFGYZ109467ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日¦｜:・."=*+-<>'; // Your chosen characters
+        const duration = 10000; // Duration of the matrix effect in milliseconds
+
+        // Get canvas context and set canvas size
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width = window.innerWidth;
+        const h = canvas.height = window.innerHeight;
+
+        // Calculate number of columns and initialize y positions
+        const cols = Math.floor(w / 20) + 1;
+        const ypos = Array(cols).fill(0);
+
+        // Fill canvas with black color
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, w, h);
+
+        // Create matrix effect function
+        const matrix = () => {
+          ctx.fillStyle = '#0001';
+          ctx.fillRect(0, 0, w, h);
+
+          ctx.fillStyle = '#C800FF';
+          ctx.font = '15pt monospace';
+
+          ypos.forEach((y, ind) => {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            const x = ind * 20;
+            ctx.fillText(text, x, y);
+            if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+            else ypos[ind] = y + 20;
+          });
+        };
+
+        // Call matrix effect function every 50 milliseconds
+        const matrixInterval = setInterval(matrix, 50);
+      };
+    </script>
