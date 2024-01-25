@@ -25,6 +25,17 @@ background: #1e0041;
 margin: 0;
 padding: 0;
 }
+
+		@font-face {
+  font-family: 'Lexend Semi-Bold';
+  src: url('path/to/lexend-semibold.woff2') format('woff2'), /* Modern Browsers */
+       url('path/to/lexend-semibold.woff') format('woff'); /* Older Browsers */
+  font-weight: 600; /* Specify the font weight */
+  font-style: normal; /* Specify the font style */
+}
+body {
+    font-family: 'lexend-semibold', sans-serif;
+}
 </style>
 <script src="cloak.js">
       var url = document.getElementById("url-target");
