@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <script>
+            // Randomly select an image with a 1/100 chance for the second image
+            var randomNum = Math.floor(Math.random() * 10) + 1;
+            var imageUrl = randomNum === 1
+                ? "icons/woah.jpg"
+                : "icons/tbh.png";
+        </script>
+        <img src="" alt="Error Image">
+        <h1>404 - Page Not Found</h1>
+        <p>Oops! The page you are looking for might be in another galaxy.</p>
+        <p>Click <a href="/">here</a> to go back to the main page.</p>
+    </div>
+    <script>
+        // Set the src attribute of the image element based on the randomly selected URL
+        document.querySelector('img').src = imageUrl;
+    </script>
+</body>
+</html>
