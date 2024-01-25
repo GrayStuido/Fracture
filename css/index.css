@@ -1,0 +1,160 @@
+nav li a:hover {
+  background-color: #521B73;
+transition: 0.5s background-color;
+}
+
+		body {
+			color: #1e0041;
+			margin: 0;
+			padding: 0;
+}
+		@font-face {
+  font-family: 'Lexend Semi-Bold';
+  src: url('path/to/lexend-semibold.woff2') format('woff2'), /* Modern Browsers */
+       url('path/to/lexend-semibold.woff') format('woff'); /* Older Browsers */
+  font-weight: 600; /* Specify the font weight */
+  font-style: normal; /* Specify the font style */
+}
+
+
+  /* Styles for searchbar */
+    .searchbar {
+	color: black;
+      width: 80%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid black;
+      border-radius: 12px;
+      font-size: 19px;
+      background-color: rgb(215, 107, 255);
+    }
+
+    .game-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .game-square {
+      position: relative;
+      width: 170px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid black;
+      border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+	  margin-top: 8px;
+	  margin-bottom: 8px;
+	  margin-left: 8px;
+	  margin-right: 8px;
+	  background-color: rgb(54, 13, 69);
+    }
+
+    .game-square:hover {
+      transform: scale(1.1);
+	    transition: all 0.2s ease-in-out;
+  animation: rainbow 5s linear infinite;
+  	text-align: center;
+				font-weight: bold;
+    }
+
+    .game-name {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 6px;
+	  align-items: center;
+color: white;
+	  
+    }
+
+
+    /* Styles for nogames section */
+    .nogames {
+      text-align: center;
+      margin-top: 50px;
+	  display: none;
+    }
+
+    .nogames h1 {
+	text-align: center;
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .game-image {
+      position: relative;
+	  margin-top: 8px;
+	  margin-right: auto;
+      width: 90%;
+      height: 80%;
+      align-items: center;
+	  margin-left: 8px;
+	  margin-right: 8px;
+	  border: 2px solid black;
+      border-radius: 5px;
+	  object-fit: cover;
+	  display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+/* Bounce effect */
+.game-square:hover .game-image {
+  animation: bounce 0.5s ease-out;
+}
+
+	@keyframes bounce {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -10px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  75% {
+    transform: translate(0, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Set the width and color of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgb(0, 170, 215);
+}
+
+/* Add a darker color on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 164, 208);
+}
+
+/* Set the color of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(119, 0, 163);
+  border-radius: 10px;
+}
+
+/* Set the color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #1c1c1c;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
