@@ -15,6 +15,11 @@ transition: 0.5s background-color;
   font-weight: 600; /* Specify the font weight */
   font-style: normal; /* Specify the font style */
 }
+body {
+    font-family: 'lexend-semibold', sans-serif;
+}
+
+/* Additional styling goes here */
 
 
   /* Styles for searchbar */
