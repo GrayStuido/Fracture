@@ -1,14 +1,13 @@
 <script src="textsplash.js"></script>
-<script src="cloak.js"></script>
 <body onload="changeText()">
 </body>
 <nav style="background-color: #311F3B; overflow: hidden;">
   <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Home</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Games</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Tools</a></li>
+    <li style="float: left;"><a href="index.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Home</a></li>
+    <li style="float: left;"><a href="google-classroom.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Games</a></li>
+    <li style="float: left;"><a href="google-drive.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Tools</a></li>
     <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;" id="create" class="console-button">Cloak</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Changelog</a></li>
+    <li style="float: left;"><a href="changelog.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Changelog</a></li>
 <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
   </ul>  
 </nav>
@@ -17,9 +16,33 @@
 
 
 <style>
-		body {
-			color: #1e0041;
-			margin: 0;
-			padding: 0;
+body {
+color: white;
+background: #1e0041;
+margin: 0;
+padding: 0;
 }
 </style>
+<script src="cloak.js">
+      var url = document.getElementById("url-target");
+      var urlObj = new window.URL(window.location.href);
+      document.getElementById("create").onclick = function () {
+        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
+    		url.value = 'https://' + url.value.split('https://').pop();
+        } else if (url.value.substring(0, 7) == 'http://'){
+        	url.value = 'https://' + url.value.split('http://').pop();
+        };
+        win = window.open();
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url.value;
+        win.document.body.appendChild(iframe);
+      };
+</script>
