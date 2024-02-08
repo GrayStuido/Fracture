@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bingo Board</title>
+<style>
+    body {
+        background-color: #1e1e1e; /* Dark background */
+        color: #ffffff; /* White text */
+        font-family: Arial, sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .board-container {
+        width: 400px; /* Larger width */
+        height: 400px; /* Larger height */
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        height: 100%;
+        background-color: #303030; /* Dark gray background for the table */
+        border: 2px solid #ffffff; /* White border */
+    }
+    th, td {
+        border: 1px solid #ffffff; /* White border */
+        text-align: center;
+        width: 20%;
+        height: 20%;
+        font-size: 24px; /* Larger font size */
+        overflow: hidden; /* Hide overflow text */
+        position: relative; /* Position relative for overlay */
+        cursor: pointer; /* Cursor pointer for clickable */
+    }
+    .checked {
+        background-color: #8a2be2; /* Light purple background color */
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('checkmark.png'); /* URL to your PNG image */
+        background-size: cover;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease; /* Smooth transition */
+    }
+    .checked .overlay {
+        opacity: 0.5; /* 50% opacity when checked */
+    }
+</style>
+</head>
+<body>
+
+<div class="board-container">
+    <table id="bingo-board">
+        <thead>
+            <tr>
+                <th>B</th>
+                <th>I</th>
+                <th>N</th>
+                <th>G</th>
+                <th>O</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="b1"></td>
+                <td id="i1"></td>
+                <td id="n1"></td>
+                <td id="g1"></td>
+                <td id="o1"></td>
+            </tr>
+            <tr>
+                <td id="b2"></td>
+                <td id="i2"></td>
+                <td id="n2"></td>
+                <td id="g2"></td>
+                <td id="o2"></td>
+            </tr>
+            <tr>
+                <td id="b3"></td>
+                <td id="i3"></td>
+                <td id="n3"></td>
+                <td id="g3"></td>
+                <td id="o3"></td>
+            </tr>
+            <tr>
+                <td id="b4"></td>
+                <td id="i4"></td>
+                <td id="n4"></td>
+                <td id="g4"></td>
+                <td id="o4"></td>
+            </tr>
+            <tr>
+                <td id="b5"></td>
+                <td id="i5"></td>
+                <td id="n5"></td>
+                <td id="g5"></td>
+                <td id="o5"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Sample pool of Bingo challenges
+    const bingoChallenges = [
+        'Get Candy From Office',
+        'Get To Class Late',
+        'Bring Cold Lunch',
+        'Play a Unblocked Game',
+        'Call a Teacher By Name',
+        'See a Sped Kid',
+        'Post On Midget Fortress',
+        'Fandom Tax Someone',
+        'Mog In Class',
+        'Free Space',
+        'Walk To Weird Couple',
+        'Pull Someones Hood/Hat Down',
+        'Tell a Dad Joke',
+        'Dab Somone Up',
+        'Hit The Griddy',
+        'Spot Chromeo',
+        'Spot Drooliet',
+        'Steal Someones Water Bottle',
+        'Bully Brenden',
+        'Pray Ironicly',
+        'Hear Someone Sneeze Loudly',
+        'See a Bimbo',
+        'Spot a Bimbo Brigade',
+        'Get Over 100 Lines In Tetra Legends',
+        '',
+        '',
+        '',
+        '',
+        '',
+    ];
+
+    // Shuffle array function
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Shuffle the Bingo challenges
+    shuffleArray(bingoChallenges);
+
+    // Fill the Bingo board with challenges
+    const boardCells = document.querySelectorAll('#bingo-board td');
+    let challengeIndex = 0;
+
+    for (let cell of boardCells) {
+        cell.textContent = bingoChallenges[challengeIndex];
+        challengeIndex++;
+        cell.style.fontSize = '12px'; // Set smaller font size
+    }
+
+    // Add event listener to toggle checked state and overlay
+    boardCells.forEach(cell => {
+        cell.addEventListener('click', () => {
+            cell.classList.toggle('checked');
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            cell.appendChild(overlay);
+        });
+    });
+</script>
+
+</body>
+</html>
