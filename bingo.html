@@ -131,7 +131,7 @@
         'Spot Drooliet',
         'Steal Someones Water Bottle',
         'Bully Brenden',
-        'Pray Ironicly',
+        'Pray Ironically',
         'Hear Someone Sneeze Loudly',
         'See a Bimbo',
         'Spot a Bimbo Brigade',
@@ -151,8 +151,40 @@
         }
     }
 
-    // Shuffle the Bingo challenges
-    shuffleArray(bingoChallenges);
+    // Function to save data to localStorage
+    function saveData() {
+        localStorage.setItem('bingoChallenges', JSON.stringify(bingoChallenges));
+        const checkedCells = document.querySelectorAll('.checked');
+        const checkedIds = Array.from(checkedCells).map(cell => cell.id);
+        localStorage.setItem('checkedCells', JSON.stringify(checkedIds));
+    }
+
+    // Function to load data from localStorage
+    function loadData() {
+        const savedChallenges = localStorage.getItem('bingoChallenges');
+        if (savedChallenges) {
+            bingoChallenges = JSON.parse(savedChallenges);
+        }
+
+        const savedCheckedCells = localStorage.getItem('checkedCells');
+        if (savedCheckedCells) {
+            const checkedIds = JSON.parse(savedCheckedCells);
+            checkedIds.forEach(id => {
+                const cell = document.getElementById(id);
+                if (cell) {
+                    cell.classList.add('checked');
+                    const overlay = document.createElement('div');
+                    overlay.classList.add('overlay');
+                    cell.appendChild(overlay);
+                }
+            });
+        }
+    }
+
+    // Load data when the page is loaded
+    window.addEventListener('load', () => {
+        loadData();
+    });
 
     // Fill the Bingo board with challenges
     const boardCells = document.querySelectorAll('#bingo-board td');
@@ -171,6 +203,7 @@
             const overlay = document.createElement('div');
             overlay.classList.add('overlay');
             cell.appendChild(overlay);
+            saveData(); // Save data after each click
         });
     });
 </script>
