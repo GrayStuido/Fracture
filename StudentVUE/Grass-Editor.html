@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Decoder with Editing</title>
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    textarea, input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1e1e1e;
+        color: #ffffff;
+        resize: none;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .output-section {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Base64 Decoder with Editing</h2>
+    <div class="input-section">
+        <p>Enter the Base64 encoded text below:</p>
+        <textarea id="inputText" rows="8" cols="50"></textarea>
+        <br>
+        <button onclick="decodeBase64()">Decode</button>
+    </div>
+    <div class="output-section">
+        <p hidden>Decoded text:</p>
+        <textarea hidden id="decodedText" rows="8" cols="50" readonly></textarea>
+        <p>Edited Code:</p>
+        <textarea id="editedCode" rows="8" cols="50" readonly></textarea>
+        <br>
+<button onclick="applyChanges()">Apply Changes</button>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+    <div class="edit-section">
+        <h3>Edit Values</h3>
+        <div id="editFields"></div>
+        <br>
+    </div>
+</div>
+
+<script>
+function decodeBase64() {
+    var inputText = document.getElementById('inputText').value;
+    try {
+        var decodedText = atob(inputText);
+        document.getElementById('decodedText').value = decodedText;
+        var decodedObject = JSON.parse(decodedText);
+        displayEditFields(decodedObject);
+    } catch (error) {
+        document.getElementById('decodedText').value = "Error: Invalid Base64 input.";
+    }
+}
+
+function displayEditFields(obj, parentKey = '') {
+    var editFieldsContainer = document.getElementById('editFields');
+    editFieldsContainer.innerHTML = '';
+    
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            var value = obj[key];
+            var id = parentKey + key;
+
+            var label = document.createElement('label');
+            label.setAttribute('for', id);
+            label.textContent = key + ':';
+
+            var input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.setAttribute('id', id);
+            input.value = typeof value === 'object' ? JSON.stringify(value) : value;
+
+            editFieldsContainer.appendChild(label);
+            editFieldsContainer.appendChild(input);
+            editFieldsContainer.appendChild(document.createElement('br'));
+        }
+    }
+}
+
+function applyChanges() {
+    var inputText = document.getElementById('inputText').value;
+    var decodedObject = JSON.parse(atob(inputText));
+    var editedObject = JSON.parse(JSON.stringify(decodedObject)); // Clone the decoded object
+
+    var editFieldsContainer = document.getElementById('editFields');
+    var inputs = editFieldsContainer.getElementsByTagName('input');
+
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        var key = input.id;
+        var value = input.value;
+
+        try {
+            value = JSON.parse(value);
+        } catch (e) {
+            // Ignore parsing errors, use raw value if not JSON
+        }
+
+        setNestedProperty(editedObject, key, value);
+    }
+
+    var editedCode = btoa(JSON.stringify(editedObject));
+    document.getElementById('editedCode').value = editedCode;
+}
+
+function setNestedProperty(obj, key, value) {
+    var keys = key.split('.');
+    var currentObj = obj;
+
+    for (var i = 0; i < keys.length - 1; i++) {
+        var currentKey = keys[i];
+        if (!currentObj[currentKey]) {
+            currentObj[currentKey] = {};
+        }
+        currentObj = currentObj[currentKey];
+    }
+
+    currentObj[keys[keys.length - 1]] = value;
+}
+
+function copyToClipboard() {
+    var editedCode = document.getElementById('editedCode').value;
+    navigator.clipboard.writeText(editedCode)
+        .then(() => {
+            alert('Copied to clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+}
+</script>
+</body>
+</html>
