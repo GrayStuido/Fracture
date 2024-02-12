@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Base64 Decoder with Editing</title>
+<title>Really Grass Cutting Save Edior</title>
 <style>
     body {
         background-color: #121212;
@@ -43,9 +43,9 @@
 </head>
 <body>
 <div class="container">
-    <h2>Base64 Decoder with Editing</h2>
+    <h2>Really Grass Cutting Save Edior</h2>
     <div class="input-section">
-        <p>Enter the Base64 encoded text below:</p>
+        <p>Enter the Base64 encoded save here:</p>
         <textarea id="inputText" rows="8" cols="50"></textarea>
         <br>
         <button onclick="decodeBase64()">Decode</button>
@@ -53,7 +53,7 @@
     <div class="output-section">
         <p hidden>Decoded text:</p>
         <textarea hidden id="decodedText" rows="8" cols="50" readonly></textarea>
-        <p>Edited Code:</p>
+        <p>Edited Save:</p>
         <textarea id="editedCode" rows="8" cols="50" readonly></textarea>
         <br>
 <button onclick="applyChanges()">Apply Changes</button>
@@ -148,12 +148,6 @@ function setNestedProperty(obj, key, value) {
 function copyToClipboard() {
     var editedCode = document.getElementById('editedCode').value;
     navigator.clipboard.writeText(editedCode)
-        .then(() => {
-            alert('Copied to clipboard!');
-        })
-        .catch(err => {
-            console.error('Failed to copy: ', err);
-        });
 }
 </script>
 </body>
