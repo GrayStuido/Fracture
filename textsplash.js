@@ -13,6 +13,9 @@
         "Making the mother of all omelets here Jack. Can't fret over every egg",
         "Ultra Rare Splash Text",
         "🤫🧏‍♂️🗿",
+        "Big Vanilla",
+        "Jumbo Jorts",
+        "Does He Know?",
       ];
 
       function changeText() {
