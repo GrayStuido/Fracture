@@ -12,7 +12,7 @@
         "Uncanny",
         "Making the mother of all omelets here Jack. Can't fret over every egg",
         "Ultra Rare Splash Text",
-        "Im Not Fixing Doom Lul",
+        "🤫🧏‍♂️🗿",
       ];
 
       function changeText() {
