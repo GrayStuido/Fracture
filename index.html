@@ -3,18 +3,6 @@
 </body>
 <link rel="stylesheet" href="css/index.css">
   <title>Fracture</title>
-<nav style="background-color: #311F3B; overflow: hidden;">
-  <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
-    <li style="float: left;"><a href="index.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Home</a></li>
-    <li style="float: left;"><a href="google-classroom.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Games</a></li>
-    <li style="float: left;"><a href="Launchpad.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Leaderboard</a></li>
-    <li style="float: left;"><a href="google-drive.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Tools</a></li>
-    <li style="float: left;"><a style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;" href="midgetfort.html">Fracture Chat</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;" id="create" class="console-button">Cloak</a></li>
-    <li style="float: left;"><a href="changelog.html" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Changelog</a></li>
-<p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
-  </ul>  
-</nav>
 <br>
 
 <style>
@@ -37,7 +25,61 @@
 <h3 id="random-h1">Loading Text</h3>
     </div>
 
+  <style>
 
+#navcontainer {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid purple;
+  animation: changeBorderRadius 1s 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+    .vbutton, .console-button {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 40px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: shrink;
+      font-size: 16px;
+      font-weight: bold;
+text-decoration: none;"
+
+    }
+
+
+    #create { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    #navbutton2 { top: -5%; left: 50%; transform: translateX(-50%); }
+    #navbutton3 { top: 92%; left: 50%; transform: translateX(-50%); }
+    #navbutton4 { top: 50%; left: -10%; transform: translateY(-50%); }
+    #navbutton5 { top: 50%; left: 80%; transform: translateY(-50%); }
+
+@keyframes changeBorderRadius {
+  </style>
+<div id="navcontainer">
+  <a id="create" class="console-button" class="button" href="#">Cloak</a>
+  <a id="navbutton2" class="vbutton" href="google-classroom.html">Games</a>
+  <a id="navbutton3" class="vbutton" href="google-drive.html">Tools</a>
+  <a id="navbutton4" class="vbutton" href="chat.html">Frat-Chat</a>
+  <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>
+<p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
+</div>
 
 <style>
 body {
