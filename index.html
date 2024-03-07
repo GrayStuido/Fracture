@@ -2,31 +2,51 @@
 <body onload="changeText()">
 </body>
 <link rel="stylesheet" href="css/index.css">
+<link rel="icon" type="image/png" href="favicon.png">
   <title>Fracture</title>
 <br>
 <script>
 changeText();
 </script>
 <style>
-<link rel="icon" type="image/png" href="favicon.png">
-.container {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.container5 {
     width: 100%;
     max-width: 600px; /* You can adjust this value as needed */
     margin: 0 auto;
     text-align: center;
+
 }
 
 .resizable-image {
     width: 100%;
     height: auto;
+            margin: 0;
+            display: flex;
+            align-items: center;
 }
 
 
 
 </style>
 
-    <div class="container">
-        <img src="Fracture-Minecraft_Title.png" alt="Resizable Image" class="resizable-image">
+    <div class="container5" id="container5">
+        <img src="https://github.com/GrayStuido/Fracture/blob/main/Fracture-Minecraft_Title.png?raw=true" alt="Resizable Image" class="resizable-image">
 <h3 id="random-h1">Loading Text</h3>
     </div>
 
@@ -34,7 +54,7 @@ changeText();
 
 #navcontainer {
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
@@ -120,7 +140,6 @@ background: #1e0041;
 margin: 0;
 padding: 0;
 }
-
 		@font-face {
   font-family: 'Lexend Semi-Bold';
   src: url('path/to/lexend-semibold.woff2') format('woff2'), /* Modern Browsers */
