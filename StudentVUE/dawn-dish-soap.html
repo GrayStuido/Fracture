@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/index.css">
+  <title>Wikipedia</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+background-color: #000;
+    }
+
+    nav {
+      background-color: #311F3B;
+      overflow: hidden;
+      z-index: 100; /* Ensure the nav menu stays on top */
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    a {
+      display: block;
+      color: #A37AB9;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      height: 94vh;
+    }
+  </style>
+</head>
+<body onload="changeText()">
+  <nav>
+    <ul>
+      <li><a href="https://graystuido.github.io/Fracture/index.html">Home</a></li>
+      <li><a href="https://graystuido.github.io/Fracture/google-classroom.html">Exit</a></li>
+    </ul>
+  </nav>
+  <iframe src="https://graystuido.github.io/Fracture/StudentVUE/10-minutes-till-dawn/index.html" frameborder="0"></iframe>
+</body>
+<script src="cloak.js">
+      var url = document.getElementById("url-target");
+      var urlObj = new window.URL(window.location.href);
+      document.getElementById("create").onclick = function () {
+        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
+    		url.value = 'https://' + url.value.split('https://').pop();
+        } else if (url.value.substring(0, 7) == 'http://'){
+        	url.value = 'https://' + url.value.split('http://').pop();
+        };
+        win = window.open();
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url.value;
+        win.document.body.appendChild(iframe);
+      };
+</script>
+</html>
