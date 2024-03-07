@@ -1,4 +1,5 @@
-      const options = [
+document.addEventListener("DOMContentLoaded", function() {
+    const options = [
         "We are so back",
         "I take requests for splash texts",
         "Down bad for Emulators",
@@ -16,10 +17,16 @@
         "Big Vanilla",
         "Jumbo Jorts",
         "Does He Know?",
-      ];
+    ];
 
-      function changeText() {
-        const randomIndex = Math.floor(Math.random() * options.length);
-        const randomText = options[randomIndex];
-        document.getElementById("random-h1").textContent = randomText;
-      }
+    function getRandomOption() {
+        return options[Math.floor(Math.random() * options.length)];
+    }
+
+    function updateH3Text() {
+        const h3 = document.getElementById('random-h1');
+        h3.textContent = getRandomOption();
+    }
+
+    updateH3Text();
+});
