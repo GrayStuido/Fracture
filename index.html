@@ -18,6 +18,8 @@
     height: auto;
 }
 
+
+
 </style>
 
     <div class="container">
@@ -35,23 +37,22 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  border: 2px solid purple;
+  border: 2px solid #560FA6;
   animation: changeBorderRadius 1s 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
     .vbutton, .console-button {
       position: absolute;
       width: 80px;
       height: 40px;
-      background-color: #4b0082;
+      background-color: #360A67;
       color: white;
-      border: none;
+      border: 2px solid #560FA6;
       border-radius: 5px;
-      cursor: pointer;
+      cursor: default;
       text-align: center;
       line-height: 40px;
       white-space: nowrap;
@@ -59,10 +60,37 @@
       text-overflow: shrink;
       font-size: 16px;
       font-weight: bold;
-text-decoration: none;"
+text-decoration: none;
+transition: all 0.3s ease-in-out;
 
     }
 
+.vbutton:hover, .console-button:hover {
+border-radius: 10px;
+border: 2px solid #7800FF;
+background-color: #2C0656;
+color: #B16BFF;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+#center-bar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100vh; 
+  background-color: #16001B; 
+  z-index: -1; 
+  width: 50%;
+}
 
     #create { top: 50%; left: 50%; transform: translate(-50%, -50%); }
     #navbutton2 { top: -5%; left: 50%; transform: translateX(-50%); }
@@ -70,8 +98,9 @@ text-decoration: none;"
     #navbutton4 { top: 50%; left: -10%; transform: translateY(-50%); }
     #navbutton5 { top: 50%; left: 80%; transform: translateY(-50%); }
 
-@keyframes changeBorderRadius {
+
   </style>
+
 <div id="navcontainer">
   <a id="create" class="console-button" class="button" href="#">Cloak</a>
   <a id="navbutton2" class="vbutton" href="google-classroom.html">Games</a>
@@ -136,3 +165,47 @@ body {
       animation: breathing 3s infinite ease-in-out;
     }
   </style>
+ <script>
+      window.onload = function() {
+        const canvas = document.getElementById('MatrixBackground');
+        const chars = 'abcdefgyzhijklmnopQRSTUVABCDEFGYZ109467ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日¦｜:・."=*+-<>'; // Your chosen characters
+        const duration = 10000; // Duration of the matrix effect in milliseconds
+
+        // Get canvas context and set canvas size
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width = window.innerWidth;
+        const h = canvas.height = window.innerHeight;
+
+        // Calculate number of columns and initialize y positions
+        const cols = Math.floor(w / 20) + 1;
+        const ypos = Array(cols).fill(0);
+
+        // Fill canvas with black color
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, w, h);
+
+        // Create matrix effect function
+        const matrix = () => {
+          ctx.fillStyle = '#0001';
+          ctx.fillRect(0, 0, w, h);
+
+          ctx.fillStyle = '#C800FF';
+          ctx.font = '15pt monospace';
+
+          ypos.forEach((y, ind) => {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            const x = ind * 20;
+            ctx.fillText(text, x, y);
+            if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+            else ypos[ind] = y + 20;
+          });
+        };
+
+        // Call matrix effect function every 50 milliseconds
+        const matrixInterval = setInterval(matrix, 50);
+      };
+    </script>
+<div id="center-bar"></div>
+<div class="background">
+  <canvas id="MatrixBackground"></canvas>
+</div>
