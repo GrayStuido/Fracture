@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
         "Jumbo Jorts",
         "Does He Know?",
         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "You are not the Lisan Al Gaib",
+        "Distressed Red Ball",
+        "Math Helpers 2? I barely know her",
+
     ];
 
     function getRandomOption() {
