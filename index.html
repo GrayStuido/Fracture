@@ -1,5 +1,14 @@
 <script src="textsplash.js" onload="changeText()"></script>
 <body onload="changeText()">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the current URL
+        var currentURL = window.location.href;
+        
+        // Set the value of the input field to the current URL
+        document.getElementById("url-target").value = currentURL;
+    });
+</script>
 </body>
 <link rel="stylesheet" href="css/index.css">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -46,7 +55,7 @@ changeText();
 </style>
 
     <div class="container5" id="container5">
-        <img src="https://github.com/GrayStuido/Fracture/blob/main/Fracture-Minecraft_Title.png?raw=true" alt="Resizable Image" class="resizable-image">
+        <img src="Fracture-Minecraft_Title.png" alt="Resizable Image" class="resizable-image">
 <h3 id="random-h1">Loading Text</h3>
     </div>
 
@@ -188,7 +197,7 @@ body {
     }
   </style>
  <script>
-      window.onload = function() {
+      window.onload = function(MatrixBackground) {
         const canvas = document.getElementById('MatrixBackground');
         const chars = 'abcdefgyzhijklmnopQRSTUVABCDEFGYZ109467ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日¦｜:・."=*+-<>'; // Your chosen characters
         const duration = 10000; // Duration of the matrix effect in milliseconds

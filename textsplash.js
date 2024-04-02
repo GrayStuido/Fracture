@@ -21,12 +21,23 @@ document.addEventListener("DOMContentLoaded", function() {
         "You are not the Lisan Al Gaib",
         "Distressed Red Ball",
         "Math Helpers 2? I barely know her",
-
+        "Slug Car"
     ];
+
+    // Shuffle function
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
 
     function getRandomOption() {
         return options[Math.floor(Math.random() * options.length)];
     }
+
+    // Randomize options
+    shuffle(options);
 
     function updateH3Text() {
         const h3 = document.getElementById('random-h1');
