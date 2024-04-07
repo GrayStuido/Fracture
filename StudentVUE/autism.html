@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Damage | Fracture</title>
+<style>
+body {
+
+    background-color: #000000;
+
+}
+
+.CenterVideoObjects {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #1a0324;
+    border: 2px solid rgb(46, 5, 70)
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+
+}
+
+  #videoContainer {
+    width: 1500px;
+    height: 800px;
+    position: relative;
+    overflow: hidden;
+    background-color: #16031d;
+    border: 2px solid #710d8f;
+    border-radius: 10px;
+  }
+  .videoFrame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
+</head>
+<body>
+<div class="CenterVideoObjects">
+    <div class="CosmeticBackgroundVideoObject">
+<div>
+  <label for="videoLink">Enter YouTube Video Link:</label>
+  <input type="text" id="videoLink">
+  <button onclick="addVideo()">Add Video</button>
+  <button onclick="removeLastVideo()">Remove Last Video</button>
+  <label for="volumeSlider">Volume:</label>
+  <input type="range" id="volumeSlider" min="0" max="10000" value="5000" onchange="setVolume()">
+</div>
+<br>
+<div id="videoContainer"></div>
+</div>
+</div>
+<script>
+  var volume = 1.0;
+
+  function addVideo() {
+    var videoLink = document.getElementById("videoLink").value;
+    if (videoLink.trim() === '') {
+      alert("Please enter a valid YouTube video link.");
+      return;
+    }
+
+    var videoContainer = document.getElementById("videoContainer");
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("src", "https://www.youtube.com/embed/" + extractVideoID(videoLink) + "?enablejsapi=1");
+    iframe.classList.add("videoFrame");
+    iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+
+    var videos = document.getElementsByClassName("videoFrame");
+    var numVideos = videos.length;
+
+    if (numVideos === 0) {
+      videoContainer.appendChild(iframe);
+    } else {
+      var numRows = Math.ceil(Math.sqrt(numVideos + 1)); // Adding 1 to consider the new video
+      var numCols = Math.ceil((numVideos + 1) / numRows);
+
+      var videoWidth = 100 / numCols;
+      var videoHeight = 100 / numRows;
+
+      for (var i = 0; i < numVideos; i++) {
+        videos[i].style.width = videoWidth + "%";
+        videos[i].style.height = videoHeight + "%";
+        var row = Math.floor(i / numCols);
+        var col = i % numCols;
+        videos[i].style.top = row * videoHeight + "%";
+        videos[i].style.left = col * videoWidth + "%";
+      }
+
+      iframe.style.width = videoWidth + "%";
+      iframe.style.height = videoHeight + "%";
+      var newRow = Math.floor(numVideos / numCols);
+      var newCol = numVideos % numCols;
+      iframe.style.top = newRow * videoHeight + "%";
+      iframe.style.left = newCol * videoWidth + "%";
+
+      videoContainer.appendChild(iframe);
+    }
+
+    // Set volume for the newly added iframe
+    iframe.contentWindow.postMessage('{"event":"command","func":"' + 'setVolume' + '","args":[' + volume + ']}', '*');
+  }
+
+  function removeLastVideo() {
+    var videos = document.getElementsByClassName("videoFrame");
+    var numVideos = videos.length;
+    if (numVideos > 0) {
+      var lastVideo = videos[numVideos - 1];
+      lastVideo.parentNode.removeChild(lastVideo);
+    }
+  }
+
+  function extractVideoID(url) {
+    var videoID = '';
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      videoID = match[2];
+    } else {
+      // Handle invalid URL
+      console.log("Invalid YouTube URL");
+    }
+    return videoID;
+  }
+
+  function setVolume() {
+    var videos = document.getElementsByClassName("videoFrame");
+    volume = document.getElementById("volumeSlider").value / 100;
+    for (var i = 0; i < videos.length; i++) {
+      videos[i].contentWindow.postMessage('{"event":"command","func":"' + 'setVolume' + '","args":[' + volume + ']}', '*');
+    }
+  }
+</script>
+
+</body>
+</html>
