@@ -1,3 +1,8 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/index.css">
+<title>Wikipedia</title>
+
 <div class="AdvancedMenu">
     <div class="trigger-div" style="width:100px;height:100px;position:fixed;top:-50px;left:-50px;background-color:#3b1c5f;border:5px solid #560fa6;border-radius:100px;cursor:pointer;z-index:99" onclick="toggleSlideOutDiv()">
         <div class="shifted-image" style="width:30px;height:30px;background-image: url('../HamburgerMenu.png');background-size:cover;margin-left:50px;margin-top:50px;z-index:100"></div>
@@ -12,7 +17,47 @@
         </div>
     </div>
 </div>
+<iframe src="" frameborder="0"></iframe>
+<style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+background-color: #000;
+    }
 
+    nav {
+      background-color: #311F3B;
+      overflow: hidden;
+      z-index: 100; /* Ensure the nav menu stays on top */
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    a {
+      display: block;
+      color: #A37AB9;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 <script>
     document.addEventListener("keydown", function(e) {
         if (e.shiftKey && e.ctrlKey && ":" === e.key) {
@@ -44,4 +89,27 @@
         toggleAdvancedMenu();
         alert("Menu Hidden! Press Ctrl + Shift :");
     }
+</script>
+<script src="cloak.js">
+    var url = document.getElementById("url-target");
+    var urlObj = new window.URL(window.location.href);
+    document.getElementById("create").onclick = function () {
+      if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
+          url.value = 'https://' + url.value.split('https://').pop();
+      } else if (url.value.substring(0, 7) == 'http://'){
+          url.value = 'https://' + url.value.split('http://').pop();
+      };
+      win = window.open();
+      win.document.body.style.margin = "0";
+      win.document.body.style.height = "100vh";
+      var iframe = win.document.createElement("iframe");
+      iframe.style.border = "none";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.margin = "0";
+      iframe.referrerpolicy = "no-referrer";
+      iframe.allow = "fullscreen";
+      iframe.src = url.value;
+      win.document.body.appendChild(iframe);
+    };
 </script>
