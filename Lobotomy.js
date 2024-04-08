@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var activationProbability = 100;
     var randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber > activationProbability) {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function shuffleArray(array) {
-        array = array.filter(function(url) {
+        array = array.filter(function (url) {
             return url.trim() !== "Lobotomy/"; // Remove empty strings
         });
 
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var fadeOutDuration = 4; // Default fade-out duration in seconds
 
-        var shakeInterval = setInterval(function() {
+        var shakeInterval = setInterval(function () {
             var offsetX = Math.random() * 20 - 10;
             var offsetY = Math.random() * 20 - 10;
             img.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
             img.style.opacity = "0";
         }, 50);
 
-        setTimeout(function() {
+        setTimeout(function () {
             clearInterval(shakeInterval);
             document.body.removeChild(img);
         }, fadeOutDuration * 1000);
@@ -97,22 +97,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var imageUrls = fetchImageUrls();
     var shuffledImageUrls = shuffleArray(imageUrls);
-    var previousImageUrl = "";
-    var randomImageUrl = "";
+    var previousImageUrl = localStorage.getItem("lastShownImage") || "";
+    var shownImagesCount = localStorage.getItem("shownImagesCount") || 0;
 
-    do {
-        randomImageUrl = shuffledImageUrls[Math.floor(Math.random() * shuffledImageUrls.length)];
-    } while (randomImageUrl === previousImageUrl);
+    var uniqueImageUrls = shuffledImageUrls.filter(function (url) {
+        return url !== previousImageUrl;
+    });
 
-    // Check if Lobotomy folder exists, if not, prepend "../" to file paths
-    var testImage = new Image();
-    testImage.onload = function() {
+    if (uniqueImageUrls.length >= 3) {
+        // Show a new image
+        var randomImageUrl = uniqueImageUrls[Math.floor(Math.random() * uniqueImageUrls.length)];
+        localStorage.setItem("lastShownImage", randomImageUrl);
+        localStorage.setItem("shownImagesCount", ++shownImagesCount);
         loadImage(randomImageUrl);
-    };
-    testImage.onerror = function() {
-        // Prepend "../" to file paths
-        randomImageUrl = "../" + randomImageUrl;
-        loadImage(randomImageUrl);
-    };
-    testImage.src = randomImageUrl;
+    } else {
+        // Reset shown images count if not enough unique images are available
+        localStorage.setItem("shownImagesCount", 0);
+    }
 });
