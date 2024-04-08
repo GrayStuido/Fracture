@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "Lobotomy/arab.jpg",
             "Lobotomy/midget.gif",
             "Lobotomy/dinara-princesedinara.gif",
+            "Woman-Face.png",
+            "Tomas.jpg",
+            "Demon.jpg",
         ];
     }
 
@@ -104,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return url !== previousImageUrl;
     });
 
-    if (uniqueImageUrls.length >= 3) {
+    if (uniqueImageUrls.length >= 10) {
         // Show a new image
         var randomImageUrl = uniqueImageUrls[Math.floor(Math.random() * uniqueImageUrls.length)];
         localStorage.setItem("lastShownImage", randomImageUrl);
