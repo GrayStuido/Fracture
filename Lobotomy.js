@@ -66,6 +66,35 @@ document.addEventListener("DOMContentLoaded", function() {
         return array;
     }
 
+    function loadImage(imageUrl) {
+        var img = new Image();
+        img.src = imageUrl;
+        img.style.position = "fixed";
+        img.style.top = "0";
+        img.style.left = "0";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "fill";
+        img.style.zIndex = "9999";
+        img.style.pointerEvents = "none"; // Make image ignore pointer events
+        document.body.appendChild(img);
+
+        var fadeOutDuration = 4; // Default fade-out duration in seconds
+
+        var shakeInterval = setInterval(function() {
+            var offsetX = Math.random() * 20 - 10;
+            var offsetY = Math.random() * 20 - 10;
+            img.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
+            img.style.transition = "opacity " + fadeOutDuration + "s ease-out";
+            img.style.opacity = "0";
+        }, 50);
+
+        setTimeout(function() {
+            clearInterval(shakeInterval);
+            document.body.removeChild(img);
+        }, fadeOutDuration * 1000);
+    }
+
     var imageUrls = fetchImageUrls();
     var shuffledImageUrls = shuffleArray(imageUrls);
     var previousImageUrl = "";
@@ -75,29 +104,15 @@ document.addEventListener("DOMContentLoaded", function() {
         randomImageUrl = shuffledImageUrls[Math.floor(Math.random() * shuffledImageUrls.length)];
     } while (randomImageUrl === previousImageUrl);
 
-    var img = new Image();
-    img.src = randomImageUrl;
-    img.style.position = "fixed";
-    img.style.top = "0";
-    img.style.left = "0";
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.objectFit = "fill";
-    img.style.zIndex = "9999";
-    document.body.appendChild(img);
-
-    var fadeOutDuration = 4; // Default fade-out duration in seconds
-
-    var shakeInterval = setInterval(function() {
-        var offsetX = Math.random() * 20 - 10;
-        var offsetY = Math.random() * 20 - 10;
-        img.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
-        img.style.transition = "opacity " + fadeOutDuration + "s ease-out";
-        img.style.opacity = "0";
-    }, 50);
-
-    setTimeout(function() {
-        clearInterval(shakeInterval);
-        document.body.removeChild(img);
-    }, fadeOutDuration * 1000);
+    // Check if Lobotomy folder exists, if not, prepend "../" to file paths
+    var testImage = new Image();
+    testImage.onload = function() {
+        loadImage(randomImageUrl);
+    };
+    testImage.onerror = function() {
+        // Prepend "../" to file paths
+        randomImageUrl = "../" + randomImageUrl;
+        loadImage(randomImageUrl);
+    };
+    testImage.src = randomImageUrl;
 });

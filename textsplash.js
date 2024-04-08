@@ -17,32 +17,39 @@ document.addEventListener("DOMContentLoaded", function() {
         "Big Vanilla",
         "Jumbo Jorts",
         "Does He Know?",
-        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "You are not the Lisan Al Gaib",
         "Distressed Red Ball",
         "Math Helpers 2? I barely know her",
-        "Slug Car"
+        "Slug Car",
+        "Lobotomy"
     ];
 
-    // Shuffle function
+    // Fisher-Yates shuffle algorithm for shuffling the array
     function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+        var currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (Math.pow(2, 32) - 1) * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
         }
+        return array;
     }
 
+    // Function to get a random option from the shuffled array
     function getRandomOption() {
-        return options[Math.floor(Math.random() * options.length)];
+        return options[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (Math.pow(2, 32) - 1) * options.length)];
     }
 
-    // Randomize options
+    // Shuffle options array
     shuffle(options);
 
+    // Function to update the text content of the h3 element
     function updateH3Text() {
         const h3 = document.getElementById('random-h1');
         h3.textContent = getRandomOption();
     }
 
+    // Call updateH3Text function to initially set the text content
     updateH3Text();
 });
