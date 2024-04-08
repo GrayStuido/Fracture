@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "Lobotomy/arab.jpg",
             "Lobotomy/midget.gif",
             "Lobotomy/dinara-princesedinara.gif",
-            "Woman-Face.png",
-            "Tomas.jpg",
-            "Demon.jpg",
+            "Lobotomy/Woman-Face.png",
+            "Lobotomy/Tomas.jpg",
+            "Lobotomy/Demon.jpg",
         ];
     }
 
