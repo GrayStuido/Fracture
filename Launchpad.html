@@ -41,7 +41,7 @@ padding: 0;
   <title>Wikipedia</title>
   <style>
 
-    #leaderboard-container {
+    .leaderboard {
       max-width: 400px;
       margin: 20px auto;
       padding: 20px;
@@ -72,32 +72,76 @@ background-color: #2d2d2d;
 </head>
 <body>
 
-<div id="leaderboard-container">
-<h1>Tetris Lines</h1>
+<div class="leaderboard" id="tetris-leaderboard">
+  <h1>Tetris Lines</h1>
+</div>
+
+<div class="leaderboard" id="subway-leaderboard">
+  <h1>Subway Surfers Score</h1>
 </div>
 
 <script>
-  // Sample data for the leaderboard
-  const players = [
-    { name: 'Oskie Ayala', score: 295 },
-    { name: 'Brendan Westdahl', score: 272 },
-    { name: 'Jayden Jusino', score: 240 },
-    { name: 'Alex Parten', score: 273 },
-  ];
+  class Leaderboard {
+    constructor(containerId, title, unit, players) {
+      this.containerId = containerId;
+      this.title = title;
+      this.unit = unit;
+      this.players = players;
+    }
 
-  // Sort players by score in descending order
-  players.sort((a, b) => b.score - a.score);
+    render() {
+      const leaderboardContainer = document.getElementById(this.containerId);
+      leaderboardContainer.innerHTML = `<h1>${this.title}</h1>`;
+      this.players.forEach((player, index) => {
+        const leaderboardItem = document.createElement('div');
+        leaderboardItem.classList.add('leaderboard-item');
+        leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${player.score} ${this.unit}</span>`;
+        leaderboardContainer.appendChild(leaderboardItem);
+      });
+    }
+  }
 
-  // Create the leaderboard element
-  const leaderboardContainer = document.getElementById('leaderboard-container');
+  // Sample data for the leaderboards
+  const leaderboardsData = {
+    tetris: [
+      { name: 'Oskie Ayala', score: 300 },
+      { name: 'Brendan Westdahl', score: 272 },
+      { name: 'Jayden Jusino', score: 264 },
+      { name: 'Brennan McCoskery', score: 273 }
+    ],
+    subway: [
+      { name: 'Oskie Ayala', score: 'N/A' },
+      { name: 'Brendan Westdahl', score: 'N/A' },
+      { name: 'Jayden Jusino', score: 'N/A' },
+      { name: 'Brennan McCoskery', score: 'N/A' }
+    ]
+  };
 
-  players.forEach((player, index) => {
-    const leaderboardItem = document.createElement('div');
-    leaderboardItem.classList.add('leaderboard-item');
-    leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${player.score} Lines</span>`;
-    leaderboardContainer.appendChild(leaderboardItem);
+  // Function to render leaderboard
+  function renderLeaderboard(data) {
+    const leaderboard = new Leaderboard(data.containerId, data.title, data.unit, data.players);
+    leaderboard.render();
+  }
+
+  // Render Tetris leaderboard
+  renderLeaderboard({
+    containerId: 'tetris-leaderboard',
+    title: 'Tetris Lines',
+    unit: 'Lines',
+    players: leaderboardsData.tetris
+  });
+
+  // Render Subway Surfers leaderboard
+  renderLeaderboard({
+    containerId: 'subway-leaderboard',
+    title: 'Subway Surfers Score',
+    unit: 'Score',
+    players: leaderboardsData.subway
   });
 </script>
+
+
+
 <div class="background">
   <canvas id="MatrixBackground"></canvas>
 </div>
