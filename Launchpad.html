@@ -92,6 +92,10 @@ background-color: #2d2d2d;
     render() {
       const leaderboardContainer = document.getElementById(this.containerId);
       leaderboardContainer.innerHTML = `<h1>${this.title}</h1>`;
+      
+      // Sort players by score
+      this.players.sort((a, b) => b.score - a.score);
+
       this.players.forEach((player, index) => {
         const leaderboardItem = document.createElement('div');
         leaderboardItem.classList.add('leaderboard-item');
