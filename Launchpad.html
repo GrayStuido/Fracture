@@ -40,25 +40,31 @@ padding: 0;
 </script>
   <title>Wikipedia</title>
   <style>
-
+.leaderboard, leaderboard-item {
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-family: Arial, sans-serif;
+}
     .leaderboard {
+border: 5px solid #9900ff;
       max-width: 400px;
       margin: 20px auto;
       padding: 20px;
-      border-radius: 8px;
-      background-color: #2d2d2d;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background-color: #330c4d;
     }
 
     .leaderboard-item {
+border: 5px solid #9900ff;
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
+background-color: #7a0ec2;
+padding: 10px;
+border-radius: 8px;
     }
 Body {
-background-color: #2d2d2d;
+background-color:
 }
 .background {
   position: fixed;
@@ -68,6 +74,21 @@ background-color: #2d2d2d;
   height: 100%;
   z-index: -1;
 }
+
+.leaderboard-item-first {
+border: 5px solid #9900ff;
+}
+
+.leaderboard-item-seccond {
+border: 5px solid #9900ff;
+}
+
+.leaderboard-item-third {
+border: 5px solid #9900ff;
+{
+
+
+
   </style>
 </head>
 <body>
@@ -103,6 +124,16 @@ background-color: #2d2d2d;
       this.players.forEach((player, index) => {
         const leaderboardItem = document.createElement('div');
         leaderboardItem.classList.add('leaderboard-item');
+
+        // Add different styles for first, second, and third place
+        if (index === 0) {
+          leaderboardItem.classList.add('leaderboard-item-first');
+        } else if (index === 1) {
+          leaderboardItem.classList.add('leaderboard-item-second');
+        } else if (index === 2) {
+          leaderboardItem.classList.add('leaderboard-item-third');
+        }
+
         leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${player.score} ${this.unit}</span>`;
         leaderboardContainer.appendChild(leaderboardItem);
       });
@@ -161,6 +192,7 @@ background-color: #2d2d2d;
     players: leaderboardsData.galaga
   });
 </script>
+
 
 
 
