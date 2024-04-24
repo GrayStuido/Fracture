@@ -76,9 +76,25 @@ background-color:
 }
 
 
+.ScoreWrapper {
+      color: #fff;
+      font-family: Arial, sans-serif;
+}
+
+
 .leaderboard-item-first {
 border: 5px solid #d9ad00;
 background-color: #a18516;
+}
+
+.leaderboard-item-second {
+border: 5px solid #cccccc;
+background-color: #b0b0b0;
+}
+
+.leaderboard-item-third {
+border: 5px solid #ba6600;
+background-color: #c28132;
 }
 
 
@@ -89,14 +105,20 @@ background-color: #a18516;
 
 <div class="leaderboard" id="tetris-leaderboard">
   <h1>Tetris Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
 </div>
 
 <div class="leaderboard" id="subway-leaderboard">
   <h1>Subway Surfers Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
 </div>
 
 <div class="leaderboard" id="galaga-leaderboard">
   <h1>Galaga Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
 </div>
 
 <script>
@@ -110,7 +132,7 @@ background-color: #a18516;
 
     render() {
       const leaderboardContainer = document.getElementById(this.containerId);
-      leaderboardContainer.innerHTML = `<h1>${this.title}</h1>`;
+      leaderboardContainer.innerHTML = `<h1 class="ScoreWrapper">${this.title}</h1>`;
       
       // Sort players by score
       this.players.sort((a, b) => b.score - a.score);
@@ -128,7 +150,10 @@ background-color: #a18516;
           leaderboardItem.classList.add('leaderboard-item-third');
         }
 
-        leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${player.score} ${this.unit}</span>`;
+        // Format score with commas
+        const formattedScore = player.score.toLocaleString();
+
+        leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${formattedScore} ${this.unit}</span>`;
         leaderboardContainer.appendChild(leaderboardItem);
       });
     }
@@ -143,16 +168,17 @@ background-color: #a18516;
       { name: 'Brennan McCoskery', score: 305 }
     ],
     subway: [
-      { name: 'Oskie Ayala', score: 'N/A' },
-      { name: 'Brendan Westdahl', score: 'N/A' },
-      { name: 'Jayden Jusino', score: 'N/A' },
-      { name: 'Brennan McCoskery', score: 'N/A' }
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 1478329 },
+      { name: 'Jayden Jusino', score: 135898 },
+      { name: 'Alex Partan', score: 735810 },
+      { name: 'Brennan McCoskery', score: 0 }
     ],
     galaga: [
-      { name: 'Oskie Ayala', score: 'N/A' },
-      { name: 'Brendan Westdahl', score: 'N/A' },
-      { name: 'Jayden Jusino', score: 'N/A' },
-      { name: 'Brennan McCoskery', score: 'N/A' }
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 }
     ]
   };
 
@@ -165,7 +191,7 @@ background-color: #a18516;
   // Render Tetris leaderboard
   renderLeaderboard({
     containerId: 'tetris-leaderboard',
-    title: 'Tetris',
+    title: 'Tetra Legends',
     unit: 'Lines',
     players: leaderboardsData.tetris
   });
@@ -186,6 +212,7 @@ background-color: #a18516;
     players: leaderboardsData.galaga
   });
 </script>
+
 
 
 
