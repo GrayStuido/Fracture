@@ -73,11 +73,15 @@ background-color: #2d2d2d;
 <body>
 
 <div class="leaderboard" id="tetris-leaderboard">
-  <h1>Tetris Lines</h1>
+  <h1>Tetris Leaderboard</h1>
 </div>
 
 <div class="leaderboard" id="subway-leaderboard">
-  <h1>Subway Surfers Score</h1>
+  <h1>Subway Surfers Leaderboard</h1>
+</div>
+
+<div class="leaderboard" id="galaga-leaderboard">
+  <h1>Galaga Leaderboard</h1>
 </div>
 
 <script>
@@ -118,6 +122,12 @@ background-color: #2d2d2d;
       { name: 'Brendan Westdahl', score: 'N/A' },
       { name: 'Jayden Jusino', score: 'N/A' },
       { name: 'Brennan McCoskery', score: 'N/A' }
+    ],
+    galaga: [
+      { name: 'Oskie Ayala', score: 'N/A' },
+      { name: 'Brendan Westdahl', score: 'N/A' },
+      { name: 'Jayden Jusino', score: 'N/A' },
+      { name: 'Brennan McCoskery', score: 'N/A' }
     ]
   };
 
@@ -130,7 +140,7 @@ background-color: #2d2d2d;
   // Render Tetris leaderboard
   renderLeaderboard({
     containerId: 'tetris-leaderboard',
-    title: 'Tetris Lines',
+    title: 'Tetris',
     unit: 'Lines',
     players: leaderboardsData.tetris
   });
@@ -138,9 +148,17 @@ background-color: #2d2d2d;
   // Render Subway Surfers leaderboard
   renderLeaderboard({
     containerId: 'subway-leaderboard',
-    title: 'Subway Surfers Score',
+    title: 'Subway Surfers',
     unit: 'Score',
     players: leaderboardsData.subway
+  });
+
+  // Render Galaga leaderboard
+  renderLeaderboard({
+    containerId: 'galaga-leaderboard',
+    title: 'Galaga',
+    unit: 'Score',
+    players: leaderboardsData.galaga
   });
 </script>
 
