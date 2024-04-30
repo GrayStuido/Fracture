@@ -170,7 +170,7 @@ body {
         } else if (url.value.substring(0, 7) == 'http://'){
         	url.value = 'https://' + url.value.split('http://').pop();
         };
-        win = window.open();
+        win = window.open('about:blank', '_blank', 'height=600,width=800,resizable=no,scrollbars=no,status=no,toolbar=no,location=no,menubar=no');
         win.document.body.style.margin = "0";
         win.document.body.style.height = "100vh";
         var iframe = win.document.createElement("iframe");
@@ -184,6 +184,7 @@ body {
         win.document.body.appendChild(iframe);
       };
 </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @keyframes breathing {
