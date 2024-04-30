@@ -9,10 +9,13 @@
 <div class=AdvancedMenu><div class=trigger-div style="width:100px;height:100px;position:fixed;top:-50px;left:-50px;background-color:#3b1c5f;border:5px solid #560fa6;border-radius:100px;cursor:pointer;z-index:99"onclick=toggleSlideOutDiv()><div class=shifted-image style="width:30px;height:30px;background-image:url(https://github.com/GrayStuido/Fracture/blob/6f17dd9e6c924c9fbd750e00e50f47a665fa8725/HamburgerMenu.png?raw=true);background-size:cover;margin-left:50px;margin-top:50px;z-index:100"></div></div><div class=slide-out-div style="width:600px;height:10px;position:fixed;top:0;left:-600px;background-color:#3b1c5f;transition:left .5s ease;z-index:98;border-radius:100px;border:5px solid #560fa6"id=slideOutDiv><div class=slideoutwrapper style=margin-left:80px><a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=https://graystuido.github.io/Fracture/ >Home</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=https://graystuido.github.io/Fracture/google-classroom.html>Games</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=https://graystuido.github.io/Fracture/google-drive.html>Tools</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=https://graystuido.github.io/Fracture/chat.html>Frat-Chat</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"onclick=hideMenuAndPrompt()>Hide Menu</a></div></div><script>document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){var e=document.getElementById("slideOutDiv");e.style.left=SlideOutDivOut?"-600px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}</script></div>
 <style>
 body {
-color: white;
-background: #1e0041;
-margin: 0;
-padding: 0;
+  color: white;
+  background: #1e0041;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 </style>
 <script src="cloak.js">
@@ -47,9 +50,10 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       font-family: Arial, sans-serif;
 }
     .leaderboard {
-border: 5px solid #9900ff;
+      border: 5px solid #9900ff;
       max-width: 400px;
-      margin: 20px auto;
+      width: 400px;
+      margin: 20px;
       padding: 20px;
       background-color: #330c4d;
     }
@@ -102,7 +106,6 @@ background-color: #c28132;
   </style>
 </head>
 <body>
-
 <div class="leaderboard" id="tetris-leaderboard">
   <h1>Tetris Leaderboard</h1>
   <h1 class="ScoreWrapper">Scores Here</h1>
@@ -120,6 +123,19 @@ background-color: #c28132;
   <h1 class="ScoreWrapper">Scores Here</h1>
 <h2>Lorem Ipsum</h2>
 </div>
+
+<div class="leaderboard" id="tanuki-leaderboard">
+  <h1>Tanuki Sunset Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
+
+<div class="leaderboard" id="slope-leaderboard">
+  <h1>Slope Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
+
 
 <script>
   class Leaderboard {
@@ -174,11 +190,27 @@ background-color: #c28132;
       { name: 'Alex Partan', score: 735810 },
       { name: 'Brennan McCoskery', score: 0 }
     ],
+    tanuki: [
+      { name: 'Oskie Ayala', score: 50307 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 10 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 },
+      { name: 'Addison Burck', score: 48685 }
+    ],
+    slope: [
+      { name: 'Oskie Ayala', score: 65 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 101 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 }
+    ],
     galaga: [
       { name: 'Oskie Ayala', score: 0 },
       { name: 'Brendan Westdahl', score: 0 },
       { name: 'Jayden Jusino', score: 0 },
-      { name: 'Brennan McCoskery', score: 0 }
+      { name: 'Brennan McCoskery', score: 0 },
+      { name: 'Sal A.M.', score: 6910 }
     ]
   };
 
@@ -210,6 +242,22 @@ background-color: #c28132;
     title: 'Galaga',
     unit: 'Score',
     players: leaderboardsData.galaga
+  });
+
+  // Render Tanuki leaderboard
+  renderLeaderboard({
+    containerId: 'tanuki-leaderboard',
+    title: 'Tanuki Sunset',
+    unit: 'Score',
+    players: leaderboardsData.tanuki
+  });
+
+  // Render Tanuki leaderboard
+  renderLeaderboard({
+    containerId: 'slope-leaderboard',
+    title: 'Slope',
+    unit: 'Score',
+    players: leaderboardsData.slope
   });
 </script>
 
