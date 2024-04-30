@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var activationProbability = 100;
+    var activationProbability = 10;
     var randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber > activationProbability) {
         return;
