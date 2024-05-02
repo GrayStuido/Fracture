@@ -86,8 +86,8 @@ border: 5px solid #2b2b2b;
 <div class="wrapper">
 <h1>Am Sound to Binary</h1>
 <div class="button-container">
-  <button onclick="playHighPitchedSound()">1</button>
-  <button onclick="playLowPitchedSound()" class="button-bold button-large">0</button>
+  <button onclick="playSound('high')">1</button>
+  <button onclick="playSound('low')" class="button-bold button-large" id="lowButton">0</button>
 </div>
 
 <div id="output-container">
@@ -97,35 +97,34 @@ border: 5px solid #2b2b2b;
     <br>
     1: High Pitch
     <br>
-    0: Low Pitc
+    0: Low Pitch
   </div>
 </div>
 </div>
 <script>
-function playHighPitchedSound() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(1000, audioContext.currentTime); // Adjust frequency as needed
-  oscillator.connect(audioContext.destination);
-  oscillator.start();
-  setTimeout(() => {
-    oscillator.stop();
-    document.getElementById('output').innerText += '1 ';
-  }, 1000); // Adjust duration as needed
-}
+let isPlaying = false;
 
-function playLowPitchedSound() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = audioContext.createOscillator();
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(600, audioContext.currentTime); // Adjust frequency as needed
-  oscillator.connect(audioContext.destination);
-  oscillator.start();
-  setTimeout(() => {
-    oscillator.stop();
-    document.getElementById('output').innerText += '0 ';
-  }, 1000); // Adjust duration as needed
+function playSound(type) {
+  if (!isPlaying) {
+    isPlaying = true;
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine';
+    if (type === 'high') {
+      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime); // Adjust frequency as needed
+    } else if (type === 'low') {
+      oscillator.frequency.setValueAtTime(600, audioContext.currentTime); // Adjust frequency as needed
+    }
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+    setTimeout(() => {
+      oscillator.stop();
+      document.getElementById('output').innerText += type === 'high' ? '1 ' : '0 ';
+      isPlaying = false;
+      document.getElementById('lowButton').disabled = false; // Re-enable low button after sound stops
+    }, 1000); // Adjust duration as needed
+    document.getElementById('lowButton').disabled = true; // Disable low button until sound stops
+  }
 }
 </script>
 
