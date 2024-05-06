@@ -77,7 +77,7 @@ changeText();
   align-items: center;
 }
 
-    .vbutton, .console-button {
+    .vbutton, .console-button, .ab-cloak-button {
       position: absolute;
       width: 80px;
       height: 40px;
@@ -98,7 +98,7 @@ transition: all 0.3s ease-in-out;
 
     }
 
-.vbutton:hover, .console-button:hover {
+.vbutton:hover, .console-button:hover, .ab-cloak-button:hover {
 border-radius: 10px;
 border: 2px solid #7800FF;
 background-color: #2C0656;
@@ -135,11 +135,12 @@ s
   </style>
 
 <div id="navcontainer">
-  <a id="create" class="console-button" class="button" href="#">Cloak</a>
+  <a hidden id="create" class="console-button" class="button" href="#">Cloak</a>
   <a id="navbutton2" class="vbutton" href="google-classroom.html">Games</a>
   <a id="navbutton3" class="vbutton" href="google-drive.html">Tools</a>
   <a id="navbutton4" class="vbutton" href="chat.html">Frat-Chat</a>
   <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>
+<button style="top: 50%; left: 50%; transform: translate(-50%, -50%);" id="ab-cloak-button" class="ab-cloak-button">Cloak</button>
 <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
 </div>
 
@@ -185,6 +186,26 @@ body {
       };
 </script>
 
+    <script>
+        document.getElementById("ab-cloak-button").onclick = function () {
+            var url = "https://graystuido.github.io/Fracture/index.html";
+            var win = window.open('about:blank', '_blank', 'height=800,width=1080,resizable=no,scrollbars=no,status=no,toolbar=no,location=no,menubar=no');
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            var iframe = win.document.createElement("iframe");
+            iframe.style.border = "none";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.margin = "0";
+            iframe.referrerpolicy = "no-referrer";
+            iframe.allow = "fullscreen";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+
+            // Close the current tab
+            window.close();
+        };
+    </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @keyframes breathing {
