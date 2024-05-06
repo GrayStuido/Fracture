@@ -136,6 +136,11 @@ background-color: #c28132;
 <h2>Lorem Ipsum</h2>
 </div>
 
+<div class="leaderboard" id="kitchen-gun-leaderboard">
+  <h1>Kitchen Gun Game Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
 
 <script>
   class Leaderboard {
@@ -199,13 +204,25 @@ background-color: #c28132;
       { name: 'Addison Burck', score: 48685 }
     ],
     slope: [
-      { name: 'Oskie Ayala', score: 65 },
+      { name: 'Oskie Ayala', score: 86 },
       { name: 'Brendan Westdahl', score: 94 },
       { name: 'Jayden Jusino', score: 101 },
       { name: 'Tyson Fahlman', score: 98 },
       { name: 'Alex Partan', score: 0 },
       { name: 'Wes Porter', score: 66 },
-      { name: 'Addison Burck', score: 98 },
+      { name: 'Clark Chaney', score: 41 },
+      { name: 'Addison Burck', score: 100 },
+      { name: 'Brennan McCoskery', score: 0 }
+    ],
+    kitchengun: [
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 0 },
+      { name: 'Tyson Fahlman', score: 0 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Wes Porter', score: 0 },
+      { name: 'Clark Chaney', score: 0 },
+      { name: 'Addison Burck', score: 0 },
       { name: 'Brennan McCoskery', score: 0 }
     ],
     galaga: [
@@ -263,6 +280,14 @@ background-color: #c28132;
     title: 'Slope',
     unit: 'Score',
     players: leaderboardsData.slope
+  });
+
+  // Render Kitchen Gun Game leaderboard
+  renderLeaderboard({
+    containerId: 'kitchen-gun-leaderboard',
+    title: 'Kitchen Gun Game',
+    unit: 'Score',
+    players: leaderboardsData.kitchengun
   });
 </script>
 
