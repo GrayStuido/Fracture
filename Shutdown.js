@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-var PageDown = true;
+var PageDown = false;
     if (PageDown) {
         // Set maximum z-index value
         var maxZIndex = 9999;
@@ -22,7 +22,7 @@ var PageDown = true;
 
         // Create an img element
         var image = document.createElement("img");
-        var imageUrl = "https://github.com/GrayStuido/Fracture/blob/main/favicon.png?raw=true";
+        var imageUrl = "favicon.png";
         var retryCount = 0;
 
         function loadImage() {
