@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-var PageDown = false;
+    var PageDown = false;
+    
     if (PageDown) {
         // Set maximum z-index value
         var maxZIndex = 9999;
@@ -55,7 +56,7 @@ var PageDown = false;
         // Create an h1 element
         var heading = document.createElement("h1");
         heading.textContent = "Fracture Is Currently Down";
-        heading.style.color = "white"; // White text color
+        heading.style.color = "white"; // White textcolor
         heading.style.fontFamily = "Arial, sans-serif"; // Custom font
 
         // Append the heading to the div
@@ -63,5 +64,11 @@ var PageDown = false;
 
         // Append the div to the body
         document.body.appendChild(fullscreenDiv);
+    } else {
+        // If PageDown is false, remove the fullscreenDiv if it exists
+        var fullscreenDiv = document.querySelector("#fullscreenDiv");
+        if (fullscreenDiv) {
+            fullscreenDiv.remove();
+        }
     }
 });
