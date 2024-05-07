@@ -1,6 +1,5 @@
-var PageDown = true; // Set this variable to true or false based on your condition
-
 document.addEventListener("DOMContentLoaded", function() {
+var PageDown = true;
     if (PageDown) {
         // Set maximum z-index value
         var maxZIndex = 9999;
