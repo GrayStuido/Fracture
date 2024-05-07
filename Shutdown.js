@@ -1,8 +1,10 @@
-<script>
 var PageDown = true; // Set this variable to true or false based on your condition
 
 document.addEventListener("DOMContentLoaded", function() {
     if (PageDown) {
+        // Set maximum z-index value
+        var maxZIndex = 9999;
+
         // Create a new div element
         var fullscreenDiv = document.createElement("div");
 
@@ -12,51 +14,55 @@ document.addEventListener("DOMContentLoaded", function() {
         fullscreenDiv.style.left = "0";
         fullscreenDiv.style.width = "100%";
         fullscreenDiv.style.height = "100%";
-        fullscreenDiv.style.backgroundColor = "rgba(0, 0, 0, 1)";
+        fullscreenDiv.style.backgroundColor = "rgba(0, 0, 0, 1)"; // Semi-transparent black background
         fullscreenDiv.style.display = "flex";
         fullscreenDiv.style.justifyContent = "center";
         fullscreenDiv.style.alignItems = "center";
-        fullscreenDiv.style.flexDirection = "column";
+        fullscreenDiv.style.flexDirection = "column"; // Align items vertically
+        fullscreenDiv.style.zIndex = maxZIndex; // Set z-index value
 
         // Create an img element
         var image = document.createElement("img");
-        var imageUrl = "favicon.png";
+        var imageUrl = "https://github.com/GrayStuido/Fracture/blob/main/favicon.png?raw=true";
         var retryCount = 0;
 
         function loadImage() {
             image.onload = function() {
+                // Image loaded successfully
                 image.style.width = "300px";
                 image.style.height = "auto";
             };
             image.onerror = function() {
+                // Image failed to load
                 if (retryCount < 8) {
+                    // Retry loading the image
                     retryCount++;
-                    imageUrl = "../" + imageUrl;
+                    imageUrl = "../" + imageUrl; // Prepend "../" to the URL
                     image.src = imageUrl;
-                    loadImage();
+                    loadImage(); // Retry loading recursively
                 } else {
-
+                    // Max retries reached, show error message
                     console.error("Failed to load image after multiple retries.");
                 }
             };
             image.src = imageUrl;
         }
 
-        loadImage();
+        loadImage(); // Start loading the image
 
-
+        // Append the image to the div
         fullscreenDiv.appendChild(image);
 
-
+        // Create an h1 element
         var heading = document.createElement("h1");
         heading.textContent = "Fracture Is Currently Down";
         heading.style.color = "white"; // White text color
         heading.style.fontFamily = "Arial, sans-serif"; // Custom font
 
-
+        // Append the heading to the div
         fullscreenDiv.appendChild(heading);
 
-
+        // Append the div to the body
         document.body.appendChild(fullscreenDiv);
     }
 });
