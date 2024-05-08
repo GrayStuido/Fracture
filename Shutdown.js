@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var PageDown = true;
+    var PageDown = false;
     
     if (PageDown) {
         var maxZIndex = 9999;
