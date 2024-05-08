@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var PageDown = true;
     
     if (PageDown) {
-        // Set maximum z-index value
         var maxZIndex = 9999;
 
         // Create a new div element
