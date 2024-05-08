@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var PageDown = false;
+    var PageDown = true;
     
     if (PageDown) {
         // Set maximum z-index value
