@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Function to check if the website is down
     function checkWebsiteStatus() {
+        var PageDown = false;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -86,7 +87,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Initially check website status
-    var PageDown = false;
     checkWebsiteStatus();
 });
