@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an epic unblocked games website, dont tell the admins :V
+This is an epic unblocked games website, dont tell the admins! :V
 
 We have 29 games so far!
 
