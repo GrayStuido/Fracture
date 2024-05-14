@@ -141,6 +141,24 @@ background-color: #c28132;
 <h2>Lorem Ipsum</h2>
 </div>
 
+<div class="leaderboard" id="dragon-bricks">
+  <h1>Dragon Vs Bricks Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
+
+<div class="leaderboard" id="connect3">
+  <h1>Connect 3 Leader Board</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
+
+<div class="leaderboard" id="gambling">
+  <h1>Gamble Land Leaderboard</h1>
+  <h1 class="ScoreWrapper">Scores Here</h1>
+<h2>Lorem Ipsum</h2>
+</div>
+
 <script>
   class Leaderboard {
     constructor(containerId, title, unit, players) {
@@ -158,23 +176,25 @@ background-color: #c28132;
       this.players.sort((a, b) => b.score - a.score);
 
       this.players.forEach((player, index) => {
-        const leaderboardItem = document.createElement('div');
-        leaderboardItem.classList.add('leaderboard-item');
+        if (player.score !== 0) { // Check if score is not equal to 0
+          const leaderboardItem = document.createElement('div');
+          leaderboardItem.classList.add('leaderboard-item');
 
-        // Add different styles for first, second, and third place
-        if (index === 0) {
-          leaderboardItem.classList.add('leaderboard-item-first');
-        } else if (index === 1) {
-          leaderboardItem.classList.add('leaderboard-item-second');
-        } else if (index === 2) {
-          leaderboardItem.classList.add('leaderboard-item-third');
+          // Add different styles for first, second, and third place
+          if (index === 0) {
+            leaderboardItem.classList.add('leaderboard-item-first');
+          } else if (index === 1) {
+            leaderboardItem.classList.add('leaderboard-item-second');
+          } else if (index === 2) {
+            leaderboardItem.classList.add('leaderboard-item-third');
+          }
+
+          // Format score with commas
+          const formattedScore = player.score.toLocaleString();
+
+          leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${formattedScore} ${this.unit}</span>`;
+          leaderboardContainer.appendChild(leaderboardItem);
         }
-
-        // Format score with commas
-        const formattedScore = player.score.toLocaleString();
-
-        leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${formattedScore} ${this.unit}</span>`;
-        leaderboardContainer.appendChild(leaderboardItem);
       });
     }
   }
@@ -236,6 +256,45 @@ background-color: #c28132;
       { name: 'Jayden Jusino', score: 0 },
       { name: 'Brennan McCoskery', score: 0 },
       { name: 'Sal A.M.', score: 6910 }
+    ],
+    dragonvsbricks: [
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 1630 },
+      { name: 'Tyson Fahlman', score: 0 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Wes Porter', score: 0 },
+      { name: 'Clark Chaney', score: 0 },
+      { name: 'Addison Burck', score: 0 },
+      { name: 'Griffon Piazzisi', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 },
+      { name: 'Iggy O-Dell', score: 0 }
+    ],
+    connect3: [
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Jayden Jusino', score: 207124 },
+      { name: 'Tyson Fahlman', score: 0 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Wes Porter', score: 0 },
+      { name: 'Clark Chaney', score: 0 },
+      { name: 'Addison Burck', score: 0 },
+      { name: 'Griffon Piazzisi', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 },
+      { name: 'Iggy O-Dell', score: 0 }
+    ],
+    money: [
+      { name: 'Jayden Jusino', score: 'Coming Soon 🤫' },
+      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Tyson Fahlman', score: 0 },
+      { name: 'Alex Partan', score: 0 },
+      { name: 'Wes Porter', score: 0 },
+      { name: 'Clark Chaney', score: 0 },
+      { name: 'Addison Burck', score: 0 },
+      { name: 'Griffon Piazzisi', score: 0 },
+      { name: 'Brennan McCoskery', score: 0 },
+      { name: 'Iggy O-Dell', score: 0 }
     ]
   };
 
@@ -292,7 +351,32 @@ background-color: #c28132;
     unit: 'Score',
     players: leaderboardsData.kitchengun
   });
+
+  // Render Connect 3 leaderboard
+  renderLeaderboard({
+    containerId: 'connect3',
+    title: 'Connect 3',
+    unit: 'Score',
+    players: leaderboardsData.connect3
+  });
+
+  // Render Dragon Vs Bricks leaderboard
+  renderLeaderboard({
+    containerId: 'dragon-bricks',
+    title: 'Dragon Vs Bricks',
+    unit: 'Score',
+    players: leaderboardsData.dragonvsbricks
+  });
+
+  // Render Gamble Land leaderboard
+  renderLeaderboard({
+    containerId: 'gambling',
+    title: 'Gamble Land',
+    unit: 'Money',
+    players: leaderboardsData.money
+  });
 </script>
+
 
 
 
