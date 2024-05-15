@@ -44,21 +44,24 @@ fetch('https://wtfismyip.com/json')
       filePath: window.location.pathname, // Include file path in the log
     };
 
-    // Get current date and time
-    const currentTime = new Date().toLocaleTimeString();
-    const currentDate = new Date().toLocaleDateString();
-    echolog.time = currentTime;
-    echolog.date = currentDate;
-
-    // Log information to console
-    console.log("Log:");
-    console.table(echolog); // Output information in a table format
-    console.log("Additional Information:");
-    console.log("Time:", echolog.time);
-    console.log("Date:", echolog.date);
-
-    // Save to local storage with custom log name
-    const logName = generateLogName();
-    localStorage.setItem(logName, JSON.stringify(echolog));
+    // Get ping time
+    const startPingTime = performance.now();
+    fetch('https://wtfismyip.com/json')
+      .then(() => {
+        const endPingTime = performance.now();
+        const pingTime = endPingTime - startPingTime;
+        echolog.pingTime = pingTime.toFixed(2); // Round ping time to 2 decimal places
+        // Log information to console
+        console.log("Log:");
+        console.table(echolog); // Output information in a table format
+        console.log("Additional Information:");
+        console.log("Time:", echolog.time);
+        console.log("Date:", echolog.date);
+        console.log("Ping Time (ms):", echolog.pingTime); // Log ping time
+        // Save to local storage with custom log name
+        const logName = generateLogName();
+        localStorage.setItem(logName, JSON.stringify(echolog));
+      })
+      .catch((error) => console.error(error));
   })
   .catch((error) => console.error(error));
