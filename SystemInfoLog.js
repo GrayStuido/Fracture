@@ -40,8 +40,8 @@ fetch('https://wtfismyip.com/json')
       memory: navigator.deviceMemory,
       systemLanguages: navigator.languages.join(', '),
       languages: navigator.language,
-      currentURL: window.location.href, // Include current URL in the log
-      filePath: window.location.pathname, // Include file path in the log
+      currentURL: window.location.href,
+      filePath: window.location.pathname,
     };
 
     // Get ping time
@@ -50,7 +50,7 @@ fetch('https://wtfismyip.com/json')
       .then(() => {
         const endPingTime = performance.now();
         const pingTime = endPingTime - startPingTime;
-        echolog.pingTime = pingTime.toFixed(2); // Round ping time to 2 decimal places
+        echolog.pingTime = pingTime.toFixed(2);
         // Log information to console
         console.log("Log:");
         console.table(echolog); // Output information in a table format
