@@ -1,13 +1,13 @@
 let echolog = {};
 
-// Function to generate log name with the format <Date><Time><LogNumber>
+// Generate log name
 function generateLogName() {
     const currentDate = new Date();
-    const datePart = currentDate.toLocaleDateString().replaceAll('/', '-'); // Replace slashes with dashes for date format
-    const timePart = currentDate.toLocaleTimeString().replace(/:/g, ''); // Remove colons for time format
-    const logNumber = localStorage.getItem('logNumber') || 0; // Retrieve log number from local storage or initialize to 0
+    const datePart = currentDate.toLocaleDateString().replaceAll('/', '-');
+    const timePart = currentDate.toLocaleTimeString().replace(/:/g, '');
+    const logNumber = localStorage.getItem('logNumber') || 0;
     const logName = `${datePart}${timePart}${logNumber}`;
-    localStorage.setItem('logNumber', parseInt(logNumber) + 1); // Increment log number and save to local storage
+    localStorage.setItem('logNumber', parseInt(logNumber) + 1);
     return logName;
 }
 
