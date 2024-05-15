@@ -40,6 +40,8 @@ fetch('https://wtfismyip.com/json')
       memory: navigator.deviceMemory,
       systemLanguages: navigator.languages.join(', '),
       languages: navigator.language,
+      currentURL: window.location.href, // Include current URL in the log
+      filePath: window.location.pathname, // Include file path in the log
     };
 
     // Get current date and time
