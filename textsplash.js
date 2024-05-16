@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "Distressed Red Ball",
         "Math Helpers 2? I barely know her",
         "Slug Car",
+        "We Log ur ip btw :D",
+        "Dont open console",
         "Lobotomy"
     ];
 
