@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
         "Slug Car",
         "We Log ur ip btw :D",
         "Dont open console",
+        "You are my sunshine",
+        "Good Froyo flavors when??",
+        "Me everytime after the this website is blocked",
+        "🐈 <-- Fred",
+        "🐈‍⬛ <-- Evil Fred",
         "Lobotomy"
     ];
 
