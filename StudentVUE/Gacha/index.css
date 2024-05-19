@@ -1,0 +1,144 @@
+/* Style for wallet container */
+.wallet-container {
+    position: fixed;
+    top: 10px;
+    left: 300px;
+    width: 150px;
+    height: 150px;
+    background-image: url('Wallet.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 3px solid black; /* Add a 3px solid black border */
+    border-radius: 10px; /* Round the edges by 10px */
+    z-index: 9999; /* Ensure it's on top of other content */
+}
+
+/* Style for the numbe.r */
+.GambleLand {
+
+    border: 3px solid black;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 5px;
+
+}
+
+.number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 1px black; /* Add a subtle text shadow for better visibility */
+}
+
+/* Style for coin flip form */
+#coinFlipForm {
+    margin-top: 20px; /* Add some space between the wallet and the form */
+}
+
+/* Style for bet amount input */
+#betAmount {
+    width: 180px;
+    height: 20px;
+}
+
+.CoinFlip {
+    display: inline-block;
+    border: solid #000000;
+    width: auto; /* or you can specify a fixed width if needed */
+    height: auto; /* or you can specify a fixed height if needed */
+    overflow: auto;
+    border-radius: 10px;
+}
+
+
+.CoinFlipImage {
+    width: 200px;
+    height: 200px;
+}
+
+/* Style for coin image section */
+.coin-image {
+    width: 30px; /* Set width to 30px */
+    height: 30px; /* Set height to 30px */
+    background-color: #ccc; /* Example background color */
+    margin-top: 10px; /* Add some space between the input and the image section */
+    border: 1px solid black; /* Add a 1px solid black border */
+}
+
+.FlipSameWidth {
+width: 275px;
+height: 20px;
+}
+
+.slot-machine-container {
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 200px;
+    height: 130px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.slot-machine {
+    display: inline-block;
+    text-align: center;
+}
+.slot {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+button {
+    display: block;
+    margin: 0 auto;
+}
+.Funny-Element {
+    border: 3px solid black;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.Funny-image img {
+    
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 200px;
+    height: auto;
+    display: inline-block;
+    margin: 0 auto;
+    display: block;
+    float: left;
+}
+#progress-bar {
+    width: 200px;
+    height: 20px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #progress {
+    width: 0;
+    height: 100%;
+    background-color: #00ff00;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  #video-element {
+    position: absolute;
+}
+
+

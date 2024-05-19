@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var activationProbability = 10;
+    var activationProbability = 5;
     var randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber > activationProbability) {
         return;
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return array;
     }
 
-    function loadImage(imageUrl) {
+    function loadImage(imageUrl, retryCount = 0) {
         var img = new Image();
         img.src = imageUrl;
         img.style.position = "fixed";
@@ -80,22 +80,29 @@ document.addEventListener("DOMContentLoaded", function () {
         img.style.objectFit = "fill";
         img.style.zIndex = "9999";
         img.style.pointerEvents = "none"; // Make image ignore pointer events
-        document.body.appendChild(img);
+        img.onerror = function() {
+            if (retryCount < 5) { // Limit retries to 5 to prevent infinite loop
+                loadImage("../" + imageUrl, retryCount + 1);
+            }
+        };
+        img.onload = function() {
+            document.body.appendChild(img);
 
-        var fadeOutDuration = 4; // Default fade-out duration in seconds
+            var fadeOutDuration = 4; // Default fade-out duration in seconds
 
-        var shakeInterval = setInterval(function () {
-            var offsetX = Math.random() * 20 - 10;
-            var offsetY = Math.random() * 20 - 10;
-            img.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
-            img.style.transition = "opacity " + fadeOutDuration + "s ease-out";
-            img.style.opacity = "0";
-        }, 50);
+            var shakeInterval = setInterval(function () {
+                var offsetX = Math.random() * 20 - 10;
+                var offsetY = Math.random() * 20 - 10;
+                img.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
+                img.style.transition = "opacity " + fadeOutDuration + "s ease-out";
+                img.style.opacity = "0";
+            }, 50);
 
-        setTimeout(function () {
-            clearInterval(shakeInterval);
-            document.body.removeChild(img);
-        }, fadeOutDuration * 1000);
+            setTimeout(function () {
+                clearInterval(shakeInterval);
+                document.body.removeChild(img);
+            }, fadeOutDuration * 1000);
+        };
     }
 
     var imageUrls = fetchImageUrls();

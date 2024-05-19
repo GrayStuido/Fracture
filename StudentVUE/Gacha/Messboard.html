@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Board</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="GambleLand">
+    <h1>Gamble Land</h1>
+<div class="wallet-container">
+    <div class="number">$100</div> <!-- Initial amount -->
+</div>
+<div class="CoinFlip">
+    <h2>Coin Flip</h2>
+    <img class="CoinFlipImage" src="Coin.png">
+<form id="coinFlipForm">
+    <label for="betAmount">Bet Amount:</label>
+    <input type="number" id="betAmount" name="betAmount" min="1" required>
+    <br>
+    <button class="FlipSameWidth" type="submit">Flip Coin</button>
+</form>
+</div>
+
+<div class="slot-machine-container">
+    <div class="slot-machine">
+        <div class="slot" id="slot1">❓</div>
+        <div class="slot" id="slot2">❓</div>
+        <div class="slot" id="slot3">❓</div>
+        <br>
+        <button onclick="spin()">Spin</button>
+        <p id="message"></p>
+    </div>
+</div>
+</div>
+<div class="Funny-Element">
+<img src="Why_didn't_you_invest_in_eastern_poland_advertisement.jpg">
+</div>
+<div id="progress-bar">
+    <div id="progress"></div>
+  </div>
+  <video id="video-element" width="640" height="360" controls>
+    <source src="Markiplier-burning.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<script>
+    window.onload = function() {
+      var video = document.getElementById('video-element');
+      video.play();
+    };
+  </script>
+<div class="Funny-image">
+    <img src="GAMBLEGAMBLE.png">
+</div>
+
+<script src="index.js"></script> <!-- Load JavaScript file -->
+</body>
+</html>

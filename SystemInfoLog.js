@@ -1,13 +1,14 @@
 let echolog = {};
 
+// Initialize log name and number
+const logNumber = parseInt(localStorage.getItem('[System Info] Log Number')) || 0;
+const currentDate = new Date();
+const datePart = currentDate.toLocaleDateString().replaceAll('/', '-');
+const timePart = currentDate.toLocaleTimeString().replace(/:/g, '');
+const logName = `[System Info Log]`;
+
 // Generate log name
 function generateLogName() {
-    const currentDate = new Date();
-    const datePart = currentDate.toLocaleDateString().replaceAll('/', '-');
-    const timePart = currentDate.toLocaleTimeString().replace(/:/g, '');
-    const logNumber = localStorage.getItem('logNumber') || 0;
-    const logName = `${datePart}${timePart}${logNumber}`;
-    localStorage.setItem('logNumber', parseInt(logNumber) + 1);
     return logName;
 }
 
@@ -54,14 +55,12 @@ fetch('https://wtfismyip.com/json')
         // Log information to console
         console.log("Log:");
         console.table(echolog); // Output information in a table format
-        console.log("Additional Information:");
-        console.log("Time:", echolog.time);
-        console.log("Date:", echolog.date);
-        console.log("Ping Time (ms):", echolog.pingTime); // Log ping time
         // Save to local storage with custom log name
-        const logName = generateLogName();
         localStorage.setItem(logName, JSON.stringify(echolog));
       })
       .catch((error) => console.error(error));
   })
   .catch((error) => console.error(error));
+
+// Update log number in local storage
+localStorage.setItem('[System Info] Log Number', logNumber + 1);
