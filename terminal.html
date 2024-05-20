@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Page Terminal</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #282c34;
+            color: #61dafb;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .terminal {
+            background-color: #1c1c1c;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .output {
+            flex: 1;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+        .input {
+            display: flex;
+            border-top: 1px solid #61dafb;
+            padding-top: 10px;
+        }
+        .input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #61dafb;
+            outline: none;
+            font-size: 1em;
+        }
+        .highlighted {
+            color: #8c69ff; /* Updated color */
+        }
+        iframe {
+            width: 600px;
+            height: 600px;
+            border: 2px solid #61dafb; /* Added border */
+            background-color: white; /* Added background color */
+            margin-top: 10px;
+            box-sizing: border-box; /* Include border in dimensions */
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="output" id="output"></div>
+        <div class="input">
+            <span>&gt;&nbsp;</span>
+            <input type="text" id="commandInput" autofocus autocomplete="off" onkeydown="handleCommand(event)">
+        </div>
+    </div>
+
+    <script>
+        const commands = {
+            help: "Commands:\n|   - help\n|   - greet\n|   - date\n|   - clear\n|   - text\n|   - iframe <link> [<size-y> <size-x>]",
+            greet: "Hello! How can I assist you today?",
+            date: `Current date and time: ${new Date().toLocaleString()}`,
+            clear: "Clearing the terminal...",
+            text: "test {test} This is a {sample} text with {highlighted} parts."
+        };
+
+        function handleCommand(event) {
+            if (event.key === 'Enter') {
+                const input = event.target;
+                const command = input.value.trim();
+                processCommand(command);
+                input.value = '';
+            }
+        }
+
+        function processCommand(command) {
+            const outputElement = document.getElementById('output');
+            if (command === 'clear') {
+                outputElement.innerHTML = '';
+            } else if (command.startsWith('iframe')) {
+                createIframe(command, outputElement);
+            } else if (commands[command]) {
+                displayOutput(`> ${command}\n${highlightText(commands[command])}\n\n`);
+            } else {
+                displayOutput(`> ${command}\nCommand not recognized. Type 'help' for a list of commands.\n\n`);
+            }
+        }
+
+        function highlightText(text) {
+            return text.replace(/\{([^}]+)\}/g, '<span class="highlighted">$1</span>');
+        }
+
+        function createIframe(command, outputElement) {
+            const parts = command.split(/\s+/);
+            const url = parts[1];
+            const height = parts[2] || 600;
+            const width = parts[3] || 600;
+            if (url) {
+                const iframe = document.createElement('iframe');
+                iframe.src = url;
+                iframe.style.width = `${width}px`;
+                iframe.style.height = `${height}px`;
+                iframe.style.border = '2px solid #61dafb';
+                iframe.style.backgroundColor = 'white';
+                iframe.style.marginTop = '10px';
+                iframe.style.boxSizing = 'border-box';
+                outputElement.appendChild(iframe);
+                displayOutput(`> iframe ${url} ${height} ${width}\nEmbedding website: ${url} (Size: ${width}x${height})\n\n`);
+            } else {
+                displayOutput(`> iframe\nInvalid syntax. Usage: iframe <link> [<size-y> <size-x>]\n\n`);
+            }
+        }
+
+        function displayOutput(text) {
+            const outputElement = document.getElementById('output');
+            const lines = text.split('\n');
+            let index = 0;
+
+            function addLine() {
+                if (index < lines.length) {
+                    outputElement.innerHTML += lines[index] + '\n';
+                    outputElement.scrollTop = outputElement.scrollHeight;
+                    index++;
+                    setTimeout(addLine, 50); // Adjust the delay for the CRT effect
+                } else {
+                    trimOutput(outputElement);
+                }
+            }
+
+            addLine();
+        }
+
+        function trimOutput(outputElement) {
+            const maxLines = 500; // Adjust based on your preference
+            const lines = outputElement.innerHTML.split('\n');
+            if (lines.length > maxLines) {
+                const excessLines = lines.length - maxLines;
+                outputElement.innerHTML = lines.slice(excessLines).join('\n');
+            }
+        }
+    </script>
+</body>
+</html>
