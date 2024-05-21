@@ -262,6 +262,8 @@ function addToInventory(creature) {
             }
         }
 
+        var openInterval = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
+
         // Function to update the timer
         function updateTimer(resetTimeLeft = false) {
             var now = Date.now();
@@ -284,8 +286,9 @@ function addToInventory(creature) {
             timerElem.textContent = `Time left: ${hours}h ${minutes}m ${seconds}s`;
             timerElem.classList.remove('ready');
             timerElem.classList.add('cooldown');
-            setTimeout(updateTimer, 1000);
+            setTimeout(updateTimer, 100);
         }
+
 
         // Initialize the timer
         if (!lastOpenedTime) {
@@ -330,7 +333,7 @@ function addToInventory(creature) {
             setTimeout(function() {
                 img.classList.remove('shrink');
                 // Change image source to 'Explode.gif'
-                img.src = 'Explode.gif';
+                img.src = 'explode.gif';
                 img.classList.add('gif');
 
                 // Play audio
