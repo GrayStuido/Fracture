@@ -16,5 +16,9 @@
     "entertainment",
     "games",
     "utilities"
+  ],
+  "display_override": [
+    "minimal-ui",
+    "window-controls-overlay"
   ]
 }
