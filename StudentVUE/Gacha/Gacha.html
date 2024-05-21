@@ -156,7 +156,7 @@
         var inventory = document.getElementById('Inventory');
         var timerElem = document.getElementById('timer');
         var maxAttempts = 1000; // Maximum attempts to find a non-duplicate creature
-        var openInterval = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+        var openInterval = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
         var lastOpenedTime = localStorage.getItem('lastOpenedTime');
 
         // Function to generate a random integer between min and max
@@ -184,69 +184,67 @@
             }
         }
 
-// Function to add a creature to the inventory
-function addToInventory(creature) {
-    var rarityText, rarityColor;
-    switch (creature.rarity) {
-        case 1:
-            rarityText = 'Common';
-            rarityColor = '#989898';
-            break;
-        case 2:
-            rarityText = 'Uncommon';
-            rarityColor = '#6FFF63';
-            break;
-        case 3:
-            rarityText = 'Rare';
-            rarityColor = '#C977FF';
-            break;
-        case 4:
-            rarityText = 'Legendary';
-            rarityColor = '#8502FF';
-            break;
-        case 5:
-            rarityText = 'Mythic';
-            rarityColor = '#CF2CBB';
-            break;
-        case 6:
-            rarityText = 'Exotic';
-            rarityColor = '#00EEFF';
-            break;
-        case 7:
-            rarityText = 'My Sunshine';
-            rarityColor = '#FFFEFE';
-            break;
-        default:
-            rarityText = 'Default';
-            rarityColor = '#000000'; // Default color for unknown rarity
-    }
-    var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-    var inventoryItem = document.createElement('div');
-    inventoryItem.classList.add('inventory-item');
-    inventoryItem.style.backgroundColor = rarityColor; // Set background color
-    inventoryItem.innerHTML = '<div class="image-container"><img src="' + creature.src + '" alt="Creature"></div>' +
-                              '<div><strong>Name:</strong> ' + name + '<br><strong>Rarity:</strong> ' + rarityText + '</div>';
+        // Function to add a creature to the inventory
+        function addToInventory(creature) {
+            var rarityText, rarityColor;
+            switch (creature.rarity) {
+                case 1:
+                    rarityText = 'Common';
+                    rarityColor = '#989898';
+                    break;
+                case 2:
+                    rarityText = 'Uncommon';
+                    rarityColor = '#6FFF63';
+                    break;
+                case 3:
+                    rarityText = 'Rare';
+                    rarityColor = '#C977FF';
+                    break;
+                case 4:
+                    rarityText = 'Legendary';
+                    rarityColor = '#8502FF';
+                    break;
+                case 5:
+                    rarityText = 'Mythic';
+                    rarityColor = '#CF2CBB';
+                    break;
+                case 6:
+                    rarityText = 'Exotic';
+                    rarityColor = '#00EEFF';
+                    break;
+                case 7:
+                    rarityText = 'My Sunshine';
+                    rarityColor = '#FFFEFE';
+                    break;
+                default:
+                    rarityText = 'Default';
+                    rarityColor = '#000000'; // Default color for unknown rarity
+            }
+            var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
+            var inventoryItem = document.createElement('div');
+            inventoryItem.classList.add('inventory-item');
+            inventoryItem.style.backgroundColor = rarityColor; // Set background color
+            inventoryItem.innerHTML = '<div class="image-container"><img src="' + creature.src + '" alt="Creature"></div>' +
+                                      '<div><strong>Name:</strong> ' + name + '<br><strong>Rarity:</strong> ' + rarityText + '</div>';
 
-    // Define the order of rarities
-    var rarityOrder = ['My Sunshine', 'Exotic', 'Mythic', 'Legendary', 'Rare', 'Uncommon', 'Common', 'Default'];
+            // Define the order of rarities
+            var rarityOrder = ['My Sunshine', 'Exotic', 'Mythic', 'Legendary', 'Rare', 'Uncommon', 'Common', 'Default'];
 
-    // Insert the new creature in the correct position based on its rarity
-    var inserted = false;
-    var items = inventory.getElementsByClassName('inventory-item');
-    for (var i = 0; i < items.length; i++) {
-        var itemRarity = items[i].getElementsByTagName('strong')[1].textContent.split(' ')[1];
-        if (rarityOrder.indexOf(rarityText) < rarityOrder.indexOf(itemRarity)) {
-            inventory.insertBefore(inventoryItem, items[i]);
-            inserted = true;
-            break;
+            // Insert the new creature in the correct position based on its rarity
+            var inserted = false;
+            var items = inventory.getElementsByClassName('inventory-item');
+            for (var i = 0; i < items.length; i++) {
+                var itemRarity = items[i].getElementsByTagName('strong')[1].textContent.split(' ')[1];
+                if (rarityOrder.indexOf(rarityText) < rarityOrder.indexOf(itemRarity)) {
+                    inventory.insertBefore(inventoryItem, items[i]);
+                    inserted = true;
+                    break;
+                }
+            }
+            if (!inserted) {
+                inventory.appendChild(inventoryItem);
+            }
         }
-    }
-    if (!inserted) {
-        inventory.appendChild(inventoryItem);
-    }
-}
-
-
 
         // Load obtained creatures from local storage
         for (var i = 0; i < localStorage.length; i++) {
@@ -261,8 +259,6 @@ function addToInventory(creature) {
                 console.error("Error parsing JSON from localStorage for key:", key, e);
             }
         }
-
-        var openInterval = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
 
         // Function to update the timer
         function updateTimer(resetTimeLeft = false) {
@@ -288,7 +284,6 @@ function addToInventory(creature) {
             timerElem.classList.add('cooldown');
             setTimeout(updateTimer, 100);
         }
-
 
         // Initialize the timer
         if (!lastOpenedTime) {
@@ -413,6 +408,47 @@ function addToInventory(creature) {
             timerElem.textContent = "All creatures have been collected!";
             timerElem.classList.remove('ready');
         }
+
+        // Add event listener for key combination Shift + Ctrl + "
+        document.addEventListener('keydown', function(event) {
+            if (event.shiftKey && event.ctrlKey && event.key === '"') {
+                var command = prompt('Enter command: clear time, clear creatures, give all');
+                if (command) {
+                    switch (command.toLowerCase()) {
+                        case 'clear time':
+                            localStorage.removeItem('lastOpenedTime');
+                            lastOpenedTime = 0;
+                            updateTimer(true); // Reset timer
+                            alert('Timer cleared.');
+                            break;
+                        case 'clear creatures':
+                            var keysToRemove = [];
+                            for (var i = 0; i < localStorage.length; i++) {
+                                var key = localStorage.key(i);
+                                if (key !== 'lastOpenedTime') {
+                                    keysToRemove.push(key);
+                                }
+                            }
+                            keysToRemove.forEach(function(key) {
+                                localStorage.removeItem(key);
+                            });
+                            inventory.innerHTML = ''; // Clear inventory display
+                            alert('All creatures cleared.');
+                            break;
+                        case 'give all':
+                            creatures.forEach(function(creature) {
+                                addToInventory(creature);
+                                var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
+                                localStorage.setItem(name, JSON.stringify(creature));
+                            });
+                            alert('All creatures added.');
+                            break;
+                        default:
+                            alert('Unknown command.');
+                    }
+                }
+            }
+        });
     };
 </script>
 </head>
