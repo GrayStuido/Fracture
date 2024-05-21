@@ -1,462 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="../../Lobotomy.js"></script>
-    <script src="../../Shutdown.js"></script>
-    <script src="../../SystemInfoLog.js"></script>
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centered Div with Image</title>
-<style>
+  <script src="../Master.js"></script>
+  <script src="../Lobotomy.js"></script>
+  <script src="../Shutdown.js"></script>
+  <script src="../SystemInfoLog.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" type="image/png" href="../favicon.ico">
+  <title>StudentVUE</title>
+  <style>
     body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    body::before {
-        background-color: #fff;
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1; /* Ensure the overlay is behind other content */
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
     }
 
-    .centered-div {
-        text-align: center;
-        cursor: pointer; /* Add pointer cursor to indicate clickable */
+    nav {
+      background-color: #311F3B;
+      overflow: hidden;
+      z-index: 100; /* Ensure the nav menu stays on top */
     }
 
-    .centered-div img {
-        transition: transform 150ms ease-in-out;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
 
-    .centered-div img.shrink {
-        transform: scale(0.6); /* Shrink the image */
+    li {
+      float: left;
     }
 
-    /* Ensure the dimensions of the gif are the same as the original image */
-    .centered-div img.gif {
-        width: 400px; /* Set width to 400 pixels */
-        height: auto; /* Maintain aspect ratio */
-        image-rendering: pixelated; /* Ensure sharp edges */
+    a {
+      display: block;
+      color: #A37AB9;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
     }
 
-    /* Right side div */
-    #Inventory {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 400px;
-        height: 100%;
-        background-color: #ccc; /* Placeholder background color */
-        overflow-y: auto; /* Add vertical overflow */
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
     }
-
-    /* Style for the creatures in the inventory */
-    .inventory-item {
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        width: 87%;
-        height: auto;
-    }
-
-    .inventory-item .image-container {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .inventory-item .image-container img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .inventory-item div {
-        flex: 1;
-    }
-
-    /* Animation for shaking */
-    @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
-    }
-
-    .shake {
-        animation: shake 0.5s ease-in-out;
-    }
-
-    /* Timer style */
-    #timer {
-        font-size: 24px;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        width: 300px;
-    }
-
-    #timer.ready {
-        background-color: #4CAF50; /* Green background when ready */
-        color: white; /* White text color */
-    }
-
-    #timer.cooldown {
-        background-color: #808080; /* Grey background when on cooldown */
-        color: white; /* White text color */
-    }
-</style>
-<script>
-    window.onload = function() {
-        // Array of creatures with rarity value
-        var creatures = [
-            { src: 'Creatures/Distressed-Red-Ball.png', rarity: 6 },
-            { src: 'Creatures/Alg.png', rarity: 3 },
-            { src: 'Creatures/Niko_Roomba.gif', rarity: 3 },
-            { src: 'Creatures/Five-Nights-At-Carsons.png', rarity: 5 },
-            { src: 'Creatures/ohholybigmac.jpg', rarity: 1 },
-            { src: 'Creatures/woah.jpg', rarity: 1 },
-            { src: 'Creatures/Figglebottom.png', rarity: 1 },
-            { src: 'Creatures/Glaggle.png', rarity: 1 },
-            { src: 'Creatures/Crying_Bear.png', rarity: 1 },
-            { src: 'Creatures/Lebonbon.jpg', rarity: 7 },
-            { src: 'Creatures/Sprite-Cranberry.png', rarity: 4 },
-            { src: 'Creatures/tbh.png', rarity: 2 },
-            { src: 'Creatures/Daddy.png', rarity: 3 },
-            { src: 'Creatures/Carson.png', rarity: 4 },
-            { src: 'Creatures/Germ.png', rarity: 5 },
-            { src: 'Creatures/The_Kiwi.png', rarity: 6 },
-            { src: 'Creatures/Bear_5.png', rarity: 6 },
-            { src: 'Creatures/Garden_Foot_Creature.png', rarity: 4 },
-            { src: 'Creatures/Thing.png', rarity: 3},
-            { src: 'Creatures/TBH_Magician.png', rarity: 3},
-            { src: 'Creatures/Walter_White.webp', rarity: 3},
-            { src: 'Creatures/Dust_Baby.png', rarity: 4},
-            { src: 'Creatures/Guy.gif', rarity: 1},
-            { src: 'Creatures/Uhm.png', rarity: 6},
-            { src: 'Creatures/Sans.webp', rarity: 4 }
-        ];
-
-        var img = document.querySelector('.centered-div img');
-        var inventory = document.getElementById('Inventory');
-        var timerElem = document.getElementById('timer');
-        var maxAttempts = 1000; // Maximum attempts to find a non-duplicate creature
-        var openInterval = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
-        var lastOpenedTime = localStorage.getItem('lastOpenedTime');
-
-        // Function to generate a random integer between min and max
-        function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        // Function to calculate the chance of getting a creature based on its rarity
-        function getChance(rarity) {
-            switch (rarity) {
-                case 1:
-                    return 1.0; // 100%
-                case 2:
-                    return 0.5; // 50%
-                case 3:
-                    return 0.3; // 30%
-                case 4:
-                    return 0.05; // 5%
-                case 5:
-                    return 0.01; // 1%
-                case 6:
-                    return 0.005; // 0.5% (example)
-                default:
-                    return 0; // No chance for unknown rarity
-            }
-        }
-
-        // Function to add a creature to the inventory
-        function addToInventory(creature) {
-            var rarityText, rarityColor;
-            switch (creature.rarity) {
-                case 1:
-                    rarityText = 'Common';
-                    rarityColor = '#989898';
-                    break;
-                case 2:
-                    rarityText = 'Uncommon';
-                    rarityColor = '#6FFF63';
-                    break;
-                case 3:
-                    rarityText = 'Rare';
-                    rarityColor = '#C977FF';
-                    break;
-                case 4:
-                    rarityText = 'Legendary';
-                    rarityColor = '#8502FF';
-                    break;
-                case 5:
-                    rarityText = 'Mythic';
-                    rarityColor = '#CF2CBB';
-                    break;
-                case 6:
-                    rarityText = 'Exotic';
-                    rarityColor = '#00EEFF';
-                    break;
-                case 7:
-                    rarityText = 'My Sunshine';
-                    rarityColor = '#FFFEFE';
-                    break;
-                default:
-                    rarityText = 'Default';
-                    rarityColor = '#000000'; // Default color for unknown rarity
-            }
-            var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-            var inventoryItem = document.createElement('div');
-            inventoryItem.classList.add('inventory-item');
-            inventoryItem.style.backgroundColor = rarityColor; // Set background color
-            inventoryItem.innerHTML = '<div class="image-container"><img src="' + creature.src + '" alt="Creature"></div>' +
-                                      '<div><strong>Name:</strong> ' + name + '<br><strong>Rarity:</strong> ' + rarityText + '</div>';
-
-            // Define the order of rarities
-            var rarityOrder = ['My Sunshine', 'Exotic', 'Mythic', 'Legendary', 'Rare', 'Uncommon', 'Common', 'Default'];
-
-            // Insert the new creature in the correct position based on its rarity
-            var inserted = false;
-            var items = inventory.getElementsByClassName('inventory-item');
-            for (var i = 0; i < items.length; i++) {
-                var itemRarity = items[i].getElementsByTagName('strong')[1].textContent.split(' ')[1];
-                if (rarityOrder.indexOf(rarityText) < rarityOrder.indexOf(itemRarity)) {
-                    inventory.insertBefore(inventoryItem, items[i]);
-                    inserted = true;
-                    break;
-                }
-            }
-            if (!inserted) {
-                inventory.appendChild(inventoryItem);
-            }
-        }
-
-        // Load obtained creatures from local storage
-        for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-            if (key === 'lastOpenedTime') continue; // Skip the timer key
-            try {
-                var creature = JSON.parse(localStorage.getItem(key));
-                if (creature && creature.src && creature.rarity) {
-                    addToInventory(creature);
-                }
-            } catch (e) {
-                console.error("Error parsing JSON from localStorage for key:", key, e);
-            }
-        }
-
-        // Function to update the timer
-        function updateTimer(resetTimeLeft = false) {
-            var now = Date.now();
-            var timeLeft = openInterval - (now - lastOpenedTime);
-
-            if (resetTimeLeft) {
-                timeLeft = 0;
-            }
-
-            if (timeLeft <= 0) {
-                timerElem.textContent = "Click the box!";
-                timerElem.classList.remove('cooldown');
-                timerElem.classList.add('ready');
-                img.classList.remove('disabled'); // Enable the box
-                return;
-            }
-            var hours = Math.floor(timeLeft / (60 * 60 * 1000));
-            var minutes = Math.floor((timeLeft % (60 * 60 * 1000)) / (60 * 1000));
-            var seconds = Math.floor((timeLeft % (60 * 1000)) / 1000);
-            timerElem.textContent = `Time left: ${hours}h ${minutes}m ${seconds}s`;
-            timerElem.classList.remove('ready');
-            timerElem.classList.add('cooldown');
-            setTimeout(updateTimer, 100);
-        }
-
-        // Initialize the timer
-        if (!lastOpenedTime) {
-            lastOpenedTime = 0;
-            img.classList.remove('disabled'); // Enable the box initially
-            timerElem.classList.add('ready');
-        } else {
-            lastOpenedTime = parseInt(lastOpenedTime, 10);
-            if (Date.now() - lastOpenedTime >= openInterval) {
-                img.classList.remove('disabled'); // Enable the box if interval has passed
-                timerElem.classList.add('ready');
-            } else {
-                img.classList.add('disabled'); // Keep the box disabled if interval hasn't passed
-                timerElem.classList.add('cooldown');
-            }
-            updateTimer();
-        }
-
-        // Add click event listener to the image
-        img.addEventListener('click', function() {
-            if (img.classList.contains('disabled')) {
-                console.log("Box is on cooldown.");
-                var errorAudio = new Audio('error.mp3');
-                errorAudio.play();
-                img.classList.add('shake'); // Add shaking animation
-                setTimeout(function() {
-                    img.classList.remove('shake'); // Remove shaking animation after 0.5 seconds
-                }, 500);
-                return;
-            }
-
-            // Set the last opened time and disable the box
-            lastOpenedTime = Date.now();
-            localStorage.setItem('lastOpenedTime', lastOpenedTime);
-            img.classList.add('disabled');
-            updateTimer();
-
-            // Toggle the 'shrink' class to initiate the shrinking animation
-            img.classList.add('shrink');
-
-            // After 150ms, remove the 'shrink' class to initiate the resizing animation
-            setTimeout(function() {
-                img.classList.remove('shrink');
-                // Change image source to 'Explode.gif'
-                img.src = 'explode.gif';
-                img.classList.add('gif');
-
-                // Play audio
-                var audio = new Audio('explode.mp3');
-                audio.play();
-
-                // Remove the image after the GIF completes its animation
-                setTimeout(function() {
-                    var obtainedCreatures = [];
-                    for (var i = 0; i < localStorage.length; i++) {
-                        var key = localStorage.key(i);
-                        if (key !== 'lastOpenedTime') {
-                            obtainedCreatures.push(key);
-                        }
-                    }
-
-                    var remainingCreatures = creatures.filter(function(creature) {
-                        var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-                        return !obtainedCreatures.includes(name);
-                    });
-
-                    var selectedCreature;
-                    if (remainingCreatures.length === 1) {
-                        selectedCreature = remainingCreatures[0];
-                    } else {
-                        var attempts = 0;
-                        do {
-                            var randomIndex = getRandomInt(0, remainingCreatures.length - 1);
-                            selectedCreature = remainingCreatures[randomIndex];
-                            attempts++;
-                            if (attempts >= maxAttempts) {
-                                console.log("Maximum attempts reached. Stopping script.");
-                                return; // Exit the function
-                            }
-                        } while (Math.random() > getChance(selectedCreature.rarity));
-                    }
-
-                    // Add the selected creature to the inventory
-                    addToInventory(selectedCreature);
-                    // Save obtained creature to local storage
-                    var name = selectedCreature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-                    localStorage.setItem(name, JSON.stringify(selectedCreature));
-
-                    // Create a new image element for the obtained creature
-                    var creatureImg = new Image();
-                    creatureImg.src = selectedCreature.src;
-                    creatureImg.alt = "Obtained Creature";
-                    creatureImg.height = 331.2; // Lock width to 100px
-                    
-
-                    // Replace the explosion image with the obtained creature image
-                    img.replaceWith(creatureImg);
-
-                    // Play yay sound
-                    var yayAudio = new Audio('yay.mp3');
-                    yayAudio.play();
-                }, 1500); // Adjusted to match the duration of the GIF (in milliseconds)
-            }, 150);
-        });
-
-        // Function to check if all creatures have been collected
-        function checkAllCollected() {
-            var allCollected = true;
-            for (var i = 0; i < creatures.length; i++) {
-                var name = creatures[i].src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-                if (!localStorage.getItem(name)) {
-                    allCollected = false;
-                    break;
-                }
-            }
-            return allCollected;
-        }
-
-        // Check if all creatures have been collected when the page loads
-        if (checkAllCollected()) {
-            img.classList.add('disabled');
-            timerElem.textContent = "All creatures have been collected!";
-            timerElem.classList.remove('ready');
-        }
-
-        // Add event listener for key combination Shift + Ctrl + "
-        document.addEventListener('keydown', function(event) {
-            if (event.shiftKey && event.ctrlKey && event.key === '"') {
-                var command = prompt('Enter command: clear time, clear creatures, give all');
-                if (command) {
-                    switch (command.toLowerCase()) {
-                        case 'clear time':
-                            localStorage.removeItem('lastOpenedTime');
-                            lastOpenedTime = 0;
-                            updateTimer(true); // Reset timer
-                            alert('Timer cleared.');
-                            break;
-                        case 'clear creatures':
-                            var keysToRemove = [];
-                            for (var i = 0; i < localStorage.length; i++) {
-                                var key = localStorage.key(i);
-                                if (key !== 'lastOpenedTime') {
-                                    keysToRemove.push(key);
-                                }
-                            }
-                            keysToRemove.forEach(function(key) {
-                                localStorage.removeItem(key);
-                            });
-                            inventory.innerHTML = ''; // Clear inventory display
-                            alert('All creatures cleared.');
-                            break;
-                        case 'give all':
-                            creatures.forEach(function(creature) {
-                                addToInventory(creature);
-                                var name = creature.src.split('/').pop().split('.')[0].replace(/[-_]/g, ' ');
-                                localStorage.setItem(name, JSON.stringify(creature));
-                            });
-                            alert('All creatures added.');
-                            break;
-                        default:
-                            alert('Unknown command.');
-                    }
-                }
-            }
-        });
-    };
-</script>
+  </style>
 </head>
-<body>
-    <div id="Inventory"></div>
-    <div id="timer">Click the box!</div>
-    <div class="centered-div">
-        <img src="BoxClosed.png" alt="Closed Box" id="GachaBox">
-    </div>
+<body onload="changeText()">
+<div class=AdvancedMenu><div class=trigger-div style="width:100px;height:100px;position:fixed;top:-50px;left:-50px;background-color:#3b1c5f;border:5px solid #560fa6;border-radius:100px;cursor:pointer;z-index:99"onclick=toggleSlideOutDiv()><div class=shifted-image style=width:30px;height:30px;background-image:url(HamburgerMenu.png);background-size:cover;margin-left:50px;margin-top:50px;z-index:100></div></div><div class=slide-out-div style="width:600px;height:10px;position:fixed;top:0;left:-600px;background-color:#3b1c5f;transition:left .5s ease;z-index:98;border-radius:100px;border:5px solid #560fa6"id=slideOutDiv><div class=slideoutwrapper style=margin-left:80px><a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=../index.html>Home</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=../google-classroom.html>Games</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=../google-drive.html>Tools</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"href=../chat.html>Frat-Chat</a> <a style="display:inline-block;padding:10px;border:none;cursor:pointer;margin:5px;color:#fff;border:2px solid #560fa6;background-color:#27153b;text-decoration:none;font-family:Arial,sans-serif"onclick=hideMenuAndPrompt()>Hide Menu</a></div></div></div><script>document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-600px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}</script>
+
+
+<iframe src="Gacha/Gacha.html" frameborder="0"></iframe>
+
+
 </body>
+<script src="cloak.js">
+      var url = document.getElementById("url-target");
+      var urlObj = new window.URL(window.location.href);
+      document.getElementById("create").onclick = function () {
+        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
+    		url.value = 'https://' + url.value.split('https://').pop();
+        } else if (url.value.substring(0, 7) == 'http://'){
+        	url.value = 'https://' + url.value.split('http://').pop();
+        };
+        win = window.open();
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url.value;
+        win.document.body.appendChild(iframe);
+      };
+</script>
 </html>
