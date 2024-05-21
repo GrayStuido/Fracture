@@ -1,0 +1,20 @@
+{
+  "background_color": "#000000",
+  "dir": "ltr",
+  "display": "minimal-ui",
+  "name": "Fracture",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Fracture",
+  "start_url": "/",
+  "theme_color": "#2f0b40",
+  "description": "A website used for learning",
+  "id": "fracture-pwa",
+  "lang": "en",
+  "categories": [
+    "education",
+    "entertainment",
+    "games",
+    "utilities"
+  ]
+}
