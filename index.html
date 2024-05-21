@@ -1,5 +1,17 @@
 <script src="textsplash.js" onload="changeText()"></script>
 <body onload="changeText()">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('pwabuilder-sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get the current URL
