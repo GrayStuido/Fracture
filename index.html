@@ -348,7 +348,8 @@ body {
         <div class="login-container">
             <input type="text" autocomplete="off" placeholder="Username" id="username">
             <input type="password" autocomplete="off" placeholder="Password" id="password">
-            <button onclick="login()">Login</button>
+            <button id="loginButton" onclick="login()">Login</button>
+            <p id="errorMessage" class="error-message"></p>
         </div>
     </div>
 
@@ -367,8 +368,6 @@ body {
             'junior': { password: 'Password2', banned: true },
             '@The_realbread24': { password: 'fracture123', banned: false },
             'Zach': { password: '123321', banned: false },
-            'kingalm24': { password: 'W4k3yW4k3y', banned: false },
-            'nimrod.': { password: 'ilikefanta', banned: false },
             'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false }
         };
 
@@ -383,18 +382,26 @@ body {
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('loginButton');
+            const errorMessage = document.getElementById('errorMessage');
 
             if (users[username]) {
                 if (users[username].banned) {
-                    alert('This user is banned.');
+                    errorMessage.textContent = 'You are banned.';
+                    errorMessage.style.display = 'block';
+                    loginButton.classList.add('error-button');
                 } else if (users[username].password === password) {
                     localStorage.setItem('loggedInUser', username);
                     document.getElementById('loginDiv').style.display = 'none';
                 } else {
-                    alert('Invalid username or password');
+                    errorMessage.textContent = 'Invalid username or password.';
+                    errorMessage.style.display = 'block';
+                    loginButton.classList.add('error-button');
                 }
             } else {
-                alert('Invalid username or password');
+                errorMessage.textContent = 'Invalid username or password.';
+                errorMessage.style.display = 'block';
+                loginButton.classList.add('error-button');
             }
         }
 
