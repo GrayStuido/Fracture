@@ -293,59 +293,62 @@ body {
 <div class="background">
   <canvas id="MatrixBackground"></canvas>
 </div>
-
 <style>
-  .full-page-div {
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      z-index: 9999;
-  }
-  .login-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-  }
-  .login-container input {
-      padding: 10px;
-      margin: 5px 0;
-      width: 200px;
-      border: none;
-      border-radius: 5px;
-  }
-  .login-container button {
-      padding: 10px;
-      margin-top: 10px;
-      width: 220px;
-      border: none;
-      border-radius: 5px;
-      background-color: #333;
-      color: white;
-      cursor: pointer;
-  }
-  .login-container button:hover {
-      background-color: #555;
-  }
-</style>
-</head>
-<body>
-<div class="full-page-div" id="loginDiv">
-  <div>
-      <h1>Fracture Login</h1>
-      <p>If you want a login, submit it <a href="https://forms.gle/dm3fNrrdDyBrP3mU6" style="color: lightblue;">here</a>.</p>
-  </div>
-  <div class="login-container">
-      <input type="text" autocomplete="off" placeholder="Username" id="username">
-      <input type="password" autocomplete="off" placeholder="Password" id="password">
-      <button onclick="login()">Login</button>
-  </div>
-</div>
+        .full-page-div {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+        }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-container input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 200px;
+            border: none;
+            border-radius: 5px;
+        }
+        .login-container button {
+            padding: 10px;
+            margin-top: 10px;
+            width: 220px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #555;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+        .error-button {
+            background-color: red;
+        }
+    </style>
+    <div class="full-page-div" id="loginDiv">
+        <div>
+            <h1>Fracture Login</h1>
+            <p>If you want a login, submit it <a href="https://forms.gle/dm3fNrrdDyBrP3mU6" style="color: lightblue;">here</a>.</p>
+        </div>
+        <div class="login-container">
+            <input type="text" autocomplete="off" placeholder="Username" id="username">
+            <input type="password" autocomplete="off" placeholder="Password" id="password">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
 
     <script>
         // Example users and passwords
@@ -362,7 +365,7 @@ body {
             'junior': { password: 'Password2', banned: true },
             '@The_realbread24': { password: 'fracture123', banned: false },
             'Zach': { password: '123321', banned: false },
-            'Debug Accound': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false }
+            'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false }
         };
 
         // Check if user is already logged in
@@ -390,6 +393,19 @@ body {
                 alert('Invalid username or password');
             }
         }
+
+        // Add event listeners for Enter key
+        document.getElementById('username').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('password').focus();
+            }
+        });
+
+        document.getElementById('password').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                login();
+            }
+        });
     </script>
-
-
