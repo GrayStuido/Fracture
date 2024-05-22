@@ -4,6 +4,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
-        window.location.href = 'login.html'; // Redirect to login page if not logged in
+        window.location.href = '../index.html'; // Redirect to login page if not logged in
     }
 });

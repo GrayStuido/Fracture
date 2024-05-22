@@ -3,6 +3,15 @@
   <script src="Lobotomy.js"></script>
   <script src="Shutdown.js"></script>
   <script src="SystemInfoLog.js"></script>
+  <script>
+    // Check if user is logged in
+    document.addEventListener('DOMContentLoaded', () => {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (!loggedInUser) {
+            window.location.href = 'index.html'; // Redirect to login page if not logged in
+        }
+    });
+       </script>
 <link rel="icon" type="image/png" href="favicon.png">
 <head>
   <meta charset="UTF-8">
@@ -50,7 +59,7 @@
 </head>
 <body onload="changeText()">
 
-<div class="AdvancedMenu">
+  <div class="AdvancedMenu">
     <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
         <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
     </div>
@@ -58,7 +67,7 @@
         <div class="slideoutwrapper" style="margin-left: 80px;">
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Leaderboard</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>

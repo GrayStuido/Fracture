@@ -31,7 +31,7 @@
 <script src="textsplash.js" onload="changeText()"></script>
   <title>Fracture</title>
   <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p style="margin: 0;">3.3.2</p>
+    <p style="margin: 0;">4.0.0</p>
 </div>
 <br>
 <script>
@@ -294,77 +294,74 @@ body {
   <canvas id="MatrixBackground"></canvas>
 </div>
 
-    <style>
-        html, body {
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-        .full-page-div {
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            z-index: 9999;
-            position: relative;
-        }
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .login-container input {
-            padding: 10px;
-            margin: 5px 0;
-            width: 200px;
-            border: none;
-            border-radius: 5px;
-        }
-        .login-container button {
-            padding: 10px;
-            margin-top: 10px;
-            width: 220px;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-        }
-        .login-container button:hover {
-            background-color: #555;
-        }
-    </style>
-    <div class="full-page-div" id="loginDiv">
-        <div>
-            <h1>Fracture Login</h1>
-            <p>If you want a login, submit it <a href="https://forms.gle/vafaYoAF4vXZiQE1A">here</a>.</p>
-        </div>
-        <div class="login-container">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <button onclick="login()">Login</button>
-        </div>
-    </div>
+<style>
+  .full-page-div {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 9999;
+  }
+  .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+  }
+  .login-container input {
+      padding: 10px;
+      margin: 5px 0;
+      width: 200px;
+      border: none;
+      border-radius: 5px;
+  }
+  .login-container button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 220px;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+  }
+  .login-container button:hover {
+      background-color: #555;
+  }
+</style>
+</head>
+<body>
+<div class="full-page-div" id="loginDiv">
+  <div>
+      <h1>Fracture Login</h1>
+      <p>If you want a login, submit it <a href="https://forms.gle/dm3fNrrdDyBrP3mU6" style="color: lightblue;">here</a>.</p>
+  </div>
+  <div class="login-container">
+      <input type="text" autocomplete="off" placeholder="Username" id="username">
+      <input type="password" autocomplete="off" placeholder="Password" id="password">
+      <button onclick="login()">Login</button>
+  </div>
+</div>
 
     <script>
         // Example users and passwords
         const users = {
-            'bafumoo': '807962',
-            'possum!': 'livefasteattrash',
-            'deninog': '1111',
-            'jusinoj': 'theearthisflat',
-            'placeholder': '00000000000000000000',
-            'placeholder': '00000000000000000000'
+            'bafumoo': { password: '807962', banned: false },
+            'possum!': { password: 'livefasteattrash', banned: false },
+            'deninog': { password: '1111', banned: true },
+            'jusinoj': { password: 'theearthisflat', banned: false },
+            'placeholder1': { password: '00000000000000000000', banned: false },
+            'placeholder2': { password: '00000000000000000000', banned: true }
         };
 
         // Check if user is already logged in
         document.addEventListener('DOMContentLoaded', () => {
             const storedUsername = localStorage.getItem('loggedInUser');
-            if (storedUsername && users[storedUsername]) {
+            if (storedUsername && users[storedUsername] && !users[storedUsername].banned) {
                 document.getElementById('loginDiv').style.display = 'none';
             }
         });
@@ -373,9 +370,15 @@ body {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            if (users[username] && users[username] === password) {
-                localStorage.setItem('loggedInUser', username);
-                document.getElementById('loginDiv').style.display = 'none';
+            if (users[username]) {
+                if (users[username].banned) {
+                    alert('This user is banned.');
+                } else if (users[username].password === password) {
+                    localStorage.setItem('loggedInUser', username);
+                    document.getElementById('loginDiv').style.display = 'none';
+                } else {
+                    alert('Invalid username or password');
+                }
             } else {
                 alert('Invalid username or password');
             }

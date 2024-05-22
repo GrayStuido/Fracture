@@ -16,23 +16,21 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url('icons/tbh.png');
-    background-size: 50px 50px;
-    background-repeat: repeat;
-    animation: diagonalMovement 100s linear infinite;
-    
+            background-image: url('icons/Tile1.png');
+            background-size: 50px 50px;
+            background-repeat: repeat;
+            animation: diagonalMovement 100s linear infinite;
+            transition: background-image 1s ease-in-out; /* Added transition */
         }
 
         @keyframes diagonalMovement {
-    0% {
-        background-position: 0% 0%; /* Start position */
-    }
-    100% {
-        background-position: 101% 101%; /* End position */
-    }
-}
-
-   
+            0% {
+                background-position: 0% 0%; /* Start position */
+            }
+            100% {
+                background-position: 101% 101%; /* End position */
+            }
+        }
 
         .error-container {
             text-align: center;
@@ -60,22 +58,87 @@
             color: #007bff;
             text-decoration: none;
         }
-        
     </style>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = ['icons/Tile1.png', 'icons/Tile2.png', 'icons/Tile3.png', 'icons/Tile4.png', 'icons/Tile5.png', 'icons/Tile6.png']; // Replace with URLs of your images
+            const body = document.querySelector('body');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const images = ['icons/Tile1.png', 'icons/Tile2.png', 'icons/Tile3.png']; // Replace with URLs of your images
+            function getRandomImage() {
+                return images[Math.floor(Math.random() * images.length)];
+            }
 
-    function getRandomImage() {
-        return images[Math.floor(Math.random() * images.length)];
-    }
+            function setBackgroundImage(image, attempts = 0) {
+                if (attempts > 10) return; // Stop after 10 attempts
 
-    const body = document.querySelector('body');
-    body.style.backgroundImage = `url(${getRandomImage()})`;
-});
+                const img = new Image();
+                img.onload = function() {
+                    body.style.backgroundImage = `url(${image})`;
+                };
+                img.onerror = function() {
+                    setBackgroundImage(`../${image}`, attempts + 1);
+                };
+                img.src = image;
+            }
 
+            setBackgroundImage(getRandomImage());
 
+            // Error handling for TheKiwi.gif
+            const kiwiImg = document.querySelector('img[src="TheKiwi.gif"]');
+            if (kiwiImg) {
+                kiwiImg.onerror = function() {
+                    const newSrc = `../${kiwiImg.getAttribute('src')}`;
+                    kiwiImg.setAttribute('src', newSrc);
+                };
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = ['icons/Tile1.png', 'icons/Tile2.png', 'icons/Tile3.png', 'icons/Tile4.png', 'icons/Tile5.png', 'icons/Tile6.png']; // Replace with URLs of your images
+            const body = document.querySelector('body');
+            const halfRoundedUp = Math.ceil(images.length / 2); // Half of the number of images rounded up
+            const memory = new Set();
+
+            function getRandomImage() {
+                let index;
+                do {
+                    index = Math.floor(Math.random() * images.length);
+                } while (memory.size >= halfRoundedUp && memory.has(index)); // Ensure memory doesn't exceed the limit and avoid repeats
+                memory.add(index);
+                if (memory.size > halfRoundedUp) {
+                    memory.delete(Array.from(memory)[0]); // Remove the oldest memory if exceeds the limit
+                }
+                return images[index];
+            }
+
+            function fadeOutAndChangeBackground() {
+                const newImage = getRandomImage();
+
+                body.classList.add('fade-out');
+                setTimeout(function() {
+                    setBackgroundImage(newImage);
+                    body.classList.remove('fade-out');
+                }, 1000); // Change image after fade out effect
+            }
+
+            function setBackgroundImage(image, attempts = 0) {
+                if (attempts > 10) return; // Stop after 10 attempts
+
+                const img = new Image();
+                img.onload = function() {
+                    body.style.backgroundImage = `url(${image})`;
+                };
+                img.onerror = function() {
+                    setBackgroundImage(`../${image}`, attempts + 1);
+                };
+                img.src = image;
+            }
+
+            setBackgroundImage(getRandomImage());
+
+            setInterval(fadeOutAndChangeBackground, 3000); // Repeat every 3 seconds
+        });
     </script>
 </head>
 <body>
