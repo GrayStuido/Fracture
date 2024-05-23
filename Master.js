@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Screenshot Code
         window.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === ':') {
+            if (event.ctrlKey && event.shiftKey && event.key === '}') {
                 event.preventDefault();
                 addWatermarkAndScreenshot();
             }
