@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     const img = document.createElement('img');
-                    img.src = path + 'your-image-url.png';
+                    img.src = path + 'favicon.png';
                     img.onload = function() {
                         addWatermarkAndScreenshot(img.src);
                     };
