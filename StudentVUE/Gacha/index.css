@@ -142,3 +142,13 @@ button {
 }
 
 
+.offset-div1 {
+    width: 200px; /* You can change this value */
+    height: 150px; /* You can change this value */
+    background-color: transparent;
+    position: absolute;
+    top: 120px; /* Initial Y offset, you can change this value */
+    left: 550px; /* Initial X offset, you can change this value */
+}
+
+
