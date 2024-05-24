@@ -5,6 +5,11 @@
   <script src="../Lobotomy.js"></script>
   <script src="../Shutdown.js"></script>
   <script src="../SystemInfoLog.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/screenshot.js"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/index.css">
@@ -56,21 +61,30 @@
     <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
         <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
     </div>
-    <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
+    <div class="slide-out-div" style="width: 940px; height: 10px; position: fixed; top: 0; left: -940px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
         <div class="slideoutwrapper" style="margin-left: 80px;">
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../index.html">Home</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-classroom.html">Games</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../Launchpad.html">Leaderboard</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-drive.html">Tools</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../chat.html">Frat-Chat</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" id="screenshotButton">Screenshot</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
             <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
         </div>
     </div>
 </div>
-
 <script>
-document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
+document.getElementById("screenshotButton").addEventListener("click",function(){var e=document.createElement("div");e.id="textDiv";var o=new Date().toLocaleString(),t=navigator.userAgent,n=t.match(/\b(Chrome|Safari|Firefox|Edge|Opera)\b/i)[0],a=t.match(/\b(Windows|Macintosh|Linux|Android|iOS)\b/i)[0],i=window.location,d=!1;console.log("%c ","font-size: 200px");var r=performance.now();performance.now()-r>160&&(d=!0);var l=d?"Console Opened":"Console Closed";e.innerHTML=`
+          <p>Date and Time: ${o}</p>
+          <p>File Path: ${i}</p>
+          <p>OS: ${a}</p>
+          <p>Browser: ${n}</p>
+          <p class="${d?"console-open":""}">Console Status: ${l}</p>
+      `,e.style.position="fixed",e.style.bottom="0",e.style.left="0",e.style.backgroundColor="white",e.style.padding="10px",e.style.zIndex="1000",document.body.appendChild(e);var s=document.createElement("div");s.id="gridDiv";for(var p=0;p<9;p++){var c=document.createElement("div");c.className="gridBox",c.style.backgroundColor="#"+Math.floor(16777215*Math.random()).toString(16),s.appendChild(c)}document.body.appendChild(s),html2canvas(document.body).then(o=>{var t=document.createElement("a");t.download="screenshot.png",t.href=o.toDataURL("image/png"),t.click(),document.body.removeChild(e),document.body.removeChild(s)})});
+</script>
+<script>
+document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-940px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
 </script>
 
 <iframe src="Gacha/Gacha.html" frameborder="0"></iframe>
