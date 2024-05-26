@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
         "Me everytime after the this website is blocked",
         "🐈 <-- Fred",
         "🐈‍⬛ <-- Evil Fred",
+        "You like kissing boys dont you",
+        "The game crashed??????",
+        "Alex Parten you're not welcome here",
         "Lobotomy"
     ];
 
