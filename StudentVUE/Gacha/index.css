@@ -151,4 +151,30 @@ button {
     left: 550px; /* Initial X offset, you can change this value */
 }
 
+.offset-div2 {
+    width: 200px; /* You can change this value */
+    height: auto; /* You can change this value */
+    background-color: transparent;
+    position: absolute;
+    top: 1100px; /* Initial Y offset, you can change this value */
+    left: 650px; /* Initial X offset, you can change this value */
+}
+
+.offset-div3 {
+    width: 200px; /* You can change this value */
+    height: auto; /* You can change this value */
+    background-color: transparent;
+    position: absolute;
+    top: 500px; /* Initial Y offset, you can change this value */
+    left: 700px; /* Initial X offset, you can change this value */
+}
+
+.offset-div4 {
+    width: auto; /* You can change this value */
+    height: 100px; /* You can change this value */
+    background-color: transparent;
+    position: absolute;
+    top: 960px; /* Initial Y offset, you can change this value */
+    left: 10px; /* Initial X offset, you can change this value */
+}
 

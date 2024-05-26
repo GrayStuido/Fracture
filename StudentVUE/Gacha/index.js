@@ -61,7 +61,7 @@ const coinFlipForm = document.getElementById('coinFlipForm');
 const betAmountInput = document.getElementById('betAmount');
 
 // Initial wallet amount
-let walletAmount = 100; // Initial amount in dollars
+let walletAmount = 1000; // Initial amount in dollars
 
 // Function to update the displayed amount
 function updateAmount() {
