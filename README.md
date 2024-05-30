@@ -1,6 +1,7 @@
 ![Project Logo](icons/sitelogo.png)
 ## Info:
 [![pages-build-deployment](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment)
+![GitHub repo file or directory count](https://img.shields.io/github/directory-file-count/GrayStuido/Fracture)
 
 ## Description
 
