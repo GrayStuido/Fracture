@@ -358,40 +358,43 @@ body {
     </div>
 
     <script>
-        // Example users and passwords
+        // Example users and passwords with ban reasons
         const users = {
-            'bafu moo': { password: '807962', banned: false },
-            'possum!': { password: 'livefasteattrash', banned: false },
-            'deninog': { password: '1111', banned: true },
-            'jusinoj': { password: 'theearthisflat', banned: false },
-            'Griffon': { password: '07032008GAAP', banned: false },
-            'Tysoniscool': { password: '80852612', banned: false },
-            'Oskie': { password: 'La*eggcool456', banned: false },
-            'Reidak': { password: 'thokbest877!', banned: false },
-            '9.5kWhiskey': { password: 'SillyGoofy69', banned: false },
-            'junior': { password: 'Password2', banned: true },
-            '@The_realbread24': { password: 'fracture123', banned: true },
-            'kingalm24': { password: 'W4k3yW4k3y', banned: false },
-            'nimrod.': { password: 'ilikefanta', banned: false },
-            'uhyeah': { password: 'uhyeahh', banned: false },
-            'juju_woahmazing': { password: 'Julian200808', banned: false },
-            'Zach': { password: '123321', banned: false },
-            'RiceSpice': { password: 'BigBirthdayCakeAbriviated', banned: false }, // Jason Yee
-            'pro gammer': { password: 'Password', banned: false }, // Aaron Chen
-            'mindGoblin': { password: 'personiscool', banned: false }, // katie gladysh
-            'Nooblet12905': { password: 'ImStupid12905', banned: false }, // derpler
-            'Misha': { password: 'ballz4252', banned: false }, // Marcelo Lujan
-            'dew.k_': { password: 'mumlover73', banned: false }, // Drew Melon
-            'Brennan': { password: 'carson', banned: false }, // Brennan McCoskery
-            'Martin the Destroyer': { password: 'stupid martin stupid little shit', banned: false }, // Eli Lubbe
-            'sillybilly': { password: 'sillybilly0924', banned: false }, // Simon Collins
-            'AstroFlqr3': { password: 'As709166', banned: false }, // Jack Floor
-            'Potato': { password: 'ShangChi', banned: false }, // Austin Nguyen
-            'Poopy123': { password: 'Poop1234', banned: false },
-            'Ethan crivoloni': { password: '1234567', banned: false }, // Brayden Siegner
-            'jamison': { password: 'Ghost242', banned: false }, // jamison austad
-            // '': { password: '', banned: false },
-            'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false }
+            'bafu moo': { password: '807962', banned: false, banReason: '' }, // Brenden Wesdal
+            'possum!': { password: 'livefasteattrash', banned: false, banReason: '' }, // Kenzie
+            'deninog': { password: '1111', banned: true, banReason: '' },
+            'jusinoj': { password: 'theearthisflat', banned: false, banReason: '' }, // Jayden Jusino
+            'Griffon': { password: '07032008GAAP', banned: false, banReason: '' }, // Griffon Piazzisi
+            'Tysoniscool': { password: '80852612', banned: false, banReason: '' }, // Tyson Falhman
+            'Oskie': { password: 'La*eggcool456', banned: false, banReason: '' }, // Oskie Ayala
+            'Reidak': { password: 'thokbest877!', banned: false, banReason: '' }, // Adison
+            '9.5kWhiskey': { password: 'SillyGoofy69', banned: false, banReason: '' },
+            'junior': { password: 'Password2', banned: true, banReason: 'No one likes you' }, // Junior Victor
+            '@The_realbread24': { password: 'fracture123', banned: true, banReason: '1) Suspected Cheating. 2) Voted ban' }, // Iggy
+            'kingalm24': { password: 'W4k3yW4k3y', banned: false, banReason: '' },
+            'nimrod.': { password: 'ilikefanta', banned: false, banReason: '' }, // Westly Porter
+            'uhyeah': { password: 'uhyeahh', banned: false, banReason: '' },
+            'juju_woahmazing': { password: 'Julian200808', banned: false, banReason: '' },
+            'Zach': { password: '123321', banned: false, banReason: '' }, // Zach
+            'RiceSpice': { password: 'BigBirthdayCakeAbriviated', banned: false, banReason: '' }, // Jason Yee
+            'pro gammer': { password: 'Password', banned: false, banReason: '' }, // Aaron Chen
+            'mindGoblin': { password: 'personiscool', banned: false, banReason: '' }, // katie gladysh
+            'Nooblet12905': { password: 'ImStupid12905', banned: false, banReason: '' }, // derpler
+            'Misha': { password: 'ballz4252', banned: false, banReason: '' }, // Marcelo Lujan
+            'dew.k_': { password: 'mumlover73', banned: false, banReason: '' }, // Drew Melon
+            'Brennan': { password: 'carson', banned: false, banReason: '' }, // Brennan McCoskery
+            'Martin the Destroyer': { password: 'stupid martin stupid little shit', banned: false, banReason: '' }, // Eli Lubbe
+            'sillybilly': { password: 'sillybilly0924', banned: false, banReason: '' }, // Simon Collins
+            'AstroFlqr3': { password: 'As709166', banned: false, banReason: '' }, // Jack Floor
+            'Potato': { password: 'ShangChi', banned: false, banReason: '' }, // Austin Nguyen
+            'Poopy123': { password: 'Poop1234', banned: false, banReason: '' },
+            'Ethan crivoloni': { password: '1234567', banned: false, banReason: '' }, // Brayden Siegner
+            'jamison': { password: 'Ghost242', banned: false, banReason: '' }, // jamison austad
+            'Tea': { password: '123abcmarryme', banned: false, banReason: '' }, // Scarlett Castro
+            'Khoa': { password: 'Khoadaog', banned: false, banReason: '' }, // Khoa Nguyen
+            'Simone': { password: '801888avasimone', banned: false, banReason: '' }, // Ava Simone
+            // '': { password: '', banned: false, banReason: '' },
+            'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false, banReason: '' }
         };
 
         // Check if user is already logged in
@@ -410,7 +413,12 @@ body {
 
             if (users[username]) {
                 if (users[username].banned) {
-                    errorMessage.textContent = 'You are banned.';
+                    const banReason = users[username].banReason;
+                    if (banReason) {
+                        errorMessage.textContent = `You are banned. Reason: ${banReason}`;
+                    } else {
+                        errorMessage.textContent = 'You are banned. No reason given.';
+                    }
                     errorMessage.style.display = 'block';
                     loginButton.classList.add('error-button');
                 } else if (users[username].password === password) {
