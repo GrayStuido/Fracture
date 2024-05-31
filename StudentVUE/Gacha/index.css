@@ -1,3 +1,41 @@
+        .game-container-emoji-bet-game {
+width: 700px;
+height: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .wallet-container-emoji-bet-game {
+            margin-bottom: 20px;
+        }
+        #grid-emoji-bet-game {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-template-rows: repeat(10, 40px);
+            gap: 2px;
+        }
+        .grid-item-emoji-bet-game {
+            width: 40px;
+            height: 40px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .matched-emoji-bet-game {
+            background-color: green !important;
+        }
+        .lost-emoji-bet-game {
+            background-color: red !important;
+        }
+
+
 /* Style for wallet container */
 .wallet-container {
     position: fixed;
@@ -177,4 +215,3 @@ button {
     top: 960px; /* Initial Y offset, you can change this value */
     left: 10px; /* Initial X offset, you can change this value */
 }
-
