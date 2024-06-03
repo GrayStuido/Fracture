@@ -3,6 +3,15 @@
   <title>Fracture | Games</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <script src="UpdateValues.js"></script>
+<script>
+// Check if user is logged in
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        window.location.href = 'index.html'; // Redirect to login page if not logged in
+    }
+});
+</script>
 </head>
 <body>
   <script src="Lobotomy.js"></script>
