@@ -1,4 +1,4 @@
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     var amount = 1;
     var logInFixValue = localStorage.getItem('LogInFix');
 
@@ -14,4 +14,4 @@
         // Reload the page
         location.reload();
     }
-})();
+});
