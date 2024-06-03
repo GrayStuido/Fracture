@@ -38,10 +38,18 @@ const users = {
     'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false, banReason: '', premium: true, profilePicture: 'UserIcons/The-Company-Drip.gif' }
 };
 
+// List of banned usernames
+const bannedUsers = ['deninog', 'junior', '@The_realbread24'];
+
 // Check if user is already logged in
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('loggedInUser');
-    if (storedUsername && users[storedUsername] && !users[storedUsername].banned) {
+    if (storedUsername && (users[storedUsername]?.banned || bannedUsers.includes(storedUsername))) {
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('premium');
+        localStorage.removeItem('profilePicture');
+        document.getElementById('loginDiv').style.display = 'block';
+    } else if (storedUsername && users[storedUsername]) {
         document.getElementById('loginDiv').style.display = 'none';
     }
 
@@ -82,7 +90,6 @@ function login() {
         loginButton.classList.add('error-button');
     }
 }
-
 
 function updateUserLocalStorage(username) {
     if (username && users[username]) {
