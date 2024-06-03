@@ -11,7 +11,7 @@ const users = {
     '9.5kWhiskey': { password: 'SillyGoofy69', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
     'junior': { password: 'Password2', banned: true, banReason: 'No one likes you', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Junior Victor
     '@The_realbread24': { password: 'fracture123', banned: true, banReason: '1) Suspected Cheating. 2) Voted ban', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Iggy
-    'kingalm24': { password: 'W4k3yW4k3y', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/partena.webp' }, // Alex Partan
+    'kingalm24': { password: 'W4k3yW4k3y', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/partena.webp' }, // Alex Partan
     'nimrod.': { password: 'ilikefanta', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Westly Porter
     'uhyeah': { password: 'uhyeahh', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
     'juju_woahmazing': { password: 'Julian200808', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
