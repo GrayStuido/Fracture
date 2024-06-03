@@ -3,7 +3,16 @@
     <script src="../../Lobotomy.js"></script>
     <script src="../../Shutdown.js"></script>
     <script src="../../SystemInfoLog.js"></script>
-
+    <script>
+        // Check if "premium" value in local storage is set to true
+        var premium = localStorage.getItem("premium");
+    
+        // If "premium" is not true, redirect to "../index.html"
+        if (premium !== "true") {
+            window.location.href = "../../index.html";
+        }
+    </script>
+    
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

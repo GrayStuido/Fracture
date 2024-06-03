@@ -163,3 +163,59 @@ color: white;
   height: 100%;
   z-index: -1;
 }
+
+
+
+.container {
+  position: absolute;
+  bottom: 22.2%;
+  right: 10%;
+  text-align: center;
+  border: 2px solid #7800FF;
+  background-color: #2C0656;
+  padding: 20px;
+  border-radius: 15px;
+}
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #000000;
+}
+.name {
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.premium-status {
+  margin-top: 10px;
+  font-size: 18px;
+}
+.premium {
+  color: gold;
+}
+.non-premium {
+  color: silver;
+}
+.logout-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid #7800FF;
+  background-color: #2C0656;
+  color: #B16BFF;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.logout-button:hover {
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #7800FF;
+  background-color: #2C0656;
+  color: #B16BFF;
+}

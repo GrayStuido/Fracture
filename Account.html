@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fracture | Account</title>
+    <script src="Lobotomy.js"></script>
+    <script src="Shutdown.js"></script>
+    <script src="SystemInfoLog.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        window.location.href = 'index.html'; // Redirect to login page if not logged in
+    }
+});
+
+</script>
+    <style>
+        body {
+            background-color: #0f0014;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            border: 2px solid #5e005e;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #3e004f;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #7a007a;
+        }
+        .name {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .premium-status {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .premium {
+            color: gold;
+        }
+        .non-premium {
+            color: silver;
+        }
+        .logout-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7a007a;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="UserIcons/Placeholder.png" alt="Profile Picture" class="profile-picture" id="profilePicture">
+        <div class="name" id="name">Name</div>
+        <div class="premium-status" id="premiumStatus"></div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const storedUsername = localStorage.getItem('loggedInUser');
+    const isPremium = localStorage.getItem('premium');
+    let profilePicturePath = localStorage.getItem('profilePicture') || 'Placeholder.png';
+
+    // Check if the profile picture path is valid
+    const img = new Image();
+    img.onload = function() {
+        document.getElementById('profilePicture').src = profilePicturePath;
+    };
+    img.onerror = function() {
+        profilePicturePath = 'UserIcons/Placeholder.png';
+        document.getElementById('profilePicture').src = profilePicturePath;
+    };
+    img.src = profilePicturePath;
+
+    if (storedUsername) {
+        document.getElementById('name').textContent = storedUsername;
+
+        const premiumStatusElement = document.getElementById('premiumStatus');
+
+        if (isPremium === 'true') {
+            premiumStatusElement.textContent = 'Premium Account';
+            premiumStatusElement.classList.add('premium');
+        } else {
+            premiumStatusElement.textContent = 'Standard Account';
+            premiumStatusElement.classList.add('non-premium');
+        }
+    }
+});
+
+function logout() {
+    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('premium');
+    localStorage.removeItem('profilePicture');
+    location.reload();
+}
+    </script>
+</body>
+</html>
