@@ -13,7 +13,7 @@ const users = {
     '@The_realbread24': { password: 'fracture123', banned: true, banReason: '1) Suspected Cheating. 2) Voted ban', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Iggy
     'kingalm24': { password: 'W4k3yW4k3y', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/partena.webp' }, // Alex Partan
     'nimrod.': { password: 'ilikefanta', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/nimrod.png' }, // Westly Porter
-    'uhyeah': { password: 'uhyeahh', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
+    'uhyeah': { password: 'uhyeahh', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Fason Dickens
     'juju_woahmazing': { password: 'Julian200808', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
     'Zach': { password: '123321', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Zach
     'RiceSpice': { password: 'BigBirthdayCakeAbriviated', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Jason Yee
