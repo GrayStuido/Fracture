@@ -20,7 +20,7 @@ const users = {
     'pro gammer': { password: 'Password', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Aaron Chen
     'mindGoblin': { password: 'personiscool', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Katie Gladysh
     'Nooblet12905': { password: 'ImStupid12905', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Derpler
-    'Misha': { password: 'ballz4252', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Marcelo Lujan
+    'Misha': { password: 'ballz4252', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Marcelo Lujan
     'dew.k_': { password: 'mumlover73', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Drew Melon
     'Brennan': { password: 'carson', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Brennan McCoskery
     'Martin the Destroyer': { password: 'stupid martin stupid little shit', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Eli Lubbe
