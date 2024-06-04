@@ -18,7 +18,7 @@ const users = {
     'Zach': { password: '123321', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Zach
     'RiceSpice': { password: 'BigBirthdayCakeAbriviated', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Jason Yee
     'pro gammer': { password: 'Password', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Aaron Chen
-    'mindGoblin': { password: 'personiscool', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Katie Gladysh
+    'mindGoblin': { password: 'personiscool', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Katie Gladysh
     'Nooblet12905': { password: 'ImStupid12905', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Derpler
     'Misha': { password: 'ballz4252', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Marcelo Lujan
     'dew.k_': { password: 'mumlover73', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Drew Melon
@@ -35,7 +35,11 @@ const users = {
     'Simone': { password: '801888avasimone', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Ava Simone
     'Markeshka': { password: '80396012', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Mark 
     'cole': { password: '123abc', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Cole Anthony
-    'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false, banReason: '', premium: true, profilePicture: 'UserIcons/The-Company-Drip.gif' }
+    'FractureIsAss': { password: 'Password', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Nolan Anthony
+    'baba yaga': { password: 'baba yaga 123', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // carson parrot
+    'unskatz': { password: 'hamburger4587', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // nate
+    '1234': { password: '1234', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Hayden Coe
+    'Debug Account': { password: 'juhygtfrd6ftgyhiuh7867g5f6rfytguy6yftguyih', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/The-Company-Drip.gif' }
 };
 
 // List of banned usernames
