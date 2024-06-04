@@ -6,7 +6,7 @@ const users = {
     'jusinoj': { password: 'theearthisflat', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/jusino.png' }, // Jayden Jusino
     'Griffon': { password: '07032008GAAP', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Griffon Piazzisi
     'Tysoniscool': { password: '80852612', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Tyson Falhman
-    'Oskie': { password: 'La*eggcool456', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/Placeholder.png' }, // Oskie Ayala
+    'Oskie': { password: 'La*eggcool456', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/oskie.webp' }, // Oskie Ayala
     'Reidak': { password: 'thokbest877!', banned: false, banReason: '', premium: true, profilePicture: 'UserImages/reidak.webp' }, // Adison
     '9.5kWhiskey': { password: 'SillyGoofy69', banned: false, banReason: '', premium: false, profilePicture: 'UserImages/Placeholder.png' },
     'junior': { password: 'Password2', banned: true, banReason: 'No one likes you', premium: false, profilePicture: 'UserImages/Placeholder.png' }, // Junior Victor
