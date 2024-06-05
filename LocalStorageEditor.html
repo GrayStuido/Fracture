@@ -147,19 +147,21 @@
     <script>
         let selectedKey = null;
 
-        function viewLocalStorage() {
-            const localStorageContent = document.getElementById('localStorageContent');
-            localStorageContent.innerHTML = '';
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                const value = localStorage.getItem(key);
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'storage-item';
-                itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
-                itemDiv.onclick = () => selectItem(key);
-                localStorageContent.appendChild(itemDiv);
-            }
-        }
+function viewLocalStorage() {
+    const excludeKeys = ['loggedInUser', 'premium'];
+    const localStorageContent = document.getElementById('localStorageContent');
+    localStorageContent.innerHTML = '';
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (excludeKeys.includes(key)) continue;
+        const value = localStorage.getItem(key);
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'storage-item';
+        itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
+        itemDiv.onclick = () => selectItem(key);
+        localStorageContent.appendChild(itemDiv);
+    }
+}
 
         function selectItem(key) {
             selectedKey = key;
