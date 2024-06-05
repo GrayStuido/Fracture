@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c54;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #2c2c54;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #f0e6ff;
+        }
+
+        button {
+            background-color: #8c7ae6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #6d5cde;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #c8b6ff;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #8c7ae6;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #4b4b84;
+            color: #fff;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .storage-container {
+            max-height: 200px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #6d5cde #2c2c54;
+        }
+
+        .storage-item {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #4b4b84;
+            border: 1px solid #8c7ae6;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .storage-item.selected {
+            background-color: #8c7ae6;
+            border-color: #6d5cde;
+        }
+
+        .storage-item .key {
+            color: #f0e6ff;
+        }
+
+        .storage-item .value {
+            color: #ffccff;
+        }
+
+        .scrollbar-track {
+            background: #2c2c54;
+            border-radius: 8px;
+        }
+
+        .scrollbar-thumb {
+            background-color: #6d5cde;
+            border-radius: 8px;
+        }
+
+        .scrollbar-thumb:hover {
+            background-color: #8c7ae6;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #8c7ae6;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #4b4b84;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Local Storage Editor</h1>
+        
+        <div class="section">
+            <h2>View Local Storage</h2>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search by key..." onkeyup="searchLocalStorage()">
+            <div class="storage-container" id="localStorageContent"></div>
+        </div>
+
+        <div class="section">
+            <h2>Manage Item</h2>
+            <label for="key">Key:</label>
+            <input type="text" id="key">
+            <label for="value">Value:</label>
+            <input type="text" id="value">
+            <button onclick="addItem()">Add/Update Item</button>
+            <button onclick="deleteItem()">Delete Item</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedKey = null;
+
+        function viewLocalStorage() {
+            const localStorageContent = document.getElementById('localStorageContent');
+            localStorageContent.innerHTML = '';
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'storage-item';
+                itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
+                itemDiv.onclick = () => selectItem(key);
+                localStorageContent.appendChild(itemDiv);
+            }
+        }
+
+        function selectItem(key) {
+            selectedKey = key;
+            document.getElementById('key').value = key;
+            document.getElementById('value').value = localStorage.getItem(key);
+
+            document.querySelectorAll('.storage-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            document.querySelectorAll('.storage-item').forEach(item => {
+                if (item.textContent.includes(`"${localStorage.getItem(key)}"`)) {
+                    item.classList.add('selected');
+                }
+            });
+        }
+
+        function addItem() {
+            const key = document.getElementById('key').value;
+            const value = document.getElementById('value').value;
+            if (key && value) {
+                localStorage.setItem(key, value);
+                alert('Item added/updated successfully.');
+                viewLocalStorage();
+            } else {
+                alert('Please provide both key and value.');
+            }
+        }
+
+        function deleteItem() {
+            const key = document.getElementById('key').value;
+            if (key) {
+                localStorage.removeItem(key);
+                alert('Item deleted successfully.');
+                viewLocalStorage();
+            } else {
+                alert('Please provide a key.');
+            }
+        }
+
+        function searchLocalStorage() {
+            const searchBar = document.getElementById('searchBar');
+            const filter = searchBar.value.toUpperCase();
+            const storageItems = document.querySelectorAll('.storage-item');
+            storageItems.forEach(item => {
+                const key = item.querySelector('.key').textContent.toUpperCase();
+                if (key.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Initial load
+        viewLocalStorage();
+    </script>
+</body>
+</html>
