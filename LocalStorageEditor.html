@@ -25,6 +25,8 @@
             width: 90%;
             max-width: 600px;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         h1, h2 {
@@ -41,6 +43,7 @@
             cursor: pointer;
             border-radius: 4px;
             font-size: 16px;
+            width: 48%;
         }
 
         button:hover {
@@ -53,7 +56,7 @@
             color: #c8b6ff;
         }
 
-        input[type="text"] {
+        input[type="text"], textarea {
             width: 100%;
             padding: 8px;
             margin: 5px 0 10px;
@@ -111,59 +114,74 @@
             background-color: #8c7ae6;
         }
 
-        .search-bar {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #8c7ae6;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: #4b4b84;
-            color: #fff;
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Local Storage Editor</h1>
-        
         <div class="section">
             <h2>View Local Storage</h2>
             <input type="text" class="search-bar" id="searchBar" placeholder="Search by key..." onkeyup="searchLocalStorage()">
             <div class="storage-container" id="localStorageContent"></div>
         </div>
 
-        <div class="section">
+        <div class="section editor-container">
             <h2>Manage Item</h2>
             <label for="key">Key:</label>
-            <input type="text" id="key">
+            <input type="text" id="key" readonly>
             <label for="value">Value:</label>
-            <input type="text" id="value">
-            <button onclick="addItem()">Add/Update Item</button>
-            <button onclick="deleteItem()">Delete Item</button>
+            <textarea id="value" rows="10"></textarea>
+            <div class="button-row">
+                <button onclick="saveItem()">Save Item</button>
+                <button onclick="deleteItem()">Delete Item</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="button-row">
+                <button onclick="exportItems()">Export Items</button>
+                <button onclick="document.getElementById('fileInput').click()">Import Items</button>
+            </div>
+            <input type="file" id="fileInput" accept=".txt" style="display:none" onchange="importItems(event)">
         </div>
     </div>
 
     <script>
         let selectedKey = null;
 
-function viewLocalStorage() {
-    const excludeKeys = ['loggedInUser', 'premium'];
-    const localStorageContent = document.getElementById('localStorageContent');
-    localStorageContent.innerHTML = '';
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (excludeKeys.includes(key)) continue;
-        const value = localStorage.getItem(key);
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'storage-item';
-        itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
-        itemDiv.onclick = () => selectItem(key);
-        localStorageContent.appendChild(itemDiv);
-    }
-}
+        function viewLocalStorage() {
+            const excludeKeys = ['loggedInUser', 'premium'];
+            const localStorageContent = document.getElementById('localStorageContent');
+            localStorageContent.innerHTML = '';
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (excludeKeys.includes(key)) continue;
+                const value = localStorage.getItem(key);
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'storage-item';
+                itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
+                itemDiv.onclick = () => toggleSelectItem(key, itemDiv);
+                localStorageContent.appendChild(itemDiv);
+            }
+        }
 
-        function selectItem(key) {
+        function toggleSelectItem(key, itemDiv) {
+            if (selectedKey === key) {
+                deselectItem();
+            } else {
+                selectItem(key, itemDiv);
+            }
+        }
+
+        function selectItem(key, itemDiv) {
             selectedKey = key;
             document.getElementById('key').value = key;
             document.getElementById('value').value = localStorage.getItem(key);
@@ -171,22 +189,28 @@ function viewLocalStorage() {
             document.querySelectorAll('.storage-item').forEach(item => {
                 item.classList.remove('selected');
             });
+            itemDiv.classList.add('selected');
+        }
+
+        function deselectItem() {
+            selectedKey = null;
+            document.getElementById('key').value = '';
+            document.getElementById('value').value = '';
+
             document.querySelectorAll('.storage-item').forEach(item => {
-                if (item.textContent.includes(`"${localStorage.getItem(key)}"`)) {
-                    item.classList.add('selected');
-                }
+                item.classList.remove('selected');
             });
         }
 
-        function addItem() {
+        function saveItem() {
             const key = document.getElementById('key').value;
             const value = document.getElementById('value').value;
-            if (key && value) {
+            if (key && value !== null) {
                 localStorage.setItem(key, value);
-                alert('Item added/updated successfully.');
+                alert('Item saved successfully.');
                 viewLocalStorage();
             } else {
-                alert('Please provide both key and value.');
+                alert('Please select an item and provide a value.');
             }
         }
 
@@ -195,9 +219,10 @@ function viewLocalStorage() {
             if (key) {
                 localStorage.removeItem(key);
                 alert('Item deleted successfully.');
+                deselectItem();
                 viewLocalStorage();
             } else {
-                alert('Please provide a key.');
+                alert('Please select an item to delete.');
             }
         }
 
@@ -213,6 +238,46 @@ function viewLocalStorage() {
                     item.style.display = 'none';
                 }
             });
+        }
+
+        function exportItems() {
+            const excludeKeys = ['loggedInUser', 'premium'];
+            let data = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (excludeKeys.includes(key)) continue;
+                data[key] = localStorage.getItem(key);
+            }
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'localStorageData.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function importItems(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        for (let key in data) {
+                            if (data.hasOwnProperty(key) && !['loggedInUser', 'premium'].includes(key)) {
+                                localStorage.setItem(key, data[key]);
+                            }
+                        }
+                        alert('Items imported successfully.');
+                        viewLocalStorage();
+                    } catch (error) {
+                        alert('Error importing items. Please check the file format.');
+                    }
+                };
+                reader.readAsText(file);
+            }
         }
 
         // Initial load
