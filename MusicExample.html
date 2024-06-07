@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #000000; /* Dark background for the page */
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+        .corner-div {
+            width: 400px;
+            height: 100px;
+            position: fixed;
+            bottom: 0;
+            right: -397px; /* Hidden except for 3px */
+            background-color: #4B0082; /* Dark purple color */
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 10px; /* Rounded corner */
+            padding: 10px; /* Padding for spacing */
+            box-sizing: border-box;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            transition: right 0.5s;
+        }
+        .corner-div.show {
+            right: 0; /* Slide out fully */
+        }
+        .corner-div:hover {
+            right: 0; /* Slide out fully on hover */
+        }
+        .info {
+            flex-grow: 1;
+            padding-right: 10px; /* Padding for spacing */
+        }
+        .corner-div img {
+            height: 100%;
+            animation: spin 10s linear infinite reverse;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+        }
+        .controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between controls */
+        }
+        .speed-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px; /* Space between speed control and other controls */
+        }
+        .speed-control button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="corner-div" id="corner-div">
+        <div class="info">
+            <div id="file-name">Loading...</div>
+            <div id="artist-name"></div>
+            <div id="time-info">0:00 | 0:00</div>
+        </div>
+        <div class="controls">
+            <button id="play-pause-button">⏸</button>
+            <button id="skip-button">⏭</button>
+            <div class="speed-control">
+                <button id="speed-up-button">⬆️</button>
+                <div id="speed-display">1.0x</div>
+                <button id="speed-down-button">⬇️</button>
+            </div>
+        </div>
+        <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+    </div>
+    <audio id="audio"></audio>
+
+    <script>
+        const musicFiles = [
+            'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3',
+            'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg'
+        ];
+
+        const speedValues = [4.0, 3.5, 3.0, 2.5, 2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 0.8, 0.6, 0.4, 0.2, 0.1];
+        let currentSpeedIndex = speedValues.indexOf(1.0);
+
+        const audio = document.getElementById('audio');
+        const fileNameDiv = document.getElementById('file-name');
+        const artistNameDiv = document.getElementById('artist-name');
+        const timeInfoDiv = document.getElementById('time-info');
+        const cornerDiv = document.getElementById('corner-div');
+        const playPauseButton = document.getElementById('play-pause-button');
+        const skipButton = document.getElementById('skip-button');
+        const speedUpButton = document.getElementById('speed-up-button');
+        const speedDownButton = document.getElementById('speed-down-button');
+        const speedDisplay = document.getElementById('speed-display');
+        const spinningImg = document.getElementById('spinning-img');
+
+        // Calculate the minimum number of songs that need to be played before one can repeat
+        const minUniqueSongs = Math.ceil(musicFiles.length / 2);
+        let playedSongs = [];
+
+        const getRandomFile = () => {
+            let availableFiles = musicFiles.filter(file => !playedSongs.includes(file));
+
+            if (availableFiles.length === 0) {
+                playedSongs = [];
+                availableFiles = musicFiles;
+            }
+
+            const randomFile = availableFiles[Math.floor(Math.random() * availableFiles.length)];
+            playedSongs.push(randomFile);
+
+            if (playedSongs.length > minUniqueSongs) {
+                playedSongs.shift();
+            }
+
+            return randomFile;
+        };
+
+        const setAudioSource = (file) => {
+            const isUrl = file.startsWith('http');
+            audio.src = isUrl ? file : `Music/${file}`;
+
+            const fileName = file.split('/').pop().split('.').shift().replace(/_/g, ' ');
+            fileNameDiv.textContent = fileName;
+
+            audio.load();
+            audio.play();
+        };
+
+        audio.addEventListener('loadedmetadata', () => {
+            const duration = audio.duration;
+            const minutes = Math.floor(duration / 60);
+            const seconds = Math.floor(duration % 60).toString().padStart(2, '0');
+            timeInfoDiv.textContent = `0:00 | ${minutes}:${seconds}`;
+
+            // Slide out the div for 5 seconds
+            cornerDiv.classList.add('show');
+            setTimeout(() => {
+                cornerDiv.classList.remove('show');
+            }, 5000);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+            const totalDuration = audio.duration;
+
+            const currentMinutes = Math.floor(currentTime / 60);
+            const currentSeconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
+
+            const totalMinutes = Math.floor(totalDuration / 60);
+            const totalSeconds = Math.floor(totalDuration % 60).toString().padStart(2, '0');
+
+            timeInfoDiv.textContent = `${currentMinutes}:${currentSeconds} | ${totalMinutes}:${totalSeconds}`;
+        });
+
+        audio.addEventListener('ended', () => {
+            setAudioSource(getRandomFile());
+        });
+
+        // Play/Pause button functionality
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = "⏸";
+            } else {
+                audio.pause();
+                playPauseButton.textContent = "▶️";
+            }
+        });
+
+        // Skip button functionality
+        skipButton.addEventListener('click', () => {
+            setAudioSource(getRandomFile());
+        });
+
+        // Speed control functionality
+        const updateSpeedDisplay = () => {
+            const speed = speedValues[currentSpeedIndex];
+            speedDisplay.textContent = `${speed}x`;
+            audio.playbackRate = speed;
+            spinningImg.style.animationDuration = `${10 / speed}s`;
+        };
+
+        speedUpButton.addEventListener('click', () => {
+            if (currentSpeedIndex > 0) {
+                currentSpeedIndex--;
+                updateSpeedDisplay();
+            }
+        });
+
+        speedDownButton.addEventListener('click', () => {
+            if (currentSpeedIndex < speedValues.length - 1) {
+                currentSpeedIndex++;
+                updateSpeedDisplay();
+            }
+        });
+
+        // Set the initial audio source and play it
+        setAudioSource(getRandomFile());
+    </script>
+</body>
+</html>
