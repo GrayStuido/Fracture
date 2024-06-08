@@ -22,3 +22,9 @@ https://discord.gg/Jy32cWv3Jp
 ## Funtime Drake
 
 ![Funtime Drake](icons/drake-meme.gif)
+
+<!-- BADGIE TIME -->
+
+
+
+<!-- END BADGIE TIME -->

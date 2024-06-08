@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+    <style>
+        body {
+            background-color: #1b0e23;
+            color: #d2c9d6;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .about-section {
+            flex: 1;
+            padding: 20px;
+            margin-right: 20px;
+        }
+
+        .moderator-section {
+            width: 300px;
+            padding: 20px;
+            background-color: #2b1d37;
+            border-radius: 5px;
+        }
+
+        .moderator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .moderator-image-container {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .moderator-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .moderator-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .moderator-name {
+            font-weight: bold;
+        }
+
+        .moderator-title {
+            font-size: 0.8em;
+            color: #a693b5;
+        }
+
+        h2 {
+            color: #bc93e3;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+    scrollbar-width: none;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="about-section">
+            <img class="project-logo" src="icons/sitelogo.png" alt="Project Logo" style="max-width: 500px; max-height: 500px;">
+            <h2>Info:</h2>
+            <p>
+                <a href="https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment">
+                    <img src="https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main" alt="pages-build-deployment">
+                </a>
+                <img src="https://img.shields.io/github/directory-file-count/GrayStuido/Fracture" alt="GitHub repo file or directory count">
+                <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/GrayStuido/Fracture">
+<br>
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/GrayStuido/Fracture">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/GrayStuido/Fracture">
+<a href="https://github.com/GrayStuido/Fracture">
+    <img alt="Static Badge" src="https://img.shields.io/badge/View_The_Code-Click_Here-8A2BE2?style=flat&logo=Github">
+</a>
+
+            </p>
+            <h2>Description</h2>
+            <p>This is an epic unblocked games website, don't tell the admins! :V</p>
+            <h2>Contact</h2>
+            <p>We have a support email: <a href="mailto:fracture.contact@aol.com?subject=Hello&body=Message Here">Email Us!</a></p>
+
+        </div>
+        <div class="moderator-section">
+            <h2>Staff</h2>
+            <div class="moderator">
+                <div class="moderator-image-container">
+                    <img class="moderator-image" src="icons/FractureOwnerLogo-hq.png" alt="Admin">
+                </div>
+                <div class="moderator-details">
+                    <span class="moderator-name">Jayden Jusino</span>
+                    <span class="moderator-title">Owner</span>
+                </div>
+            </div>
+            <div class="moderator">
+                <div class="moderator-image-container">
+                    <img class="moderator-image" src="icons/FractureModeratorLogo-hq.svg" alt="Admin">
+                </div>
+                <div class="moderator-details">
+                    <span class="moderator-name">Brenden Westdahl</span>
+                    <span class="moderator-title">Co-Owner | Admin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
