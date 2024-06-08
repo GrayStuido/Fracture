@@ -1,7 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>My Page</title>
+    <head>
+        <title>Fracture | About</title>
+      <link rel="icon" type="image/png" href="favicon.png">
+      <script src="UpdateValues.js"></script>
+      <script>
+      // Check if user is logged in
+      document.addEventListener('DOMContentLoaded', () => {
+          const loggedInUser = localStorage.getItem('loggedInUser');
+          if (!loggedInUser) {
+              window.location.href = 'index.html'; // Redirect to login page if not logged in
+          }
+      });
+      </script>
+      </head>
+      <body>
+        <script src="Lobotomy.js"></script>
+        <script src="Shutdown.js"></script>
+        <script src="SystemInfoLog.js"></script>
+      
+        <div class="AdvancedMenu">
+          <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
+              <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
+          </div>
+          <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
+              <div class="slideoutwrapper" style="margin-left: 80px;">
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
+              </div>
+          </div>
+      </div>
+      
+      <script>
+      document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
+      </script>
     <style>
         body {
             background-color: #1b0e23;
@@ -89,7 +126,7 @@
     <div class="container">
         <div class="about-section">
             <img class="project-logo" src="icons/sitelogo.png" alt="Project Logo" style="max-width: 500px; max-height: 500px;">
-            <h2>Info:</h2>
+            <h2>Statistics:</h2>
             <p>
                 <a href="https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment">
                     <img src="https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main" alt="pages-build-deployment">
@@ -104,10 +141,14 @@
 </a>
 
             </p>
-            <h2>Description</h2>
-            <p>This is an epic unblocked games website, don't tell the admins! :V</p>
+            <h2>Info</h2>
+            <p>This is an epic unblocked games website, don't tell the admins!</p>
+            <p>This website is the spiritual successor to Math Helpers v2 it builds upon and improves on many many aspects the old site had. 
+                This project has been in the making sense 2023!</p>
             <h2>Contact</h2>
             <p>We have a support email: <a href="mailto:fracture.contact@aol.com?subject=Hello&body=Message Here">Email Us!</a></p>
+
+            <h2>Terms and Agreements</h2>
 
         </div>
         <div class="moderator-section">
