@@ -1,7 +1,7 @@
       // Check the local storage for the value of "Client_Version"
       const clientVersion = localStorage.getItem("Client_Version");
       // Compare the value to a set value
-      const setVersion = "3.0.0b";
+      const setVersion = "3.0.0b - Fracture";
       if (clientVersion === setVersion) {
         // If they match, do nothing
       } else {
