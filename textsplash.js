@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Big Vanilla",
         "Jumbo Jorts",
         "Does He Know?",
-        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "You are not the Lisan Al Gaib",
         "Distressed Red Ball",
         "Math Helpers 2? I barely know her",
@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
         "You like kissing boys dont you",
         "The game crashed??????",
         "Alex Parten you're not welcome here",
+        "PodPopular",
+        "Big Update When??",
+        "Look ma no GoGuardian",
+        ">:(",
+        ":D",
+        "6/7/2024",
+        "Finals D:",
+        "You arent my sunshine",
+        "I was crazy once",
         "Lobotomy"
     ];
 
