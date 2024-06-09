@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var amount = 8;
+    var amount = 9;
     var logInFixValue = localStorage.getItem('LogInFix');
 
     if (logInFixValue === null || logInFixValue != amount) {
