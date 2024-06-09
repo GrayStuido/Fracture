@@ -3,6 +3,8 @@ const musicFiles = [
     'Professor_E_Gadd_Theme_-_Luigis_Mansion.mp3',
     'Undertale_OST：_044__Tem Shop.mp3',
     'Wii-Shop-Channel.mp3',
+    'Swim_Free.mp3',
+    'Bad_Piggies.mp3',
     'skrillex.mp3'
 ];
 
