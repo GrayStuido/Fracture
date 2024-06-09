@@ -412,7 +412,7 @@ body {
       }
           </script>
 
-<div id="termsContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: #2b2b2b; border: 1px solid #ffffff; max-width: 80%; text-align: justify; z-index: 9999;">
+<div id="termsContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background-color: #2b2b2b; border: 1px solid #ffffff; width: 80%; max-width: 800px; height: 80%; max-height: 600px; overflow-y: auto; text-align: justify; z-index: 9999; box-sizing: border-box;">
   <h2>Terms and Conditions</h2>
   <p>
       By accessing and using our website, you agree to comply with the following terms and conditions:
@@ -436,6 +436,8 @@ body {
   </ol>
   <button id="acceptButton" style="padding: 10px 20px; background-color: #007bff; color: #ffffff; border: none; cursor: pointer;">Accept</button>
 </div>
+
+
 
 <script>
 document.getElementById('acceptButton').addEventListener('click', function() {
