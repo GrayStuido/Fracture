@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    let condition = true; // True Shuts down the website keep it false otherwise
-    let additionalMessage = "Fracture is down for finals"; // Message that displays below the 'Fracture is down' message
+    let condition = false; // True Shuts down the website keep it false otherwise
+    let additionalMessage = "This is probbably an error"; // Message that displays below the 'Fracture is down' message
     let imageUrl = "icons/android-chrome-192x192.png"; // File of the image displayed above all the text
 
 
