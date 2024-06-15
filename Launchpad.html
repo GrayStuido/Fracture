@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
+      </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+  </div>
+  <audio id="audio"></audio>
+  <script src="js/MusicSystem.js"></script>
   <link rel="icon" type="image/png" href="favicon.png">
    <script src="Lobotomy.js"></script>
    <script src="Shutdown.js"></script>

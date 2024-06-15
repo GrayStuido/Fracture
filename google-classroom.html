@@ -1,5 +1,25 @@
 <html>
 <head>
+  <link rel="stylesheet" href="css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
+      </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+  </div>
+  <audio id="audio"></audio>
+  <script src="js/MusicSystem.js"></script>
   <title>Fracture | Games</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <script src="UpdateValues.js"></script>
@@ -14,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </head>
 <body>
-  <script src="Lobotomy.js"></script>
   <script src="Shutdown.js"></script>
   <script src="SystemInfoLog.js"></script>
 
@@ -485,37 +504,6 @@ color: white;
   z-index: -1;
 }
 </style>
-
-  <script>
-    const searchbar = document.querySelector(".searchbar");
-    const games = document.querySelectorAll(".game-square");
-    const noGames = document.querySelector(".nogames");
-
-    searchbar.addEventListener("keyup", function(event) {
-      const query = event.target.value.toLowerCase();
-      let numGames = 0;
-      games.forEach(function(game) {
-        const name = game.querySelector(".game-name").textContent.toLowerCase();
-        if (name.includes(query)) {
-          game.style.display = "block";
-          numGames++;
-        } else {
-          game.style.display = "none";
-        }
-      });
-      if (numGames === 0) {
-        noGames.style.display = "block";
-      } else {
-        noGames.style.display = "none";
-      }
-    });
-	    games.forEach(function(game) {
-      const url = game.getAttribute("data-url");
-      game.addEventListener("click", function() {
-        window.location.href = url;
-      });
-    });
-  </script>
 
 <div class="background">
   <canvas id="MatrixBackground"></canvas>

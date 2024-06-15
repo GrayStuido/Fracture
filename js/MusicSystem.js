@@ -1,3 +1,13 @@
+// Check local storage for MusicPlayer key
+const musicPlayerStatus = localStorage.getItem('MusicPlayer');
+if (musicPlayerStatus !== 'installed') {
+    // Remove all elements related to the music player
+    const elementsToRemove = document.querySelectorAll('.corner-div-MusicSystem');
+    elementsToRemove.forEach(element => element.remove());
+
+    // Optionally, clear any other relevant local storage items if needed
+}
+
 const musicFiles = [
     'Sneaky-Snitch.mp3',
     'Professor_E_Gadd_Theme_-_Luigis_Mansion.mp3',

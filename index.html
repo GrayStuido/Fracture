@@ -1,5 +1,25 @@
 <script src="textsplash.js" onload="changeText()"></script>
 <head>
+  <link rel="stylesheet" href="css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
+      </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+  </div>
+  <audio id="audio"></audio>
+  <script src="js/MusicSystem.js"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -35,7 +55,7 @@
 </script>
 </body>
   <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p style="margin: 0;">5.2.0</p>
+    <p style="margin: 0;">6.0.0 Rework Beta</p>
 </div>
 <br>
 <script>
@@ -159,6 +179,7 @@ color: #B16BFF;
     #navbutton4 { top: 50%; left: -10%; transform: translateY(-50%); }
     #navbutton5 { top: 50%; left: 80%; transform: translateY(-50%); }
     #navbutton7 { top: 18%; left: 76%; transform: translateY(-50%); }
+    #navbutton8 { top: 74%; left: 10%; transform: translateX(-50%); }
 
 
     .a-fix {
@@ -177,6 +198,7 @@ color: #B16BFF;
   <a hidden id="create" class="console-button" class="button" href="#">Cloak</a>
   <a id="navbutton2" class="vbutton" href="google-classroom.html">Games</a>
   <a id="navbutton3" class="vbutton" href="google-drive.html">Tools</a>
+  <a id="navbutton8" class="vbutton" href="Addons.html">Addons</a>
   <a id="navbutton4" class="vbutton" href="chat.html">Frat-Chat</a>
   <a id="navbutton7" class="vbutton" href="About.html">About</a>
   <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>

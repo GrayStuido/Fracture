@@ -1,213 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png">
-<script src="Lobotomy.js"></script>
-<script src="Shutdown.js"></script>
-<script src="SystemInfoLog.js"></script>
-<script src="UpdateValues.js"></script>
-<script>
-  // Check if user is logged in
-  document.addEventListener('DOMContentLoaded', () => {
-      const loggedInUser = localStorage.getItem('loggedInUser');
-      if (!loggedInUser) {
-          window.location.href = 'index.html'; // Redirect to login page if not logged in
-      }
-  });
-     </script>
-
-<div class="AdvancedMenu">
-  <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
-      <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
-  </div>
-  <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
-      <div class="slideoutwrapper" style="margin-left: 80px;">
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
-          <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
+  <link rel="stylesheet" href="css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
       </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
   </div>
+  <audio id="audio"></audio>
+  <script src="js/MusicSystem.js"></script>
+  <script src="Lobotomy.js"></script>
+  <script src="Shutdown.js"></script>
+  <script src="SystemInfoLog.js"></script>
+
+  <div class="AdvancedMenu">
+    <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
+        <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
+    </div>
+    <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
+        <div class="slideoutwrapper" style="margin-left: 80px;">
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
+        </div>
+    </div>
 </div>
 
 <script>
 document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
 </script>
-
-
-<style>
-body {
-color: white;
-background: #1e0041;
-margin: 0;
-padding: 0;
-}
-</style>
-<script src="cloak.js">
-      var url = document.getElementById("url-target");
-      var urlObj = new window.URL(window.location.href);
-      document.getElementById("create").onclick = function () {
-        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
-    		url.value = 'https://' + url.value.split('https://').pop();
-        } else if (url.value.substring(0, 7) == 'http://'){
-        	url.value = 'https://' + url.value.split('http://').pop();
-        };
-        win = window.open();
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
-        var iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerpolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = url.value;
-        win.document.body.appendChild(iframe);
-      };
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fracture | Tools</title>
+    <title>Tools</title>
     <style>
-        body {
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #2c3e50;
+          color: #ecf0f1;
+      }
 
-        section {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            background-color: #1f1f1f;
-        }
+      .tools-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          padding: 20px;
+      }
 
-        h2 {
-            color: #8a63a4;
-        }
+      .tool {
+          width: 200px;
+          padding: 10px;
+          background-color: #34495e;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          border-radius: 8px;
+          text-align: center;
+      }
 
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
+      .image-placeholder {
+          width: 100%;
+          height: 150px;
+          background-color: #16a085;
+          color: #ecf0f1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+          border-radius: 4px;
+      }
 
-        a {
-            color: #8a63a4;
-            text-decoration: none;
-            font-weight: bold;
-        }
+      .tool-name {
+          font-size: 18px;
+          margin-bottom: 10px;
+          color: #1abc9c;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-    </style>
+      .open-btn {
+          padding: 10px 20px;
+          background-color: #1abc9c;
+          color: #ecf0f1;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      .open-btn:hover {
+          background-color: #16a085;
+      }
+
+      .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(44, 62, 80, 0.9);
+          display: none;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+      }
+
+      .overlay.show {
+          display: flex;
+          opacity: 1;
+      }
+
+      iframe {
+          width: 100%;
+          height: 100%;
+          background-color: #2c3e50;
+          border: 2px solid #1abc9c;
+      }
+
+      .close-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: transparent;
+          border: none;
+          font-size: 30px;
+          color: #ecf0f1;
+          cursor: pointer;
+      }
+
+      .close-btn:hover {
+          color: #e74c3c;
+      }
+  </style>
 </head>
 <body>
+  <br>
+  <br>
+  <br>
+  <h1>Fracture Tools</h1>
+  <h3>Random assortment of tools for fracture</h3>
+  <br>
+  <br>
+  <br>
+    <div class="tools-container">
+        <div class="tool">
+            <div class="image-placeholder">Image 1</div>
+            <div class="tool-name">RGC Incremental Save Editor</div>
+            <button class="open-btn" data-tool="StudentVUE/Grass-Editor.html">Open</button>
+        </div>
+        <div class="tool">
+            <div class="image-placeholder">Image 2</div>
+            <div class="tool-name">About:Blank Cloaker</div>
+            <button class="open-btn" data-tool="Tools/AbCloaker.html">Open</button>
+        </div>
+        <div class="tool">
+          <div class="image-placeholder">Image 3</div>
+          <div class="tool-name">Local Storage Editor</div>
+          <button class="open-btn" data-tool="Tools/LocalStorageEditor.html">Open</button>
+      </div>
+        <!-- Add more tools as needed -->
+    </div>
+    <div class="overlay" id="overlay">
+        <iframe id="tool-iframe" src="" frameborder="0"></iframe>
+        <button class="close-btn" id="close-btn">&times;</button>
+    </div>
 
-    <section>
-        <h2>About:Blank Cloaker</h2>
-<p>Use the test button to see if you can cloak a website!</p>
-<input id="url-target" value="https://example.com" autocomplete="on" type="text" autofocus />
-<button onclick="updateIframe()">Test</button>
-<button id="create" class="console-button">About:Blank</button>
-<br>
-<iframe id="iframe" width="80%" style="height: 80vh;" frameborder="0" src="https://example.com"></iframe>
-<script>
-  function updateIframe() {
-    var url = document.getElementById("url-target").value;
-    if (!url.startsWith("https://")) {
-      url = "https://" + url;
-    }
-  document.getElementById("iframe").src = url;
-}
-</script>
-    </section>
-    <section>
-<h2>Really Grass Cutting Save Editor</h2>
-<iframe id="iframe" width="80%" style="height: 80vh;" frameborder="0" src="StudentVUE/Grass-Editor.html"></iframe>
-    </section>
-<div class="background">
-  <canvas id="MatrixBackground"></canvas>
-</div>
-</body>
-
-
-
- <script>
-      window.onload = function() {
-        const canvas = document.getElementById('MatrixBackground');
-        const chars = 'abcdefgyzhijklmnopQRSTUVABCDEFGYZ109467ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日¦｜:・."=*+-<>'; // Your chosen characters
-        const duration = 10000; // Duration of the matrix effect in milliseconds
-
-        // Get canvas context and set canvas size
-        const ctx = canvas.getContext('2d');
-        const w = canvas.width = window.innerWidth;
-        const h = canvas.height = window.innerHeight;
-
-        // Calculate number of columns and initialize y positions
-        const cols = Math.floor(w / 20) + 1;
-        const ypos = Array(cols).fill(0);
-
-        // Fill canvas with black color
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, w, h);
-
-        // Create matrix effect function
-        const matrix = () => {
-          ctx.fillStyle = '#0001';
-          ctx.fillRect(0, 0, w, h);
-
-          ctx.fillStyle = '#C800FF';
-          ctx.font = '15pt monospace';
-
-          ypos.forEach((y, ind) => {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = ind * 20;
-            ctx.fillText(text, x, y);
-            if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-            else ypos[ind] = y + 20;
-          });
-        };
-
-        // Call matrix effect function every 50 milliseconds
-        const matrixInterval = setInterval(matrix, 50);
-      };
-    </script>
     <script>
-      var url = document.getElementById("url-target");
-      var urlObj = new window.URL(window.location.href);
-      document.getElementById("create").onclick = function () {
-        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
-    		url.value = 'https://' + url.value.split('https://').pop();
-        } else if (url.value.substring(0, 7) == 'http://'){
-        	url.value = 'https://' + url.value.split('http://').pop();
-        };
-        win = window.open();
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
-        var iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerpolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = url.value;
-        win.document.body.appendChild(iframe);
-      };
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("overlay");
+            const iframe = document.getElementById("tool-iframe");
+            const closeBtn = document.getElementById("close-btn");
+            let currentOpenTool = null;
+
+            document.querySelectorAll(".open-btn").forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const toolSrc = e.target.dataset.tool;
+
+                    if (currentOpenTool !== toolSrc) {
+                        currentOpenTool = toolSrc;
+                        iframe.src = toolSrc; // Set the source of the iframe to the tool's HTML file
+                        fadeInOverlay();
+                    }
+                });
+            });
+
+            closeBtn.addEventListener("click", fadeOutOverlay);
+
+            function fadeInOverlay() {
+                overlay.style.display = "flex";
+                setTimeout(() => {
+                    overlay.classList.add("show");
+                }, 10);
+            }
+
+            function fadeOutOverlay() {
+                overlay.classList.remove("show");
+                setTimeout(() => {
+                    overlay.style.display = "none";
+                    iframe.src = ""; // Clear the iframe source
+                    currentOpenTool = null;
+                }, 300);
+            }
+        });
     </script>
+</body>
 </html>

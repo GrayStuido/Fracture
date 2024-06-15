@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/MusicSystem.css">
+    <div class="corner-div-MusicSystem" id="corner-div">
+        <div class="info-MusicSystem">
+            <div id="file-name">Loading...</div>
+            <div id="artist-name"></div>
+            <div id="time-info">0:00 | 0:00</div>
+        </div>
+        <div class="controls-MusicSystem">
+            <button id="play-pause-button">⏸</button>
+            <button id="skip-button">⏭</button>
+            <div class="speed-control-MusicSystem">
+                <button id="speed-up-button">⬆️</button>
+                <div id="speed-display">1.0x</div>
+                <button id="speed-down-button">⬇️</button>
+            </div>
+        </div>
+        <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+    </div>
+    <audio id="audio"></audio>
+    <script src="js/MusicSystem.js"></script>
+    <body>
+        <script src="Shutdown.js"></script>
+        <script src="SystemInfoLog.js"></script>
+      
+        <div class="AdvancedMenu">
+          <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
+              <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
+          </div>
+          <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
+              <div class="slideoutwrapper" style="margin-left: 80px;">
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
+                  <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
+              </div>
+          </div>
+      </div>
+      
+      <script>
+      document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
+      </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Addons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a; /* Dark background color */
+            color: #ccc; /* Light text color */
+        }
+    
+        header {
+            background-color: #007bff; /* Primary header color */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+    
+        h1, h2 {
+            color: #fff; /* White header text */
+        }
+    
+        .addon {
+            background-color: #222; /* Darker background for addons */
+            border: 1px solid #333; /* Darker border color */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Darker shadow */
+        }
+    
+        .addon h3 {
+            margin-top: 0;
+            color: #007bff; /* Header color for addons */
+        }
+    
+        .addon p {
+            margin-bottom: 15px;
+            color: #ddd; /* Lighter text color for descriptions */
+        }
+    
+        .install-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .install-button.uninstall {
+            background-color: #dc3545; /* Red color for uninstall */
+        }
+    
+        .install-button:hover {
+            background-color: #0056b3;
+        }
+    
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+    
+        .loading-text {
+            font-size: 18px;
+            color: #fff; /* White text color for loading text */
+        }
+    
+        .spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 4px solid rgba(255, 255, 255, 0.1); /* Lighter border for spinner */
+            border-left-color: #fff; /* White spinner color */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #333; /* Darker border color for footer */
+            color: #999; /* Lighter text color for footer */
+        }
+    
+        footer p {
+            margin: 0;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Fracture Addons</h1>
+    </header>
+    
+    <section>
+        <h2>Available Addons</h2>
+        
+        <div class="addon">
+            <h3>System Logging</h3>
+            <p>This logs multiple things about your system to the website when you visit. This is used to fix specific bugs. It is a form of tracking, so disable this for privacy.</p>
+            <input type="hidden" class="storage-key" value="Tracking"> <!-- Hidden input for storage key -->
+            <button class="install-button">Install</button>
+            <div class="loading-overlay">
+                <div class="spinner"></div>
+                <span class="loading-text">Installing...</span>
+            </div>
+        </div>
+        
+        <div class="addon">
+            <h3>Music Player</h3>
+            <p>A music player located on the bottom left of the screen, hover your mouse there to see it slide out</p>
+            <input type="hidden" class="storage-key" value="MusicPlayer"> <!-- Hidden input for storage key -->
+            <button class="install-button">Install</button>
+            <div class="loading-overlay">
+                <div class="spinner"></div>
+                <span class="loading-text">Installing...</span>
+            </div>
+        </div>
+        
+        <div hidden class="addon">
+            <h3>Lobotomy</h3>
+            <p>Puts jumpscare images every time you reload a game or select pages</p>
+            <input type="hidden" class="storage-key" value="Lobotomy"> <!-- Hidden input for storage key -->
+            <button class="install-button">Install</button>
+            <div class="loading-overlay">
+                <div class="spinner"></div>
+                <span class="loading-text">Installing...</span>
+            </div>
+        </div>
+        <!-- Add more addons as needed -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fracture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to set addon state in local storage
+            function setAddonState(storageKey, state) {
+                localStorage.setItem(storageKey, state);
+            }
+
+            // Function to get addon state from local storage
+            function getAddonState(storageKey) {
+                return localStorage.getItem(storageKey);
+            }
+
+            // Function to set TST state in local storage
+            function setTSTState(state) {
+                localStorage.setItem('TST', state);
+            }
+
+            // Function to get TST state from local storage
+            function getTSTState() {
+                return localStorage.getItem('TST');
+            }
+
+            // Initialize addons based on their stored state or default to not-installed
+            function initializeAddons() {
+                const addons = document.querySelectorAll('.addon');
+
+                addons.forEach(addon => {
+                    const storageKey = addon.querySelector('.storage-key').value;
+                    const installButton = addon.querySelector('.install-button');
+                    const loadingOverlay = addon.querySelector('.loading-overlay');
+                    const loadingText = addon.querySelector('.loading-text');
+
+                    // Check if addon is already installed (in local storage)
+                    const addonState = getAddonState(storageKey);
+
+                    if (addonState === 'installed') {
+                        installButton.textContent = 'Uninstall';
+                        installButton.classList.add('uninstall');
+                    } else {
+                        setAddonState(storageKey, 'not-installed');
+                    }
+                });
+
+                // Check and set initial state of TST
+                const tstState = getTSTState();
+                if (tstState !== '1') {
+                    // Perform initial setAddonState only if TST is not 1
+                    setAddonState('Tracking', 'installed');
+                    setTSTState('1'); // Set TST to 1
+                    window.location.reload(); // Reload the page
+                }
+            }
+
+            // Run initialization when DOM content is loaded
+            initializeAddons();
+
+            // Add event listener for install buttons
+            const installButtons = document.querySelectorAll('.install-button');
+
+            installButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const addonDiv = this.parentElement;
+                    const loadingOverlay = addonDiv.querySelector('.loading-overlay');
+                    const storageKey = addonDiv.querySelector('.storage-key').value;
+                    const loadingText = loadingOverlay.querySelector('.loading-text');
+
+                    // Show loading overlay
+                    loadingOverlay.style.opacity = '1';
+                    loadingOverlay.style.pointerEvents = 'auto';
+
+                    // Disable button temporarily
+                    this.disabled = true;
+
+                    // Determine action based on current button state
+                    if (this.classList.contains('uninstall')) {
+                        // Simulate uninstallation delay (you can replace this with actual uninstallation logic)
+                        setTimeout(() => {
+                            // Hide loading overlay
+                            loadingOverlay.style.opacity = '0';
+                            loadingOverlay.style.pointerEvents = 'none';
+
+                            // Change button back to install
+                            this.textContent = 'Install';
+                            this.classList.remove('uninstall');
+                            this.disabled = false;
+
+                            // Update addon state in local storage
+                            setAddonState(storageKey, 'not-installed');
+                        }, 2000); // Simulated 2 seconds uninstallation time
+
+                        // Change loading text
+                        loadingText.textContent = 'Uninstalling...';
+                    } else {
+                        // Simulate installation delay (you can replace this with actual installation logic)
+                        setTimeout(() => {
+                            // Hide loading overlay
+                            loadingOverlay.style.opacity = '0';
+                            loadingOverlay.style.pointerEvents = 'none';
+
+                            // Change button to uninstall
+                            this.textContent = 'Uninstall';
+                            this.classList.add('uninstall');
+                            this.disabled = false;
+
+                            // Update addon state in local storage
+                            setAddonState(storageKey, 'installed');
+                        }, 2000); // Simulated 2 seconds installation time
+
+                        // Change loading text
+                        loadingText.textContent = 'Installing...';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
