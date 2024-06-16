@@ -3,11 +3,31 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="icon" type="image/png" href="../favicon.ico">
   <title>StudentVUE</title>
-<script src="../Lobotomy.js"></script>
-<script src="../Shutdown.js"></script>
-<script src="../SystemInfoLog.js"></script>
-<script src="../Master.js"></script>
-<script src="../UpdateValues.js"></script>
+  <script src="../js/UpdateValues.js"></script>
+  <script src="../js/Lobotomy.js"></script>
+  <script src="../js/Shutdown.js"></script>
+  <script src="../js/SystemInfoLog.js"></script>
+  <script src="../js/Master.js"></script>
+<link rel="stylesheet" href="../css/MusicSystem.css">
+<div class="corner-div-MusicSystem" id="corner-div">
+    <div class="info-MusicSystem">
+        <div id="file-name">Loading...</div>
+        <div id="artist-name"></div>
+        <div id="time-info">0:00 | 0:00</div>
+    </div>
+    <div class="controls-MusicSystem">
+        <button id="play-pause-button">⏸</button>
+        <button id="skip-button">⏭</button>
+        <div class="speed-control-MusicSystem">
+            <button id="speed-up-button">⬆️</button>
+            <div id="speed-display">1.0x</div>
+            <button id="speed-down-button">⬇️</button>
+        </div>
+    </div>
+    <img id="spinning-img" src="../icons/Disk.png" alt="Spinning Image">
+</div>
+<audio id="audio"></audio>
+<script src="../js/MusicSystem.js"></script>
 <div class="AdvancedMenu">
   <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
       <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>

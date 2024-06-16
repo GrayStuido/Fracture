@@ -4,8 +4,32 @@
   <script src="../Shutdown.js"></script>
   <script src="../SystemInfoLog.js"></script>
   <script src="../Master.js"></script>
+  <link rel="stylesheet" href="../css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
+      </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="../icons/Disk.png" alt="Spinning Image">
+  </div>
+  <audio id="audio"></audio>
+  <script src="../js/MusicSystem.js"></script>
 <head>
-  <script src="../UpdateValues.js"></script>
+  <script src="../js/UpdateValues.js"></script>
+  <script src="../js/Lobotomy.js"></script>
+  <script src="../js/Shutdown.js"></script>
+  <script src="../js/SystemInfoLog.js"></script>
+  <script src="../js/Master.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/index.css">
