@@ -8,6 +8,9 @@ if (musicPlayerStatus !== 'installed') {
     // Optionally, clear any other relevant local storage items if needed
 }
 
+// Check if the script is running in the 'StudentVUE' folder
+const isInStudentVUEFolder = window.location.pathname.includes('StudentVUE');
+
 const musicFiles = [
     'Sneaky-Snitch.mp3',
     'Professor_E_Gadd_Theme_-_Luigis_Mansion.mp3',
@@ -57,7 +60,7 @@ const getRandomFile = () => {
 
 const setAudioSource = (file, startTime = 0) => {
     const isUrl = file.startsWith('http') || file.startsWith('file:///');
-    audio.src = isUrl ? file : `Music/${file}`;
+    audio.src = isUrl ? file : `${isInStudentVUEFolder ? '../' : ''}Music/${file}`;
 
     const fileName = file.split('/').pop().split('.').shift().replace(/_/g, ' ');
     fileNameDiv.textContent = fileName;
