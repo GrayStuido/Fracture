@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/MusicSystem.css">
+    <div class="corner-div-MusicSystem" id="corner-div">
+        <div class="info-MusicSystem">
+            <div id="file-name">Loading...</div>
+            <div id="artist-name"></div>
+            <div id="time-info">0:00 | 0:00</div>
+        </div>
+        <div class="controls-MusicSystem">
+            <button id="play-pause-button">⏸</button>
+            <button id="skip-button">⏭</button>
+            <div class="speed-control-MusicSystem">
+                <button id="speed-up-button">⬆️</button>
+                <div id="speed-display">1.0x</div>
+                <button id="speed-down-button">⬇️</button>
+            </div>
+        </div>
+        <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
+    </div>
+    <audio id="audio"></audio>
+    <script src="js/MusicSystem.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fracture-Software Portfolio</title>
@@ -65,6 +85,10 @@
             color: #bb86fc;
             text-decoration: none;
         }
+        a {
+            color: #bb86fc;
+            text-decoration: none;      
+        }
     </style>
 </head>
 <body>
@@ -84,7 +108,7 @@
         <h2>Projects</h2>
         <div class="project">
             <h3>Fracture Games Website</h3>
-            <p>Description of project 1.</p>
+            <p>Website: <a href="index.html" target="_blank">click here</a></p>
         </div>
         <div class="project">
             <h3>Project 2</h3>
@@ -96,9 +120,9 @@
         <h2>Contact</h2>
         <div class="contact-info">
             <p>Email: <a href="mailto:fracture.contact@aol.com">fracture.contact@aol.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
-            <p>GitHub: <a href="https://github.com/Fracture-Software" target="_blank">yourusername</a></p>
+            <p hidden>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
+            <p>GitHub: <a href="https://github.com/GrayStuido" target="_blank">Gragin</a></p>
         </div>
     </section>
 </body>
-</html>
+</html>https://github.com/GrayStuido
