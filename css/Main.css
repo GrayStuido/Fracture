@@ -1,0 +1,145 @@
+:root {
+    /* Main color scheme */
+    --color-major: #1b0e23;
+    --color-minor: #2b1d37;
+    --color-accent: #bc93e3;
+    --color-text: #d2c9d6;
+    --color-text-muted: #a693b5;
+  
+    /* Additional color variations */
+    --color-major-light: #2d1a3b;
+    --color-major-dark: #130a19;
+    --color-minor-light: #3b2a4d;
+    --color-minor-dark: #1f1528;
+    --color-accent-light: #ceb3eb;
+    --color-accent-dark: #9d6dd4;
+  
+    /* Specific use colors */
+    --color-background: var(--color-major);
+    --color-card-background: var(--color-minor);
+    --color-header: var(--color-accent);
+    --color-button: var(--color-accent);
+    --color-button-text: var(--color-major);
+    --color-border: var(--color-minor-light);
+    --color-shadow: rgba(0, 0, 0, 0.2);
+    --color-overlay: rgba(0, 0, 0, 0.5);
+  
+    /* Typography */
+    --font-family-main: Arial, sans-serif;
+    --font-size-small: 0.9rem;
+    --font-size-normal: 1rem;
+    --font-size-large: 1.2rem;
+    --font-size-xlarge: 1.5rem;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+  
+    /* Spacing */
+    --spacing-xsmall: 5px;
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 30px;
+    --spacing-xlarge: 40px;
+  
+    /* Border radius */
+    --border-radius-small: 5px;
+    --border-radius-medium: 10px;
+    --border-radius-large: 15px;
+    --border-radius-circle: 50%;
+  
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+  
+    /* Z-index */
+    --z-index-normal: 1;
+    --z-index-dropdown: 10;
+    --z-index-sticky: 100;
+    --z-index-overlay: 1000;
+  
+    /* Specific component styles */
+    --header-height: 60px;
+    --footer-height: 100px;
+    --sidebar-width: 250px;
+    --card-width: 300px;
+  
+    /* Box shadows */
+    --box-shadow-small: 0 2px 4px var(--color-shadow);
+    --box-shadow-medium: 0 4px 6px var(--color-shadow);
+    --box-shadow-large: 0 8px 16px var(--color-shadow);
+  
+    /* Gradients */
+    --gradient-primary: linear-gradient(to right, var(--color-accent), var(--color-accent-light));
+    --gradient-secondary: linear-gradient(to bottom, var(--color-minor), var(--color-minor-dark));
+  }
+  
+  /* Global styles */
+  body {
+    font-family: var(--font-family-main);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-header);
+    margin-top: 0;
+  }
+  
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  a:hover {
+    color: var(--color-accent-light);
+  }
+  
+  button, .button {
+    background-color: var(--color-button);
+    color: var(--color-button-text);
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+  }
+  
+  button:hover, .button:hover {
+    background-color: var(--color-accent-dark);
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for Firefox */
+  * {
+    scrollbar-width: none;
+  }
+  
+  /* Utility classes */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-medium);
+  }
+  
+  .card {
+    background-color: var(--color-card-background);
+    border-radius: var(--border-radius-medium);
+    padding: var(--spacing-medium);
+    box-shadow: var(--box-shadow-medium);
+  }
+  
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+  
+  .bg-gradient {
+    background-image: var(--gradient-primary);
+  }

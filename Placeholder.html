@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #cccccc;
+        }
+        .caution-tape {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.712);
+            position: absolute;
+            width: 200%;
+            height: 50px;
+            background-color: #ffd700;
+            transform: rotate(-20deg);
+            top: 50%;
+            left: -50%;
+            z-index: 1;
+        }
+        .caution-tape::before {
+            content: "UNDER CONSTRUCTION";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #1a1a1a;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .caution-tape:nth-child(2) {
+            top: 40%;
+            transform: rotate(20deg);
+        }
+        .caution-tape:nth-child(3) {
+            top: 80%;
+            transform: rotate(20deg);
+        }
+        .warning-stripe {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.712);
+            position: absolute;
+            width: 200%;
+            height: 60px;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffd700,
+                #ffd700 20px,
+                #1a1a1a 20px,
+                #1a1a1a 40px
+            );
+            z-index: 0;
+        }
+        .warning-stripe:nth-child(4) {
+            top: 20%;
+            transform: rotate(-10deg);
+        }
+        .warning-stripe:nth-child(5) {
+            top: 80%;
+            transform: rotate(10deg);
+        }
+        .warning-stripe:nth-child(6) {
+            top: 0%;
+            transform: rotate(40deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="caution-tape"></div>
+    <div class="caution-tape"></div>
+    <div class="caution-tape"></div>
+    <div class="warning-stripe"></div>
+    <div class="warning-stripe"></div>
+    <div class="warning-stripe"></div>
+    <div class="container">
+        <h1>🚧 Under Construction 🚧</h1>
+        <p>This part of Fracture is currently unfinished. Check back later</p>
+    </div>
+</body>
+</html>

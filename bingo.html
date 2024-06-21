@@ -1,282 +1,178 @@
 <!DOCTYPE html>
-<script src="Shutdown.js"></script>
-<script src="SystemInfoLog.js"></script>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="../favicon.ico">
-  <title>StudentVUE</title>
-<style>
-    body {
-        background-color: #1e1e1e; /* Dark background */
-        color: #ffffff; /* White text */
-        font-family: Arial, sans-serif;
-        text-align: center;
-        display: flex;
-        flex-direction: column; /* Align items in column */
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .board-container {
-        width: 500px; /* Larger width */
-        height: 500px; /* Larger height */
-
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        height: 100%;
-        background-color: #303030; /* Dark gray background for the table */
-        border: 2px solid #ffffff; /* White border */
-
-    }
-    th, td {
-        border: 1px solid #ffffff; /* White border */
-        text-align: center;
-        width: 50px;
-        height: 50px;
-        font-size: 24px; /* Larger font size */
-        overflow: hidden; /* Hide overflow text */
-        position: relative; /* Position relative for overlay */
-        cursor: pointer; /* Cursor pointer for clickable */
-
-    }
- .UltraBorder {
-border: 5px solid #303030;;
-padding: 5px;
-        border-radius: 5px;
-}
-    .checked {
-        background-color: #8a2be2; /* Light purple background color */
-transition: opacity 0.3s ease;
-    }
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        opacity: 0; /* Initially hidden */
-        transition: opacity 0.3s ease; /* Smooth transition */
-    }
-    .checked .overlay {
-        opacity: 0.5; /* 50% opacity when checked */
-transition: opacity 0.3s ease;
-    }
-    #reroll-button {
-        background-color: #303030; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-top: 20px; /* Space between board and button */
-        cursor: pointer;
-        border-radius: 5px;
-border: 1px solid #ffffff;
-    }
-    #reroll-button:hover {
-        background-color: #45a049; /* Darker green on hover */
-    }
-    #timer {
-        margin-top: 10px; /* Space between board and timer */
-        font-size: 50px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentVUE Bingo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .board-container {
+            width: 500px;
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            height: 100%;
+            background-color: #303030;
+            border: 2px solid #ffffff;
+        }
+        th, td {
+            border: 1px solid #ffffff;
+            text-align: center;
+            width: 20%;
+            height: 20%;
+            font-size: 14px;
+            position: relative;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .checked {
+            background-color: #8a2be2;
+        }
+        #reroll-button {
+            background-color: #303030;
+            border: 1px solid #ffffff;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #reroll-button:hover {
+            background-color: #45a049;
+        }
+        #timer {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-<div class="UltraBorder">
-<div class="board-container">
-    <table id="bingo-board">
-        <thead>
-            <tr>
-                <th>B</th>
-                <th>I</th>
-                <th>N</th>
-                <th>G</th>
-                <th>O</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="b1"></td>
-                <td id="i1"></td>
-                <td id="n1"></td>
-                <td id="g1"></td>
-                <td id="o1"></td>
-            </tr>
-            <tr>
-                <td id="b2"></td>
-                <td id="i2"></td>
-                <td id="n2"></td>
-                <td id="g2"></td>
-                <td id="o2"></td>
-            </tr>
-            <tr>
-                <td id="b3"></td>
-                <td id="i3"></td>
-                <td id="n3"></td>
-                <td id="g3"></td>
-                <td id="o3"></td>
-            </tr>
-            <tr>
-                <td id="b4"></td>
-                <td id="i4"></td>
-                <td id="n4"></td>
-                <td id="g4"></td>
-                <td id="o4"></td>
-            </tr>
-            <tr>
-                <td id="b5"></td>
-                <td id="i5"></td>
-                <td id="n5"></td>
-                <td id="g5"></td>
-                <td id="o5"></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div id="timer"></div>
-<button hidden id="reroll-button">Reroll Board</button>
-</div>
-<script>
-    // Sample pool of Bingo challenges
-    const bingoChallenges = [
-        'Get Candy From Office',
-        'Get To Class Late',
-        'Bring Cold Lunch',
-        'Play a Unblocked Game',
-        'Call a Teacher By Name',
-        'See a Sped Kid',
-        'Post On Midget Fortress',
-        'Fandom Tax Someone',
-        'Mog In Class',
-        'Free Space',
-        'Walk To Weird Couple',
-        'Pull Someones Hood/Hat Down',
-        'Tell a Dad Joke',
-        'Dab Somone Up',
-        'Hit The Griddy',
-        'Spot Chromeo',
-        'Spot Drooliet',
-        'Steal Someones Water Bottle',
-        'Bully Brenden',
-        'Pray Ironically',
-        'Hear Someone Sneeze Loudly',
-        'See a Bimbo',
-        'Spot a Bimbo Brigade',
-        'Get Over 100 Lines In Tetra Legends',
-        '',
-        '',
-        '',
-        '',
-        '',
-    ];
+    <div class="board-container">
+        <table id="bingo-board">
+            <thead>
+                <tr>
+                    <th>B</th>
+                    <th>I</th>
+                    <th>N</th>
+                    <th>G</th>
+                    <th>O</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="timer"></div>
+    <button id="reroll-button">Reroll Board</button>
 
-    // Shuffle array function
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    }
+    <script>
+        const bingoChallenges = [
+            'Get Candy From Office', 'Get To Class Late', 'Bring Cold Lunch',
+            'Play an Unblocked Game', 'Call a Teacher By Name', 'See a Sped Kid',
+            'Post On Midget Fortress', 'Fandom Tax Someone', 'Mog In Class',
+            'Free Space', 'Walk To Weird Couple', 'Pull Someone\'s Hood/Hat Down',
+            'Tell a Dad Joke', 'Dab Someone Up', 'Hit The Griddy',
+            'Spot Chromeo', 'Spot Drooliet', 'Steal Someone\'s Water Bottle',
+            'Bully Brenden', 'Pray Ironically', 'Hear Someone Sneeze Loudly',
+            'See a Bimbo', 'Spot a Bimbo Brigade', 'Get Over 100 Lines In Tetra Legends'
+        ];
 
-    // Function to save data to localStorage
-    function saveData() {
-        localStorage.setItem('bingoChallenges', JSON.stringify(bingoChallenges));
-        const checkedCells = document.querySelectorAll('.checked');
-        const checkedIds = Array.from(checkedCells).map(cell => cell.id);
-        localStorage.setItem('checkedCells', JSON.stringify(checkedIds));
-    }
-
-    // Function to load data from localStorage
-    function loadData() {
-        const savedChallenges = localStorage.getItem('bingoChallenges');
-        if (savedChallenges) {
-            bingoChallenges = JSON.parse(savedChallenges);
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
         }
 
-        const savedCheckedCells = localStorage.getItem('checkedCells');
-        if (savedCheckedCells) {
-            const checkedIds = JSON.parse(savedCheckedCells);
-            checkedIds.forEach(id => {
-                const cell = document.getElementById(id);
-                if (cell) {
-                    cell.classList.add('checked');
-                    const overlay = document.createElement('div');
-                    overlay.classList.add('overlay');
-                    cell.appendChild(overlay);
+        function createBoard() {
+            const tbody = document.querySelector('#bingo-board tbody');
+            tbody.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.createElement('td');
+                    cell.textContent = bingoChallenges[i * 5 + j];
+                    cell.addEventListener('click', () => toggleCell(cell));
+                    row.appendChild(cell);
                 }
+                tbody.appendChild(row);
+            }
+        }
+
+        function toggleCell(cell) {
+            cell.classList.toggle('checked');
+            saveGameState();
+        }
+
+        function saveGameState() {
+            const checkedCells = Array.from(document.querySelectorAll('.checked')).map(cell => {
+                const rowIndex = cell.parentElement.rowIndex - 1;
+                const cellIndex = cell.cellIndex;
+                return rowIndex * 5 + cellIndex;
             });
+            localStorage.setItem('bingoState', JSON.stringify({
+                challenges: bingoChallenges,
+                checked: checkedCells
+            }));
         }
-    }
 
-    // Load data when the page is loaded
-    window.addEventListener('load', () => {
-        loadData();
-        updateTimer(); // Initial update of the timer
-        setInterval(updateTimer, 1000); // Update timer every second
-    });
-
-    // Fill the Bingo board with challenges
-    function fillBoard() {
-        const boardCells = document.querySelectorAll('#bingo-board td');
-        let challengeIndex = 0;
-
-        for (let cell of boardCells) {
-            cell.textContent = bingoChallenges[challengeIndex];
-            challengeIndex++;
-            cell.style.fontSize = '12px'; // Set smaller font size
+        function loadGameState() {
+            const savedState = JSON.parse(localStorage.getItem('bingoState'));
+            if (savedState) {
+                bingoChallenges = savedState.challenges;
+                createBoard();
+                savedState.checked.forEach(index => {
+                    const row = Math.floor(index / 5);
+                    const col = index % 5;
+                    document.querySelector(`#bingo-board tbody tr:nth-child(${row + 1}) td:nth-child(${col + 1})`).classList.add('checked');
+                });
+            } else {
+                shuffleArray(bingoChallenges);
+                createBoard();
+            }
         }
-    }
 
-    fillBoard(); // Initial fill of the board
+        function updateTimer() {
+            const now = new Date();
+            const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 10);
+            if (now > targetTime) {
+                targetTime.setDate(targetTime.getDate() + 1);
+            }
+            const timeDiff = targetTime - now;
+            const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            document.getElementById('timer').textContent = `Time until 3:10 PM: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
 
-    // Add event listener to toggle checked state and overlay
-    function handleCellClick(cell) {
-        cell.classList.toggle('checked');
-        const overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-        cell.appendChild(overlay);
-        saveData(); // Save data after each click
-    }
-
-    const boardCells = document.querySelectorAll('#bingo-board td');
-    boardCells.forEach(cell => {
-        cell.addEventListener('click', () => {
-            handleCellClick(cell);
+        document.getElementById('reroll-button').addEventListener('click', () => {
+            shuffleArray(bingoChallenges);
+            createBoard();
+            saveGameState();
         });
-    });
 
-    // Add event listener to reroll button
-    const rerollButton = document.getElementById('reroll-button');
-    rerollButton.addEventListener('click', () => {
-        shuffleArray(bingoChallenges);
-        fillBoard();
-        saveData(); // Save data after rerolling
-    });
-
-    // Function to update the timer
-    function updateTimer() {
-        const now = new Date();
-        const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 10); // Target time is 3:10 PM
-        if (now > targetTime) {
-            targetTime.setDate(targetTime.getDate() + 1); // If current time is past 3:10 PM, set target time for the next day
-        }
-        const timeDiff = targetTime - now;
-        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-        const formattedTime = `[ ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ]`;
-        document.getElementById('timer').textContent = formattedTime;
-    }
-</script>
-
+        window.addEventListener('load', () => {
+            loadGameState();
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        });
+    </script>
 </body>
 </html>

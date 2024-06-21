@@ -342,164 +342,143 @@ padding: 0;
 </body>
 </html>
 <style>
+:root {
+  --color-major: #1e0041;
+  --color-minor: #360d45;
+  --color-accent: #d76bff;
+}
+
+body {
+  color: var(--color-major);
+  margin: 0;
+  padding: 0;
+  font-family: 'Lexend Semi-Bold', sans-serif;
+  background-color: var(--color-minor);
+}
+
+@font-face {
+  font-family: 'Lexend Semi-Bold';
+  src: url('path/to/lexend-semibold.woff2') format('woff2'),
+       url('path/to/lexend-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
 
 .disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .premium-flag {
-      display: none;
-    }
-
-
-		body {
-			color: #1e0041;
-			margin: 0;
-			padding: 0;
-}
-		@font-face {
-  font-family: 'Lexend Semi-Bold';
-  src: url('path/to/lexend-semibold.woff2') format('woff2'), /* Modern Browsers */
-       url('path/to/lexend-semibold.woff') format('woff'); /* Older Browsers */
-  font-weight: 600; /* Specify the font weight */
-  font-style: normal; /* Specify the font style */
+  opacity: 0.5;
+  pointer-events: none;
 }
 
+.premium-flag {
+  display: none;
+}
 
-  /* Styles for searchbar */
-    .searchbar {
-	color: black;
-      width: 80%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-      border: 2px solid black;
-      border-radius: 12px;
-      font-size: 19px;
-      background-color: rgb(215, 107, 255);
-    }
+.searchbar {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 16px auto;
+  box-sizing: border-box;
+  border: 2px solid var(--color-major);
+  border-radius: 12px;
+  font-size: 19px;
+  background-color: var(--color-accent);
+  color: var(--color-major);
+  transition: all 0.3s ease;
+}
 
-    .game-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+.searchbar:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--color-accent);
+}
 
-    .game-square {
-      position: relative;
-      width: 180px;
-      height: 280px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid black;
-      border-radius: 5px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s;
-	  margin-top: 8px;
-	  margin-bottom: 8px;
-	  margin-left: 8px;
-	  margin-right: 8px;
-	  background-color: rgb(54, 13, 69);
-    }
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
 
-    .game-square:hover {
-      transform: scale(1.1);
-	    transition: all 0.2s ease-in-out;
-  animation: rainbow 5s linear infinite;
-  	text-align: center;
-				font-weight: bold;
-    }
+.game-square {
+  width: 180px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid var(--color-major);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--color-minor);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .game-name {
-      font-size: 20px;
-      text-align: center;
-      margin-top: 6px;
-	  align-items: center;
-color: white;
-line-height: 1;
-	  
-    }
+.game-square:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
 
+.game-name {
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  color: var(--color-accent);
+  background-color: var(--color-major);
+  width: 100%;
+}
 
-    /* Styles for nogames section */
-    .nogames {
-      text-align: center;
-      margin-top: 50px;
-	  display: none;
-color: white;
+.nogames {
+  text-align: center;
+  margin-top: 50px;
+  display: none;
+  color: var(--color-accent);
+}
 
-    }
+.nogames h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
 
-    .nogames h1 {
-	text-align: center;
-      font-size: 60px;
-      margin-bottom: 20px;
-    }
+.game-image {
+  width: 90%;
+  height: 80%;
+  margin: 10px auto;
+  border: 2px solid var(--color-major);
+  border-radius: 5px;
+  background: var(--color-major);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-    .game-image {
-      position: relative;
-	  margin-top: 8px;
-	  margin-right: auto;
-      width: 90%;
-      height: 80%;
-      align-items: center;
-	  margin-left: 8px;
-	  margin-right: 8px;
-	  border: 2px solid black;
-      border-radius: 5px;
-      background: black;
-	  display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-/* Bounce effect */
 .game-square:hover .game-image {
   animation: bounce 0.5s ease-out;
 }
 
-	@keyframes bounce {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(0, -10px);
-  }
-  50% {
-    transform: translate(0, 0);
-  }
-  75% {
-    transform: translate(0, -5px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Set the width and color of the scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: rgb(0, 170, 215);
+  background-color: var(--color-minor);
 }
 
-/* Add a darker color on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(0, 164, 208);
-}
-
-/* Set the color of the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(119, 0, 163);
+  background-color: var(--color-accent);
   border-radius: 10px;
 }
 
-/* Set the color of the scrollbar track */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-major);
+}
+
 ::-webkit-scrollbar-track {
-  background-color: #1c1c1c;
+  background-color: var(--color-minor);
 }
 
 .background {
@@ -509,6 +488,7 @@ color: white;
   width: 100%;
   height: 100%;
   z-index: -1;
+  background: linear-gradient(135deg, var(--color-minor), var(--color-major));
 }
 </style>
 

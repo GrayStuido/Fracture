@@ -21,6 +21,7 @@
     <audio id="audio"></audio>
     <script src="js/MusicSystem.js"></script>
     <head>
+        <link rel="stylesheet" href="css/Main.css">
         <title>Fracture | About</title>
       <link rel="icon" type="image/png" href="favicon.png">
       <script src="UpdateValues.js"></script>
@@ -61,85 +62,122 @@
       document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
       </script>
     <style>
-        body {
-            background-color: #1b0e23;
-            color: #d2c9d6;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-        }
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1000px;
-        }
 
-        .about-section {
-            flex: 1;
-            padding: 20px;
-            margin-right: 20px;
-        }
+body {
+  background-color: var(--color-major);
+  color: var(--color-text);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+  margin: 0;
+}
 
-        .moderator-section {
-            width: 300px;
-            padding: 20px;
-            background-color: #2b1d37;
-            border-radius: 5px;
-        }
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  gap: 20px;
+}
 
-        .moderator {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.about-section {
+  flex: 1;
+  padding: 20px;
+  background-color: rgba(43, 29, 55, 0.5);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 
-        .moderator-image-container {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.about-section:hover {
+  background-color: var(--color-minor);
+}
 
-        .moderator-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-        }
+.moderator-section {
+  width: 300px;
+  padding: 20px;
+  background-color: var(--color-minor);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .moderator-details {
-            display: flex;
-            flex-direction: column;
-        }
+.moderator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 
-        .moderator-name {
-            font-weight: bold;
-        }
+.moderator:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
 
-        .moderator-title {
-            font-size: 0.8em;
-            color: #a693b5;
-        }
+.moderator-image-container {
+  width: auto;
+  height: 50px;
+  margin-right: 15px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-        h2 {
-            color: #bc93e3;
-        }
+.moderator-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
+.moderator-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.moderator-name {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.moderator-title {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+}
+
+h2 {
+  color: var(--color-accent);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 /* Hide scrollbar for Firefox */
 * {
-    scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .about-section {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .moderator-section {
+    width: 100%;
+  }
 }
     </style>
 </head>

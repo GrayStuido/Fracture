@@ -1,65 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/Main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievements</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #2e2b3e;
-            color: #ffffff;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-        .achievement {
-            background-color: #3c3949;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 15px;
-            width: 200px;
-            text-align: center;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        .achievement:hover {
-            transform: scale(1.05);
-        }
-        .achievement img {
-            width: 100%;
-            height: auto;
-        }
-        .achievement-name {
-            padding: 15px 0;
-            font-size: 1.2em;
-            background-color: #7c4dff;
-            color: #ffffff;
-            font-weight: bold;
-        }
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(50px);
-            z-index: 1000;
-            visibility: hidden; /* Hidden by default */
-        }
 
-        #overlay img {
-            height: 30%;
-            width: auto;
-        }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--color-major);
+  color: var(--color-text);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.achievement {
+  background-color: var(--color-minor);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--color-shadow);
+  margin: 15px;
+  width: 200px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.achievement:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px var(--color-shadow);
+}
+
+.achievement img {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+.achievement:hover img {
+  opacity: 0.9;
+}
+
+.achievement-name {
+  padding: 15px 0;
+  font-size: 1.2em;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.achievement:hover .achievement-name {
+  background-color: #6c3df0; /* Slightly darker accent color on hover */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#overlay img {
+  max-height: 80vh;
+  max-width: 80vw;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--color-shadow);
+  transition: transform 0.3s ease;
+}
+
+#overlay:hover img {
+  transform: scale(1.02);
+}
     </style>
 </head>
 <body>
@@ -90,7 +124,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const overlay = document.getElementById('overlay');
-            const debugMode = true;
+            const debugMode = false;
 
             if (debugMode) {
                 overlay.style.visibility = 'visible';

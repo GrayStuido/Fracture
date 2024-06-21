@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Docs with Bento Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        #sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: #1a1a1a;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            color: #bb86fc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            gap: 15px;
+        }
+        #sidebar li {
+            background-color: #3a3a3a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        #sidebar li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.3);
+        }
+        #sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+        }
+        #sidebar .doc-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #bb86fc;
+        }
+        #sidebar .doc-description {
+            font-size: 0.9em;
+            color: #cccccc;
+        }
+        #content {
+            flex-grow: 1;
+            height: 99vh;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #home-button {
+            display: block;
+            width: 88%;
+            padding: 10px;
+            background-color: #bb86fc;
+            color: #1a1a1a;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        #home-button:hover {
+            background-color: #9d66d9;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h2>Documentation</h2>
+        <a href="../index.html" id="home-button">Go to Home</a>
+        <ul>
+            <li>
+                <a href="documents/index.html" target="content-frame">
+                    <div class="doc-title">Introduction</div>
+                    <div class="doc-description">What its for</div>
+                </a>
+            </li>
+            <li>
+                <a href="documents/Example-Example_Example.html" target="content-frame">
+                    <div class="doc-title">Template Page</div>
+                    <div class="doc-description">What we use to build the document pages</div>
+                </a>
+            </li>
+            <li>
+                <a href="../Placeholder.html" target="content-frame">
+                    <div class="doc-title">Lorem Ipsum</div>
+                    <div class="doc-description">Lorem Ipsum</div>
+                </a>
+            </li>
+            <li>
+                <a href="../Placeholder.html" target="content-frame">
+                    <div class="doc-title">Lorem Ipsum</div>
+                    <div class="doc-description">Lorem Ipsum</div>
+                </a>
+            </li>
+            <li>
+                <a href="../Placeholder.html" target="content-frame">
+                    <div class="doc-title">Lorem Ipsum</div>
+                    <div class="doc-description">Lorem Ipsum</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <iframe name="content-frame" src="documents/index.html"></iframe>
+    </div>
+
+    <script>
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.id !== 'home-button') {
+                    e.preventDefault();
+                    document.querySelector('iframe').src = link.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,3 +1,20 @@
+:root {
+  /* Main color palette */
+  --color-primary: #1b0e23;
+  --color-secondary: #2b1d37;
+  --color-accent: #bc93e3;
+  --color-text: #d2c9d6;
+  --color-text-muted: #a693b5;
+
+  /* Additional colors for variety */
+  --color-background-light: rgba(43, 29, 55, 0.5);
+  --color-highlight: #7c4dff;
+  --color-error: #ff6b6b;
+  --color-success: #4caf50;
+
+}
+
+
 nav li a:hover {
   background-color: #521B73;
 transition: 0.5s background-color;

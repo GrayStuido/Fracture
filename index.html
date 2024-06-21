@@ -55,7 +55,7 @@
 </script>
 </body>
   <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p style="margin: 0;">6.0.0 Rework Beta | Push 7</p>
+    <p style="margin: 0;">6.0.0 Rework Beta | Push 9</p>
 </div>
 <br>
 <script>
@@ -119,52 +119,16 @@ changeText();
     </div>
 <br>
   <style>
-
-    #navcontainer {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  border: 2px solid #560FA6;
-  animation: changeBorderRadius 1s 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-    .vbutton, .console-button, .ab-cloak-button {
-      position: absolute;
-      width: 80px;
-      height: 40px;
-      background-color: #360A67;
-      color: white;
-      border: 2px solid #560FA6;
-      border-radius: 5px;
-      cursor: default;
-      text-align: center;
-      line-height: 40px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: shrink;
-      font-size: 16px;
-      font-weight: bold;
-text-decoration: none;
-transition: all 0.3s ease-in-out;
-
-    }
-
-.vbutton:hover, .console-button:hover, .ab-cloak-button:hover {
-border-radius: 10px;
-border: 2px solid #7800FF;
-background-color: #2C0656;
-color: #B16BFF;
+    :root {
+  --color-major: #090013;
+  --color-minor: #360A67;
+  --color-accent: #560FA6;
+  --color-button: #7800FF;
+  --color-button-hover: #B16BFF;
 }
 
 .background {
-  background: #090013;
+  background: var(--color-major);
   position: fixed;
   top: 0;
   left: 0;
@@ -173,28 +137,82 @@ color: #B16BFF;
   z-index: -5;
 }
 
-    #create { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-    #navbutton2 { top: -5%; left: 50%; transform: translateX(-50%); }
-    #navbutton3 { top: 92%; left: 50%; transform: translateX(-50%); }
-    #navbutton4 { top: 50%; left: -10%; transform: translateY(-50%); }
-    #navbutton5 { top: 50%; left: 80%; transform: translateY(-50%); }
-    #navbutton7 { top: 18%; left: 76%; transform: translateY(-50%); }
-    #navbutton8 { top: 74%; left: 10%; transform: translateX(-50%); }
-    #navbutton9 { top: 18%; left: -4%; transform: translateY(-50%); }
-
-
-    .a-fix {
-    display: inline-flex;
-    justify-content: center; 
-    align-items: center;
-    text-align: center;
-    height: 100%; 
-    width: 100%;
+#navcontainer, #navcontainer2 {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  animation: changeBorderRadius 1s 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-    
-  </style>
+#navcontainer {
+  width: 300px;
+  height: 300px;
+}
 
+#navcontainer2 {
+  width: 150px;
+  height: 150px;
+}
+
+.vbutton, .console-button, .ab-cloak-button {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  background-color: var(--color-minor);
+  color: white;
+  border: 2px solid var(--color-accent);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.vbutton:hover, .console-button:hover, .ab-cloak-button:hover {
+  border-radius: 10px;
+  border-color: var(--color-button);
+  background-color: var(--color-accent);
+  color: var(--color-button-hover);
+}
+
+#create { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+#navbutton2 { top: -5%; left: 50%; transform: translateX(-50%); }
+#navbutton3 { top: 92%; left: 50%; transform: translateX(-50%); }
+#navbutton4 { top: 50%; left: -10%; transform: translateY(-50%); }
+#navbutton5 { top: 50%; left: 80%; transform: translateY(-50%); }
+#navbutton7 { top: 18%; left: 76%; transform: translateY(-50%); }
+#navbutton8 { top: 74%; left: 10%; transform: translateX(-50%); }
+#navbutton9 { top: 18%; left: -4%; transform: translateY(-50%); }
+#navbutton10 { top: 80%; left: 76%; transform: translateY(-50%); }
+
+.a-fix {
+  display: inline-flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  height: 100%; 
+  width: 100%;
+}
+
+@keyframes changeBorderRadius {
+  0% { border-radius: 0; }
+  100% { border-radius: 50%; }
+}
+  </style>
+  <div id="navcontainer2">
+  </div>
   <div id="navcontainer">
   <a hidden id="create" class="console-button" class="button" href="#">Cloak</a>
   <a id="navbutton2" class="vbutton" href="google-classroom.html">Games</a>
@@ -202,11 +220,13 @@ color: #B16BFF;
   <a id="navbutton8" class="vbutton" href="Addons.html">Addons</a>
   <a id="navbutton4" class="vbutton" href="chat.html">Frat-Chat</a>
   <a id="navbutton7" class="vbutton" href="About.html">About</a>
+  <a id="navbutton10" class="vbutton" href="Docs/index.html">Docs</a>
   <a style="font-size: 11px;" id="navbutton9" class="vbutton" href="Achievements.html">Achievements</a>
   <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>
 <a style="top: 50%; left: 50%; transform: translate(-50%, -50%);" id="ab-cloak-button" class="ab-cloak-button">Cloak</a>
 <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
 </div>
+
 
 <style>
 body {

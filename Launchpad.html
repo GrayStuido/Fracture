@@ -60,18 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
 </script>
-
-<style>
-body {
-  color: white;
-  background: #1e0041;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-</style>
 <script src="cloak.js">
       var url = document.getElementById("url-target");
       var urlObj = new window.URL(window.location.href);
@@ -97,31 +85,57 @@ body {
 </script>
   <title>Fracture | Leaderboard</title>
   <style>
-.leaderboard, .leaderboard-item {
-border-radius: 8px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-family: Arial, sans-serif;
+:root {
+  --color-major: #1e0041;
+  --color-minor: #330c4d;
+  --color-accent: #9900ff;
+  --color-text: #ffffff;
+  --color-first: #d9ad00;
+  --color-second: #cccccc;
+  --color-third: #ba6600;
 }
-    .leaderboard {
-      border: 5px solid #9900ff;
-      max-width: 400px;
-      width: 350px;
-      margin: 20px;
-      padding: 20px;
-      background-color: #330c4d;
-    }
 
-    .leaderboard-item {
-border: 5px solid #9900ff;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-background-color: #7a0ec2;
-padding: 10px;
-border-radius: 8px;
-    }
-    
+body {
+  color: var(--color-text);
+  background: var(--color-major);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: Arial, sans-serif;
+}
+
+.leaderboard, .leaderboard-item {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.leaderboard {
+  border: 5px solid var(--color-accent);
+  max-width: 400px;
+  width: 350px;
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--color-minor);
+}
+
+.leaderboard-item {
+  border: 3px solid var(--color-accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: rgba(122, 14, 194, 0.7);
+  padding: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leaderboard-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
 .background {
   position: fixed;
   top: 0;
@@ -129,32 +143,27 @@ border-radius: 8px;
   width: 100%;
   height: 100%;
   z-index: -1;
+  background-color: var(--color-major);
 }
-
 
 .ScoreWrapper {
-      color: #fff;
-      font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
-
 .leaderboard-item-first {
-border: 5px solid #d9ad00;
-background-color: #a18516;
+  border-color: var(--color-first);
+  background-color: rgba(161, 133, 22, 0.8);
 }
 
 .leaderboard-item-second {
-border: 5px solid #cccccc;
-background-color: #b0b0b0;
+  border-color: var(--color-second);
+  background-color: rgba(176, 176, 176, 0.8);
 }
 
 .leaderboard-item-third {
-border: 5px solid #ba6600;
-background-color: #c28132;
+  border-color: var(--color-third);
+  background-color: rgba(194, 129, 50, 0.8);
 }
-
-
-
   </style>
 </head>
 <body>
