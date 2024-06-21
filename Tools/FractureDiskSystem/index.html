@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FractureDisk Burner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            padding: 20px;
+            color: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, textarea {
+            color: white;
+            background-color: #ffffff18;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>FractureDisk Burner</h1>
+    <form id="packagerForm">
+        <label for="fileName">File Name (<name>.fracturedisk):</label>
+        <input autocomplete="off" type="text" id="fileName" name="fileName" required>
+        
+        <label for="title">Title/Name:</label>
+        <input autocomplete="off" type="text" id="title" name="title" required>
+        
+        <label for="iframeSrc">URL:</label>
+        <input autocomplete="off" type="text" id="iframeSrc" name="iframeSrc" required>
+        
+        <label for="iconPath">Icon URL:</label>
+        <input autocomplete="off" type="text" id="iconPath" name="iconPath" required>
+        
+        <button type="submit">Package .fracturedisk</button>
+    </form>
+
+    <script src="packagerpage.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Replace HTML</title>
+    <style>
+        /* Dark mode styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1f1f1f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        #uploadButton {
+            display: none;
+        }
+        #myCanvas {
+            color: #ffffff;
+            display: none;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            background-color: #333;
+        }
+        #console {
+            font-family: monospace;
+            margin-top: 20px;
+            color: #ccc;
+        }
+        #console > div {
+            margin-bottom: 10px;
+        }
+        .disk-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .disk-info img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-bottom: 10px;
+        }
+        .disk-info h2 {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="disk-info" id="diskInfo" style="display: none;">
+        <img id="diskIcon" src="" alt="Disk Icon">
+        <h2 id="diskTitle"></h2>
+    </div>
+    <button id="insertDiskButton">Insert Disk</button>
+    <input type="file" id="fileInput" accept=".fracturedisk" style="display: none;" />
+    <button id="uploadButton" style="display: none;">Upload</button>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <div id="console"></div>
+
+    <script src="packager.js"></script>
+</body>
+</html>
