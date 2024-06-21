@@ -1,109 +1,69 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const insertDiskButton = document.getElementById('insertDiskButton');
-    const fileInput = document.getElementById('fileInput');
-    const uploadButton = document.getElementById('uploadButton');
-    const consoleElement = document.getElementById('console');
-    const canvas = document.getElementById('myCanvas');
-    const diskInfoDiv = document.getElementById('diskInfo');
-    const diskTitle = document.getElementById('diskTitle');
-    const diskIcon = document.getElementById('diskIcon');
+    const form = document.getElementById('packagerForm');
+    const feedback = document.getElementById('feedback');
+    const cdContainer = document.getElementById('cdContainer');
+    const cdImage = document.getElementById('cdImage');
 
-    insertDiskButton.addEventListener('click', function() {
-        fileInput.click();
-    });
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fileName = document.getElementById('fileName').value;
+        const title = document.getElementById('title').value;
+        const iframeSrc = document.getElementById('iframeSrc').value;
+        const iconPath = document.getElementById('iconPath').value;
 
-    fileInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file && file.name.endsWith('.fracturedisk')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const fileContent = e.target.result;
-                const separatorIndex = fileContent.indexOf('\n');
-                if (separatorIndex !== -1) {
-                    const diskInfoJson = fileContent.substring(0, separatorIndex).trim();
-                    const htmlContent = fileContent.substring(separatorIndex + 1).trim();
-                    
-                    try {
-                        const diskInfo = JSON.parse(diskInfoJson)[0]; // Assuming it's in the format [{ TITLE: ..., ICON-PATH: ... }]
-                        diskTitle.textContent = diskInfo.TITLE;
-                        diskIcon.src = diskInfo['ICON-PATH'];
-                        diskInfoDiv.style.display = 'block';
-                        
-                        uploadButton.style.display = 'block';
-                        uploadButton.onclick = function() {
-                            insertDiskButton.style.display = 'none';
-                            fileInput.style.display = 'none';
-                            uploadButton.style.display = 'none';
-
-                            const context = canvas.getContext('2d');
-                            context.font = '16px Arial';
-                            context.fillStyle = 'black';
-
-                            function drawTextLineByLine(content, canvas) {
-                                const lines = content.split('\n');
-                                let currentLine = 0;
-                                const totalLines = lines.length;
-                                const interval = 20;
-
-                                function drawLine() {
-                                    if (currentLine < totalLines) {
-                                        context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-                                        context.fillText(lines[currentLine], 10, 30 + (currentLine * 20));
-                                        currentLine++;
-                                        setTimeout(drawLine, interval);
-                                    } else {
-                                        canvas.style.display = 'none';
-                                        document.documentElement.innerHTML = htmlContent;
-                                    }
-                                }
-
-                                drawLine();
-                            }
-
-                            simulateConsoleMessage('Loading HTML', () => {
-                                canvas.style.display = 'block';
-                                drawTextLineByLine(htmlContent, canvas);
-                            });
-                        };
-                    } catch (error) {
-                        console.error('Error parsing disk info JSON:', error);
-                        alert('Error parsing disk info. Please upload a valid .fracturedisk file.');
-                    }
-                } else {
-                    alert('Invalid .fracturedisk file format. Please upload a valid file.');
-                }
-            };
-            reader.readAsText(file);
-        } else {
-            alert('Please upload a valid .fracturedisk file.');
-        }
-    });
-
-    function simulateConsoleMessage(message, callback) {
-        const spinner = ['|', '/', '-', '\\'];
-        let spinnerIndex = 0;
-        let intervalId;
-
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message + ' [ ]';
-        consoleElement.appendChild(messageElement);
-
-        function updateSpinner() {
-            messageElement.textContent = message + ' [' + spinner[spinnerIndex] + ']';
-            spinnerIndex = (spinnerIndex + 1) % spinner.length;
-        }
-
-        updateSpinner();
-        intervalId = setInterval(updateSpinner, 100);
+        feedback.textContent = 'Burning FractureDisk...';
+        cdContainer.style.display = 'block';
+        cdContainer.classList.add('burning');
 
         setTimeout(() => {
-            clearInterval(intervalId);
-            messageElement.textContent = message; // Remove spinner
-            callback();
-        }, randomIntFromInterval(60, 1000));
-    }
+            feedback.textContent = 'Disk burned successfully!';
+            cdContainer.classList.remove('burning');
+            cdImage.src = iconPath;
+            cdImage.style.opacity = '1';
 
-    function randomIntFromInterval(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
+            setTimeout(() => {
+                packageDisk(fileName, title, iframeSrc, iconPath);
+            }, 1000);
+        }, 3000);
+    });
+
+    function packageDisk(fileName, title, iframeSrc, iconPath) {
+        const diskInfo = JSON.stringify([{
+            TITLE: title,
+            "ICON-PATH": iconPath
+        }]);
+
+        const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <iframe src="${iframeSrc}" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>`;
+
+        const fileContent = diskInfo + '\n' + htmlContent;
+
+        const blob = new Blob([fileContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName.endsWith('.fracturedisk') ? fileName : `${fileName}.fracturedisk`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        feedback.textContent = `FractureDisk "${fileName}" packaged and ready for download!`;
     }
 });

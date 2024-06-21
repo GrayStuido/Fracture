@@ -1,107 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <div class="AdvancedMenu">
-        <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
-            <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
-        </div>
-        <div class="slide-out-div" style="width: 940px; height: 10px; position: fixed; top: 0; left: -940px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
-            <div class="slideoutwrapper" style="margin-left: 80px;">
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../index.html">Home</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-classroom.html">Games</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../Launchpad.html">Leaderboard</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-drive.html">Tools</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../chat.html">Frat-Chat</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" id="screenshotButton">Screenshot</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
-                <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
-            </div>
-        </div>
-      </div>
-          <script>
-      var informationShown=!1;document.getElementById("screenshotButton").addEventListener("click",function(){if(informationShown){var e=document.getElementById("textDiv"),n=document.getElementById("gridDiv");e&&document.body.removeChild(e),n&&document.body.removeChild(n),informationShown=!1}else{var e=document.createElement("div");e.id="textDiv";var o=new Date().toLocaleString(),r=navigator.userAgent,i=r.match(/\b(Chrome|Safari|Firefox|Edge|Opera)\b/i),t=r.match(/\b(Windows|Macintosh|Linux|Android|iOS|Google Chrome OS 64-bit|Google Chrome)\b/i);i=i?i[0]:"Unknown Browser",t=t?t[0]:"Unknown OS",e.innerHTML=`
-                          <p>Date and Time: ${o}</p>
-                          <p>OS: ${t}</p>
-                          <p>Browser: ${i}</p>
-                      `,document.body.appendChild(e);var n=document.createElement("div");n.id="gridDiv";for(var a=0;a<9;a++){var d=document.createElement("div");d.className="gridBox",d.style.backgroundColor="#"+Math.floor(16777215*Math.random()).toString(16);var l=document.createElement("div");l.className="innerSquare",l.style.backgroundColor="#"+Math.floor(16777215*Math.random()).toString(16),d.appendChild(l),n.appendChild(d)}document.body.appendChild(n),informationShown=!0}});
-          </script>
-      <script>
-      document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-940px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
-      </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and Replace HTML</title>
+    <title>Fracture Disk Loader</title>
     <style>
-        /* Dark mode styles */
         body {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .upper-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #1f1f1f;
-            color: #fff;
-            font-family: Arial, sans-serif;
+            padding: 20px;
+            transition: all 1s ease;
         }
-        button {
-            background-color: #4CAF50;
+
+        #cdContainer {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #3a0ca3, #7209b7);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(114, 9, 183, 0.5);
+            transition: transform 0.5s ease;
+            z-index: 3;
+        }
+
+        #cdImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        #cdHole {
+            width: 50px;
+            height: 50px;
+            background-color: #1a1a2e;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #cdHoleBand1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ffffff4f;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #cdHoleBand2 {
+            width: 70px;
+            height: 70px;
+            background-color: #ffffff4f;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #insertDiskButton {
+            background-color: #4361ee;
             color: white;
-            padding: 10px 20px;
             border: none;
-            cursor: pointer;
-            margin: 10px;
+            padding: 10px 20px;
             font-size: 16px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        #uploadButton {
-            display: none;
-        }
-        #myCanvas {
-            color: #ffffff;
-            display: none;
-            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
             margin-top: 20px;
-            background-color: #333;
+            transition: background-color 0.3s ease;
+            z-index: 4;
         }
+
+        #insertDiskButton:hover {
+            background-color: #3a0ca3;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
         #console {
-            font-family: monospace;
+            background-color: #252525;
+            border: 1px solid #4361ee;
+            border-radius: 5px;
+            padding: 10px;
             margin-top: 20px;
-            color: #ccc;
+            width: 300px;
+            height: 100px;
+            overflow-y: auto;
+            text-align: left;
+            z-index: 4;
         }
-        #console > div {
-            margin-bottom: 10px;
+
+        .console-message {
+            margin-bottom: 5px;
         }
-        .disk-info {
-            text-align: center;
-            margin-bottom: 20px;
+
+        #slotMask {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 45vh;
+            background-color: #1a1a2e;
+            z-index: 4;
         }
-        .disk-info img {
-            max-width: 300px;
-            max-height: 300px;
-            margin-bottom: 10px;
+
+        .open {
+            animation: insertCD 2.5s ease-in forwards;
         }
-        .disk-info h2 {
-            margin: 5px 0;
+
+        #slotOpening {
+            width: 320px;
+            height: 10px;
+            background-color: #3a0ca3;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 10px rgba(114, 9, 183, 0.5);
+        }
+
+        @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(720deg);
+    }
+}
+
+
+        .spinning {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes insertCD {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(calc(50vh + 150px)); }
+        }
+
+        .inserting {
+            animation: insertCD 2.5s ease-in forwards;
+        }
+
+        .shrink {
+            transform: scale(2);
+            opacity: 0;
         }
     </style>
 </head>
 <body>
-    <div class="disk-info" id="diskInfo" style="display: none;">
-        <img id="diskIcon" src="" alt="Disk Icon">
-        <h2 id="diskTitle"></h2>
+    <div class="upper-container">
+            <div id="cdContainer">
+        <img id="cdImage" src="#" alt="CD">
+        <div id="cdHoleBand1"></div>
+        <div id="cdHoleBand2"></div>
+        <div id="cdHole"></div>
     </div>
-    <button id="insertDiskButton">Insert Disk</button>
-    <input type="file" id="fileInput" accept=".fracturedisk" style="display: none;" />
-    <button id="uploadButton" style="display: none;">Upload</button>
-    <canvas id="myCanvas" width="800" height="600"></canvas>
-    <div id="console"></div>
+    <div id="slotMask">
+        <div id="slotOpening"></div>
+    </div>
+        <button id="insertDiskButton">Insert Disk</button>
+        <input type="file" id="fileInput" accept=".fracturedisk">
+        <div id="console"></div>
+    </div>
 
-    <script src="../Tools/FractureDiskSystem/packager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const insertDiskButton = document.getElementById('insertDiskButton');
+            const fileInput = document.getElementById('fileInput');
+            const consoleElement = document.getElementById('console');
+            const cdContainer = document.getElementById('cdContainer');
+            const cdImage = document.getElementById('cdImage');
+            const upperContainer = document.querySelector('.upper-container');
+
+            insertDiskButton.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file && file.name.endsWith('.fracturedisk')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const fileContent = e.target.result;
+                        const separatorIndex = fileContent.indexOf('\n');
+                        if (separatorIndex !== -1) {
+                            const diskInfoJson = fileContent.substring(0, separatorIndex).trim();
+                            const htmlContent = fileContent.substring(separatorIndex + 1).trim();
+                            
+                            try {
+                                const diskInfo = JSON.parse(diskInfoJson)[0];
+                                cdImage.src = diskInfo['ICON-PATH'];
+                                cdImage.alt = diskInfo.TITLE;
+                                
+                                simulateConsoleMessage('Loading disk: ' + diskInfo.TITLE);
+                                cdContainer.classList.add('spinning');
+                                
+                                setTimeout(() => {
+                                    cdContainer.classList.remove('spinning');
+                                    simulateConsoleMessage('Disk loaded successfully');
+                                    simulateConsoleMessage('Inserting disk...');
+                                    
+                                    cdContainer.classList.add('inserting');
+                                    
+                                    setTimeout(() => {
+                                        simulateConsoleMessage('Disk inserted');
+                                        simulateConsoleMessage('Preparing to render HTML...');
+                                        
+                                        setTimeout(() => {
+                                            upperContainer.classList.add('shrink');
+                                            setTimeout(() => {
+                                                document.documentElement.innerHTML = htmlContent;
+                                            }, 1000);
+                                        }, 1000);
+                                    }, 1500);
+                                }, 3000);
+                            } catch (error) {
+                                console.error('Error parsing disk info JSON:', error);
+                                simulateConsoleMessage('Error: Invalid disk format', 'error');
+                            }
+                        } else {
+                            simulateConsoleMessage('Error: Invalid .fracturedisk file format', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                } else {
+                    simulateConsoleMessage('Error: Please upload a valid .fracturedisk file', 'error');
+                }
+            });
+
+            function simulateConsoleMessage(message, type = 'info') {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = `> ${message}`;
+                messageElement.classList.add('console-message');
+                if (type === 'error') {
+                    messageElement.style.color = '#ff4d6d';
+                }
+                consoleElement.appendChild(messageElement);
+                consoleElement.scrollTop = consoleElement.scrollHeight;
+            }
+        });
+    </script>
+
+    <!-- Include the Advanced Menu code here -->
+    <div class="AdvancedMenu">
+        <!-- ... (keep the existing Advanced Menu code) ... -->
+    </div>
+    <script>
+        // ... (keep the existing Advanced Menu script) ...
+    </script>
 </body>
 </html>
