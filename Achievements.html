@@ -1,142 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <iframe style="width: 100%; height: 100%; border: none; z-index: 99; position: absolute;" src="Placeholder.html"></iframe>
+
     <link rel="stylesheet" href="css/Main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievements</title>
     <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-major);
+            color: var(--color-text);
+        }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--color-major);
-  color: var(--color-text);
-}
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-}
+        .achievement {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
 
-.achievement {
-  background-color: var(--color-minor);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px var(--color-shadow);
-  margin: 15px;
-  width: 200px;
-  text-align: center;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .achievement-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
 
-.achievement:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px var(--color-shadow);
-}
+        .achievement:hover .achievement-inner {
+            transform: rotateY(180deg);
+        }
 
-.achievement img {
-  width: 100%;
-  height: auto;
-  transition: opacity 0.3s ease;
-}
+        .achievement-front, .achievement-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
 
-.achievement:hover img {
-  opacity: 0.9;
-}
+        .achievement-front {
+            background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+            color: #fff;
+        }
 
-.achievement-name {
-  padding: 15px 0;
-  font-size: 1.2em;
-  background-color: var(--color-accent);
-  color: var(--color-text);
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
+        .achievement-back {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
 
-.achievement:hover .achievement-name {
-  background-color: #6c3df0; /* Slightly darker accent color on hover */
-}
+        .achievement-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
 
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--color-overlay);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        .achievement-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
 
-#overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
+        .achievement-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 0 10px;
+            word-wrap: break-word;
+        }
 
-#overlay img {
-  max-height: 80vh;
-  max-width: 80vw;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 0 20px var(--color-shadow);
-  transition: transform 0.3s ease;
-}
+        .achievement-description {
+            font-size: 0.9em;
+            padding: 0 10px;
+            word-wrap: break-word;
+        }
 
-#overlay:hover img {
-  transform: scale(1.02);
-}
+        .achievement-locked {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        .achievement-locked::after {
+            content: '🔒';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: var(--color-text);
+        }
+
+        /* Tiers */
+        .bronze {
+            background: linear-gradient(145deg, #cd7f32, #855120);
+            border: 4px solid #dd9c5b;
+        }
+
+        .silver {
+            background: linear-gradient(145deg, #c0c0c0, #9b9999);
+            border: 4px solid #fff;
+        }
+
+        .gold {
+            background: linear-gradient(145deg, #ffd700, #daa520);
+            border: 4px solid #ffd05a;
+        }
+
+        .platinum {
+            background: linear-gradient(145deg, #e5e4e2, #b8b8b8);
+            border: 4px solid #fff;
+        }
+
+        .diamond {
+            background: linear-gradient(145deg, #b9f2ff, #8ae1ff);
+            border: 4px solid #5dd7ff;
+        }
+
+        /* Sparkles */
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background-color: white;
+            animation: twinkle 1.5s infinite;
+        }
+
+        .platinum .sparkle, .diamond .sparkle {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="achievement">
-            <img src="https://via.placeholder.com/200" alt="Achievement 1">
-            <div class="achievement-name">Achievement 1</div>
-        </div>
-        <div class="achievement">
-            <img src="https://via.placeholder.com/200" alt="Achievement 2">
-            <div class="achievement-name">Achievement 2</div>
-        </div>
-        <div class="achievement">
-            <img src="https://via.placeholder.com/200" alt="Achievement 3">
-            <div class="achievement-name">Achievement 3</div>
-        </div>
-        <!-- Add more achievements as needed -->
-    </div>
-
-
-
-
-
-    <div id="overlay">
-        <img src="icons/Under-Construction.png" alt="Under Construction">
+    <div class="container" id="achievements-container">
+        <!-- Achievements will be dynamically added here -->
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const overlay = document.getElementById('overlay');
-            const debugMode = false;
+        // display-achievements.js
+        const achievementDisplayer = {
+            achievements: [
+                { id: 'ach1', name: 'First Steps', description: 'Begin your journey', tier: 'bronze', icon: '👣' },
+                { id: 'ach2', name: 'Explorer', description: 'Visit a new page', tier: 'silver', icon: '🧭' },
+                { id: 'ach3', name: 'Frequent Visitor', description: 'Visit the site 5 times', tier: 'gold', icon: 'https://placehold.co/400' },
+                { id: 'ach4', name: 'Dedicated User', description: 'Use all site features', tier: 'platinum', icon: '💎' },
+                { id: 'ach5', name: 'Master Achiever', description: 'Unlock all other achievements', tier: 'diamond', icon: '👑' },
+                { id: 'ach6', name: 'Fractures Bible', description: 'Visited the Docs', tier: 'diamond', icon: '👑' },
+            ],
 
-            if (debugMode) {
-                overlay.style.visibility = 'visible';
-            } else {
-                if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-                    overlay.style.visibility = 'visible';
+            init() {
+                this.loadAchievements();
+                this.renderAchievements();
+            },
+
+            loadAchievements() {
+                const savedAchievements = localStorage.getItem('achievements');
+                if (savedAchievements) {
+                    const unlockedAchievements = JSON.parse(savedAchievements);
+                    this.achievements.forEach(achievement => {
+                        const unlockedAchievement = unlockedAchievements.find(a => a.id === achievement.id);
+                        achievement.unlocked = unlockedAchievement ? unlockedAchievement.unlocked : false;
+                    });
+                }
+            },
+
+            renderAchievements() {
+                const container = document.getElementById('achievements-container');
+                if (!container) return;
+
+                container.innerHTML = '';
+                this.achievements.forEach(achievement => {
+                    const achievementElement = document.createElement('div');
+                    achievementElement.className = `achievement ${achievement.unlocked ? '' : 'achievement-locked'}`;
+                    
+                    const iconContent = achievement.icon.startsWith('path/') || achievement.icon.startsWith('http')
+                        ? `<img src="${achievement.icon}" alt="${achievement.name}">`
+                        : achievement.icon;
+
+                    achievementElement.innerHTML = `
+                        <div class="achievement-inner">
+                            <div class="achievement-front ${achievement.tier}">
+                                <div class="achievement-icon">${iconContent}</div>
+                                <div class="achievement-name">${this.fitTextToElement(achievement.name, 100)}</div>
+                            </div>
+                            <div class="achievement-back ${achievement.tier}">
+                                <div class="achievement-description">${this.fitTextToElement(achievement.description, 150)}</div>
+                            </div>
+                        </div>
+                    `;
+
+                    if (achievement.tier === 'platinum' || achievement.tier === 'diamond') {
+                        this.addSparkles(achievementElement);
+                    }
+
+                    container.appendChild(achievementElement);
+                });
+            },
+
+            fitTextToElement(text, maxLength) {
+                if (text.length <= maxLength) return text;
+                return text.substring(0, maxLength - 3) + '...';
+            },
+
+            addSparkles(element) {
+                for (let i = 0; i < 5; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.top = `${Math.random() * 100}%`;
+                    sparkle.style.left = `${Math.random() * 100}%`;
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                    element.appendChild(sparkle);
                 }
             }
+        };
 
-            overlay.addEventListener('click', function () {
-                window.location.href = 'index.html';
-            });
+        // Initialize the achievement displayer when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            achievementDisplayer.init();
         });
     </script>
 </body>

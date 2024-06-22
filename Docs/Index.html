@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="../favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Docs with Bento Box</title>
+    <title>Fracture | Documentation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,9 +103,9 @@
                 </a>
             </li>
             <li>
-                <a href="../Placeholder.html" target="content-frame">
-                    <div class="doc-title">Lorem Ipsum</div>
-                    <div class="doc-description">Lorem Ipsum</div>
+                <a href="documents/diskburner.html" target="content-frame">
+                    <div class="doc-title">FractureDisks</div>
+                    <div class="doc-description">Learn about what a .fracturedisk is and what they are for</div>
                 </a>
             </li>
             <li>
@@ -135,5 +136,34 @@
             });
         });
     </script>
+        <script>
+            // Function to save the current page URL to local storage
+            function saveCurrentPage(url) {
+                localStorage.setItem('lastVisitedPage', url);
+            }
+    
+            // Function to load the last visited page from local storage
+            function loadLastVisitedPage() {
+                const lastPage = localStorage.getItem('lastVisitedPage');
+                if (lastPage) {
+                    document.querySelector('iframe').src = lastPage;
+                }
+            }
+    
+            // Add click event listeners to sidebar links
+            document.querySelectorAll('#sidebar a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.id !== 'home-button') {
+                        e.preventDefault();
+                        const url = link.getAttribute('href');
+                        document.querySelector('iframe').src = url;
+                        saveCurrentPage(url);
+                    }
+                });
+            });
+    
+            // Load the last visited page when the document is ready
+            document.addEventListener('DOMContentLoaded', loadLastVisitedPage);
+        </script>
 </body>
 </html>

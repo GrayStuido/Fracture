@@ -22,7 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255,255,255,0.1);
             position: relative;
-            z-index: 2;
+            z-index: 100;
         }
         h1 {
             color: #ffd700;
@@ -41,6 +41,18 @@
             top: 50%;
             left: -50%;
             z-index: 1;
+
+            /* Animation properties */
+            animation: tapeFade 2s ease-in-out forwards;
+            background-position: -100% 0; /* Initial position off-screen to the left */
+        }
+        @keyframes tapeFade {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
         }
         .caution-tape::before {
             content: "UNDER CONSTRUCTION";
