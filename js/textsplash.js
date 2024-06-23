@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Look ma no GoGuardian",
         ">:(",
         ":D",
+        "McDonnald123212 will get us the win",
         "6/7/2024",
         "Add more games!!11!1!",
         "Yall dont really know me....",
