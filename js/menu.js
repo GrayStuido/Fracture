@@ -116,9 +116,9 @@ function toggleScreenshotInfo() {
         const browser = browserMatch ? browserMatch[0] : "Unknown Browser";
         const os = osMatch ? osMatch[0] : "Unknown OS";
         textDiv.innerHTML = `
-            <p style="position: absolute; bottom: 10px; left: 10px;">Date and Time: ${dateTime}</p>
-            <p style="position: absolute; bottom: 30px; left: 10px;">OS: ${os}</p>
-            <p style="position: absolute; bottom: 50px; left: 10px;">Browser: ${browser}</p>
+            <p style="z-index: 99; position: absolute; bottom: 10px; left: 10px;">Date and Time: ${dateTime}</p>
+            <p style="z-index: 99; position: absolute; bottom: 30px; left: 10px;">OS: ${os}</p>
+            <p style="z-index: 99; position: absolute; bottom: 50px; left: 10px;">Browser: ${browser}</p>
         `;
         document.body.appendChild(textDiv);
 
