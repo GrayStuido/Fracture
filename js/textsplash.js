@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ":D",
         "McDonnald123212 will get us the win",
         "6/7/2024",
+        "I hate you Tinny Tim",
         "Add more games!!11!1!",
         "Yall dont really know me....",
         "Freakybob is Calling",
