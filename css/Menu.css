@@ -1,0 +1,123 @@
+.RadialMenu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease-out;
+    z-index: 9999;
+}
+
+.RadialMenu.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.trigger-div {
+    width: 60px;
+    height: 60px;
+    background-color: #3b1c5f;
+    border: 3px solid #560fa6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-out;
+    position: relative;
+    z-index: 1001;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url('HamburgerMenu.png');
+    background-size: cover;
+    transition: background-image 0.3s ease-out;
+}
+
+.menu-icon.spin {
+    animation: spin 0.5s linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.radial-items {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.3s ease-out;
+}
+
+.radial-items.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.menu-section {
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.menu-section:hover {
+    fill: #560fa6;
+}
+
+.menu-text {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    fill: #ffffff;
+    pointer-events: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Highlight Reload and Screenshot buttons */
+.menu-section.reload:hover {
+    fill: #760fa6; /* Tomato color */
+}
+
+.menu-section.screenshot:hover {
+    fill: #760fa6; /* LimeGreen color */
+}
+
+#textDiv, #gridDiv {
+    position: fixed;
+    z-index: 1002;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#textDiv {
+    top: 10px;
+    left: 100px;
+    width: 300px
+}
+
+#gridDiv {
+    bottom: 10px;
+    right: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.gridBox {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerSquare {
+    width: 25px;
+    height: 25px;
+}

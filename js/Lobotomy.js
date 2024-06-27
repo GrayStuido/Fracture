@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var activationProbability = 5;
+    if (localStorage.getItem('Lobotomy-Install') !== 'installed') {
+        return; // Exit the script if 'cloak' is not 'installed'
+    }
+
+    var activationProbability = 30;
     var randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber > activationProbability) {
         return;

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-markup.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Documentation Template</title>
+    <style>
+        :root {
+            --primary-color: #bb86fc;
+            --secondary-color: #03dac6;
+            --background-color: #2a2a2a;
+            --text-color: #f0f0f0;
+            --code-background: #1a1a1a;
+            --border-color: #444;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+        }
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        pre, code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            border-radius: 5px;
+        }
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            padding: 2px 4px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--code-background);
+        }
+        .note, .warning, .tip, .important, .fun {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+        }
+        .note { border-left: 5px solid var(--secondary-color); }
+        .warning { border-left: 5px solid #cf6679; }
+        .tip { border-left: 5px solid var(--primary-color); }
+        .important { border-left: 5px solid #ffd700; }
+        .fun { border-left: 5px solid #ee37ff; }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .flex-item {
+            flex-basis: 48%;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .caption {
+            font-style: italic;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        .accordion {
+            background-color: #3a3a3a;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+        .accordion:hover {
+            background-color: #4a4a4a;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: var(--background-color);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .tab-label {
+            padding: 10px 20px;
+            background-color: #3a3a3a;
+            cursor: pointer;
+        }
+        .tab-content {
+            order: 99;
+            width: 100%;
+            display: none;
+            padding: 20px;
+            background-color: #3a3a3a;
+        }
+        .tab-input {
+            display: none;
+        }
+        .tab-input:checked + .tab-label {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+        .tab-input:checked + .tab-label + .tab-content {
+            display: block;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .progress {
+            width: 75%;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: var(--background-color);
+        }
+        .card {
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>School Restrictions</h1>
+    
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#bypass">Cisco Bypass</a></li>
+    </ul>
+
+    <h2 id="introduction">Introduction</h2>
+    <p>If you didnt already know our school uses a combo of GoGuardian, and Cisco Umbrella</p>
+    <div class="note">
+        <strong>Note:</strong> GoGuardian Doesnt recive as many exploits or workarounds anymore.
+    </div>
+    <button class="accordion">GoGuardian</button>
+    <div class="panel">
+        <p>The main thing our school uses to block websites and restrict access to basic things. Basicaly DRM (Digital Rights Management)</p>
+    </div>
+
+    <button class="accordion">Cisco Umbrella</button>
+    <div class="panel">
+        <p>The so called cybersecurity, and saftey net for the chromebooks, blocking websites that are "unsafe". It doesnt do jack shit</p>
+    </div>
+    
+    <h2 id="features">Features</h2>
+    <div style="background-color: #222222; border-radius: 5px; padding: 5px;">
+    <h1>GoGuardian (Normal)</h1>
+    <p style="color:#444;">( From https://www.goguardian.com/ )</p>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h3>View Student Screens</h3>
+            <p>See student work in real time, and easily identify those who are struggling or may need more guidance.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Direct Chat & Announcements</h3>
+            <p>Deliver instruction to the whole class, or chat privately with individual students without disrupting the rest of the class.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Off-Task Alerts</h3>
+            <p>Receive an automatic alert when a student goes off-task or off-subject.</p>
+        </div>
+        <div class="flex-item">
+            <h3 style="color:#cf6679;">Enhanced Reporting</h3>
+            <p style="color:rgb(221, 124, 124);">Email reports of student browsing activity from a classroom session to keep parents and administrators informed.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Differentiated Learning Environments</h3>
+            <p>Personalize digital learning environments for individuals or groups of students — even when they’re in the same class.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Video Conferencing</h3>
+            <p>Meet with students 1:1 or in groups, present to the class, and record live presentations to distribute later.</p>
+        </div>
+    </div>
+    <h1>GoGuardian (Beacon)</h1>
+    <div class="note">
+        <strong>Note:</strong> Im assuming our school uses this specific version of the 'Beacon' program provided by GoGuardian. (It seems to be aimed at mental health and poor preforming students)
+    </div>
+    <div class="fun">
+        <strong>Fun:</strong> Type 'Suicide' into your search bar to have something silly happen!!!
+    </div>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h3>Dedicated onboarding</h3>
+            <p style="color:#444;">No Info Given. Im assuming this is something they set up at the admin level</p>
+        </div>
+        <div class="flex-item">
+            <h3>(5) Suicide alert & Self-Harm alert categories</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>(4) Threats & Violence alert categories</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Comprehensive Alert Dashboard</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Multi-person escalation list with round-robin email and text notifications</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Separate escalation lists by Suicide & Self-Harm vs Threats & Violence alerts</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Separate escalation lists for during school and after school hours</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Customizable alert notifications</h3>
+            <p></p>
+        </div>
+        <div class="flex-item">
+            <h3>Log actions taken on an alert</h3>
+            <p></p>
+        </div>
+        </div>
+
+    </div>
+
+</div>
+<br>
+<div style="background-color: #222222; border-radius: 5px; padding: 5px;">
+<h1>Cisco Umbrella</h1>
+<p style="color:#444;">( From https://umbrella.cisco.com/ )</p>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h3>DNS-layer security</h3>
+            <p>DNS is at the heart of every internet connection request. Securing the DNS layer means blocking malicious domains, IP addresses, and cloud applications before a connection is ever established. More than 30,000 organizations use Umbrella DNS to deliver a fast, safe, and reliable internet experience that is simple to deploy and easy to manage.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Secure internet gateway</h3>
+            <p>Umbrella SIG includes DNS-layer Security and adds secure web gateway (SWG), cloud access security broker (CASB), data loss prevention (DLP), malware protection, cloud-delivered firewall, and remote browser isolation (RBI), all converged in a single solution with unified management.</p>
+        </div>
+        <div class="flex-item">
+            <h3>Security service edge</h3>
+            <p>Cisco Secure Access is the evolution of Umbrella. It includes core Umbrella SIG components plus zero trust network access (ZTNA) and Experience Insights to connect users anywhere seamlessly and securely to any apps from any devices, simplify operations for information security teams, and mitigate risk to maintain business continuity.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="bypass">Cisco Umbrella Bypass</h2>
+
+<div class="important">
+    <strong>Important:</strong> This bypass doesnt work on all pages! Some will flat out break and be unusable!
+</div>
+
+<div class="card">
+    <h3>Method</h3>
+    <ol>
+        <li>Go to <a>https://translate.google.com/</a></li>
+        <li>Paste a link thats blocked by Cisco into the translate box</li>
+        <li>Open The Link it gives you</li>
+    </ol>
+</div>
+
+    <script>
+        // Accordion functionality
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

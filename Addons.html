@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="css/MusicSystem.css">
     <div class="corner-div-MusicSystem" id="corner-div">
         <div class="info-MusicSystem">
@@ -26,6 +27,10 @@
         <script src="js/Lobotomy.js"></script>
         <script src="js/Shutdown.js"></script>
         <script src="js/SystemInfoLog.js"></script>
+
+
+        <script src="js/cloakpage.js"></script>
+        <script src="js/AntiTabClose.js"></script>
       
         <div class="AdvancedMenu">
           <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
@@ -49,7 +54,7 @@
       </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Addons</title>
+    <title>Fracture | Addons</title>
     <style>
 :root {
   --color-major: #1a1a1a;
@@ -179,12 +184,89 @@ footer {
 footer p {
   margin: 0;
 }
+
+.cloak-settings {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--color-minor);
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+}
+
+.cloak-settings input[type="text"] {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-major);
+    color: var(--color-text);
+    font-size: 14px;
+}
+
+.cloak-settings input[type="text"]::placeholder {
+    color: var(--color-text-dark);
+}
+
+.save-settings-button {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-settings-button:hover {
+    background-color: #0056b3;
+}
+
+.default-settings-button {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.default-settings-button:hover {
+    background-color: #0056b3;
+}
+
+.search-container {
+    margin-top: 15px;
+}
+
+#addon-search {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background-color: var(--color-minor);
+    color: var(--color-text);
+    font-size: 16px;
+}
+
+#addon-search::placeholder {
+    color: var(--color-text-dark);
+}
+
     </style>
     
 </head>
 <body>
     <header>
         <h1>Fracture Addons</h1>
+        <div class="search-container">
+            <input type="text" id="addon-search" placeholder="Search addons...">
+        </div>
     </header>
     
     <section>
@@ -212,16 +294,46 @@ footer p {
             </div>
         </div>
 
-        <div hidden class="addon">
-            <h3>Lobotomy</h3>
-            <p>Puts jumpscare images every time you reload a game or select pages</p>
-            <input type="hidden" class="storage-key" value="Lobotomy"> <!-- Hidden input for storage key -->
+        <div class="addon">
+            <h3>Page Cloaker</h3>
+            <p>Cloak your page every time you switch tabs</p>
+            <input type="hidden" class="storage-key" value="cloak">
+            <div class="cloak-settings" style="display: none;">
+                <input type="text" id="cloakImageSrc" placeholder="Cloak Image URL">
+                <input type="text" id="cloakFaviconSrc" placeholder="Cloak Favicon URL">
+                <input type="text" id="cloakPageTitle" placeholder="Cloak Page Title">
+                <button class="save-settings-button" onclick="saveCloakSettings()">Save Settings</button>
+                <button class="default-settings-button" onclick="setDefaultCloakSettings()">Set to Default</button>
+            </div>
             <button class="install-button">Install</button>
             <div class="loading-overlay">
                 <div class="spinner"></div>
                 <span class="loading-text">Installing...</span>
             </div>
         </div>
+
+        <div class="addon">
+            <h3>Lobotomy</h3>
+            <p>Has a chance to put a jumpscare image every time you reload the page</p>
+            <input type="hidden" class="storage-key" value="Lobotomy-Install"> <!-- Hidden input for storage key -->
+            <button class="install-button">Install</button>
+            <div class="loading-overlay">
+                <div class="spinner"></div>
+                <span class="loading-text">Installing...</span>
+            </div>
+        </div>
+
+        <div class="addon">
+            <h3>Anti GoGuardian Tab Close</h3>
+            <p>Adds a confirmation message when you try to close the tab. If you click cancel it with effectivly make GoGuardian's attempt to close it fail. It will try again periodically</p>
+            <input type="hidden" class="storage-key" value="GGBlock"> <!-- Hidden input for storage key -->
+            <button class="install-button">Install</button>
+            <div class="loading-overlay">
+                <div class="spinner"></div>
+                <span class="loading-text">Installing...</span>
+            </div>
+        </div>
+
         <!-- Add more addons as needed -->
     </section>
 
@@ -230,119 +342,215 @@ footer p {
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to set addon state in local storage
-            function setAddonState(storageKey, state) {
-                localStorage.setItem(storageKey, state);
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to set addon state in local storage
+    function setAddonState(storageKey, state) {
+        localStorage.setItem(storageKey, state);
+    }
 
-            // Function to get addon state from local storage
-            function getAddonState(storageKey) {
-                return localStorage.getItem(storageKey);
-            }
+    // Function to get addon state from local storage
+    function getAddonState(storageKey) {
+        return localStorage.getItem(storageKey);
+    }
 
-            // Function to set TST state in local storage
-            function setTSTState(state) {
-                localStorage.setItem('TST', state);
-            }
+    // Function to set TST state in local storage
+    function setTSTState(state) {
+        localStorage.setItem('TST', state);
+    }
 
-            // Function to get TST state from local storage
-            function getTSTState() {
-                return localStorage.getItem('TST');
-            }
+    // Function to get TST state from local storage
+    function getTSTState() {
+        return localStorage.getItem('TST');
+    }
 
-            // Initialize addons based on their stored state or default to not-installed
-            function initializeAddons() {
-                const addons = document.querySelectorAll('.addon');
+    // Default cloak settings
+    const defaultCloakSettings = {
+        imageSrc: "icons/cloak-image.png",
+        faviconSrc: "icons/page-image.ico",
+        pageTitle: "Wikipedia"
+    };
 
-                addons.forEach(addon => {
-                    const storageKey = addon.querySelector('.storage-key').value;
-                    const installButton = addon.querySelector('.install-button');
-                    const loadingOverlay = addon.querySelector('.loading-overlay');
-                    const loadingText = addon.querySelector('.loading-text');
+    // Function to load cloak settings
+    function loadCloakSettings() {
+        const settings = {
+            imageSrc: localStorage.getItem('cloakImageSrc') || defaultCloakSettings.imageSrc,
+            faviconSrc: localStorage.getItem('cloakFaviconSrc') || defaultCloakSettings.faviconSrc,
+            pageTitle: localStorage.getItem('cloakPageTitle') || defaultCloakSettings.pageTitle
+        };
 
-                    // Check if addon is already installed (in local storage)
-                    const addonState = getAddonState(storageKey);
+        // Update input fields
+        document.getElementById('cloakImageSrc').value = settings.imageSrc;
+        document.getElementById('cloakFaviconSrc').value = settings.faviconSrc;
+        document.getElementById('cloakPageTitle').value = settings.pageTitle;
 
-                    if (addonState === 'installed') {
-                        installButton.textContent = 'Uninstall';
-                        installButton.classList.add('uninstall');
-                    } else {
-                        setAddonState(storageKey, 'not-installed');
-                    }
-                });
+        // Update cloak script
+        if (window.updateCloakSettings) {
+            window.updateCloakSettings(settings.imageSrc, settings.faviconSrc, settings.pageTitle);
+        }
+    }
 
-                // Check and set initial state of TST
-                const tstState = getTSTState();
-                if (tstState !== '1') {
-                    // Perform initial setAddonState only if TST is not 1
-                    setAddonState('Tracking', 'installed');
-                    setTSTState('1'); // Set TST to 1
-                    window.location.reload(); // Reload the page
+    // Initialize addons based on their stored state or default to not-installed
+    function initializeAddons() {
+        const addons = document.querySelectorAll('.addon');
+
+        addons.forEach(addon => {
+            const storageKey = addon.querySelector('.storage-key').value;
+            const installButton = addon.querySelector('.install-button');
+            const loadingOverlay = addon.querySelector('.loading-overlay');
+            const loadingText = addon.querySelector('.loading-text');
+            const cloakSettings = addon.querySelector('.cloak-settings');
+
+            // Check if addon is already installed (in local storage)
+            const addonState = getAddonState(storageKey);
+
+            if (addonState === 'installed') {
+                installButton.textContent = 'Uninstall';
+                installButton.classList.add('uninstall');
+                if (storageKey === 'cloak' && cloakSettings) {
+                    cloakSettings.style.display = 'block';
+                    loadCloakSettings();
+                }
+            } else {
+                setAddonState(storageKey, 'not-installed');
+                if (storageKey === 'cloak' && cloakSettings) {
+                    cloakSettings.style.display = 'none';
                 }
             }
-
-            // Run initialization when DOM content is loaded
-            initializeAddons();
-
-            // Add event listener for install buttons
-            const installButtons = document.querySelectorAll('.install-button');
-
-            installButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const addonDiv = this.parentElement;
-                    const loadingOverlay = addonDiv.querySelector('.loading-overlay');
-                    const storageKey = addonDiv.querySelector('.storage-key').value;
-                    const loadingText = loadingOverlay.querySelector('.loading-text');
-
-                    // Show loading overlay
-                    loadingOverlay.style.opacity = '1';
-                    loadingOverlay.style.pointerEvents = 'auto';
-
-                    // Disable button temporarily
-                    this.disabled = true;
-
-                    // Determine action based on current button state
-                    if (this.classList.contains('uninstall')) {
-                        // Simulate uninstallation delay (you can replace this with actual uninstallation logic)
-                        setTimeout(() => {
-                            // Hide loading overlay
-                            loadingOverlay.style.opacity = '0';
-                            loadingOverlay.style.pointerEvents = 'none';
-
-                            // Change button back to install
-                            this.textContent = 'Install';
-                            this.classList.remove('uninstall');
-                            this.disabled = false;
-
-                            // Update addon state in local storage
-                            setAddonState(storageKey, 'not-installed');
-                        }, 2000); // Simulated 2 seconds uninstallation time
-
-                        // Change loading text
-                        loadingText.textContent = 'Uninstalling...';
-                    } else {
-                        // Simulate installation delay (you can replace this with actual installation logic)
-                        setTimeout(() => {
-                            // Hide loading overlay
-                            loadingOverlay.style.opacity = '0';
-                            loadingOverlay.style.pointerEvents = 'none';
-
-                            // Change button to uninstall
-                            this.textContent = 'Uninstall';
-                            this.classList.add('uninstall');
-                            this.disabled = false;
-
-                            // Update addon state in local storage
-                            setAddonState(storageKey, 'installed');
-                        }, 2000); // Simulated 2 seconds installation time
-
-                        // Change loading text
-                        loadingText.textContent = 'Installing...';
-                    }
-                });
-            });
         });
+
+        // Check and set initial state of TST
+        const tstState = getTSTState();
+        if (tstState !== '1') {
+            // Perform initial setAddonState only if TST is not 1
+            setAddonState('Tracking', 'installed');
+            setTSTState('1'); // Set TST to 1
+            window.location.reload(); // Reload the page
+        }
+    }
+
+    // Run initialization when DOM content is loaded
+    initializeAddons();
+
+    // Add event listener for install buttons
+    const installButtons = document.querySelectorAll('.install-button');
+
+    installButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const addonDiv = this.closest('.addon');
+            const loadingOverlay = addonDiv.querySelector('.loading-overlay');
+            const storageKey = addonDiv.querySelector('.storage-key').value;
+            const loadingText = loadingOverlay.querySelector('.loading-text');
+            const cloakSettings = addonDiv.querySelector('.cloak-settings');
+
+            // Show loading overlay
+            loadingOverlay.style.opacity = '1';
+            loadingOverlay.style.pointerEvents = 'auto';
+
+            // Disable button temporarily
+            this.disabled = true;
+
+            // Determine action based on current button state
+            if (this.classList.contains('uninstall')) {
+                // Simulate uninstallation delay (you can replace this with actual uninstallation logic)
+                setTimeout(() => {
+                    // Hide loading overlay
+                    loadingOverlay.style.opacity = '0';
+                    loadingOverlay.style.pointerEvents = 'none';
+
+                    // Change button back to install
+                    this.textContent = 'Install';
+                    this.classList.remove('uninstall');
+                    this.disabled = false;
+
+                    // Update addon state in local storage
+                    setAddonState(storageKey, 'not-installed');
+
+                    // Hide cloak settings if applicable
+                    if (storageKey === 'cloak' && cloakSettings) {
+                        cloakSettings.style.display = 'none';
+                    }
+                }, 2000); // Simulated 2 seconds uninstallation time
+
+                // Change loading text
+                loadingText.textContent = 'Uninstalling...';
+            } else {
+                // Simulate installation delay (you can replace this with actual installation logic)
+                setTimeout(() => {
+                    // Hide loading overlay
+                    loadingOverlay.style.opacity = '0';
+                    loadingOverlay.style.pointerEvents = 'none';
+
+                    // Change button to uninstall
+                    this.textContent = 'Uninstall';
+                    this.classList.add('uninstall');
+                    this.disabled = false;
+
+                    // Update addon state in local storage
+                    setAddonState(storageKey, 'installed');
+
+                    // Show cloak settings if applicable
+                    if (storageKey === 'cloak' && cloakSettings) {
+                        cloakSettings.style.display = 'block';
+                        loadCloakSettings();
+                    }
+                }, 2000); // Simulated 2 seconds installation time
+
+                // Change loading text
+                loadingText.textContent = 'Installing...';
+            }
+        });
+    });
+
+    // Function to save cloak settings
+    window.saveCloakSettings = function() {
+        const imageSrc = document.getElementById('cloakImageSrc').value;
+        const faviconSrc = document.getElementById('cloakFaviconSrc').value;
+        const pageTitle = document.getElementById('cloakPageTitle').value;
+
+        localStorage.setItem('cloakImageSrc', imageSrc);
+        localStorage.setItem('cloakFaviconSrc', faviconSrc);
+        localStorage.setItem('cloakPageTitle', pageTitle);
+
+        if (window.updateCloakSettings) {
+            window.updateCloakSettings(imageSrc, faviconSrc, pageTitle);
+        }
+
+        alert('Cloak settings saved!');
+    }
+
+    // Function to set cloak settings to default
+    window.setDefaultCloakSettings = function() {
+        localStorage.setItem('cloakImageSrc', defaultCloakSettings.imageSrc);
+        localStorage.setItem('cloakFaviconSrc', defaultCloakSettings.faviconSrc);
+        localStorage.setItem('cloakPageTitle', defaultCloakSettings.pageTitle);
+
+        loadCloakSettings();
+
+        if (window.updateCloakSettings) {
+            window.updateCloakSettings(defaultCloakSettings.imageSrc, defaultCloakSettings.faviconSrc, defaultCloakSettings.pageTitle);
+        }
+
+        alert('Cloak settings set to default!');
+    }
+    // Add search functionality
+    const searchBar = document.getElementById('addon-search');
+    const addons = document.querySelectorAll('.addon');
+
+    searchBar.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+
+        addons.forEach(addon => {
+            const addonName = addon.querySelector('h3').textContent.toLowerCase();
+            const addonDescription = addon.querySelector('p').textContent.toLowerCase();
+
+            if (addonName.includes(searchTerm) || addonDescription.includes(searchTerm)) {
+                addon.style.display = 'block';
+            } else {
+                addon.style.display = 'none';
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>

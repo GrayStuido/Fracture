@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="../js/UpdateValues.js"></script>
-  <script src="../js/Lobotomy.js"></script>
-  <script src="../js/Shutdown.js"></script>
-  <script src="../js/SystemInfoLog.js"></script>
-  <script src="../js/Master.js"></script>
+  <link rel="stylesheet" href="../css/Menu.css">
+  <div class="RadialMenu" id="radialMenu">
+    <div class="trigger-div" onclick="toggleRadialMenu()">
+        <div class="menu-icon"></div>
+    </div>
+    <svg class="radial-items" id="radialItems" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" fill="#3b1c5f" stroke="#560fa6" stroke-width="2"/>
+        <!-- Sections will be added here dynamically -->
+    </svg>
+  </div>
+<script src="../js/menu.js"></script>
+<script src="../js/UpdateValues.js"></script>
+<script src="../js/Lobotomy.js"></script>
+<script src="../js/Shutdown.js"></script>
+<script src="../js/SystemInfoLog.js"></script>
+<script src="../js/cloakpage.js"></script>
+<script src="../js/AntiTabClose.js"></script>
+<script src="../js/Master.js"></script>
   <link rel="stylesheet" href="../css/MusicSystem.css">
   <div class="corner-div-MusicSystem" id="corner-div">
       <div class="info-MusicSystem">
@@ -73,33 +86,6 @@
   </style>
 </head>
 <body onload="changeText()">
-  <div class="AdvancedMenu">
-    <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
-        <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
-    </div>
-    <div class="slide-out-div" style="width: 940px; height: 10px; position: fixed; top: 0; left: -940px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
-        <div class="slideoutwrapper" style="margin-left: 80px;">
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../index.html">Home</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-classroom.html">Games</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../Launchpad.html">Leaderboard</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../google-drive.html">Tools</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="../chat.html">Frat-Chat</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" id="screenshotButton">Screenshot</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
-        </div>
-    </div>
-</div>
-    <script>
-var informationShown=!1;document.getElementById("screenshotButton").addEventListener("click",function(){if(informationShown){var e=document.getElementById("textDiv"),n=document.getElementById("gridDiv");e&&document.body.removeChild(e),n&&document.body.removeChild(n),informationShown=!1}else{var e=document.createElement("div");e.id="textDiv";var o=new Date().toLocaleString(),r=navigator.userAgent,i=r.match(/\b(Chrome|Safari|Firefox|Edge|Opera)\b/i),t=r.match(/\b(Windows|Macintosh|Linux|Android|iOS)\b/i);i=i?i[0]:"Unknown Browser",t=t?t[0]:"Unknown OS",e.innerHTML=`
-                    <p>Date and Time: ${o}</p>
-                    <p>OS: ${t}</p>
-                    <p>Browser: ${i}</p>
-                `,document.body.appendChild(e);var n=document.createElement("div");n.id="gridDiv";for(var a=0;a<9;a++){var d=document.createElement("div");d.className="gridBox",d.style.backgroundColor="#"+Math.floor(16777215*Math.random()).toString(16);var l=document.createElement("div");l.className="innerSquare",l.style.backgroundColor="#"+Math.floor(16777215*Math.random()).toString(16),d.appendChild(l),n.appendChild(d)}document.body.appendChild(n),informationShown=!0}});
-    </script>
-<script>
-document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-940px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
-</script>
 
 <iframe src="LGR/Learning/index.html" frameborder="0"></iframe>
 

@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link rel="stylesheet" href="../css/Menu.css">
+    <div class="RadialMenu" id="radialMenu">
+      <div class="trigger-div" onclick="toggleRadialMenu()">
+          <div class="menu-icon"></div>
+      </div>
+      <svg class="radial-items" id="radialItems" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="#3b1c5f" stroke="#560fa6" stroke-width="2"/>
+          <!-- Sections will be added here dynamically -->
+      </svg>
+    </div>
+  <script src="../js/menu.js"></script>
+  <script src="../js/UpdateValues.js"></script>
+  <script src="../js/Lobotomy.js"></script>
+  <script src="../js/Shutdown.js"></script>
+  <script src="../js/SystemInfoLog.js"></script>
+  <script src="../js/cloakpage.js"></script>
+  <script src="../js/AntiTabClose.js"></script>
+  <script src="../js/Master.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fracture Disk Loader</title>
@@ -268,14 +288,6 @@
                 consoleElement.scrollTop = consoleElement.scrollHeight;
             }
         });
-    </script>
-
-    <!-- Include the Advanced Menu code here -->
-    <div class="AdvancedMenu">
-        <!-- ... (keep the existing Advanced Menu code) ... -->
-    </div>
-    <script>
-        // ... (keep the existing Advanced Menu script) ...
     </script>
 </body>
 </html>

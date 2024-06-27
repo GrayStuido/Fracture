@@ -1,60 +1,13 @@
-<script src="Shutdown.js"></script>
-<nav style="background-color: #311F3B; overflow: hidden;">
-  <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Home</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Games</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Tools</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;" id="create" class="console-button">Cloak</a></li>
-    <li style="float: left;"><a href="#" style="display: block; color: #A37AB9; text-align: center; padding: 14px 16px; text-decoration: none;">Changelog</a></li>
-  </ul>  
-</nav>
-
-<style>
-nav li a:hover {
-  background-color: #521B73;
-transition: 0.5s background-color;
-}
-</style>
-
-<html>
-  <head>
-    <link rel="stylesheet" href="/main/about-blank.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>CloaCkr</title>
-  </head>
-  <body>
-    <div class="console-container">
-      <div class="console">
-        <div class="consolebody">
-          <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
-        </div>
-      </div>
-      <div class="button-wrapper">
-      </div>
-    </div>
-    <script>
-      var url = document.getElementById("url-target");
-      var urlObj = new window.URL(window.location.href);
-      document.getElementById("create").onclick = function () {
-        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
-    		url.value = 'https://' + url.value.split('https://').pop();
-        } else if (url.value.substring(0, 7) == 'http://'){
-        	url.value = 'https://' + url.value.split('http://').pop();
-        };
-        win = window.open();
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
-        var iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerpolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = url.value;
-        win.document.body.appendChild(iframe);
-      };
-    </script>
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+<head>
+  <link rel="stylesheet" href="css/Menu.css">
+<div class="RadialMenu" id="radialMenu">
+  <div class="trigger-div" onclick="toggleRadialMenu()">
+      <div class="menu-icon"><div id="img1"></div></div>
+  </div>
+  <svg class="radial-items" id="radialItems" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="90" fill="#3b1c5f" stroke="#560fa6" stroke-width="2"/>
+      <!-- Sections will be added here dynamically -->
+  </svg>
+</div>
+<script src="js/menu.js"></script>
+</head>
