@@ -3,7 +3,7 @@
     height: 100px;
     position: fixed;
     bottom: 0;
-    right: -397px; /* Hidden except for 3px */
+    right: -390px; /* Hidden except for 3px */
     background-color: #4B0082; /* Dark purple color */
     display: flex;
     align-items: center;
