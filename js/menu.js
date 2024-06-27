@@ -100,37 +100,38 @@ function handleMenuItemClick(item) {
 
 function toggleScreenshotInfo() {
     if (informationShown) {
-        var textDiv = document.getElementById("textDiv");
-        var gridDiv = document.getElementById("gridDiv");
+        const textDiv = document.getElementById("textDiv");
+        const gridDiv = document.getElementById("gridDiv");
         if (textDiv) document.body.removeChild(textDiv);
         if (gridDiv) document.body.removeChild(gridDiv);
         informationShown = false;
     } else {
-        var textDiv = document.createElement("div");
+        const textDiv = document.createElement("div");
         textDiv.id = "textDiv";
         textDiv.style.backgroundColor = "transparent";
-        var dateTime = new Date().toLocaleString();
-        var userAgent = navigator.userAgent;
-        var browser = userAgent.match(/\b(Chrome|Safari|Firefox|Edge|Opera)\b/i);
-        var os = userAgent.match(/\b(Windows|Macintosh|Linux|Android|iOS)\b/i);
-        browser = browser ? browser[0] : "Unknown Browser";
-        os = os ? os[0] : "Unknown OS";
+        const dateTime = new Date().toLocaleString();
+        const userAgent = navigator.userAgent;
+        const browserMatch = userAgent.match(/\b(Chrome|Safari|Firefox|Edge|Opera)\b/i);
+        const osMatch = userAgent.match(/\b(Windows|Macintosh|Linux|Android|iOS|Google Chrome OS 64-bit|Google Chrome)\b/i);
+        const browser = browserMatch ? browserMatch[0] : "Unknown Browser";
+        const os = osMatch ? osMatch[0] : "Unknown OS";
         textDiv.innerHTML = `
-            <p>Date and Time: ${dateTime}</p>
-            <p>OS: ${os}</p>
-            <p>Browser: ${browser}</p>
+            <p style="position: absolute; bottom: 10px; left: 10px;">Date and Time: ${dateTime}</p>
+            <p style="position: absolute; bottom: 30px; left: 10px;">OS: ${os}</p>
+            <p style="position: absolute; bottom: 50px; left: 10px;">Browser: ${browser}</p>
         `;
         document.body.appendChild(textDiv);
 
-        var gridDiv = document.createElement("div");
+        const gridDiv = document.createElement("div");
         gridDiv.id = "gridDiv";
-        for (var i = 0; i < 9; i++) {
-            var gridBox = document.createElement("div");
+        gridDiv.style.backgroundColor = "transparent"; // Remove background color
+        for (let i = 0; i < 9; i++) {
+            const gridBox = document.createElement("div");
             gridBox.className = "gridBox";
-            gridBox.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-            var innerSquare = document.createElement("div");
+            gridBox.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            const innerSquare = document.createElement("div");
             innerSquare.className = "innerSquare";
-            innerSquare.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            innerSquare.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
             gridBox.appendChild(innerSquare);
             gridDiv.appendChild(gridBox);
         }
