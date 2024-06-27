@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function() {
         "You like kissing boys dont you",
         "The game crashed??????",
         "PodPopular",
+        "This is not a drill: I'm actually having fun",
+        "Life is short, but my attention span is even shorter",
+        "PodPopular or go home",
         "████████████████",
         "Big Update When??",
         "Look ma no GoGuardian",
@@ -50,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Finals D:",
         "You arent my sunshine",
         "I was crazy once",
+        "Its A Pirate's Life for Me",
         "Lobotomy"
     ];
 
