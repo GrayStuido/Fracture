@@ -162,6 +162,12 @@ iframe {
   color: #e74c3c;
   transform: scale(1.1);
 }
+
+img {
+    width: 100%; /* The image will take the full width of its container */
+    height: 150px; /* Set a specific height */
+    object-fit: cover; /* The image will cover the container while maintaining its aspect ratio */
+  }
   </style>
 </head>
 <body>
@@ -169,14 +175,22 @@ iframe {
   <br>
   <br>
   <h1>Fracture Tools</h1>
-  <h3>Random assortment of tools for fracture</h3>
+  <h3>Random assortment of tools</h3>
   <br>
   <br>
   <br>
     <div class="tools-container">
-        
+     
       <div class="tool">
-            <div class="image-placeholder">Image 1</div>
+        <img src="icons/WormholeIcon.png" alt="Image 1" class="image-placeholder">
+        <div class="tool-name">Wormhole File Share</div>
+        <button class="open-btn" onclick="openWormhole()">Open</button>
+    </div>
+    
+    
+
+      <div class="tool">
+        <img src="icons/RGC-Tool-Icon.png" alt="Image 1" class="image-placeholder">
             <div class="tool-name">RGC Incremental Save Editor</div>
             <button class="open-btn" data-tool="StudentVUE/Grass-Editor.html">Open</button>
         </div>
@@ -188,17 +202,16 @@ iframe {
         </div>
 
       <div class="tool">
-          <div class="image-placeholder">Image 3</div>
+        <img src="icons/Local-Storage-Icon.png" alt="Image 1" class="image-placeholder">
           <div class="tool-name">Local Storage Editor</div>
           <button class="open-btn" data-tool="Tools/LocalStorageEditor.html">Open</button>
       </div>
-
+      
       <div class="tool">
         <div class="image-placeholder">Image 4</div>
         <div class="tool-name">Fracture Disk Burner</div>
         <button class="open-btn" data-tool="Tools/FractureDiskSystem/ToolIndex.html">Open</button>
     </div>
-
 
         <!-- Add more tools as needed -->
     </div>
@@ -245,5 +258,11 @@ iframe {
             }
         });
     </script>
+
+<script>
+  function openWormhole() {
+      window.open("https://wormhole.app/", "_blank");
+  }
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@ const menuItems = [
     {name: 'Games', link: '../google-classroom.html'},
     {name: 'Leaderboard', link: '../Launchpad.html'},
     {name: 'Tools', link: '../google-drive.html'},
-    {name: 'Docs', action: '../Docs/Index.html'},
+    {name: 'Docs', link: '../Docs/Index.html'},
     {name: 'Frat-Chat', link: '../chat.html'},
     {name: 'Screenshot', action: 'screenshot', class: 'screenshot'},
     {name: 'Reload', action: 'reloadPage', class: 'reload'}

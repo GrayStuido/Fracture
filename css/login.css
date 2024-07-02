@@ -1,0 +1,74 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1c2331, #0f172a);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#loginDiv {
+    background: rgb(0, 0, 0);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    z-index: 9999;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #6ee7f5;
+    text-shadow: 0 0 10px #6ee7f5;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#loginButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #6ee7f5;
+    color: #1c2331;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#loginButton:hover {
+    background: #5bc0de;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(91, 192, 222, 0.4);
+}
+
+#errorMessage {
+    color: #ff6b6b;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.error-button {
+    background: #ff6b6b !important;
+}
