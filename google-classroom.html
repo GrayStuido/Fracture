@@ -99,10 +99,24 @@ padding: 0;
 	<br>
 <body>
   <center>
-    <input style="color: Black;" class="searchbar" placeholder="Search Games" />
+    <div class="search-container">
+      <input type="text" class="searchbar" placeholder="Search for games..." />
+      <svg class="search-icon-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </div>
   </center>
 
+  <div class="starred-container">
+    <h2>Starred Games</h2>
+    <div class="starred-games"></div>
+  </div>
+
+
   <div class="game-container">
+
+    
     <div class="game-square" data-url="StudentVUE/LGR/Learning/index.html">
       <img class="game-image" src="icons/MinecraftGameImage.png" />
       <div class="game-name">EaglercraftUltra</div>
@@ -296,11 +310,6 @@ padding: 0;
       <div class="game-name">Cursed Youtube Player</div>
     </div>
 
-<div class="game-square" data-url="StudentVUE/Placeholder.html">
-      <img class="game-image" src="icons/Placeholder.png" />
-      <div class="game-name"><a hidden>z</a> More Games Comming Soon!</div>
-    </div>
-
   </div>	
   </div>
   <div class="nogames">
@@ -357,19 +366,25 @@ padding: 0;
       const unclickablePremiumGames = [];
   
       gameSquares.forEach(function (gameSquare) {
-        const isPremiumGame = gameSquare.querySelector('.premium-flag') !== null;
-  
-        if (isPremiumGame && !hasPremium) {
-          gameSquare.classList.add('disabled');
-          gameSquare.querySelector('.game-name').textContent += ' ✩';
-          unclickablePremiumGames.push(gameSquare);
-        } else {
-          regularGames.push(gameSquare);
-          gameSquare.addEventListener('click', function () {
-            window.location.href = gameSquare.getAttribute('data-url');
-          });
-        }
-      });
+  const isPremiumGame = gameSquare.querySelector('.premium-flag') !== null;
+
+  if (isPremiumGame && !hasPremium) {
+    gameSquare.classList.add('disabled');
+    gameSquare.style.pointerEvents = 'none';
+    gameSquare.style.userSelect = 'none';
+    gameSquare.querySelector('.game-name').textContent += ' ✩';
+    unclickablePremiumGames.push(gameSquare);
+    
+    gameSquare.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  } else {
+    regularGames.push(gameSquare);
+    gameSquare.addEventListener('click', function () {
+      window.location.href = gameSquare.getAttribute('data-url');
+    });
+  }
+});
   
       // Clear the game container
       gameContainer.innerHTML = '';
@@ -398,7 +413,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Lexend Semi-Bold', sans-serif;
-  background-color: var(--color-minor);
+  background-color: black;
 }
 
 @font-face {
@@ -418,23 +433,97 @@ body {
   display: none;
 }
 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+.search-container {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  margin: 20px auto;
+}
+
 .searchbar {
-  width: 80%;
-  padding: 12px 20px;
-  margin: 16px auto;
-  box-sizing: border-box;
-  border: 2px solid var(--color-major);
-  border-radius: 12px;
-  font-size: 19px;
-  background-color: var(--color-accent);
-  color: var(--color-major);
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 18px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.searchbar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .searchbar:focus {
   outline: none;
-  box-shadow: 0 0 10px var(--color-accent);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.7), 0 0 30px rgba(147, 51, 234, 0.4);
+  transform: scale(1.02);
 }
+
+.search-container::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #ff00ea, #00fffb);
+  z-index: 0;
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 35px;
+  pointer-events: none;
+}
+
+.search-container:focus-within::after {
+  opacity: 0.5;
+}
+
+  .search-icon-left {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .searchbar:focus + .search-icon-left {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .nogames {
+    text-align: center;
+    margin-top: 50px;
+    display: none;
+    color: rgba(255, 255, 255, 0.7);
+    animation: fadeIn 0.5s ease;
+  }
+
+  .nogames h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .nogames p {
+    font-size: 18px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
 .game-container {
   display: flex;
@@ -533,8 +622,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  background: linear-gradient(135deg, var(--color-minor), var(--color-major));
+  z-index: -2;
+  background: black;
 }
 
 .game-square {
@@ -588,17 +677,249 @@ body {
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-3px); }
 }
 
 .flipped .game-square-inner {
   transform: rotateY(180deg);
 }
+
+.star-icon {
+  position: absolute;
+  top: 0px;
+  right: 1px;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.star-img {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: var(--color-minor);
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.star-icon:hover .star-img {
+  transform: scale(1.2);
+}
+
+.starred-container {
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+.starred-games {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.starred-game {
+  position: relative;
+}
+
+.MatrixBackground {
+
+z-index: -1;
+opacity: 30%;
+background-color: black;
+}
 </style>
 
 <div class="background">
-  <canvas id="MatrixBackground"></canvas>
+  <canvas class="MatrixBackground" id="MatrixBackground"></canvas>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const gameContainer = document.querySelector('.game-container');
+  const starredGamesContainer = document.querySelector('.starred-games');
+  const starredSection = document.querySelector('.starred-container');
+  const searchbar = document.querySelector(".searchbar");
+  const games = document.querySelectorAll(".game-square");
+  const noGames = document.querySelector(".nogames");
+  let starredGames = JSON.parse(localStorage.getItem('starredGames')) || [];
+
+  function updateStarredGames() {
+    starredGamesContainer.innerHTML = '';
+    starredGames.forEach((game, index) => {
+      if (game) {
+        const starredGame = createGameSquare(game);
+        starredGame.classList.add('starred-game');
+        starredGame.setAttribute('draggable', true);
+        starredGame.dataset.index = index;
+        starredGame.addEventListener('dragstart', dragStart);
+        starredGame.addEventListener('dragover', dragOver);
+        starredGame.addEventListener('drop', drop);
+        starredGame.addEventListener('dragend', dragEnd);
+        starredGamesContainer.appendChild(starredGame);
+      }
+    });
+    localStorage.setItem('starredGames', JSON.stringify(starredGames));
+    updateStarredSectionVisibility();
+  }
+
+  function updateStarredSectionVisibility() {
+    if (starredGames.length === 0 || searchbar.value.trim() !== '') {
+      starredSection.style.display = 'none';
+    } else {
+      starredSection.style.display = 'block';
+    }
+  }
+
+  function createGameSquare(game) {
+    const gameSquare = document.createElement('div');
+    gameSquare.className = 'game-square';
+    gameSquare.dataset.url = game.url;
+    gameSquare.innerHTML = `
+      <img class="game-image" src="${game.imageSrc}" alt="${game.name}" />
+      <div class="game-name">${game.name}</div>
+      ${game.isPremium ? '<p class="premium-flag">Premium</p>' : ''}
+      <div class="star-icon">
+        <img class="star-img" src="icons/star.png" alt="Star">
+      </div>
+    `;
+    gameSquare.addEventListener('click', (e) => {
+      if (!e.target.closest('.star-icon')) {
+        window.location.href = game.url;
+      }
+    });
+    const starIcon = gameSquare.querySelector('.star-icon');
+    starIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleStar(game, starIcon.querySelector('.star-img'));
+    });
+    return gameSquare;
+  }
+
+  function toggleStar(game, starImg) {
+    const isStarred = starredGames.some(g => g && g.url === game.url);
+    if (isStarred) {
+      starImg.src = 'icons/star-empty.png';
+      starredGames = starredGames.filter(g => g && g.url !== game.url);
+    } else {
+      starImg.src = 'icons/star.png';
+      starredGames.push(game);
+    }
+    updateStarredGames();
+    updateMainGameList();
+  }
+
+  function updateMainGameList() {
+    const allGameSquares = gameContainer.querySelectorAll('.game-square');
+    allGameSquares.forEach(gameSquare => {
+      const starImg = gameSquare.querySelector('.star-img');
+      const isStarred = starredGames.some(g => g && g.url === gameSquare.dataset.url);
+      starImg.src = isStarred ? 'icons/star.png' : 'icons/star-empty.png';
+    });
+  }
+
+  function initializeGameSquares() {
+    const gameSquares = Array.from(gameContainer.querySelectorAll('.game-square'));
+    gameSquares.forEach(gameSquare => {
+      const game = {
+        url: gameSquare.dataset.url,
+        name: gameSquare.querySelector('.game-name').textContent,
+        imageSrc: gameSquare.querySelector('.game-image').src,
+        isPremium: gameSquare.querySelector('.premium-flag') !== null
+      };
+
+      const starIcon = document.createElement('div');
+      starIcon.className = 'star-icon';
+      const starImg = document.createElement('img');
+      starImg.className = 'star-img';
+      starImg.src = starredGames.some(g => g && g.url === game.url) ? 'icons/star.png' : 'icons/star-empty.png';
+      starImg.alt = 'Star';
+      starIcon.appendChild(starImg);
+      gameSquare.appendChild(starIcon);
+
+      starIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleStar(game, starImg);
+      });
+    });
+  }
+
+  let draggedItem = null;
+  let dragStartIndex;
+
+  function dragStart(e) {
+    draggedItem = this;
+    dragStartIndex = this.closest('.starred-game').dataset.index;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.outerHTML);
+    this.style.opacity = '0.4';
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+  }
+
+  function drop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (draggedItem !== this) {
+      const fromIndex = parseInt(dragStartIndex);
+      const toIndex = parseInt(this.dataset.index);
+      if (!isNaN(fromIndex) && !isNaN(toIndex)) {
+        const itemToMove = starredGames[fromIndex];
+        starredGames.splice(fromIndex, 1);
+        starredGames.splice(toIndex, 0, itemToMove);
+        updateStarredGames();
+      }
+    }
+    return false;
+  }
+
+  function dragEnd(e) {
+    this.style.opacity = '1';
+    starredGamesContainer.querySelectorAll('.starred-game').forEach(item => {
+      item.classList.remove('over');
+    });
+    if (e.dataTransfer.dropEffect === 'none') {
+      // The drop was not successful, revert to original position
+      updateStarredGames();
+    }
+  }
+
+  searchbar.addEventListener("input", function(event) {
+    const query = event.target.value.toLowerCase();
+    let numGames = 0;
+    games.forEach(function(game) {
+      const name = game.querySelector(".game-name").textContent.toLowerCase();
+      if (name.includes(query)) {
+        game.style.display = "block";
+        numGames++;
+      } else {
+        game.style.display = "none";
+      }
+    });
+    if (numGames === 0) {
+      noGames.style.display = "block";
+    } else {
+      noGames.style.display = "none";
+    }
+    updateStarredSectionVisibility();
+  });
+
+  games.forEach(function(game) {
+    const url = game.getAttribute("data-url");
+    game.addEventListener("click", function() {
+      window.location.href = url;
+    });
+  });
+
+  initializeGameSquares();
+  updateStarredGames();
+});
+</script>
+
 
  <script>
       window.onload = function() {
