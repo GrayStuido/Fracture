@@ -1,55 +1,5 @@
-  class Leaderboard {
-    constructor(containerId, title, unit, players) {
-      this.containerId = containerId;
-      this.title = title;
-      this.unit = unit;
-      this.players = players;
-    }
-
-    render() {
-      const leaderboardContainer = document.getElementById(this.containerId);
-      leaderboardContainer.innerHTML = `<h1 class="ScoreWrapper">${this.title}</h1>`;
-      
-      // Sort players by score
-      this.players.sort((a, b) => b.score - a.score);
-
-      this.players.forEach((player, index) => {
-        if (player.score !== 0) { // Check if score is not equal to 0
-          const leaderboardItem = document.createElement('div');
-          leaderboardItem.classList.add('leaderboard-item');
-
-          // Add different styles for first, second, and third place
-          if (index === 0) {
-            leaderboardItem.classList.add('leaderboard-item-first');
-          } else if (index === 1) {
-            leaderboardItem.classList.add('leaderboard-item-second');
-          } else if (index === 2) {
-            leaderboardItem.classList.add('leaderboard-item-third');
-          }
-
-          // Format score with commas
-          const formattedScore = player.score.toLocaleString();
-
-          leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${formattedScore} ${this.unit}</span>`;
-          leaderboardContainer.appendChild(leaderboardItem);
-        }
-      });
-    }
-  }
-
-
-
-
-
-
-  // Leaderboard Data
-  // Names are in alphabetical order
-  
-
-
-  
-
-  const leaderboardsData = {
+const leaderboardsData = {
+  Freshman: {
     tetris: [
       { name: 'Addison Burck', score: 0 },
       { name: 'Alex Partan', score: 0 },
@@ -154,93 +104,81 @@
       { name: 'Tyson Fahlman', score: 0 },
       { name: 'Wes Porter', score: 0 }
     ]
-  };
+  },
+  Sophomore: {
+    tetris: [], subway: [], tanuki: [], slope: [], kitchengun: [], galaga: [], dragonvsbricks: [], connect3: []
+  },
+  Junior: {
+    tetris: [], subway: [], tanuki: [], slope: [], kitchengun: [], galaga: [], dragonvsbricks: [], connect3: []
+  },
+  Senior: {
+    tetris: [], subway: [], tanuki: [], slope: [], kitchengun: [], galaga: [], dragonvsbricks: [], connect3: []
+  }
+};
 
-
-
-
-
-// Ignore Everything Past This
-
-
-
-
-
-
-  // Function to render leaderboard
-  function renderLeaderboard(data) {
-    const leaderboard = new Leaderboard(data.containerId, data.title, data.unit, data.players);
-    leaderboard.render();
+function renderLeaderboard(game, classYear) {
+  const leaderboardContainer = document.getElementById(`${game}-scores`);
+  leaderboardContainer.innerHTML = '';
+  
+  const players = leaderboardsData[classYear][game];
+  
+  if (players.length === 0) {
+    leaderboardContainer.innerHTML += '<p class="no-scores">No scores recorded. You could be the first!</p>';
+    return;
   }
 
-  // Render Tetris leaderboard
-  renderLeaderboard({
-    containerId: 'tetris-leaderboard',
-    title: 'Tetra Legends',
-    unit: 'Lines',
-    players: leaderboardsData.tetris
+  players.sort((a, b) => b.score - a.score);
+
+  players.forEach((player, index) => {
+    if (player.score !== 0) {
+      const leaderboardItem = document.createElement('div');
+      leaderboardItem.classList.add('leaderboard-item');
+
+      if (index === 0) {
+        leaderboardItem.classList.add('leaderboard-item-first');
+      } else if (index === 1) {
+        leaderboardItem.classList.add('leaderboard-item-second');
+      } else if (index === 2) {
+        leaderboardItem.classList.add('leaderboard-item-third');
+      }
+
+      const formattedScore = player.score.toLocaleString();
+
+      leaderboardItem.innerHTML = `<span>${index + 1}. ${player.name}</span><span>${formattedScore}</span>`;
+      leaderboardContainer.appendChild(leaderboardItem);
+    }
+  });
+}
+
+function changeAllYears(classYear) {
+  const buttons = document.querySelectorAll('.global-year-selector button');
+  buttons.forEach(button => {
+    button.classList.remove('active');
+    if (button.textContent === classYear) {
+      button.classList.add('active');
+    }
   });
 
-  // Render Subway Surfers leaderboard
-  renderLeaderboard({
-    containerId: 'subway-leaderboard',
-    title: 'Subway Surfers',
-    unit: 'Score',
-    players: leaderboardsData.subway
+  Object.keys(leaderboardsData[classYear]).forEach(game => {
+    renderLeaderboard(game, classYear);
+    localStorage.setItem(`${game}-class`, classYear);
   });
 
-  // Render Galaga leaderboard
-  renderLeaderboard({
-    containerId: 'galaga-leaderboard',
-    title: 'Galaga',
-    unit: 'Score',
-    players: leaderboardsData.galaga
+  localStorage.setItem('global-class', classYear);
+}
+
+// Initialize leaderboards
+document.addEventListener('DOMContentLoaded', () => {
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  if (!loggedInUser) {
+    window.location.href = 'index.html';
+  }
+
+  Object.keys(leaderboardsData['Freshman']).forEach(game => {
+    const savedClass = localStorage.getItem(`${game}-class`) || 'Sophomore';
+    renderLeaderboard(game, savedClass);
   });
 
-  // Render Tanuki leaderboard
-  renderLeaderboard({
-    containerId: 'tanuki-leaderboard',
-    title: 'Tanuki Sunset',
-    unit: 'Score',
-    players: leaderboardsData.tanuki
-  });
-
-  // Render Tanuki leaderboard
-  renderLeaderboard({
-    containerId: 'slope-leaderboard',
-    title: 'Slope',
-    unit: 'Score',
-    players: leaderboardsData.slope
-  });
-
-  // Render Kitchen Gun Game leaderboard
-  renderLeaderboard({
-    containerId: 'kitchen-gun-leaderboard',
-    title: 'Kitchen Gun Game',
-    unit: 'Score',
-    players: leaderboardsData.kitchengun
-  });
-
-  // Render Connect 3 leaderboard
-  renderLeaderboard({
-    containerId: 'connect3',
-    title: 'Connect 3',
-    unit: 'Score',
-    players: leaderboardsData.connect3
-  });
-
-  // Render Dragon Vs Bricks leaderboard
-  renderLeaderboard({
-    containerId: 'dragon-bricks',
-    title: 'Dragon Vs Bricks',
-    unit: 'Score',
-    players: leaderboardsData.dragonvsbricks
-  });
-
-  // Render Gamble Land leaderboard
-  renderLeaderboard({
-    containerId: 'gambling',
-    title: 'Gamble Land',
-    unit: 'Money',
-    players: leaderboardsData.money
-  });
+  const savedGlobalClass = localStorage.getItem('global-class') || 'Sophomore';
+  changeAllYears(savedGlobalClass);
+});

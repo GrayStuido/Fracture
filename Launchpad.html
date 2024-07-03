@@ -87,135 +87,187 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
 </script>
   <title>Fracture | Leaderboard</title>
   <style>
-:root {
-  --color-major: #1e0041;
-  --color-minor: #330c4d;
-  --color-accent: #9900ff;
-  --color-text: #ffffff;
-  --color-first: #d9ad00;
-  --color-second: #cccccc;
-  --color-third: #ba6600;
-}
-
-body {
-  color: var(--color-text);
-  background: var(--color-major);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-family: Arial, sans-serif;
-}
-
-.leaderboard, .leaderboard-item {
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.leaderboard {
-  border: 5px solid var(--color-accent);
-  max-width: 400px;
-  width: 350px;
-  margin: 20px;
-  padding: 20px;
-  background-color: var(--color-minor);
-}
-
-.leaderboard-item {
-  border: 3px solid var(--color-accent);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  background-color: rgba(122, 14, 194, 0.7);
-  padding: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.leaderboard-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
-
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: var(--color-major);
-}
-
-.ScoreWrapper {
-  font-weight: bold;
-}
-
-.leaderboard-item-first {
-  border-color: var(--color-first);
-  background-color: rgba(161, 133, 22, 0.8);
-}
-
-.leaderboard-item-second {
-  border-color: var(--color-second);
-  background-color: rgba(176, 176, 176, 0.8);
-}
-
-.leaderboard-item-third {
-  border-color: var(--color-third);
-  background-color: rgba(194, 129, 50, 0.8);
-}
-  </style>
+    :root {
+      --color-major: #1e0041;
+      --color-minor: #330c4d;
+      --color-accent: #9900ff;
+      --color-text: #ffffff;
+      --color-first: #d9ad00;
+      --color-second: #cccccc;
+      --color-third: #ba6600;
+    }
+    
+    body {
+      color: var(--color-text);
+      background: var(--color-major);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    .leaderboards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .leaderboard, .leaderboard-item {
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .leaderboard {
+      border: 5px solid var(--color-accent);
+      max-width: 400px;
+      width: 350px;
+      margin: 20px;
+      padding: 20px;
+      background-color: var(--color-minor);
+    }
+    
+    .leaderboard-item {
+      border: 3px solid var(--color-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      background-color: rgba(122, 14, 194, 0.7);
+      padding: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .leaderboard-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+    
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: var(--color-major);
+    }
+    
+    .ScoreWrapper {
+      font-weight: bold;
+    }
+    
+    .leaderboard-item-first {
+      border-color: var(--color-first);
+      background-color: rgba(161, 133, 22, 0.8);
+    }
+    
+    .leaderboard-item-second {
+      border-color: var(--color-second);
+      background-color: rgba(176, 176, 176, 0.8);
+    }
+    
+    .leaderboard-item-third {
+      border-color: var(--color-third);
+      background-color: rgba(194, 129, 50, 0.8);
+    }
+    
+    .year-selector {
+      margin-bottom: 10px;
+    }
+    
+    .year-selector button {
+      background-color: var(--color-minor);
+      color: var(--color-text);
+      border: 2px solid var(--color-accent);
+      padding: 5px 10px;
+      margin-right: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .year-selector button.active {
+      background-color: var(--color-accent);
+    }
+    
+    .global-year-selector {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-minor);
+      padding: 7px;
+      border-radius: 8px;
+      z-index: 90;
+    }
+    
+    .global-year-selector button {
+      background-color: var(--color-minor);
+      color: var(--color-text);
+      border: 2px solid var(--color-accent);
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .global-year-selector button.active {
+      background-color: var(--color-accent);
+    }
+    </style>
 </head>
 <body>
-<div class="leaderboard" id="tetris-leaderboard">
-  <h1>Tetris Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
 
-<div class="leaderboard" id="subway-leaderboard">
-  <h1>Subway Surfers Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="galaga-leaderboard">
-  <h1>Galaga Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="tanuki-leaderboard">
-  <h1>Tanuki Sunset Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="slope-leaderboard">
-  <h1>Slope Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="kitchen-gun-leaderboard">
-  <h1>Kitchen Gun Game Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="dragon-bricks">
-  <h1>Dragon Vs Bricks Leaderboard</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
-
-<div class="leaderboard" id="connect3">
-  <h1>Connect 3 Leader Board</h1>
-  <h1 class="ScoreWrapper">Scores Here</h1>
-<h2>Lorem Ipsum</h2>
-</div>
+  
+  <div class="global-year-selector">
+    <button onclick="changeAllYears('Freshman')" class="active">Freshman</button>
+    <button onclick="changeAllYears('Sophomore')">Sophomore</button>
+    <button onclick="changeAllYears('Junior')">Junior</button>
+    <button onclick="changeAllYears('Senior')">Senior</button>
+  </div>
+  
+  <div class="leaderboards-container">
+    <div class="leaderboard" id="tetris-leaderboard">
+      <h1>Tetris Leaderboard</h1>
+      <div id="tetris-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="subway-leaderboard">
+      <h1>Subway Surfers Leaderboard</h1>
+      <div id="subway-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="galaga-leaderboard">
+      <h1>Galaga Leaderboard</h1>
+      <div id="galaga-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="tanuki-leaderboard">
+      <h1>Tanuki Sunset Leaderboard</h1>
+      <div id="tanuki-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="slope-leaderboard">
+      <h1>Slope Leaderboard</h1>
+      <div id="slope-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="kitchen-gun-leaderboard">
+      <h1>Kitchen Gun Game Leaderboard</h1>
+      <div id="kitchengun-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="dragon-bricks">
+      <h1>Dragon Vs Bricks Leaderboard</h1>
+      <div id="dragonvsbricks-scores"></div>
+    </div>
+  
+    <div class="leaderboard" id="connect3">
+      <h1>Connect 3 Leader Board</h1>
+      <div id="connect3-scores"></div>
+    </div>
+  </div>
 
 
 
