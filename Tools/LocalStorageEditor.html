@@ -1,287 +1,682 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Storage Editor</title>
+<html><head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #2c2c54;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background-color: #2c2c54;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            overflow: hidden;
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1, h2 {
-            text-align: center;
-            color: #f0e6ff;
-        }
-
-        button {
-            background-color: #8c7ae6;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px 0;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 16px;
-            width: 48%;
-        }
-
-        button:hover {
-            background-color: #6d5cde;
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #c8b6ff;
-        }
-
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px;
-            border: 1px solid #8c7ae6;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: #4b4b84;
-            color: #fff;
-        }
-
-        .section {
-            margin-bottom: 20px;
-        }
-
-        .storage-container {
-            max-height: 200px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #6d5cde #2c2c54;
-        }
-
-        .storage-item {
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #4b4b84;
-            border: 1px solid #8c7ae6;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .storage-item.selected {
-            background-color: #8c7ae6;
-            border-color: #6d5cde;
-        }
-
-        .storage-item .key {
-            color: #f0e6ff;
-        }
-
-        .storage-item .value {
-            color: #ffccff;
-        }
-
-        .scrollbar-track {
-            background: #2c2c54;
-            border-radius: 8px;
-        }
-
-        .scrollbar-thumb {
-            background-color: #6d5cde;
-            border-radius: 8px;
-        }
-
-        .scrollbar-thumb:hover {
-            background-color: #8c7ae6;
-        }
-
-        .editor-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .button-row {
-            display: flex;
-            justify-content: space-between;
-        }
+    body, html {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .status-bar {
+        padding: 10px;
+        background-color: #252525;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .storage-content {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+    }
+    
+    .storage-list {
+        width: 30%;
+        background-color: #252525;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 10px;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .storage-list h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .key-list-container {
+        overflow-y: auto;
+        flex: 1;
+    }
+    
+    .storage-list ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .storage-list li {
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+    }
+    
+    .storage-list li:hover {
+        background-color: #333;
+    }
+    
+    .storage-list li.selected {
+        background-color: #4da6ff;
+        color: #000000;
+    }
+    
+    .storage-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .storage-details h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .details-content {
+        background-color: #252525;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 10px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .button {
+        background-color: #4da6ff;
+        color: #1e1e1e;
+        border: none;
+        padding: 8px 16px;
+        margin: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    
+    .button:hover {
+        background-color: #3a8ad6;
+    }
+    
+    .input-field {
+        width: calc(100% - 22px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        resize: none;
+        flex: 1;
+    }
+    
+    .progress-bar {
+        height: 10px;
+        background-color: #4da6ff;
+        border-radius: 5px;
+        margin-top: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .progress-bar-used {
+        height: 100%;
+        background-color: #ff4d4d;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    .progress-bar-estimate {
+        height: 100%;
+        background-color: #ffa500;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.9;
+        transition: width 0.3s ease-in-out;
+    }
+    
+    @keyframes flash {
+        0%, 100% { opacity: 0.9; }
+        50% { opacity: 0.5; }
+    }
+    
+    .progress-bar-estimate.flash {
+        animation: flash 1s infinite;
+    }
+    
+    .key-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8em;
+        color: inherit;
+        margin-bottom: 2px;
+    }
+    
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .new-key-form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .new-key-form input {
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+    
+    .sort-options {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .sort-option {
+        background-color: #333;
+        color: #e0e0e0;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    
+    .sort-option:hover,
+    .sort-option.active {
+        background-color: #4da6ff;
+        color: #1e1e1e;
+    }
     </style>
-</head>
-<body>
+    </head>
+    <body>
     <div class="container">
-        <div class="section">
-            <h2>View Local Storage</h2>
-            <input type="text" class="search-bar" id="searchBar" placeholder="Search by key..." onkeyup="searchLocalStorage()">
-            <div class="storage-container" id="localStorageContent"></div>
-        </div>
-
-        <div class="section editor-container">
-            <h2>Manage Item</h2>
-            <label for="key">Key:</label>
-            <input type="text" id="key" readonly>
-            <label for="value">Value:</label>
-            <textarea id="value" rows="10"></textarea>
-            <div class="button-row">
-                <button onclick="saveItem()">Save Item</button>
-                <button onclick="deleteItem()">Delete Item</button>
+        <div class="status-bar" id="statusBar"></div>
+        <div class="storage-content">
+            <div class="storage-list">
+                <div class="sort-options">
+                    <button class="sort-option" id="sortAlphabetical">Alphabetical</button>
+                    <button class="sort-option" id="sortSize">Size</button>
+                    <button class="sort-option active" id="sortNone">None</button>
+                </div>
+                <h3>Stored Keys</h3>
+                <div class="key-list-container">
+                    <ul id="keyList"></ul>
+                </div>
             </div>
-        </div>
-
-        <div class="section">
-            <div class="button-row">
-                <button onclick="exportItems()">Export Items</button>
-                <button onclick="document.getElementById('fileInput').click()">Import Items</button>
+            <div class="storage-details">
+                <h3 id="detailsTitle">Key Details</h3>
+                <div class="details-content" id="detailsContent">
+                    <textarea id="keyValue" class="input-field" placeholder="Key value"></textarea>
+                    <div class="button-group">
+                        <div>
+                            <button id="saveButton" class="button">Save</button>
+                            <button id="deleteButton" class="button">Delete</button>
+                            <button id="renameButton" class="button">Rename</button>
+                        </div>
+                        <div>
+                            <button id="newKeyButton" class="button">New Key</button>
+                            <button id="downloadButton" class="button">Download</button>
+                            <input type="file" id="uploadInput" style="display: none;">
+                            <button id="uploadButton" class="button">Upload</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <input type="file" id="fileInput" accept=".txt" style="display:none" onchange="importItems(event)">
         </div>
     </div>
-
+    
     <script>
-        let selectedKey = null;
-
-        function viewLocalStorage() {
-            const excludeKeys = ['loggedInUser', 'premium'];
-            const localStorageContent = document.getElementById('localStorageContent');
-            localStorageContent.innerHTML = '';
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (excludeKeys.includes(key)) continue;
-                const value = localStorage.getItem(key);
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'storage-item';
-                itemDiv.innerHTML = `<span class="key">${key}</span>: <span class="value">"${value}"</span>`;
-                itemDiv.onclick = () => toggleSelectItem(key, itemDiv);
-                localStorageContent.appendChild(itemDiv);
-            }
+    let selectedKeys = new Set();
+    let lastSelectedKey = null;
+    let currentSortOption = 'none';
+    
+    const omittedKeys = ['secret', 'password', 'token', 'api_key', 'loggedInUser', 'premium'];
+    
+    function BinLocLen(key) {
+      let base64String = localStorage.getItem(key);
+      if (base64String) {
+        let binaryString = atob(base64String);
+        return binaryString.length / 4;
+      } else {
+        return null;
+      }
+    }
+    
+    function saveBinLoc(key, type, start, indexes, ...data) {
+      if (type !== 'int' && type !== 'float' && type !== 'text') {
+        throw new Error('Invalid type. Allowed types: int, float, text');
+      }
+    
+      let buffer;
+      if (type === 'text') {
+        let encoder = new TextEncoder();
+        let textData = data[0];
+        buffer = encoder.encode(textData).buffer;
+      } else {
+        if (start < 0 || indexes <= 0 || start + indexes > data.length) {
+          throw new Error('Invalid start or indexes values');
         }
-
-        function toggleSelectItem(key, itemDiv) {
-            if (selectedKey === key) {
-                deselectItem();
-            } else {
-                selectItem(key, itemDiv);
-            }
+        buffer = new ArrayBuffer(indexes * 4);
+        let view = type === 'int' ? new Int32Array(buffer) : new Float32Array(buffer);
+        for (let i = 0; i < indexes; i++) {
+          view[i] = data[start + i];
         }
-
-        function selectItem(key, itemDiv) {
-            selectedKey = key;
-            document.getElementById('key').value = key;
-            document.getElementById('value').value = localStorage.getItem(key);
-
-            document.querySelectorAll('.storage-item').forEach(item => {
-                item.classList.remove('selected');
-            });
-            itemDiv.classList.add('selected');
+      }
+    
+      let base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(buffer)));
+      localStorage.setItem(key, JSON.stringify({ type, data: base64String }));
+    }
+    
+    function loadBinLoc(key, type, start, indexes) {
+      if (type !== 'int' && type !== 'float' && type !== 'text') {
+        throw new Error('Invalid type. Allowed types: int, float, text');
+      }
+    
+      let storedData = localStorage.getItem(key);
+    
+      if (storedData) {
+        let base64String = JSON.parse(storedData).data;
+        let binaryString = atob(base64String);
+        let buffer = new ArrayBuffer(binaryString.length);
+        let uint8View = new Uint8Array(buffer);
+    
+        for (let i = 0; i < binaryString.length; i++) {
+          uint8View[i] = binaryString.charCodeAt(i);
         }
-
-        function deselectItem() {
-            selectedKey = null;
-            document.getElementById('key').value = '';
-            document.getElementById('value').value = '';
-
-            document.querySelectorAll('.storage-item').forEach(item => {
-                item.classList.remove('selected');
-            });
+    
+        if (type === 'text') {
+          let decoder = new TextDecoder();
+          let fullText = decoder.decode(uint8View);
+          
+          if (start === undefined) start = 0;
+          if (indexes === undefined) indexes = Math.ceil(fullText.length / 4);
+          
+          let startChar = start * 4;
+          let endChar = Math.min(startChar + indexes * 4, fullText.length);
+          
+          return fullText.slice(startChar, endChar);
+        } else {
+          let view = type === 'int' ? new Int32Array(buffer) : new Float32Array(buffer);
+          let totalIndexes = view.length;
+          
+          if (start === undefined) start = 0;
+          if (indexes === undefined) indexes = totalIndexes - start;
+          if (start < 0 || indexes <= 0 || start + indexes > totalIndexes) {
+            throw new Error('Invalid start or indexes values');
+          }
+    
+          return Array.from(view.slice(start, start + indexes));
         }
-
-        function saveItem() {
-            const key = document.getElementById('key').value;
-            const value = document.getElementById('value').value;
-            if (key && value !== null) {
-                localStorage.setItem(key, value);
-                alert('Item saved successfully.');
-                viewLocalStorage();
-            } else {
-                alert('Please select an item and provide a value.');
-            }
+      } else {
+        return null;
+      }
+    }
+    
+    function getAllKeys() {
+      const keys = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!omittedKeys.some(omittedKey => key.toLowerCase().includes(omittedKey))) {
+          keys.push(key);
         }
-
-        function deleteItem() {
-            const key = document.getElementById('key').value;
-            if (key) {
-                localStorage.removeItem(key);
-                alert('Item deleted successfully.');
-                deselectItem();
-                viewLocalStorage();
-            } else {
-                alert('Please select an item to delete.');
-            }
+      }
+      return keys;
+    }
+    
+    function getLocalStorageUsage() {
+      let total = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        total += key.length + value.length;
+      }
+      return total;
+    }
+    
+    function getLocalStorageQuota() {
+      try {
+        const testKey = 'test';
+        const testValue = 'a'.repeat(1024 * 1024);
+        localStorage.setItem(testKey, testValue);
+        localStorage.removeItem(testKey);
+        return 5 * 1024 * 1024;
+      } catch (e) {
+        return e instanceof DOMException && (
+          e.code === 22 ||
+          e.code === 1014 ||
+          e.name === 'QuotaExceededError' ||
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED'
+        ) ? 5 * 1024 * 1024 : 0;
+      }
+    }
+    
+    function isLocalStorageFull() {
+      const usage = getLocalStorageUsage();
+      const quota = getLocalStorageQuota();
+      return usage >= quota;
+    }
+    
+    function getKeySize(key) {
+      const value = localStorage.getItem(key);
+      return key.length + value.length;
+    }
+    
+    function formatBytes(bytes) {
+      return bytes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+    
+    function updateKeyList() {
+      const keyList = document.getElementById('keyList');
+      keyList.innerHTML = '';
+      const quota = getLocalStorageQuota();
+      
+      let keys = getAllKeys();
+      
+      if (currentSortOption === 'alphabetical') {
+        keys.sort((a, b) => a.localeCompare(b));
+      } else if (currentSortOption === 'size') {
+        keys.sort((a, b) => getKeySize(b) - getKeySize(a));
+      }
+      
+      keys.forEach((key, index) => {
+        const li = document.createElement('li');
+        const keySize = getKeySize(key);
+        const keyPercentage = ((keySize / quota) * 100).toFixed(2);
+        li.innerHTML = `
+          <div class="key-info">
+            <span>${key}</span>
+            <span>${formatBytes(keySize)} bytes (${keyPercentage}%)</span>
+          </div>
+        `;
+        li.onclick = (e) => selectKey(key, index, e);
+        if (selectedKeys.has(key)) {
+          li.classList.add('selected');
         }
-
-        function searchLocalStorage() {
-            const searchBar = document.getElementById('searchBar');
-            const filter = searchBar.value.toUpperCase();
-            const storageItems = document.querySelectorAll('.storage-item');
-            storageItems.forEach(item => {
-                const key = item.querySelector('.key').textContent.toUpperCase();
-                if (key.includes(filter)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+        keyList.appendChild(li);
+      });
+    }
+    
+    function selectKey(key, index, event) {
+      if (event.ctrlKey) {
+        if (selectedKeys.has(key)) {
+          selectedKeys.delete(key);
+        } else {
+          selectedKeys.add(key);
         }
-
-        function exportItems() {
-            const excludeKeys = ['loggedInUser', 'premium'];
-            let data = {};
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (excludeKeys.includes(key)) continue;
-                data[key] = localStorage.getItem(key);
-            }
-            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'localStorageData.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+      } else if (event.shiftKey && lastSelectedKey !== null) {
+        const keys = getAllKeys();
+        const start = keys.indexOf(lastSelectedKey);
+        const end = index;
+        const [lower, upper] = start < end ? [start, end] : [end, start];
+        for (let i = lower; i <= upper; i++) {
+          selectedKeys.add(keys[i]);
         }
-
-        function importItems(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const data = JSON.parse(e.target.result);
-                        for (let key in data) {
-                            if (data.hasOwnProperty(key) && !['loggedInUser', 'premium'].includes(key)) {
-                                localStorage.setItem(key, data[key]);
-                            }
-                        }
-                        alert('Items imported successfully.');
-                        viewLocalStorage();
-                    } catch (error) {
-                        alert('Error importing items. Please check the file format.');
-                    }
-                };
-                reader.readAsText(file);
-            }
+      } else {
+        selectedKeys.clear();
+        selectedKeys.add(key);
+      }
+      lastSelectedKey = key;
+      updateKeyList();
+      if (selectedKeys.size === 1) {
+        loadKeyDetails(key);
+      } else {
+        document.getElementById('keyValue').value = '';
+      }
+    }
+    
+    function loadKeyDetails(key) {
+      const keyValue = document.getElementById('keyValue');
+      const value = localStorage.getItem(key);
+      keyValue.value = value;
+      document.getElementById('saveButton').onclick = () => saveKeyValue(key);
+      document.getElementById('deleteButton').onclick = deleteSelectedKeys;
+      document.getElementById('downloadButton').onclick = downloadSelectedKeys;
+      document.getElementById('renameButton').onclick = () => renameKey(key);
+      updateKeyList();
+    }
+    
+    function saveKeyValue(key) {
+      const keyValue = document.getElementById('keyValue');
+      if (!omittedKeys.some(omittedKey => key.toLowerCase().includes(omittedKey))) {
+        localStorage.setItem(key, keyValue.value);
+        updateKeyList();
+        updateStatus(`Key "${key}" saved successfully.`);
+      } else {
+        updateStatus(`Error: Cannot save key "${key}" as it contains a restricted word.`);
+      }
+    }
+    
+    function deleteSelectedKeys() {
+      selectedKeys.forEach(key => {
+        if (!omittedKeys.some(omittedKey => key.toLowerCase().includes(omittedKey))) {
+          localStorage.removeItem(key);
         }
-
-        // Initial load
-        viewLocalStorage();
+      });
+      selectedKeys.clear();
+      lastSelectedKey = null;
+      updateKeyList();
+      document.getElementById('keyValue').value = '';
+      updateStatus(`Selected keys deleted successfully.`);
+    }
+    
+    function downloadSelectedKeys() {
+      const zip = new JSZip();
+      selectedKeys.forEach(key => {
+        if (!omittedKeys.some(omittedKey => key.toLowerCase().includes(omittedKey))) {
+          const value = localStorage.getItem(key);
+          zip.file(`${key}.txt`, value);
+        }
+      });
+      zip.generateAsync({type:"blob"}).then(function(content) {
+        const url = URL.createObjectURL(content);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'localStorage_keys.zip';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+      updateStatus(`Selected keys downloaded successfully.`);
+    }
+    
+    function uploadKey() {
+      const input = document.getElementById('uploadInput');
+      const file = input.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const key = file.name.replace('.txt', '');
+          const value = e.target.result;
+          if (!omittedKeys.some(omittedKey => key.toLowerCase().includes(omittedKey))) {
+            localStorage.setItem(key, value);
+            selectedKeys.clear();
+            selectedKeys.add(key);
+            lastSelectedKey = key;
+            updateKeyList();
+            loadKeyDetails(key);
+            updateStatus(`Key "${key}" uploaded successfully.`);
+          } else {
+            updateStatus(`Error: Cannot upload key "${key}" as it contains a restricted word.`);
+          }
+        };
+        reader.readAsText(file);
+      }
+    }
+    
+    function renameKey(oldKey) {
+      const newKey = prompt("Enter new key name:", oldKey);
+      if (newKey && newKey !== oldKey) {
+        if (!omittedKeys.some(omittedKey => newKey.toLowerCase().includes(omittedKey))) {
+          const value = localStorage.getItem(oldKey);
+          localStorage.setItem(newKey, value);
+          localStorage.removeItem(oldKey);
+          selectedKeys.delete(oldKey);
+          selectedKeys.add(newKey);
+          lastSelectedKey = newKey;
+          updateKeyList();
+          loadKeyDetails(newKey);
+          updateStatus(`Key "${oldKey}" renamed to "${newKey}".`);
+        } else {
+          updateStatus(`Error: Cannot rename to "${newKey}" as it contains a restricted word.`);
+        }
+      }
+    }
+    
+    function updateStatus(message) {
+      const statusBar = document.getElementById('statusBar');
+      const usage = getLocalStorageUsage();
+      const quota = getLocalStorageQuota();
+      const percentage = ((usage/quota)*100).toFixed(2);
+      statusBar.innerHTML = `
+        ${message}<br>
+        Storage usage: ${formatBytes(usage)} / ${formatBytes(quota)} bytes (${percentage}%)
+        <div class="progress-bar">
+          <div class="progress-bar-used" style="width: ${percentage}%"></div>
+          <div class="progress-bar-estimate" id="estimateBar"></div>
+        </div>
+      `;
+    }
+    
+    function createNewKey() {
+      const detailsTitle = document.getElementById('detailsTitle');
+      const detailsContent = document.getElementById('detailsContent');
+      
+      detailsTitle.textContent = 'Create New Key';
+      detailsContent.innerHTML = `
+        <div class="new-key-form">
+          <input type="text" id="newKeyName" placeholder="Enter key name">
+          <textarea id="newKeyValue" class="input-field" placeholder="Enter key value"></textarea>
+          <div class="button-group">
+            <button id="saveNewKeyButton" class="button">Save New Key</button>
+            <button id="cancelNewKeyButton" class="button">Cancel</button>
+          </div>
+        </div>
+      `;
+    
+      document.getElementById('saveNewKeyButton').onclick = saveNewKey;
+      document.getElementById('cancelNewKeyButton').onclick = cancelNewKey;
+      document.getElementById('newKeyValue').oninput = updateEstimateBar;
+      document.getElementById('newKeyName').oninput = updateEstimateBar;
+    }
+    
+    function updateEstimateBar() {
+      const newKeyName = document.getElementById('newKeyName').value;
+      const newKeyValue = document.getElementById('newKeyValue').value;
+      const estimatedSize = newKeyName.length + newKeyValue.length;
+      const quota = getLocalStorageQuota();
+      const usage = getLocalStorageUsage();
+      const estimatedPercentage = ((usage + estimatedSize) / quota * 100).toFixed(2);
+      
+      const estimateBar = document.getElementById('estimateBar');
+      estimateBar.style.width = `${estimatedPercentage}%`;
+      estimateBar.classList.add('flash');
+    }
+    
+    function saveNewKey() {
+      const newKeyName = document.getElementById('newKeyName').value;
+      const newKeyValue = document.getElementById('newKeyValue').value;
+    
+      if (newKeyName && !omittedKeys.some(omittedKey => newKeyName.toLowerCase().includes(omittedKey))) {
+        localStorage.setItem(newKeyName, newKeyValue);
+        selectedKeys.clear();
+        selectedKeys.add(newKeyName);
+        lastSelectedKey = newKeyName;
+        updateKeyList();
+        loadKeyDetails(newKeyName);
+        updateStatus(`New key "${newKeyName}" created successfully.`);
+        removeEstimateBar();
+      } else {
+        updateStatus(`Error: Cannot create key "${newKeyName}" as it is empty or contains a restricted word.`);
+      }
+    }
+    
+    function cancelNewKey() {
+      const detailsTitle = document.getElementById('detailsTitle');
+      const detailsContent = document.getElementById('detailsContent');
+      
+      detailsTitle.textContent = 'Key Details';
+      detailsContent.innerHTML = `
+        <textarea id="keyValue" class="input-field" placeholder="Key value"></textarea>
+        <div class="button-group">
+          <div>
+            <button id="saveButton" class="button">Save</button>
+            <button id="deleteButton" class="button">Delete</button>
+            <button id="renameButton" class="button">Rename</button>
+          </div>
+          <div>
+            <button id="newKeyButton" class="button">New Key</button>
+            <button id="downloadButton" class="button">Download</button>
+            <input type="file" id="uploadInput" style="display: none;">
+            <button id="uploadButton" class="button">Upload</button>
+          </div>
+        </div>
+      `;
+    
+      document.getElementById('saveButton').onclick = () => saveKeyValue(lastSelectedKey);
+      document.getElementById('deleteButton').onclick = deleteSelectedKeys;
+      document.getElementById('downloadButton').onclick = downloadSelectedKeys;
+      document.getElementById('renameButton').onclick = () => renameKey(lastSelectedKey);
+      document.getElementById('newKeyButton').onclick = createNewKey;
+      document.getElementById('uploadButton').onclick = () => document.getElementById('uploadInput').click();
+      document.getElementById('uploadInput').onchange = uploadKey;
+    
+      if (lastSelectedKey) {
+        loadKeyDetails(lastSelectedKey);
+      }
+      removeEstimateBar();
+    }
+    
+    function removeEstimateBar() {
+      const estimateBar = document.getElementById('estimateBar');
+      estimateBar.style.width = '0';
+      estimateBar.classList.remove('flash');
+    }
+    
+    function setSortOption(option) {
+      currentSortOption = option;
+      document.querySelectorAll('.sort-option').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`sort${option.charAt(0).toUpperCase() + option.slice(1)}`).classList.add('active');
+      updateKeyList();
+    }
+    
+    document.getElementById('sortAlphabetical').onclick = () => setSortOption('alphabetical');
+    document.getElementById('sortSize').onclick = () => setSortOption('size');
+    document.getElementById('sortNone').onclick = () => setSortOption('none');
+    
+    document.getElementById('uploadButton').onclick = () => document.getElementById('uploadInput').click();
+    document.getElementById('uploadInput').onchange = uploadKey;
+    document.getElementById('newKeyButton').onclick = createNewKey;
+    
+    updateKeyList();
+    updateStatus('Ready.');
+    
+    let JSZip;
+    if (typeof JSZip === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js';
+      script.onload = function() {
+        JSZip = window.JSZip;
+      };
+      document.head.appendChild(script);
+    }
     </script>
-</body>
-</html>
+    </body></html>

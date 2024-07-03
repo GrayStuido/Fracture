@@ -15,16 +15,8 @@ We use the Ligma-Balls dont steal my shit™ license :)
 
 ## Contact
 
-We have a discord ping me or something I dunno figure it out I aint your mother
-
-https://discord.gg/Jy32cWv3Jp
+Use our support email: [fracture.contact@aol.com](mailto:fracture.contact@aol.com)
 
 ## Funtime Drake
 
 ![Funtime Drake](icons/drake-meme.gif)
-
-<!-- BADGIE TIME -->
-
-
-
-<!-- END BADGIE TIME -->

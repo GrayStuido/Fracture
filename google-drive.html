@@ -105,7 +105,7 @@ body {
   color: var(--color-accent);
 }
 
-.open-btn {
+.open-btn, .open-btn-link {
   padding: 10px 20px;
   background-color: var(--color-accent);
   color: var(--color-text);
@@ -121,6 +121,7 @@ body {
 }
 
 .overlay {
+  z-index: 9999;
   position: fixed;
   top: 0;
   left: 0;
@@ -184,7 +185,7 @@ img {
       <div class="tool">
         <img src="icons/WormholeIcon.png" alt="Image 1" class="image-placeholder">
         <div class="tool-name">Wormhole File Share</div>
-        <button class="open-btn" onclick="openWormhole()">Open</button>
+        <button class="open-btn-link" onclick="openWormhole()">Open</button>
     </div>
     
     
