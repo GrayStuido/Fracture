@@ -65,8 +65,8 @@ function toggleRadialMenu() {
         menuIcon.classList.add('spin');
         setTimeout(() => {
             menuIcon.classList.remove('spin');
-            menuIcon.style.backgroundImage = "url('CloseButton.png')";
-        }, 300); // 0.5 seconds for the spin animation
+            menuIcon.classList.add('menu-icon-open');
+        }, 300);
     } else {
         radialMenu.classList.remove('center');
         triggerDiv.style.transform = 'scale(1)';
@@ -74,8 +74,8 @@ function toggleRadialMenu() {
         menuIcon.classList.add('spin');
         setTimeout(() => {
             menuIcon.classList.remove('spin');
-            menuIcon.style.backgroundImage = "url('HamburgerMenu.png')";
-        }, 300); // 0.5 seconds for the spin animation
+            menuIcon.classList.remove('menu-icon-open');
+        }, 300);
     }
 }
 
@@ -142,3 +142,17 @@ function toggleScreenshotInfo() {
 
 // Call this function to create the radial menu
 createRadialMenu();
+
+// Add this function to set the initial hamburger menu icon
+function setInitialMenuIcon() {
+    const triggerDiv = document.querySelector('#radialMenu .trigger-div');
+    const menuIcon = triggerDiv.querySelector('.menu-icon');
+    menuIcon.style.backgroundImage = "url('../icons/menu.png')";
+    menuIcon.style.width = '50px';
+    menuIcon.style.height = '50px';
+    menuIcon.style.backgroundSize = 'cover';
+    menuIcon.style.transition = 'transform 0.3s ease-out';
+}
+
+// Call this function after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', setInitialMenuIcon);
