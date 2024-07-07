@@ -1,252 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="js/UpdateValues.js"></script>
-    <script src="js/Lobotomy.js"></script>
-    <script src="js/Shutdown.js"></script>
-    <script src="js/SystemInfoLog.js"></script>
-    <script src="js/cloakpage.js"></script>
-    <script src="js/AntiTabClose.js"></script>
-    <iframe style="width: 100%; height: 100%; border: none; z-index: 99; position: absolute;" src="Placeholder.html"></iframe>
-
-    <link rel="stylesheet" href="css/Main.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievements</title>
+<html><head>
+    <title>Fracture | Achievements</title>
     <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: var(--color-major);
-            color: var(--color-text);
-        }
+:root {
+  /* Primary Background Colors */
+  --bg-color: #121212;              /* Main background */
+  --container-bg: #1e1e1e;          /* Container background */
+  --achievement-bg: #292929;        /* Achievement background */
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
+  /* Text and Highlight Colors */
+  --text-color: #f5f5f5;            /* Primary text color */
+  --highlight-color: #bb86fc;       /* Highlight and accent color */
+  --achievement-border: #6200ee;    /* Border color for achievements */
 
-        .achievement {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 20px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
+  /* Button Colors */
+  --button-bg: #3700b3;             /* Default button background */
+  --button-hover: #6200ee;          /* Button background on hover */
 
-        .achievement-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
+  /* Opacity Levels */
+  --locked-opacity: 0.4;            /* Opacity for locked items */
+}
 
-        .achievement:hover .achievement-inner {
-            transform: rotateY(180deg);
-        }
 
-        .achievement-front, .achievement-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
 
-        .achievement-front {
-            background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
-            color: #fff;
-        }
+    
+      body {
+        font-family: Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        background-color: var(--container-bg);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+        padding: 20px;
+        width: 80%;
+        max-width: 800px;
+        margin: 20px 0;
+      }
+      h1, h2 {
+        color: var(--highlight-color);
+        text-align: center;
+      }
+      .achievement-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+      .achievement {
+        background-color: var(--achievement-bg);
+        border: 1px solid var(--achievement-border);
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .achievement:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
+      }
+      .achievement-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+      .achievement-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: var(--highlight-color);
+      }
+      .achievement-description {
+        font-size: 14px;
+        color: var(--text-color);
+      }
+      .achievement.locked {
+        opacity: var(--locked-opacity);
+      }
+      .achievement.locked {
+  position: relative; /* Ensure the parent element is positioned relative */
+}
 
-        .achievement-back {
-            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-            color: #fff;
-            transform: rotateY(180deg);
-        }
+.achievement.locked .achievement-icon::after {
+  content: "🔒";
+  position: absolute;
+  font-size: 24px;
+  bottom: -10px;
+  right: -10px;
+}
 
-        .achievement-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
 
-        .achievement-icon img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .achievement-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 0 10px;
-            word-wrap: break-word;
-        }
-
-        .achievement-description {
-            font-size: 0.9em;
-            padding: 0 10px;
-            word-wrap: break-word;
-        }
-
-        .achievement-locked {
-            filter: grayscale(100%);
-            opacity: 0.5;
-        }
-
-        .achievement-locked::after {
-            content: '🔒';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3em;
-            color: var(--color-text);
-        }
-
-        /* Tiers */
-        .bronze {
-            background: linear-gradient(145deg, #cd7f32, #855120);
-            border: 4px solid #dd9c5b;
-        }
-
-        .silver {
-            background: linear-gradient(145deg, #c0c0c0, #9b9999);
-            border: 4px solid #fff;
-        }
-
-        .gold {
-            background: linear-gradient(145deg, #ffd700, #daa520);
-            border: 4px solid #ffd05a;
-        }
-
-        .platinum {
-            background: linear-gradient(145deg, #e5e4e2, #b8b8b8);
-            border: 4px solid #fff;
-        }
-
-        .diamond {
-            background: linear-gradient(145deg, #b9f2ff, #8ae1ff);
-            border: 4px solid #5dd7ff;
-        }
-
-        /* Sparkles */
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            background-color: white;
-            animation: twinkle 1.5s infinite;
-        }
-
-        .platinum .sparkle, .diamond .sparkle {
-            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
-        }
+      pre {
+        background-color: #2a2a4a;
+        border: 1px solid var(--achievement-border);
+        border-radius: 5px;
+        padding: 15px;
+        overflow-x: auto;
+        color: var(--text-color);
+      }
     </style>
-</head>
-<body>
-    <div class="container" id="achievements-container">
-        <!-- Achievements will be dynamically added here -->
+
+
+
+
+
+
+<div class="AdvancedMenu">
+    <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
+        <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
     </div>
+    <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
+        <div class="slideoutwrapper" style="margin-left: 80px;">
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
+            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
+        </div>
+    </div>
+</div>
 
-    <script>
-        // display-achievements.js
-        const achievementDisplayer = {
-            achievements: [
-                { id: 'ach1', name: 'First Steps', description: 'Begin your journey', tier: 'bronze', icon: '👣' },
-                { id: 'ach2', name: 'Explorer', description: 'Visit a new page', tier: 'silver', icon: '🧭' },
-                { id: 'ach3', name: 'Frequent Visitor', description: 'Visit the site 5 times', tier: 'gold', icon: 'https://placehold.co/400' },
-                { id: 'ach4', name: 'Dedicated User', description: 'Use all site features', tier: 'platinum', icon: '💎' },
-                { id: 'ach5', name: 'Master Achiever', description: 'Unlock all other achievements', tier: 'diamond', icon: '👑' },
-                { id: 'ach6', name: 'Fractures Bible', description: 'Visited the Docs', tier: 'diamond', icon: '👑' },
-            ],
+<script>
+document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
+</script>
 
-            init() {
-                this.loadAchievements();
-                this.renderAchievements();
-            },
 
-            loadAchievements() {
-                const savedAchievements = localStorage.getItem('achievements');
-                if (savedAchievements) {
-                    const unlockedAchievements = JSON.parse(savedAchievements);
-                    this.achievements.forEach(achievement => {
-                        const unlockedAchievement = unlockedAchievements.find(a => a.id === achievement.id);
-                        achievement.unlocked = unlockedAchievement ? unlockedAchievement.unlocked : false;
-                    });
-                }
-            },
 
-            renderAchievements() {
-                const container = document.getElementById('achievements-container');
-                if (!container) return;
 
-                container.innerHTML = '';
-                this.achievements.forEach(achievement => {
-                    const achievementElement = document.createElement('div');
-                    achievementElement.className = `achievement ${achievement.unlocked ? '' : 'achievement-locked'}`;
-                    
-                    const iconContent = achievement.icon.startsWith('path/') || achievement.icon.startsWith('http')
-                        ? `<img src="${achievement.icon}" alt="${achievement.name}">`
-                        : achievement.icon;
 
-                    achievementElement.innerHTML = `
-                        <div class="achievement-inner">
-                            <div class="achievement-front ${achievement.tier}">
-                                <div class="achievement-icon">${iconContent}</div>
-                                <div class="achievement-name">${this.fitTextToElement(achievement.name, 100)}</div>
-                            </div>
-                            <div class="achievement-back ${achievement.tier}">
-                                <div class="achievement-description">${this.fitTextToElement(achievement.description, 150)}</div>
-                            </div>
-                        </div>
-                    `;
 
-                    if (achievement.tier === 'platinum' || achievement.tier === 'diamond') {
-                        this.addSparkles(achievementElement);
-                    }
+    </head>
+    <body>
+      <div class="container">
+        <h1>Fracture Achievements</h1>
+        <div class="achievement-list" id="achievementList">
+          <!-- Achievements will be dynamically inserted here -->
+        </div>
+      </div>
+    
+      <script>
+// Central Achievements Script
+const achievements = [
+    { id: 'frequent_user', title: 'Frequent User', description: 'Visited the site 30 times', icon: '🔄' },
+    { id: 'fractures_bible', title: 'Fractures Bible', description: 'Visited the Docs page', icon: '📚' },
+    { id: 'power_user', title: 'Power User', description: 'Visited the Tools page 30 times', icon: '🔧' },
+    { id: 'gamer', title: 'Gamer', description: 'Played a game', icon: '🎮' },
+    { id: 'achievement_get', title: 'Achievement Get!', description: 'Got your first achievement', icon: '🏅' },
+    { id: 'collector', title: 'Collector', description: 'Acquired 10 achievements', icon: '🏆' },
+    { id: 'hoarder', title: 'Hoarder', description: 'Acquired 20 achievements', icon: '💎' },
+    { id: 'achievement_compendium', title: 'Achievement Compendium', description: 'Collected all other achievements', icon: '🌟' },
+    { id: 'jack_of_all_trades', title: 'Jack of All Trades', description: 'Used every main feature at least once', icon: '🃏' },
+    { id: 'community', title: 'Community', description: 'Visited Fracture-Chat', icon: '💬' },
+    { id: 'easter_egg_1', title: 'Easter Egg 1', description: 'Found the Carson Billy Bounce', icon: '🥚' },
+    { id: 'easter_egg_2', title: 'Easter Egg 2', description: 'Put in the secret code', icon: '🐰' }
+];
 
-                    container.appendChild(achievementElement);
-                });
-            },
+const achievementSound = new Audio('http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a');
 
-            fitTextToElement(text, maxLength) {
-                if (text.length <= maxLength) return text;
-                return text.substring(0, maxLength - 3) + '...';
-            },
+function initAchievements() {
+    let userAchievements = {};
+    achievements.forEach(achievement => {
+        let storedValue = localStorage.getItem(`achievement_${achievement.id}`);
+        userAchievements[achievement.id] = storedValue === 'true';
+    });
+    localStorage.setItem('userAchievements', JSON.stringify(userAchievements));
+}
 
-            addSparkles(element) {
-                for (let i = 0; i < 5; i++) {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.style.top = `${Math.random() * 100}%`;
-                    sparkle.style.left = `${Math.random() * 100}%`;
-                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
-                    element.appendChild(sparkle);
-                }
-            }
-        };
+function checkAchievement(id, condition) {
+    let userAchievements = JSON.parse(localStorage.getItem('userAchievements'));
+    if (condition && !userAchievements[id]) {
+        userAchievements[id] = true;
+        localStorage.setItem(`achievement_${id}`, 'true');
+        localStorage.setItem('userAchievements', JSON.stringify(userAchievements));
+        checkCollectorAchievements();
+        achievementSound.play();
+        alert(`Achievement unlocked: ${achievements.find(a => a.id === id).title}`);
+        renderAchievements();
+    }
+}
 
-        // Initialize the achievement displayer when the DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            achievementDisplayer.init();
-        });
-    </script>
-</body>
-</html>
+function checkCollectorAchievements() {
+    let userAchievements = JSON.parse(localStorage.getItem('userAchievements'));
+    let achievedCount = Object.values(userAchievements).filter(Boolean).length;
+    checkAchievement('achievement_get', achievedCount >= 1);
+    checkAchievement('collector', achievedCount >= 10);
+    checkAchievement('hoarder', achievedCount >= 20);
+    
+    // Check for Achievement Compendium separately
+    let allOtherAchievements = Object.entries(userAchievements).every(([key, value]) => 
+        key === 'achievement_compendium' || value === true
+    );
+    checkAchievement('achievement_compendium', allOtherAchievements);
+}
+
+function renderAchievements() {
+    const achievementList = document.getElementById('achievementList');
+    achievementList.innerHTML = ''; // Clear existing achievements
+    const userAchievements = JSON.parse(localStorage.getItem('userAchievements')) || {};
+
+    achievements.forEach(achievement => {
+        const achievementElement = document.createElement('div');
+        achievementElement.className = `achievement ${userAchievements[achievement.id] ? '' : 'locked'}`;
+        
+        achievementElement.innerHTML = `
+            <div class="achievement-icon">${achievement.icon}</div>
+            <div class="achievement-title">${achievement.title}</div>
+            <div class="achievement-description">${achievement.description}</div>
+        `;
+        achievementList.appendChild(achievementElement);
+    });
+}
+
+// Run these functions when the achievements page loads
+document.addEventListener('DOMContentLoaded', () => {
+    initAchievements();
+    renderAchievements();
+});
+
+      </script>
+    </body></html>

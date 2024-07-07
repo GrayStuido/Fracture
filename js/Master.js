@@ -43,7 +43,7 @@ console.log(asciiArt1);
 
 document.addEventListener("DOMContentLoaded", function() {
     const scriptUrls = [
-        "js/script1.js",
+        "../js/gamer.js",
         "js/script2.js",
         "js/script3.js"
     ];

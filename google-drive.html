@@ -170,6 +170,18 @@ img {
     object-fit: cover; /* The image will cover the container while maintaining its aspect ratio */
   }
   </style>
+  <script>
+    // Power User Achievement Script
+function trackPowerUser() {
+    let toolsVisits = parseInt(localStorage.getItem('toolsVisits') || '0');
+    toolsVisits++;
+    localStorage.setItem('toolsVisits', toolsVisits);
+    localStorage.setItem('achievement_power_user', toolsVisits >= 30);
+}
+
+// Run this function when the page loads
+document.addEventListener('DOMContentLoaded', trackPowerUser);
+  </script>
 </head>
 <body>
   <br>

@@ -2,6 +2,7 @@
   <title>Fracture</title>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="500952c1-af25-4d0c-8dce-1dc0a2e4389b"></script>
   <link rel="stylesheet" href="css/login.css">
+  <script src="js/achivements.js"></script>
   <script src="textsplash.js" onload="changeText()"></script>
   <script src="js/UpdateValues.js"></script>
   <script src="js/Lobotomy.js"></script>
@@ -51,6 +52,38 @@
         });
     }
   </script>
+  <script>
+// Frequent User Achievement Script
+function trackFrequentUser() {
+    let visits = parseInt(localStorage.getItem('siteVisits') || '0');
+    visits++;
+    localStorage.setItem('siteVisits', visits);
+    localStorage.setItem('achievement_frequent_user', visits >= 30);
+}
+
+// Run this function when the page loads
+document.addEventListener('DOMContentLoaded', trackFrequentUser);
+  </script>
+  <script>
+    // Konami Code sequence
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+
+function handleKonamiCode(event) {
+    if (event.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            localStorage.setItem('achievement_easter_egg_2', true);
+            konamiIndex = 0; // Reset for future attempts
+            alert('Easter Egg Found!');
+        }
+    } else {
+        konamiIndex = 0;
+    }
+}
+
+document.addEventListener('keydown', handleKonamiCode);
+  </script>
 </head>
 <body onload="changeText()">
   <script>
@@ -62,7 +95,7 @@
 </script>
 </body>
   <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p style="margin: 0;">6.0.0 Rework Beta | Push 33</p>
+    <p style="margin: 0;">6.0.0 Rework Beta | Push 34</p>
 </div>
 <br>
 <script>

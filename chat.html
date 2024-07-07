@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <script>
+      // Community Achievement Script
+function trackCommunityAchievement() {
+    // Assuming this script is placed on the Fracture-Chat page
+    localStorage.setItem('achievement_community', true);
+}
+
+// Run this function when the page loads
+document.addEventListener('DOMContentLoaded', trackCommunityAchievement);
+    </script>
   <link rel="stylesheet" href="css/MusicSystem.css">
   <div class="corner-div-MusicSystem" id="corner-div">
       <div class="info-MusicSystem">
@@ -35,7 +46,6 @@
         }
     });
        </script>
-<head>
   <link rel="icon" type="image/png" href="favicon.png">
   <script src="UpdateValues.js"></script>
   <meta charset="UTF-8">
