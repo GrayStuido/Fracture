@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../css/Menu.css">
+  <div class="RadialMenu" id="radialMenu">
+    <div class="trigger-div" onclick="toggleRadialMenu()">
+        <div class="menu-icon"></div>
+    </div>
+    <svg class="radial-items" id="radialItems" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" fill="#3b1c5f" stroke="#560fa6" stroke-width="2"/>
+        <!-- Sections will be added here dynamically -->
+    </svg>
+  </div>
+  <script src="../js/menu.js"></script>
+  <script src="../js/UpdateValues.js"></script>
+  <script src="../js/Lobotomy.js"></script>
+  <script src="../js/Shutdown.js"></script>
+  <script src="../js/SystemInfoLog.js"></script>
+  <script src="../js/cloakpage.js"></script>
+  <script src="../js/AntiTabClose.js"></script>
+  <script src="../js/Master.js"></script>
+  <link rel="stylesheet" href="../css/MusicSystem.css">
+  <div class="corner-div-MusicSystem" id="corner-div">
+      <div class="info-MusicSystem">
+          <div id="file-name">Loading...</div>
+          <div id="artist-name"></div>
+          <div id="time-info">0:00 | 0:00</div>
+      </div>
+      <div class="controls-MusicSystem">
+          <button id="play-pause-button">⏸</button>
+          <button id="skip-button">⏭</button>
+          <div class="speed-control-MusicSystem">
+              <button id="speed-up-button">⬆️</button>
+              <div id="speed-display">1.0x</div>
+              <button id="speed-down-button">⬇️</button>
+          </div>
+      </div>
+      <img id="spinning-img" src="../icons/Disk.png" alt="Spinning Image">
+  </div>
+  <audio id="audio"></audio>
+  <script src="../js/MusicSystem.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/index.css">
+<link rel="icon" type="image/png" href="../favicon.ico">
+  <title>StudentVUE</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    nav {
+      background-color: #311F3B;
+      overflow: hidden;
+      z-index: 100; /* Ensure the nav menu stays on top */
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    a {
+      display: block;
+      color: #A37AB9;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body onload="changeText()">
+
+<iframe src="" frameborder="0"></iframe>
+
+
+</body>
+<script src="cloak.js">
+      var url = document.getElementById("url-target");
+      var urlObj = new window.URL(window.location.href);
+      document.getElementById("create").onclick = function () {
+        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
+    		url.value = 'https://' + url.value.split('https://').pop();
+        } else if (url.value.substring(0, 7) == 'http://'){
+        	url.value = 'https://' + url.value.split('http://').pop();
+        };
+        win = window.open();
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url.value;
+        win.document.body.appendChild(iframe);
+      };
+</script>
+</html>
