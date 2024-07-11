@@ -54,6 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         "You arent my sunshine",
         "I was crazy once",
         "Its A Pirate's Life for Me",
+        "The new and improved!",
+        "Error",
+        "The two time unblocked games world champion",
+        "Bad coding",
+        "Cronch",
+        "Sugest features! Im not a mind reader",
+        "We up in this bitch",
         "Lobotomy"
     ];
 

@@ -1,188 +1,329 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="js/UpdateValues.js"></script>
-    <script src="js/Lobotomy.js"></script>
-    <script src="js/Shutdown.js"></script>
-    <script src="js/SystemInfoLog.js"></script>
-    <script src="js/cloakpage.js"></script>
-    <script src="js/AntiTabClose.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #18021a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-image: url('icons/Tile1.png');
-            background-size: 50px 50px;
-            background-repeat: repeat;
-            animation: diagonalMovement 100s linear infinite;
-            transition: background-image 1s ease-in-out; /* Added transition */
-        }
-
-        @keyframes diagonalMovement {
-            0% {
-                background-position: 0% 0%; /* Start position */
-            }
-            100% {
-                background-position: 101% 101%; /* End position */
-            }
-        }
-
-        .error-container {
-            text-align: center;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        p {
-            color: #666;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = ['icons/Tile1.png', 'icons/Tile2.png', 'icons/Tile3.png', 'icons/Tile4.png', 'icons/Tile5.png', 'icons/Tile6.png']; // Replace with URLs of your images
-            const body = document.querySelector('body');
-
-            function getRandomImage() {
-                return images[Math.floor(Math.random() * images.length)];
-            }
-
-            function setBackgroundImage(image, attempts = 0) {
-                if (attempts > 10) return; // Stop after 10 attempts
-
-                const img = new Image();
-                img.onload = function() {
-                    body.style.backgroundImage = `url(${image})`;
-                };
-                img.onerror = function() {
-                    setBackgroundImage(`../${image}`, attempts + 1);
-                };
-                img.src = image;
-            }
-
-            setBackgroundImage(getRandomImage());
-
-            // Error handling for TheKiwi.gif
-            const kiwiImg = document.querySelector('img[src="TheKiwi.gif"]');
-            if (kiwiImg) {
-                kiwiImg.onerror = function() {
-                    const newSrc = `../${kiwiImg.getAttribute('src')}`;
-                    kiwiImg.setAttribute('src', newSrc);
-                };
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = ['icons/Tile1.png', 'icons/Tile2.png', 'icons/Tile3.png', 'icons/Tile4.png', 'icons/Tile5.png', 'icons/Tile6.png']; // Replace with URLs of your images
-            const body = document.querySelector('body');
-            const halfRoundedUp = Math.ceil(images.length / 2); // Half of the number of images rounded up
-            const memory = new Set();
-
-            function getRandomImage() {
-                let index;
-                do {
-                    index = Math.floor(Math.random() * images.length);
-                } while (memory.size >= halfRoundedUp && memory.has(index)); // Ensure memory doesn't exceed the limit and avoid repeats
-                memory.add(index);
-                if (memory.size > halfRoundedUp) {
-                    memory.delete(Array.from(memory)[0]); // Remove the oldest memory if exceeds the limit
-                }
-                return images[index];
-            }
-
-            function fadeOutAndChangeBackground() {
-                const newImage = getRandomImage();
-
-                body.classList.add('fade-out');
-                setTimeout(function() {
-                    setBackgroundImage(newImage);
-                    body.classList.remove('fade-out');
-                }, 1000); // Change image after fade out effect
-            }
-
-            function setBackgroundImage(image, attempts = 0) {
-                if (attempts > 10) return; // Stop after 10 attempts
-
-                const img = new Image();
-                img.onload = function() {
-                    body.style.backgroundImage = `url(${image})`;
-                };
-                img.onerror = function() {
-                    setBackgroundImage(`../${image}`, attempts + 1);
-                };
-                img.src = image;
-            }
-
-            setBackgroundImage(getRandomImage());
-
-            setInterval(fadeOutAndChangeBackground, 3000); // Repeat every 3 seconds
-        });
-    </script>
-    <script>
-        document.getElementById('HomeRedirect').addEventListener('click', function() {
-            let attempts = 0;
-            let path = 'index.html';
-
-            function checkAndRedirect(path) {
-                fetch(path, { method: 'HEAD' })
-                    .then(response => {
-                        if (response.ok) {
-                            window.location.href = path;
-                        } else if (attempts < 10) {
-                            attempts++;
-                            path = '../' + path;
-                            checkAndRedirect(path);
-                        } else {
-                            console.error('Failed to find index.html after 10 attempts');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        if (attempts < 10) {
-                            attempts++;
-                            path = '../' + path;
-                            checkAndRedirect(path);
-                        } else {
-                            console.error('Failed to find index.html after 10 attempts');
-                        }
-                    });
-            }
-
-            checkAndRedirect(path);
-        });
-    </script>
-</head>
-<body>
-    <div class="error-container">
-        <img src="TheKiwi.gif" alt="Error Image">
-        <h1>404 - Page Not Found</h1>
-        <p>Oops! The page you are looking for might be in another galaxy.</p>
-        <p>Click <a id="HomeRedirect" href="index.html">here</a> to go back to the main page.</p>
+<html><head><title>404 - Page Not Found</title><style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+      z-index: 3;
+      position: relative;
+    }
+    h1 {
+      font-size: 6rem;
+      margin-bottom: 0;
+      color: #bb86fc;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .return-link, .support-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #03dac6;
+      color: #000000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, opacity 0.5s ease;
+    }
+    .return-link:hover, .support-link:hover {
+      background-color: #018786;
+    }
+    .support-link {
+      background-color: #cf6679;
+      margin-left: 10px;
+    }
+    .support-link:hover {
+      background-color: #b54a5a;
+    }
+    .copy-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 15px;
+      background-color: #bb86fc;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      z-index: 3;
+    }
+    .copy-button:hover {
+      background-color: #9965f4;
+    }
+    .black-hole {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, #000000 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      transition: all 5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .black-hole.active {
+      width: 300vw;
+      height: 300vw;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .black-hole.fast {
+      transition: all 2.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  
+    /* CRT effect CSS */
+    .crt-effect {
+      animation: textShadow 1.6s infinite;
+      z-index: 3;
+      position: relative;
+    }
+    
+    @keyframes textShadow {
+      0% {
+        text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+      }
+      5% {
+        text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+      }
+      /* ... (rest of the keyframes) ... */
+      100% {
+        text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+      }
+    }
+    
+    .crt-lines::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 3;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+  
+    /* RGB fringe effect */
+    .rgb-fringe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 5s ease;
+      z-index: 3;
+    }
+    .rgb-fringe.fast {
+      transition: opacity 2.5s ease;
+    }
+  
+    .rgb-fringe::before,
+    .rgb-fringe::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      right: -10%;
+      bottom: -10%;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      mix-blend-mode: screen;
+    }
+  
+    .rgb-fringe::before {
+      background-image: radial-gradient(circle, transparent 0%, rgba(255,0,0,0.5) 100%);
+      transform: scale(1.02);
+    }
+  
+    .rgb-fringe::after {
+      background-image: radial-gradient(circle, transparent 0%, rgba(0,0,255,0.5) 100%);
+      transform: scale(0.98);
+    }
+  
+    .rgb-fringe.active {
+      opacity: 1;
+    }
+  
+    .char {
+      display: inline-block;
+      transition: color 0.5s ease, opacity 0.5s ease;
+    }
+    .char.fast {
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+  
+    .char.fade-out {
+      color: black;
+      opacity: 0;
+    }
+  
+    .space {
+      display: inline-block;
+      width: 0.25em;
+    }
+  
+    .word {
+      display: inline-block;
+      white-space: nowrap;
+    }
+  
+    .fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style></head><body>
+  <div class="crt-effect crt-lines">
+    <div class="black-hole"></div>
+    <div class="rgb-fringe"></div>
+    <div class="container">
+      <h1 id="errorCode">404</h1>
+      <p id="oopsPhrase"></p>
+      <p id="flarePhrase"></p>
+      <a href="/index.html" class="return-link" id="returnLink">Return to Home</a>
+      <a href="/cdn-cgi/l/email-protection#7016021113040502155e131f1e0411130430111f1c5e131f1d4f0305121a1513044d444044554240201117155542402215001f020456121f14094d39554240151e131f051e0415021514554240115542404440445542401502021f025542401104554240041815554240161f1c1c1f07191e1755424025223c4a554240" class="support-link" id="supportLink">Contact Support</a>
     </div>
-</body>
-</html>
+    <button id="copyButton" class="copy-button">Copy HTML</button>
+  </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function splitTextIntoChars(elementId) {
+      const element = document.getElementById(elementId);
+      const words = element.innerText.split(' ');
+      element.innerHTML = words.map(word => {
+        return `<span class="word">${word.split('').map(char => {
+          return `<span class="char">${char}</span>`;
+        }).join('')}</span>`;
+      }).join('<span class="space"> </span>');
+    }
+  
+    const oopsPhrases = [
+      "Oops! It seems this page doesnt exist!",
+      "Huh, I didnt expect to see you here.",
+      "Looks like this page is broken or missing",
+      "This cant be good....",
+      "Its all your fault",
+      "Womp Womp",
+      "Page not found",
+      "Bad coding moment",
+      "It looks like something went wrong.",
+      "It appears you've taken a wrong turn.",
+      "..."
+    ];
+  
+    const flarePhrases = [
+      "This page doesn't exist in our current reality... or does it?",
+      "Have you asked it nicely to work?",
+      "Send this to our Support email ↓",
+      "Check back later, It might return",
+      "Look what you did",
+      "Page not found. Blame the gremlins.",
+      "I never said Fracture was perfect",
+      "It looks like you've discovered a void.",
+      "It seems you've stumbled upon a non-existent page.",
+      "Perhaps it's been eaten. We're still investigating."
+    ];
+  
+    function getRandomPhrase(phrases) {
+      return phrases[Math.floor(Math.random() * phrases.length)];
+    }
+  
+    document.getElementById('oopsPhrase').textContent = getRandomPhrase(oopsPhrases);
+    document.getElementById('flarePhrase').textContent = getRandomPhrase(flarePhrases);
+  
+    splitTextIntoChars('errorCode');
+    splitTextIntoChars('oopsPhrase');
+    splitTextIntoChars('flarePhrase');
+  
+    document.getElementById('copyButton').addEventListener('click', function() {
+      const htmlContent = document.documentElement.outerHTML;
+      const cleanedHtml = htmlContent.replace(/<button id="copyButton"[\s\S]*?<\/button>/, '');
+      
+      navigator.clipboard.writeText(cleanedHtml).then(function() {
+        alert('HTML code copied to clipboard!');
+      }, function(err) {
+        console.error('Could not copy text: ', err);
+      });
+    });
+  
+    // Update the support link with the current URL
+    window.onload = function() {
+      var supportLink = document.querySelector('.support-link');
+      supportLink.href += encodeURIComponent(window.location.href);
+    };
+  
+    // Black hole animation, RGB fringe effect, and countdown
+    document.getElementById('returnLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      var blackHole = document.querySelector('.black-hole');
+      var rgbFringe = document.querySelector('.rgb-fringe');
+      var returnLink = document.getElementById('returnLink');
+      var supportLink = document.getElementById('supportLink');
+  
+      // Check if the animation has been seen before
+      const seen404Anim = localStorage.getItem('seen404Anim');
+      const animationSpeed = seen404Anim ? 25 : 50; // 2x speed if seen before
+  
+      // Add fast class for faster animations if seen before
+      if (seen404Anim) {
+        blackHole.classList.add('fast');
+        rgbFringe.classList.add('fast');
+        document.querySelectorAll('.char').forEach(char => char.classList.add('fast'));
+      }
+  
+      // Fade out the return and support links
+      returnLink.classList.add('fade-out');
+      supportLink.classList.add('fade-out');
+  
+      blackHole.classList.add('active');
+      rgbFringe.classList.add('active');
+      
+      const chars = document.querySelectorAll('.char:not(.changed)');
+      const totalChars = chars.length;
+      let fadedChars = 0;
+  
+      const fadeInterval = setInterval(() => {
+        if (fadedChars >= totalChars) {
+          clearInterval(fadeInterval);
+          blackHole.style.opacity = '0';
+          rgbFringe.style.opacity = '0';
+          
+          // Set the localStorage value before redirecting
+          localStorage.setItem('seen404Anim', 'true');
+          
+          setTimeout(() => {
+            window.location.href = '/index.html';
+          }, seen404Anim ? 500 : 1000);
+          return;
+        }
+  
+        const remainingChars = document.querySelectorAll('.char:not(.changed):not(.fade-out)');
+        if (remainingChars.length === 0) {
+          clearInterval(fadeInterval);
+          return;
+        }
+  
+        const randomIndex = Math.floor(Math.random() * remainingChars.length);
+        remainingChars[randomIndex].classList.add('fade-out', 'changed');
+        fadedChars++;
+      }, animationSpeed);
+    });
+  </script>
+  </body></html>
