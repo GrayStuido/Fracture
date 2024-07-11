@@ -47,23 +47,6 @@
     .support-link:hover {
       background-color: #b54a5a;
     }
-    .copy-button {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 10px 15px;
-      background-color: #bb86fc;
-      color: #000000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-      z-index: 3;
-    }
-    .copy-button:hover {
-      background-color: #9965f4;
-    }
     .black-hole {
       position: fixed;
       top: 50%;
@@ -201,7 +184,6 @@
       <a href="/index.html" class="return-link" id="returnLink">Return to Home</a>
       <a href="/cdn-cgi/l/email-protection#7016021113040502155e131f1e0411130430111f1c5e131f1d4f0305121a1513044d444044554240201117155542402215001f020456121f14094d39554240151e131f051e0415021514554240115542404440445542401502021f025542401104554240041815554240161f1c1c1f07191e1755424025223c4a554240" class="support-link" id="supportLink">Contact Support</a>
     </div>
-    <button id="copyButton" class="copy-button">Copy HTML</button>
   </div>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function splitTextIntoChars(elementId) {
@@ -252,17 +234,6 @@
     splitTextIntoChars('oopsPhrase');
     splitTextIntoChars('flarePhrase');
   
-    document.getElementById('copyButton').addEventListener('click', function() {
-      const htmlContent = document.documentElement.outerHTML;
-      const cleanedHtml = htmlContent.replace(/<button id="copyButton"[\s\S]*?<\/button>/, '');
-      
-      navigator.clipboard.writeText(cleanedHtml).then(function() {
-        alert('HTML code copied to clipboard!');
-      }, function(err) {
-        console.error('Could not copy text: ', err);
-      });
-    });
-  
     // Update the support link with the current URL
     window.onload = function() {
       var supportLink = document.querySelector('.support-link');
@@ -309,7 +280,7 @@
           localStorage.setItem('seen404Anim', 'true');
           
           setTimeout(() => {
-            window.location.href = '/index.html';
+            window.location.href = '/Fracture/index.html';
           }, seen404Anim ? 500 : 1000);
           return;
         }
