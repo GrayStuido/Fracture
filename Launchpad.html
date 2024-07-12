@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="js/navgen.js"></script>
   <script src="js/lastpage.js"></script>
   <link rel="stylesheet" href="css/MusicSystem.css">
   <div class="corner-div-MusicSystem" id="corner-div">
@@ -42,27 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/index.css">
-
-<div class="AdvancedMenu">
-    <div class="trigger-div" style="width: 100px; height: 100px; position: fixed; top: -50px; left: -50px; background-color: #3b1c5f; border: 5px solid #560fa6; border-radius: 100px; cursor: pointer; z-index: 99;" onclick="toggleSlideOutDiv()">
-        <div class="shifted-image" style="width: 30px; height: 30px; background-image: url('HamburgerMenu.png'); background-size: cover; margin-left: 50px; margin-top: 50px; z-index: 100;"></div>
-    </div>
-    <div class="slide-out-div" style="width: 820px; height: 10px; position: fixed; top: 0; left: -820px; background-color: #3b1c5f; transition: left .5s ease; z-index: 98; border-radius: 100px; border: 5px solid #560fa6;" id="slideOutDiv">
-        <div class="slideoutwrapper" style="margin-left: 80px;">
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="index.html">Home</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-classroom.html">Games</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="Launchpad.html">Leaderboard</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="google-drive.html">Tools</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #560fa6; background-color: #27153b; text-decoration: none; font-family: Arial, sans-serif;" href="chat.html">Frat-Chat</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="hideMenuAndPrompt()">Hide Menu</a>
-            <a style="display: inline-block; padding: 10px; border: none; cursor: pointer; margin: 5px; color: #fff; border-radius: 5px; border: 3px solid #990fa6; background-color: #3b153b; text-decoration: none; font-family: Arial, sans-serif;" onclick="ReloadPage()">Reload Page</a>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.key&&toggleAdvancedMenu()});var advancedMenuHidden=!1;function toggleAdvancedMenu(){var e=document.querySelector(".AdvancedMenu");advancedMenuHidden?e.removeAttribute("hidden"):e.setAttribute("hidden",!0),advancedMenuHidden=!advancedMenuHidden}var SlideOutDivOut=!1;function toggleSlideOutDiv(){document.getElementById("slideOutDiv").style.left=SlideOutDivOut?"-820px":"0",SlideOutDivOut=!SlideOutDivOut}function hideMenuAndPrompt(){toggleAdvancedMenu(),alert("Menu Hidden! Press Ctrl + Shift :")}function ReloadPage(){window.location.reload()}
-</script>
 <script src="cloak.js">
       var url = document.getElementById("url-target");
       var urlObj = new window.URL(window.location.href);
@@ -100,7 +80,7 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
     
     body {
       color: var(--color-text);
-      background: var(--color-major);
+      background: black;
       margin: 0;
       padding: 0;
       display: flex;
@@ -108,7 +88,7 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
       align-items: center;
       font-family: Arial, sans-serif;
     }
-    
+
     .leaderboards-container {
       display: flex;
       flex-wrap: wrap;
@@ -152,7 +132,7 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
       width: 100%;
       height: 100%;
       z-index: -1;
-      background-color: var(--color-major);
+      background: black;
     }
     
     .ScoreWrapper {
@@ -216,11 +196,82 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
     .global-year-selector button.active {
       background-color: var(--color-accent);
     }
+
+    .MatrixBackground {
+z-index: -1;
+opacity: 30%;
+background-color: black;
+}
     </style>
+      <style>
+        :root {
+            --primary-color1: #8A2BE2;
+            --secondary-color1: #180025;
+            --text-color1: #cea3ff;
+            --hover-color1: #8621c09a;
+        }
+        .container1 {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+        .Menuh1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color1);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .Menuh3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color1);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .NavMenu {
+          color:white;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .NavMenu a {
+            text-decoration: none;
+            color: var(--text-color1);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        .NavMenu a:hover {
+            color:white;
+            background-color: var(--hover-color1);
+        }
+        .divider {
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+            margin-bottom: 2rem;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+        }
+      </style>
 </head>
 <body>
-
-  
+  <br>
+  <br>
+  <br>
+  <div class="container1">
+    <nav class="NavMenu" id="main-nav"></nav>
+    <div class="divider"></div>
+</div>
   <div class="global-year-selector">
     <button onclick="changeAllYears('Freshman')" class="active">Freshman</button>
     <button onclick="changeAllYears('Sophomore')">Sophomore</button>
@@ -282,7 +333,7 @@ document.addEventListener("keydown",function(e){e.shiftKey&&e.ctrlKey&&":"===e.k
 
 
 <div class="background">
-  <canvas id="MatrixBackground"></canvas>
+  <canvas class="MatrixBackground" id="MatrixBackground"></canvas>
 </div>
  <script>
       window.onload = function() {
