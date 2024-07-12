@@ -2,6 +2,10 @@
 ## Info:
 [![pages-build-deployment](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment)
 ![GitHub repo file or directory count](https://img.shields.io/github/directory-file-count/GrayStuido/Fracture)
+[![pages-build-deployment](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/GrayStuido/Fracture/actions/workflows/pages/pages-build-deployment)
+![GitHub repo size](https://img.shields.io/github/repo-size/GrayStuido/Fracture)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/GrayStuido/Fracture)
+![GitHub last commit](https://img.shields.io/github/last-commit/GrayStuido/Fracture)
 
 ## Description
 
