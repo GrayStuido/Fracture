@@ -96,7 +96,7 @@ document.addEventListener('keydown', handleKonamiCode);
 </script>
 </body>
   <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p style="margin: 0;">6.0.0 Rework Beta | Push 40</p>
+    <p style="margin: 0;">6.0.0 Rework Beta | Push 41</p>
 </div>
 <br>
 <script>
@@ -237,6 +237,7 @@ changeText();
 #navbutton8 { top: 72%; left: 10%; transform: translateX(-50%); }
 #navbutton9 { top: 18%; left: -4%; transform: translateY(-50%); }
 #navbutton10 { top: 80%; left: 76%; transform: translateY(-50%); }
+#adminpan { top: 50%; left: -76%; transform: translateY(-50%); }
 
 .a-fix {
   display: inline-flex;
@@ -268,7 +269,35 @@ changeText();
   <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>
 <a style="top: 50%; left: 50%; transform: translate(-50%, -50%);" id="ab-cloak-button" class="ab-cloak-button">Cloak</a>
 <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
+<a id="adminpan" class="vbutton" href="AdminPanel.html">Admin</a>
 </div>
+
+<script>
+// List of verified admin usernames
+const verifiedAdmins = ['jusinoj', 'admin2', 'superuser'];
+
+// Function to check if the user is a verified admin
+function isVerifiedAdmin(username) {
+    return verifiedAdmins.includes(username);
+}
+
+// Function to hide or show the admin panel
+function toggleAdminPanel() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const adminPanel = document.getElementById('adminpan');
+
+    if (adminPanel) {
+        if (loggedInUser && isVerifiedAdmin(loggedInUser)) {
+            adminPanel.style.display = 'inline-block'; // or 'block', depending on your layout
+        } else {
+            adminPanel.style.display = 'none';
+        }
+    }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', toggleAdminPanel);
+</script>
 
 
 <style>
@@ -426,6 +455,7 @@ body {
             padding: 10px;
             margin-top: 10px;
             width: 220px;
+            max-width: 220px;
             border: none;
             border-radius: 5px;
             background-color: #333;

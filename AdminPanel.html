@@ -1,0 +1,198 @@
+<html><head><title>Fracture | Admin Panel | Hello Admin</title><style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #16213e;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  padding: 20px;
+}
+h1 {
+  color: #9d4edd;
+  border-bottom: 2px solid #7b2cbf;
+  padding-bottom: 10px;
+}
+.panel {
+  display: flex;
+  gap: 20px;
+}
+.controls {
+  flex: 1;
+}
+.embed-area {
+  flex: 2;
+  border: 1px solid #7b2cbf;
+  border-radius: 4px;
+  padding: 10px;
+}
+button, input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #7b2cbf;
+  border-radius: 4px;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+button {
+  background-color: #5a189a;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #7b2cbf;
+}
+.toggle-btn {
+  background-color: #4361ee;
+}
+.toggle-btn.off {
+  background-color: #3f37c9;
+}
+.admin-info {
+  background-color: #231942;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+</style></head><body>
+<div class="container">
+  <h1 id="pageTitle">Fracture | Admin Panel | Hello Admin</h1>
+  <div class="admin-info" id="adminInfo">
+    Welcome, Admin!
+  </div>
+  <div class="panel">
+    <div class="controls">
+      <button id="togglePremium" class="toggle-btn">Toggle Premium: OFF</button>
+      <input type="text" id="userKey" placeholder="Enter new user key">
+      <button id="changeUserKey">Change User Key</button>
+      <button id="forceAdmin">Force Admin: OFF</button>
+      <button id="toggleEruda" class="toggle-btn">Toggle Eruda Console: OFF</button>
+    </div>
+    <div class="embed-area">
+      <iframe src="Tools/LocalStorageEditor.html" width="100%" height="500" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+const togglePremiumBtn = document.getElementById('togglePremium');
+const userKeyInput = document.getElementById('userKey');
+const changeUserKeyBtn = document.getElementById('changeUserKey');
+const forceAdminBtn = document.getElementById('forceAdmin');
+const toggleErudaBtn = document.getElementById('toggleEruda');
+const adminInfoDiv = document.getElementById('adminInfo');
+const pageTitleElement = document.getElementById('pageTitle');
+
+const admins = [
+  { name: 'jusinoj', message: 'Oh great, you again' },
+  { name: 'brenden', message: 'haiii' },
+  { name: 'admin', message: 'Welcome, Admin!' }
+];
+
+function updateButtonStates() {
+  const isPremium = localStorage.getItem('premium') === 'true';
+  togglePremiumBtn.textContent = `Toggle Premium: ${isPremium ? 'ON' : 'OFF'}`;
+  togglePremiumBtn.classList.toggle('off', !isPremium);
+
+  const isForceAdmin = localStorage.getItem('ForceAdmin') === 'true';
+  forceAdminBtn.textContent = `Force Admin: ${isForceAdmin ? 'ON' : 'OFF'}`;
+  forceAdminBtn.classList.toggle('off', !isForceAdmin);
+
+  const isErudaActive = localStorage.getItem('ErduaConsoleActive') === 'true';
+  toggleErudaBtn.textContent = `Toggle Eruda Console: ${isErudaActive ? 'ON' : 'OFF'}`;
+  toggleErudaBtn.classList.toggle('off', !isErudaActive);
+}
+
+function updateAdminInfo() {
+  const adminName = localStorage.getItem('loggedInUser') || 'Admin';
+  const admin = admins.find(a => a.name.toLowerCase() === adminName.toLowerCase()) || admins[2];
+  adminInfoDiv.textContent = admin.message;
+  document.title = `Fracture | Admin Panel | Hello ${adminName}`;
+  pageTitleElement.textContent = `Fracture | Admin Panel | Hello ${adminName}`;
+}
+
+togglePremiumBtn.addEventListener('click', () => {
+  const currentValue = localStorage.getItem('premium') === 'true';
+  localStorage.setItem('premium', (!currentValue).toString());
+  updateButtonStates();
+});
+
+changeUserKeyBtn.addEventListener('click', () => {
+  const newKey = userKeyInput.value.trim();
+  if (newKey) {
+    localStorage.setItem('loggedInUser', newKey);
+    alert(`User key changed to: ${newKey}`);
+    userKeyInput.value = '';
+    updateAdminInfo();
+  } else {
+    alert('Please enter a valid user key.');
+  }
+});
+
+forceAdminBtn.addEventListener('click', () => {
+  const currentValue = localStorage.getItem('ForceAdmin') === 'true';
+  localStorage.setItem('ForceAdmin', (!currentValue).toString());
+  updateButtonStates();
+});
+
+function loadEruda() {
+  if (typeof eruda === 'undefined') {
+    var erudaScript = document.createElement('script');
+    erudaScript.src = "//cdn.jsdelivr.net/npm/eruda/eruda.min.js";
+    document.body.appendChild(erudaScript);
+    erudaScript.onload = function() {
+      eruda.init();
+      var erudaTimingScript = document.createElement('script');
+      erudaTimingScript.src = "//cdn.jsdelivr.net/npm/eruda-timing/eruda-timing.min.js";
+      document.body.appendChild(erudaTimingScript);
+      erudaTimingScript.onload = function() { eruda.add(erudaTiming); };
+
+      var erudaCodeScript = document.createElement('script');
+      erudaCodeScript.src = "//cdn.jsdelivr.net/npm/eruda-code/eruda-code.min.js";
+      document.body.appendChild(erudaCodeScript);
+      erudaCodeScript.onload = function() { eruda.add(erudaCode); };
+
+      var erudaDomScript = document.createElement('script');
+      erudaDomScript.src = "//cdn.jsdelivr.net/npm/eruda-dom/eruda-dom.min.js";
+      document.body.appendChild(erudaDomScript);
+      erudaDomScript.onload = function() { eruda.add(erudaDom); };
+    };
+  } else {
+    eruda.show();
+  }
+}
+
+function unloadEruda() {
+  if (typeof eruda !== 'undefined') {
+    eruda.hide();
+  }
+}
+
+toggleErudaBtn.addEventListener('click', () => {
+  const currentValue = localStorage.getItem('ErduaConsoleActive') === 'true';
+  const newValue = !currentValue;
+  localStorage.setItem('ErduaConsoleActive', newValue.toString());
+  if (newValue) {
+    loadEruda();
+  } else {
+    unloadEruda();
+  }
+  updateButtonStates();
+});
+
+// Initial load
+if (localStorage.getItem('ErduaConsoleActive') === 'true') {
+  loadEruda();
+}
+
+updateButtonStates();
+updateAdminInfo();
+</script>
+</body></html>
