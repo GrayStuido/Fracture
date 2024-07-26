@@ -44,10 +44,9 @@ console.log(asciiArt1);
 document.addEventListener("DOMContentLoaded", function() {
     const scriptUrls = [
         "../js/gamer.js",
-        "js/script2.js",
+        "../js/ErudaConsole.js",
         "js/script3.js"
     ];
-
     function loadScripts(urls) {
         if (urls.length === 0) return;
 
