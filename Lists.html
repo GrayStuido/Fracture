@@ -1,0 +1,323 @@
+<html>
+<head>
+    <script src="js/navgen.js"></script>
+    <link rel="stylesheet" href="css/Menu.css">
+    <style>
+        :root {
+            --primary-color: #8A2BE2;
+            --secondary-color: #180025;
+            --text-color: #cea3ff;
+            --hover-color: #8621c09a;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        nav {
+          color:white;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            color:white;
+            background-color: var(--hover-color);
+        }
+        .divider {
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            margin-bottom: 2rem;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+        }
+      </style>
+<style>
+.library-wrapper {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.bookshelf {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.book {
+    width: 150px;
+    height: 200px;
+    background-color: #0b000f;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    color: #fff;
+}
+
+.book:hover {
+    transform: scale(1.05);
+}
+
+.spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background-color: #3498db;
+    border-radius: 5px 0 0 5px;
+}
+
+.title {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+    right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #000000;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-text {
+    margin-bottom: 10px;
+}
+
+.modal-link {
+    color: #3498db;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal-link:hover {
+    color: #2980b9;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <nav id="main-nav"></nav>
+        <div class="divider"></div>
+      </div>
+      <div class="library-wrapper">
+        <div class="bookshelf" id="bookshelf">
+            <!-- Books will be dynamically added here -->
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const modal = document.getElementById("myModal");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const modalText = document.querySelector(".modal-text");
+        const bookshelf = document.getElementById("bookshelf");
+
+        // Book data structure
+        const books = [
+            {
+                title: "Unblocked Game Websites",
+                contents: [
+                    {
+                        title: "Lorem Ipsum",
+                        description: "Lorem Ipsum",
+                        clickableText: "[Open]",
+                        link: "404.html"
+                    },
+                    {
+                        title: "Lorem Ipsum",
+                        description: "Lorem Ipsum",
+                        clickableText: "[Open]",
+                        link: "404.html"
+                    }
+                    // Add more entries as needed
+                ]
+            },
+            {
+                title: "Other Websites",
+                contents: [
+                    {
+                        title: "Lorem Ipsum",
+                        description: "Lorem Ipsum",
+                        clickableText: "[Open]",
+                        link: "404.html"
+                    },
+                    {
+                        title: "Lorem Ipsum",
+                        description: "Lorem Ipsum",
+                        clickableText: "[Open]",
+                        link: "404.html"
+                    }
+                    // Add more entries as needed
+                ]
+            }
+        ];
+
+        // Function to create a book element
+        function createBookElement(book) {
+            const bookElement = document.createElement('div');
+            bookElement.className = 'book';
+            bookElement.innerHTML = `
+                <div class="spine"></div>
+                <div class="title">${book.title}</div>
+            `;
+            bookElement.addEventListener('click', () => openModal(book));
+            return bookElement;
+        }
+
+        // Function to render books
+        function renderBooks() {
+            bookshelf.innerHTML = '';
+            books.forEach(book => {
+                bookshelf.appendChild(createBookElement(book));
+            });
+        }
+
+        // Function to open modal
+        function openModal(book) {
+            
+            modalText.innerHTML = book.contents.map(content => `
+                <strong>${content.title}</strong> - ${content.description}<br>
+                <a href="${content.link}" target="_blank" class="modal-link">${content.clickableText}</a><br><br>
+            `).join('');
+
+            modal.style.display = "block";
+        }
+
+        // Initial render
+        renderBooks();
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to add a new book
+        window.addBook = function(title, contents) {
+            books.push({title, contents});
+            renderBooks();
+        }
+
+        // Function to remove a book
+        window.removeBook = function(index) {
+            books.splice(index, 1);
+            renderBooks();
+        }
+
+        // Function to add content to a book
+        window.addContentToBook = function(bookIndex, title, description, clickableText, link) {
+            books[bookIndex].contents.push({title, description, clickableText, link});
+        }
+
+        // Example usage:
+        // addBook("Pride and Prejudice", [
+        //     {title: "Volume 1", description: "Bennets and Bingley", clickableText: "Read Volume 1", link: "https://example.com/pride/vol1"},
+        //     {title: "Volume 2", description: "Darcy's proposal", clickableText: "Read Volume 2", link: "https://example.com/pride/vol2"}
+        // ]);
+        // addContentToBook(0, "Chapter 3", "Gatsby's party", "Read Chapter 3", "https://example.com/gatsby/chapter3");
+        // removeBook(0);
+    })();
+    </script>
+
+<div style="
+position: fixed; 
+bottom: 5px; 
+right: 5px; 
+padding: 10px; 
+border-radius: 5px; 
+box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+">
+Make a post in Fratchat to add to the lists
+</div>
+</body>
+</html>

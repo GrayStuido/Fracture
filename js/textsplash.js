@@ -25,8 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "We Log ur ip btw :D",
         "Dont open console",
         "You are my sunshine",
-        "The Docs are your friend! Use it like a guide!",
-        "The Docs are your friend!",
         "Good Froyo flavors when??",
         "Me everytime after the this website is blocked",
         '웃 "Hello!"',
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "Add more games!!11!1!",
         "Yall dont really know me....",
         "Freakybob is Calling",
-        "What if instead of Fracture it was 𝓕𝓻𝓮𝓪𝓴𝓽𝓾𝓻𝓮",
         "Finals D:",
         "You arent my sunshine",
         "I was crazy once",
@@ -59,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "The two time unblocked games world champion",
         "Bad coding",
         "Cronch",
-        "Sugest features! Im not a mind reader",
         "We up in this bitch",
         "Lobotomy"
     ];

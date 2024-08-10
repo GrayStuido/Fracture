@@ -1,30 +1,32 @@
+
+
 const users = [
-    { username: "jusinoj", password: "theearthisflat", banned: false, banReason: "", premium: true }, // Jayden Jusino
-    { username: "mindGoblin", password: "personiscool", banned: false, banReason: "", premium: false }, // Katie Gladysh
-    { username: "Nooblet12905", password: "ImStupid12905", banned: false, banReason: "", premium: false }, // derpler
-    { username: "Misha", password: "ballz4252", banned: false, banReason: "Drew Melon", premium: false }, // Marcelo Lujan
-    { username: "dew.k_", password: "mumlover73", banned: false, banReason: "", premium: false }, // Drew Melon
-    { username: "Brennan", password: "carson", banned: false, banReason: "", premium: false }, // Brennan McCoskery
-    { username: "Martin the Destroyer", password: "stupid martin stupid little shit", banned: false, banReason: "", premium: false }, // Eli Lubbe
-    { username: "sillybilly", password: "sillybilly0924", banned: false, banReason: "", premium: false }, // Simon Collins
-    { username: "RiceSpice", password: "BigBirthdayCakeAbriviated", banned: false, banReason: "", premium: true }, // Jason Yee
-    { username: "AstroFlqr3", password: "As709166", banned: false, banReason: "", premium: false }, // Jack Floor
-    { username: "Potato", password: "ShangChi", banned: false, banReason: "", premium: true }, // Austin Nguyen
-    { username: "Ethan crivoloni", password: "1234567", banned: false, banReason: "", premium: true }, // Brayden Siegner
-    { username: "jamison", password: "Ghost242", banned: false, banReason: "", premium: true }, // Jamison Austad
-    { username: "Tea", password: "123abcmarryme", banned: false, banReason: "", premium: false }, // Scarlett Castro
-    { username: "Khoa", password: "Khoadaog", banned: false, banReason: "", premium: true }, // Khoa Nguyen
-    { username: "Simone", password: "801888avasimone", banned: false, banReason: "", premium: false }, // Ava S
-    { username: "Markeshka", password: "80396012", banned: false, banReason: "", premium: true }, // Mark
-    { username: "cole", password: "123abc", banned: false, banReason: "", premium: true }, // Cole Anthoney
-    { username: "baba yaga", password: "baba yaga 123", banned: false, banReason: "", premium: true }, // Carson Parrot
-    { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: false }, // Nate
-    { username: "1234", password: "1234", banned: true, banReason: "Really?", premium: false }, // Hayden Coe
-    { username: "block'o_cheese3", password: "1234567890", banned: true, banReason: "Homosexual", premium: false }, // Ignatius O'Dell
-    { username: "hevdogbf", password: "hevdogbf", banned: false, banReason: "", premium: true }, // Alex Emerson
-    { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: false }, // Ben Reverez
-    { username: "Junior?", password: "060871", banned: false, banReason: "", premium: false }, // Robert Delgado
-    { username: "", password: "", banned: false, banReason: "", premium: false }, //
+    { username: "jusinoj", password: "theearthisflat", banned: false, banReason: "", premium: true, profilePicture: "UserImages/jusino.png"  }, // Jayden Jusino
+    { username: "mindGoblin", password: "personiscool", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Katie Gladysh
+    { username: "Nooblet12905", password: "ImStupid12905", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // derpler
+    { username: "Misha", password: "ballz4252", banned: false, banReason: "Drew Melon", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Marcelo Lujan
+    { username: "dew.k_", password: "mumlover73", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Drew Melon
+    { username: "Brennan", password: "carson", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Brennan McCoskery
+    { username: "Martin the Destroyer", password: "stupid martin stupid little shit", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Eli Lubbe
+    { username: "sillybilly", password: "sillybilly0924", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Simon Collins
+    { username: "RiceSpice", password: "BigBirthdayCakeAbriviated", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Jason Yee
+    { username: "AstroFlqr3", password: "As709166", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Jack Floor
+    { username: "Potato", password: "ShangChi", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Austin Nguyen
+    { username: "Ethan crivoloni", password: "1234567", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Brayden Siegner
+    { username: "jamison", password: "Ghost242", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Jamison Austad
+    { username: "Tea", password: "123abcmarryme", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Scarlett Castro
+    { username: "Khoa", password: "Khoadaog", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Khoa Nguyen
+    { username: "Simone", password: "801888avasimone", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ava S
+    { username: "Markeshka", password: "80396012", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Mark
+    { username: "cole", password: "123abc", banned: false, banReason: "", premium: true, profilePicture: "UserImages/PutinGriddy.gif"  }, // Cole Anthoney
+    { username: "baba yaga", password: "baba yaga 123", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Carson Parrot
+    { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Nate
+    { username: "1234", password: "1234", banned: true, banReason: "Really?", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Hayden Coe
+    { username: "block'o_cheese3", password: "1234567890", banned: true, banReason: "Homosexual", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ignatius O'Dell
+    { username: "hevdogbf", password: "hevdogbf", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Alex Emerson
+    { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ben Reverez
+    { username: "Junior?", password: "060871", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
 
 function login() {
@@ -48,14 +50,12 @@ function login() {
         return;
     }
     
-    // Clear any previous error messages
     clearError();
     
-    // Store premium status and logged-in user in local storage
     localStorage.setItem('premium', user.premium);
     localStorage.setItem('loggedInUser', user.username);
+    localStorage.setItem('profilePicture', user.profilePicture);
     
-    // Refresh the page after a short delay
     setTimeout(() => {
         window.location.reload();
     }, 500);
@@ -93,59 +93,12 @@ function setupInputNavigation() {
     });
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    setupInputNavigation();
-
-    const loginStatus = checkLoginStatus();
-    if (loginStatus.isLoggedIn) {
-        updateUIAfterLogin(loginStatus.username, loginStatus.isPremium);
-    }
-
-    // Add logout event listener
-    const logoutButton = document.querySelector('.container button');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', logout);
-    }
-
-    // Add login event listener
-    const loginButton = document.getElementById('loginButton');
-    if (loginButton) {
-        loginButton.addEventListener('click', login);
-    }
-
-    // Check if terms have been accepted
-    const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
-    if (!termsAccepted) {
-        showTermsAndConditions();
-    }
-
-    // Add terms acceptance event listener
-    const acceptTermsButton = document.querySelector('#termsContainer button');
-    if (acceptTermsButton) {
-        acceptTermsButton.addEventListener('click', () => {
-            localStorage.setItem('termsAccepted', 'true');
-            hideTermsAndConditions();
-        });
-    }
-});
-
-function displayError(message) {
-    const errorMessage = document.getElementById('errorMessage');
-    errorMessage.textContent = message;
-    errorMessage.style.display = 'block';
-}
-
-function clearError() {
-    const errorMessage = document.getElementById('errorMessage');
-    errorMessage.textContent = '';
-    errorMessage.style.display = 'none';
-}
-
 function logout() {
-    localStorage.removeItem('premiumStatus');
+    localStorage.removeItem('premium');
     localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('profilePicture');
     updateUIAfterLogout();
+    location.reload();
 }
 
 function banUser(username, reason) {
@@ -174,8 +127,24 @@ function updateUIAfterLogin(username, isPremium) {
     document.getElementById('loginDiv').style.display = 'none';
     document.querySelector('.container').style.display = 'block';
     document.getElementById('name').textContent = username;
-    document.getElementById('premiumStatus').textContent = isPremium ? 'Premium' : 'Standard';
-    document.getElementById('profilePicture').src = 'Icons/Default.png'; // Update with actual profile picture logic
+    const premiumStatusElement = document.getElementById('premiumStatus');
+    if (isPremium) {
+        premiumStatusElement.textContent = 'Premium Account';
+        premiumStatusElement.classList.add('premium');
+    } else {
+        premiumStatusElement.textContent = 'Standard Account';
+        premiumStatusElement.classList.add('non-premium');
+    }
+    
+    const profilePicturePath = localStorage.getItem('profilePicture') || 'UserImages/Placeholder.png';
+    const img = new Image();
+    img.onload = function() {
+        document.getElementById('profilePicture').src = profilePicturePath;
+    };
+    img.onerror = function() {
+        document.getElementById('profilePicture').src = 'UserImages/Placeholder.png';
+    };
+    img.src = profilePicturePath;
 }
 
 function updateUIAfterLogout() {
@@ -200,32 +169,29 @@ function hideTermsAndConditions() {
     }
 }
 
-// Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    setupInputNavigation();
+
     const loginStatus = checkLoginStatus();
     if (loginStatus.isLoggedIn) {
         updateUIAfterLogin(loginStatus.username, loginStatus.isPremium);
     }
 
-    // Add logout event listener
     const logoutButton = document.querySelector('.container button');
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
 
-    // Add login event listener
     const loginButton = document.getElementById('loginButton');
     if (loginButton) {
         loginButton.addEventListener('click', login);
     }
 
-    // Check if terms have been accepted
     const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
     if (!termsAccepted) {
         showTermsAndConditions();
     }
 
-    // Add terms acceptance event listener
     const acceptTermsButton = document.querySelector('#termsContainer button');
     if (acceptTermsButton) {
         acceptTermsButton.addEventListener('click', () => {

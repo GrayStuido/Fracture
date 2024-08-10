@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const scriptUrls = [
         "../js/gamer.js",
         "../js/ErudaConsole.js",
-        "js/script3.js"
+        "../js/LoadingScreen.js"
     ];
     function loadScripts(urls) {
         if (urls.length === 0) return;

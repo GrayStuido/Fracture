@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Frat-Chat', link: 'chat.html' },
         { name: 'Leaderboard', link: 'Launchpad.html' },
         { name: 'About', link: 'About.html' },
-        { name: 'Achievements', link: 'Achievements.html' },
         { name: 'Addons', link: 'Addons.html' }
     ];
 
