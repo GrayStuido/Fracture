@@ -10,6 +10,17 @@ score = {
     this.set(n + this.number);
   }
 };
+// Add fix softlock button
+const fixSoftlockButton = document.createElement("button");
+fixSoftlockButton.textContent = "Fix Softlock";
+fixSoftlockButton.id = "fixSoftlockButton";
+fixSoftlockButton.addEventListener("click", () => {
+  // Save current score to local storage
+  localStorage.setItem('SoftlockScore', score.number);
+
+  // Reload the page
+  location.reload();
+});
 class Tile {
   constructor(x, y, colour, entering = false) {
     this.colour = -1;
@@ -59,6 +70,7 @@ class Tile {
         };
       }
     }, false);
+    
 
     switch (colour) {
       case "bomb":
@@ -198,3 +210,14 @@ for (let y = 8; y--;) {
 }
 document.body.appendChild(squareElem);
 score.set(0);
+// At the end of the script, add:
+document.body.appendChild(squareElem);
+document.body.appendChild(fixSoftlockButton);
+score.set(0);
+
+// Check if there's a saved score in local storage
+const savedScore = localStorage.getItem('SoftlockScore');
+if (savedScore !== null) {
+  score.set(parseInt(savedScore, 10));
+  localStorage.removeItem('SoftlockScore');
+}

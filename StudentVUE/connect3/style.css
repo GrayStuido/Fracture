@@ -99,3 +99,31 @@ body {
   from {padding: 20px; margin-top: 0;}
   to {padding: 0 20px; margin-top: 40px;}
 }
+
+#fixSoftlockButton {
+  position: fixed;
+  top: 50%;
+  left: calc(50% + 300px); /* Centered and displaced 200px to the right */
+  transform: translate(-50%, -50%);
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff4081; /* Vibrant pink color */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#fixSoftlockButton:hover {
+  background-color: #f50057; /* Darker pink on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -52%); /* Slight upward movement on hover */
+}
+
+#fixSoftlockButton:active {
+  transform: translate(-50%, -48%); /* Slight downward movement when clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

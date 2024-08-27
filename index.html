@@ -269,7 +269,7 @@ changeText();
   <a id="navbutton4" class="vbutton" href="chat.html">Frat-Chat</a>
   <a id="navbutton7" class="vbutton" href="About.html">About</a>
   <a id="navbutton10" class="vbutton" href="Docs/Index.html">Docs</a>
-  <a  style="font-size: 15px;" id="navbutton9" class="vbutton" href="404.html">Cookbook</a>
+  <a  style="font-size: 15px;" id="navbutton9" class="vbutton" href="Support.html">Support</a>
   <a style="font-size: 12px;" id="navbutton5" class="vbutton" href="Launchpad.html">Leaderboard</a>
 <a style="top: 50%; left: 50%; transform: translate(-50%, -50%);" id="ab-cloak-button" class="ab-cloak-button">Cloak</a>
 <p hidden class="console-input"><input id="url-target" value="https://graystuido.github.io/Fracture/" autocomplete="on" type="text" autofocus /></p>
@@ -465,6 +465,7 @@ body {
             <input type="text" autocomplete="off" placeholder="Username" id="username">
             <input type="password" autocomplete="off" placeholder="Password" id="password">
             <button id="loginButton" onclick="login()">Login</button>
+            <button id="loginButton" onclick="loginGuest()">Guest</button>
             <p id="errorMessage" class="error-message"></p>
         </div>
     </div>
@@ -493,7 +494,7 @@ body {
               const premiumStatusElement = document.getElementById('premiumStatus');
       
               if (isPremium === 'true') {
-                  premiumStatusElement.textContent = 'Premium Account';
+                  premiumStatusElement.textContent = 'Verified Account';
                   premiumStatusElement.classList.add('premium');
               } else {
                   premiumStatusElement.textContent = 'Standard Account';

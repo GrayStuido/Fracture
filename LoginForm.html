@@ -1,499 +1,505 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enhanced Student Login Generator - Dark Theme</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    color: #e0e0e0;
-  }
-  .language-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-  }
-  .language-buttons button {
-    background-color: #000;
-    color: #e0e0e0;
-    border: 1px solid #444;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-  }
-  .language-buttons button:hover {
-    background-color: #1a1a1a;
-  }
-  .login-container {
-    background-color: #1e1e1e;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    width: 90%;
-    max-width: 600px;
-  }
-  .form-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .photo-section {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 1.5rem;
-  }
-  .photo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  .profile-picture, .school-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 15px;
-    background-color: #2a2a2a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  .profile-picture img, .school-photo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  input {
-    padding: 0.75rem;
-    border: 1px solid #444;
-    border-radius: 8px;
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    font-size: 1rem;
-  }
-  input:focus {
-    outline: none;
-    border-color: #666;
-  }
-  button {
-    background-color: #000;
-    color: #e0e0e0;
-    border: 1px solid #444;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-  }
-  button:hover {
-    background-color: #1a1a1a;
-  }
-  button:disabled {
-    background-color: #333;
-    color: #666;
-    cursor: not-allowed;
-  }
-  .password-strength {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-  }
-  .hidden {
-    display: none;
-  }
-  #emailSection {
-    text-align: center;
-    margin-top: 2rem;
-  }
-</style>
-</head>
-<body>
-  <div class="language-buttons">
-    <button onclick="changeLanguage('en')">English</button>
-    <button onclick="changeLanguage('es')">Español</button>
-    <button onclick="changeLanguage('ru')">Русский</button>
-    <button onclick="changeLanguage('uk')">Українська</button>
-  </div>
-  <div class="login-container">
-    <div class="form-section" id="section1">
-      <div class="photo-section">
-        <div class="photo-container">
-          <div class="profile-picture" id="profilePicture">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fracture | Login Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #e0e0e0;
+    }
+    .language-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .language-buttons button {
+      background-color: #000;
+      color: #e0e0e0;
+      border: 1px solid #444;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    .language-buttons button:hover {
+      background-color: #1a1a1a;
+    }
+    .login-container {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      width: 90%;
+      max-width: 600px;
+    }
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .photo-section {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1.5rem;
+    }
+    .photo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .profile-picture, .school-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      background-color: #2a2a2a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .profile-picture img, .school-photo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+    input {
+      padding: 0.75rem;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: #2a2a2a;
+      color: #e0e0e0;
+      font-size: 1rem;
+    }
+    input:focus {
+      outline: none;
+      border-color: #666;
+    }
+    button {
+      background-color: #000;
+      color: #e0e0e0;
+      border: 1px solid #444;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #1a1a1a;
+    }
+    button:disabled {
+      background-color: #333;
+      color: #666;
+      cursor: not-allowed;
+    }
+    .password-strength {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .hidden {
+      display: none;
+    }
+    #emailSection {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .photo-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.2rem;
+    }
+  </style>
+  </head>
+  <body>
+    <div class="language-buttons">
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('es')">Español</button>
+      <button onclick="changeLanguage('ru')">Русский</button>
+      <button onclick="changeLanguage('uk')">Українська</button>
+    </div>
+    <div class="login-container">
+      <div class="form-section" id="section1">
+        <div class="photo-section">
+          <div class="photo-container">
+            <div class="profile-picture" id="profilePicture">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <button id="uploadProfileButton" data-en="Upload Profile Picture" data-es="Subir Foto de Perfil" data-ru="Загрузить Фото Профиля" data-uk="Завантажити Фото Профілю">Upload Profile Picture</button>
+            <span class="photo-label" data-en="*required" data-es="*obligatorio" data-ru="*обязательно" data-uk="*обов'язково">*required</span>
           </div>
-          <button id="uploadProfileButton" data-en="Upload Profile Picture" data-es="Subir Foto de Perfil" data-ru="Загрузить Фото Профиля" data-uk="Завантажити Фото Профілю">Upload Profile Picture</button>
-        </div>
-        <div class="photo-container">
-          <div class="school-photo" id="schoolPhoto">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
-            </svg>
+          <div class="photo-container">
+            <div class="school-photo" id="schoolPhoto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <button id="uploadSchoolPhotoButton" data-en="Upload School Photo" data-es="Subir Foto Escolar" data-ru="Загрузить Школьное Фото" data-uk="Завантажити Шкільне Фото">Upload School Photo</button>
+            <span class="photo-label" data-en="optional" data-es="opcional" data-ru="необязательно" data-uk="необов'язково">optional</span>
           </div>
-          <button id="uploadSchoolPhotoButton" data-en="Upload School Photo" data-es="Subir Foto Escolar" data-ru="Загрузить Школьное Фото" data-uk="Завантажити Шкільне Фото">Upload School Photo</button>
         </div>
+        <input type="text" id="username" data-en="Username" data-es="Nombre de Usuario" data-ru="Имя пользователя" data-uk="Ім'я користувача" placeholder="Username" required>
+        <input type="password" id="password" data-en="Password" data-es="Contraseña" data-ru="Пароль" data-uk="Пароль" placeholder="Password" required>
+        <div class="password-strength" id="passwordStrength"></div>
+        <button id="togglePassword" data-en="Show Password" data-es="Mostrar Contraseña" data-ru="Показать Пароль" data-uk="Показати Пароль">Show Password</button>
+        <button id="nextButton" onclick="showSection2()" data-en="Next" data-es="Siguiente" data-ru="Далее" data-uk="Далі">Next</button>
       </div>
-      <input type="text" id="username" data-en="Username" data-es="Nombre de Usuario" data-ru="Имя пользователя" data-uk="Ім'я користувача" placeholder="Username" required>
-      <input type="password" id="password" data-en="Password" data-es="Contraseña" data-ru="Пароль" data-uk="Пароль" placeholder="Password" required>
-      <div class="password-strength" id="passwordStrength"></div>
-      <button id="togglePassword" data-en="Show Password" data-es="Mostrar Contraseña" data-ru="Показать Пароль" data-uk="Показати Пароль">Show Password</button>
-      <button id="nextButton" onclick="showSection2()" data-en="Next" data-es="Siguiente" data-ru="Далее" data-uk="Далі">Next</button>
+      <div class="form-section hidden" id="section2">
+        <input type="text" id="firstName" data-en="First Name (required)" data-es="Nombre (obligatorio)" data-ru="Имя (обязательно)" data-uk="Ім'я (обов'язково)" placeholder="First Name (required)" required>
+        <input type="text" id="middleName" data-en="Middle Name (optional)" data-es="Segundo Nombre (opcional)" data-ru="Отчество (необязательно)" data-uk="По батькові (необов'язково)" placeholder="Middle Name (optional)">
+        <input type="text" id="lastName" data-en="Last Name (required)" data-es="Apellido (obligatorio)" data-ru="Фамилия (обязательно)" data-uk="Прізвище (обов'язково)" placeholder="Last Name (required)" required>
+        <input type="text" id="studentId" data-en="Student ID (optional)" data-es="ID de Estudiante (opcional)" data-ru="ID Студента (необязательно)" data-uk="ID Студента (необов'язково)" placeholder="Student ID (optional)">
+        <input type="email" id="schoolEmail" data-en="School Email (required)" data-es="Correo Escolar (obligatorio)" data-ru="Школьная Почта (обязательно)" data-uk="Шкільна Пошта (обов'язково)" placeholder="School Email (required)" required>
+        <button onclick="generateLogin()" data-en="Generate Login" data-es="Generar Inicio de Sesión" data-ru="Создать Логин" data-uk="Створити Логін">Generate Login</button>
+        <button onclick="showSection1()" data-en="Back" data-es="Atrás" data-ru="Назад" data-uk="Назад">Back</button>
+      </div>
+      <div id="emailSection" class="hidden">
+        <p data-en="If the automatic email doesn't work, send us one with the header/title 'Fracture login request' then attach the zip file" 
+           data-es="Si el correo automático no funciona, envíenos uno con el encabezado/título 'Solicitud de inicio de sesión de Fracture' y adjunte el archivo zip" 
+           data-ru="Если автоматическая отправка электронной почты не работает, отправьте нам письмо с заголовком 'Запрос на вход в Fracture' и прикрепите zip-файл" 
+           data-uk="Якщо автоматична електронна пошта не працює, надішліть нам лист із заголовком 'Запит на вхід до Fracture' та прикріпіть zip-файл">
+          If the automatic email doesn't work, send us one with the header/title 'Fracture login request' then attach the zip file
+        </p>
+        <button onclick="sendEmail()" data-en="Send Email" data-es="Enviar Correo" data-ru="Отправить Письмо" data-uk="Надіслати Лист">Send Email</button>
+        <p>fracture.contact@aol.com</p>
+      </div>
     </div>
-    <div class="form-section hidden" id="section2">
-      <input type="text" id="firstName" data-en="First Name (required)" data-es="Nombre (obligatorio)" data-ru="Имя (обязательно)" data-uk="Ім'я (обов'язково)" placeholder="First Name (required)" required>
-      <input type="text" id="middleName" data-en="Middle Name (optional)" data-es="Segundo Nombre (opcional)" data-ru="Отчество (необязательно)" data-uk="По батькові (необов'язково)" placeholder="Middle Name (optional)">
-      <input type="text" id="lastName" data-en="Last Name (required)" data-es="Apellido (obligatorio)" data-ru="Фамилия (обязательно)" data-uk="Прізвище (обов'язково)" placeholder="Last Name (required)" required>
-      <input type="text" id="studentId" data-en="Student ID (optional)" data-es="ID de Estudiante (opcional)" data-ru="ID Студента (необязательно)" data-uk="ID Студента (необов'язково)" placeholder="Student ID (optional)">
-      <input type="email" id="schoolEmail" data-en="School Email (required)" data-es="Correo Escolar (obligatorio)" data-ru="Школьная Почта (обязательно)" data-uk="Шкільна Пошта (обов'язково)" placeholder="School Email (required)" required>
-      <button onclick="generateLogin()" data-en="Generate Login" data-es="Generar Inicio de Sesión" data-ru="Создать Логин" data-uk="Створити Логін">Generate Login</button>
-      <button onclick="showSection1()" data-en="Back" data-es="Atrás" data-ru="Назад" data-uk="Назад">Back</button>
-    </div>
-    <div id="emailSection" class="hidden">
-      <p data-en="If the automatic email doesn't work, send us one with the header/title 'Fracture login request' then attach the zip file" 
-         data-es="Si el correo automático no funciona, envíenos uno con el encabezado/título 'Solicitud de inicio de sesión de Fracture' y adjunte el archivo zip" 
-         data-ru="Если автоматическая отправка электронной почты не работает, отправьте нам письмо с заголовком 'Запрос на вход в Fracture' и прикрепите zip-файл" 
-         data-uk="Якщо автоматична електронна пошта не працює, надішліть нам лист із заголовком 'Запит на вхід до Fracture' та прикріпіть zip-файл">
-        If the automatic email doesn't work, send us one with the header/title 'Fracture login request' then attach the zip file
-      </p>
-      <button onclick="sendEmail()" data-en="Send Email" data-es="Enviar Correo" data-ru="Отправить Письмо" data-uk="Надіслати Лист">Send Email</button>
-      <p>fracture.contact@aol.com</p>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-  <script>
-    const { jsPDF } = window.jspdf;
-
-    const profilePicture = document.getElementById('profilePicture');
-    const schoolPhoto = document.getElementById('schoolPhoto');
-    const uploadProfileButton = document.getElementById('uploadProfileButton');
-    const uploadSchoolPhotoButton = document.getElementById('uploadSchoolPhotoButton');
-    const profileFileInput = document.createElement('input');
-    profileFileInput.type = 'file';
-    profileFileInput.accept = 'image/*';
-    const schoolPhotoInput = document.createElement('input');
-    schoolPhotoInput.type = 'file';
-    schoolPhotoInput.accept = 'image/*';
-
-    uploadProfileButton.addEventListener('click', () => profileFileInput.click());
-    uploadSchoolPhotoButton.addEventListener('click', () => schoolPhotoInput.click());
-
-    profileFileInput.addEventListener('change', (e) => handleImageUpload(e, profilePicture, 'profilePicture'));
-    schoolPhotoInput.addEventListener('change', (e) => handleImageUpload(e, schoolPhoto, 'schoolPhoto'));
-
-    function handleImageUpload(e, imgContainer, storageKey) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          imgContainer.innerHTML = `<img src="${e.target.result}" alt="${storageKey === 'profilePicture' ? 'Profile picture' : 'School photo'}">`;
-          localStorage.setItem(storageKey, e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    const commonPasswords = [
-      "123456", "password", "12345678", "qwerty", "123456789", "12345", "1234", "111111", "1234567", "dragon",
-      "123123", "baseball", "abc123", "football", "monkey", "letmein", "696969", "shadow", "master", "666666",
-      "qwertyuiop", "123321", "mustang", "1234567890", "michael", "654321", "pussy", "superman", "1qaz2wsx",
-      "7777777", "fuckyou", "121212", "000000", "qazwsx", "123qwe", "killer", "trustno1", "jordan", "jennifer",
-      "zxcvbnm", "asdfgh", "hunter", "buster", "soccer", "harley", "batman", "andrew", "tigger", "sunshine",
-      "iloveyou", "fuckme", "2000", "charlie", "robert", "thomas", "hockey", "ranger", "daniel", "starwars",
-      "klaster", "112233", "george", "asshole", "computer", "michelle", "jessica", "pepper", "1111", "zxcvbn",
-      "555555", "11111111", "131313", "freedom", "777777", "pass", "fuck", "maggie", "159753", "aaaaaa", "ginger",
-      "princess", "joshua", "cheese", "amanda", "summer", "love", "ashley", "6969", "nicole", "chelsea", "biteme",
-      "matthew", "access", "yankees", "987654321", "dallas", "austin", "thunder", "taylor", "matrix"
-    ];
-
-    const passwordInput = document.getElementById('password');
-    const passwordStrength = document.getElementById('passwordStrength');
-    const togglePassword = document.getElementById('togglePassword');
-    const nextButton = document.getElementById('nextButton');
-
-    passwordInput.addEventListener('input', checkPasswordStrength);
-    togglePassword.addEventListener('click', togglePasswordVisibility);
-
-    function checkPasswordStrength() {
-      const password = passwordInput.value;
-      let isStrong = false;
-
-      if (password.length < 5) {
-        passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Too short: Password should be at least 5 characters long." :
-                                       getCurrentLanguage() === 'es' ? "Muy corta: La contraseña debe tener al menos 5 caracteres." :
-                                       getCurrentLanguage() === 'ru' ? "Слишком короткий: Пароль должен быть не менее 5 символов." :
-                                       "Занадто короткий: Пароль повинен бути не менше 5 символів.";
-        passwordStrength.style.color = "#ff6b6b";
-      } else if (commonPasswords.includes(password.toLowerCase())) {
-        passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Weak: This is a common, easily guessed password." :
-                                       getCurrentLanguage() === 'es' ? "Débil: Esta es una contraseña común y fácil de adivinar." :
-                                       getCurrentLanguage() === 'ru' ? "Слабый: Это распространенный, легко угадываемый пароль." :
-                                       "Слабкий: Це поширений, легко вгадуваний пароль.";
-        passwordStrength.style.color = "#ff6b6b";
-      } else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-        passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Medium: Include uppercase, lowercase, and numbers." :
-                                       getCurrentLanguage() === 'es' ? "Medio: Incluya mayúsculas, minúsculas y números." :
-                                       getCurrentLanguage() === 'ru' ? "Средний: Включите прописные, строчные буквы и цифры." :
-                                       "Середній: Включіть великі, малі літери та цифри.";
-        passwordStrength.style.color = "#feca57";
-      } else {
-        passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Strong password!" :
-                                       getCurrentLanguage() === 'es' ? "¡Contraseña fuerte!" :
-                                       getCurrentLanguage() === 'ru' ? "Сильный пароль!" :
-                                       "Сильний пароль!";
-        passwordStrength.style.color = "#48dbfb";
-        isStrong = true;
-      }
-
-      nextButton.disabled = !isStrong;
-    }
-
-    function togglePasswordVisibility() {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.textContent = getCurrentLanguage() === 'en' ? "Hide Password" :
-                                     getCurrentLanguage() === 'es' ? "Ocultar Contraseña" :
-                                     getCurrentLanguage() === 'ru' ? "Скрыть Пароль" :
-                                     "Приховати Пароль";
-      } else {
-        passwordInput.type = "password";
-        togglePassword.textContent = getCurrentLanguage() === 'en' ? "Show Password" :
-                                     getCurrentLanguage() === 'es' ? "Mostrar Contraseña" :
-                                     getCurrentLanguage() === 'ru' ? "Показать Пароль" :
-                                     "Показати Пароль";
-      }
-    }
-
-    function showSection1() {
-      document.getElementById('section1').classList.remove('hidden');
-      document.getElementById('section2').classList.add('hidden');
-      document.getElementById('emailSection').classList.add('hidden');
-    }
-
-    function showSection2() {
-      document.getElementById('section1').classList.add('hidden');
-      document.getElementById('section2').classList.remove('hidden');
-      document.getElementById('emailSection').classList.add('hidden');
-    }
-
-    function generateLogin() {
-      const username = document.getElementById('username').value;
-      const password = passwordInput.value;
-      const firstName = document.getElementById('firstName').value;
-      const middleName = document.getElementById('middleName').value;
-      const lastName = document.getElementById('lastName').value;
-      const studentId = document.getElementById('studentId').value;
-      const schoolEmail = document.getElementById('schoolEmail').value;
-
-      if (!username || !password || !firstName || !lastName || !schoolEmail) {
-        alert(getCurrentLanguage() === 'en' ? 'Please fill in all required fields.' :
-              getCurrentLanguage() === 'es' ? 'Por favor, complete todos los campos obligatorios.' :
-              getCurrentLanguage() === 'ru' ? 'Пожалуйста, заполните все обязательные поля.' :
-              'Будь ласка, заповніть усі обов\'язкові поля.');
-        return;
-      }
-
-      if (password.length < 5) {
-        alert(getCurrentLanguage() === 'en' ? 'Password must be at least 5 characters long.' :
-              getCurrentLanguage() === 'es' ? 'La contraseña debe tener al menos 5 caracteres.' :
-              getCurrentLanguage() === 'ru' ? 'Пароль должен быть не менее 5 символов.' :
-              'Пароль повинен бути не менше 5 символів.');
-        return;
-      }
-
-      if (commonPasswords.includes(password.toLowerCase())) {
-        alert(getCurrentLanguage() === 'en' ? 'Please choose a stronger password. This one is too common and easily guessed.' :
-              getCurrentLanguage() === 'es' ? 'Por favor, elija una contraseña más fuerte. Esta es demasiado común y fácil de adivinar.' :
-              getCurrentLanguage() === 'ru' ? 'Пожалуйста, выберите более надежный пароль. Этот слишком распространен и легко угадывается.' :
-              'Будь ласка, виберіть більш надійний пароль. Цей занадто поширений і легко вгадується.');
-        return;
-      }
-
-      const loginData = {
-        username: username,
-        password: password,
-        firstName: firstName,
-        middleName: middleName,
-        lastName: lastName,
-        studentId: studentId,
-        schoolEmail: schoolEmail,
-        profilePicture: localStorage.getItem('profilePicture'),
-        schoolPhoto: localStorage.getItem('schoolPhoto')
-      };
-
-      console.log('Login data:', loginData);
-      generatePDFAndZip(loginData);
-    }
-
-    async function generatePDFAndZip(data) {
-      const doc = new jsPDF();
-      doc.setFontSize(16);
-      doc.text(getCurrentLanguage() === 'en' ? "Student Login Information" :
-               getCurrentLanguage() === 'es' ? "Información de Inicio de Sesión del Estudiante" :
-               getCurrentLanguage() === 'ru' ? "Информация о Входе Студента" :
-               "Інформація про Вхід Студента", 20, 20);
-      
-      doc.setFontSize(12);
-      doc.text(`${getCurrentLanguage() === 'en' ? "Username" :
-                getCurrentLanguage() === 'es' ? "Nombre de Usuario" :
-                getCurrentLanguage() === 'ru' ? "Имя пользователя" :
-                "Ім'я користувача"}: ${data.username}`, 20, 40);
-      doc.text(`${getCurrentLanguage() === 'en' ? "Password" :
-                getCurrentLanguage() === 'es' ? "Contraseña" :
-                getCurrentLanguage() === 'ru' ? "Пароль" :
-                "Пароль"}: ${data.password}`, 20, 50);
-      doc.text(`${getCurrentLanguage() === 'en' ? "First Name" :
-                getCurrentLanguage() === 'es' ? "Nombre" :
-                getCurrentLanguage() === 'ru' ? "Имя" :
-                "Ім'я"}: ${data.firstName}`, 20, 60);
-      doc.text(`${getCurrentLanguage() === 'en' ? "Middle Name" :
-                getCurrentLanguage() === 'es' ? "Segundo Nombre" :
-                getCurrentLanguage() === 'ru' ? "Отчество" :
-                "По батькові"}: ${data.middleName || 'N/A'}`, 20, 70);
-      doc.text(`${getCurrentLanguage() === 'en' ? "Last Name" :
-                getCurrentLanguage() === 'es' ? "Apellido" :
-                getCurrentLanguage() === 'ru' ? "Фамилия" :
-                "Прізвище"}: ${data.lastName}`, 20, 80);
-      doc.text(`${getCurrentLanguage() === 'en' ? "Student ID" :
-                getCurrentLanguage() === 'es' ? "ID de Estudiante" :
-                getCurrentLanguage() === 'ru' ? "ID Студента" :
-                "ID Студента"}: ${data.studentId || 'N/A'}`, 20, 90);
-      doc.text(`${getCurrentLanguage() === 'en' ? "School Email" :
-                getCurrentLanguage() === 'es' ? "Correo Escolar" :
-                getCurrentLanguage() === 'ru' ? "Школьная Почта" :
-                "Шкільна Пошта"}: ${data.schoolEmail}`, 20, 100);
-      
-      doc.text(getCurrentLanguage() === 'en' ? "This information is to make sure you are a student enrolled at Clackamas Highschool." :
-               getCurrentLanguage() === 'es' ? "Esta información es para asegurarnos de que eres un estudiante matriculado en Clackamas Highschool." :
-               getCurrentLanguage() === 'ru' ? "Эта информация нужна, чтобы убедиться, что вы являетесь учеником, зачисленным в Clackamas Highschool." :
-               "Ця інформація потрібна, щоб переконатися, що ви є учнем, зарахованим до Clackamas Highschool.", 20, 120);
-      doc.text(getCurrentLanguage() === 'en' ? "This doubles as an anti-ban evasion measure." :
-               getCurrentLanguage() === 'es' ? "Esto también sirve como medida anti-evasión de prohibiciones." :
-               getCurrentLanguage() === 'ru' ? "Это также служит мерой против обхода запретов." :
-               "Це також служить заходом проти обходу заборон.", 20, 130);
-      
-      if (data.profilePicture) {
-        doc.addImage(data.profilePicture, 'JPEG', 20, 150, 50, 50);
-        doc.text(getCurrentLanguage() === 'en' ? "Profile Picture" :
-                 getCurrentLanguage() === 'es' ? "Foto de Perfil" :
-                 getCurrentLanguage() === 'ru' ? "Фото Профиля" :
-                 "Фото Профілю", 20, 210);
-      }
-      
-      if (data.schoolPhoto) {
-        doc.addImage(data.schoolPhoto, 'JPEG', 100, 150, 50, 50);
-        doc.text(getCurrentLanguage() === 'en' ? "School Photo" :
-                 getCurrentLanguage() === 'es' ? "Foto Escolar" :
-                 getCurrentLanguage() === 'ru' ? "Школьное Фото" :
-                 "Шкільне Фото", 100, 210);
-      }
-      
-      const pdfName = `${data.lastName}_${data.firstName}_Login_Info.pdf`;
-      const pdfBlob = doc.output('blob');
-
-      const zip = new JSZip();
-      zip.file(pdfName, pdfBlob);
-
-      if (data.profilePicture) {
-        const profilePicBlob = await fetch(data.profilePicture).then(r => r.blob());
-        zip.file("profile_picture.jpg", profilePicBlob);
-      }
-
-      if (data.schoolPhoto) {
-        const schoolPhotoBlob = await fetch(data.schoolPhoto).then(r => r.blob());
-        zip.file("school_photo.jpg", schoolPhotoBlob);
-      }
-
-      zip.generateAsync({type:"blob"}).then(function(content) {
-        const zipFileName = `${data.lastName}_${data.firstName}_Login_Package.zip`;
-        saveAs(content, zipFileName);
-        
-        // Open email client
-        const subject = "Fracture login request";
-        const body = getCurrentLanguage() === 'en' ? `Please find attached the login request package for ${data.firstName} ${data.lastName}.` :
-                     getCurrentLanguage() === 'es' ? `Adjunto encontrará el paquete de solicitud de inicio de sesión para ${data.firstName} ${data.lastName}.` :
-                     getCurrentLanguage() === 'ru' ? `Пожалуйста, найдите прикрепленный пакет запроса на вход для ${data.firstName} ${data.lastName}.` :
-                     `Будь ласка, знайдіть прикріплений пакет запиту на вхід для ${data.firstName} ${data.lastName}.`;
-        const mailtoLink = `mailto:fracture.contact@aol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoLink;
-        
-        // Show email section
-        document.getElementById('section2').classList.add('hidden');
-        document.getElementById('emailSection').classList.remove('hidden');
-      });
-    }
-
-    function sendEmail() {
-      const firstName = document.getElementById('firstName').value;
-      const lastName = document.getElementById('lastName').value;
-      const subject = "Fracture login request";
-      const body = getCurrentLanguage() === 'en' ? `Please find attached the login request package for ${firstName} ${lastName}.` :
-                   getCurrentLanguage() === 'es' ? `Adjunto encontrará el paquete de solicitud de inicio de sesión para ${firstName} ${lastName}.` :
-                   getCurrentLanguage() === 'ru' ? `Пожалуйста, найдите прикрепленный пакет запроса на вход для ${firstName} ${lastName}.` :
-                   `Будь ласка, знайдіть прикріплений пакет запиту на вхід для ${firstName} ${lastName}.`;
-      const mailtoLink = `mailto:fracture.contact@aol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.open(mailtoLink, '_blank');
-    }
-
-    // Load saved data from localStorage
-    window.addEventListener('load', () => {
-      const savedFields = ['username', 'password', 'firstName', 'middleName', 'lastName', 'studentId', 'schoolEmail'];
-      savedFields.forEach(field => {
-        const value = localStorage.getItem(field);
-        if (value) document.getElementById(field).value = value;
-      });
-
-      const profilePicture = localStorage.getItem('profilePicture');
-      if (profilePicture) {
-        document.getElementById('profilePicture').innerHTML = `<img src="${profilePicture}" alt="Profile picture">`;
-      }
-
-      const schoolPhoto = localStorage.getItem('schoolPhoto');
-      if (schoolPhoto) {
-        document.getElementById('schoolPhoto').innerHTML = `<img src="${schoolPhoto}" alt="School photo">`;
-      }
-
-      checkPasswordStrength();
-    });
-
-    // Save data to localStorage on input change
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', () => {
-        localStorage.setItem(input.id, input.value);
-      });
-    });
-
-    function getCurrentLanguage() {
-      return localStorage.getItem('language') || 'en';
-    }
-
-    function changeLanguage(lang) {
-      localStorage.setItem('language', lang);
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-        if (el.tagName === 'INPUT') {
-          el.placeholder = el.getAttribute(`data-${lang}`);
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+      const { jsPDF } = window.jspdf;
+  
+      const profilePicture = document.getElementById('profilePicture');
+      const schoolPhoto = document.getElementById('schoolPhoto');
+      const uploadProfileButton = document.getElementById('uploadProfileButton');
+      const uploadSchoolPhotoButton = document.getElementById('uploadSchoolPhotoButton');
+      const profileFileInput = document.createElement('input');
+      profileFileInput.type = 'file';
+      profileFileInput.accept = 'image/*';
+      const schoolPhotoInput = document.createElement('input');
+      schoolPhotoInput.type = 'file';
+      schoolPhotoInput.accept = 'image/*';
+  
+      uploadProfileButton.addEventListener('click', () => profileFileInput.click());
+      uploadSchoolPhotoButton.addEventListener('click', () => schoolPhotoInput.click());
+  
+      profileFileInput.addEventListener('change', (e) => handleImageUpload(e, profilePicture, 'profilePicture'));
+      schoolPhotoInput.addEventListener('change', (e) => handleImageUpload(e, schoolPhoto, 'schoolPhoto'));
+  
+      function handleImageUpload(e, imgContainer, storageKey) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            imgContainer.innerHTML = `<img src="${e.target.result}" alt="${storageKey === 'profilePicture' ? 'Profile picture' : 'School photo'}">`;
+            localStorage.setItem(storageKey, e.target.result);
+          };
+          reader.readAsDataURL(file);
         }
+      }
+  
+      const commonPasswords = [
+        "123456", "password", "12345678", "qwerty", "123456789", "12345", "1234", "111111", "1234567", "dragon",
+        "123123", "baseball", "abc123", "football", "monkey", "letmein", "696969", "shadow", "master", "666666",
+        "qwertyuiop", "123321", "mustang", "1234567890", "michael", "654321", "pussy", "superman", "1qaz2wsx",
+        "7777777", "fuckyou", "121212", "000000", "qazwsx", "123qwe", "killer", "trustno1", "jordan", "jennifer",
+        "zxcvbnm", "asdfgh", "hunter", "buster", "soccer", "harley", "batman", "andrew", "tigger", "sunshine",
+        "iloveyou", "fuckme", "2000", "charlie", "robert", "thomas", "hockey", "ranger", "daniel", "starwars",
+        "klaster", "112233", "george", "asshole", "computer", "michelle", "jessica", "pepper", "1111", "zxcvbn",
+        "555555", "11111111", "131313", "freedom", "777777", "pass", "fuck", "maggie", "159753", "aaaaaa", "ginger",
+        "princess", "joshua", "cheese", "amanda", "summer", "love", "ashley", "6969", "nicole", "chelsea", "biteme",
+        "matthew", "access", "yankees", "987654321", "dallas", "austin", "thunder", "taylor", "matrix"
+      ];
+  
+      const passwordInput = document.getElementById('password');
+      const passwordStrength = document.getElementById('passwordStrength');
+      const togglePassword = document.getElementById('togglePassword');
+      const nextButton = document.getElementById('nextButton');
+  
+      passwordInput.addEventListener('input', checkPasswordStrength);
+      togglePassword.addEventListener('click', togglePasswordVisibility);
+  
+      function checkPasswordStrength() {
+        const password = passwordInput.value;
+        let isStrong = false;
+  
+        if (password.length < 5) {
+          passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Too short: Password should be at least 5 characters long." :
+                                         getCurrentLanguage() === 'es' ? "Muy corta: La contraseña debe tener al menos 5 caracteres." :
+                                         getCurrentLanguage() === 'ru' ? "Слишком короткий: Пароль должен быть не менее 5 символов." :
+                                         "Занадто короткий: Пароль повинен бути не менше 5 символів.";
+          passwordStrength.style.color = "#ff6b6b";
+        } else if (commonPasswords.includes(password.toLowerCase())) {
+          passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Weak: This is a common, easily guessed password." :
+                                         getCurrentLanguage() === 'es' ? "Débil: Esta es una contraseña común y fácil de adivinar." :
+                                         getCurrentLanguage() === 'ru' ? "Слабый: Это распространенный, легко угадываемый пароль." :
+                                         "Слабкий: Це поширений, легко вгадуваний пароль.";
+          passwordStrength.style.color = "#ff6b6b";
+        } else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+          passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Medium: Include uppercase, lowercase, and numbers." :
+                                         getCurrentLanguage() === 'es' ? "Medio: Incluya mayúsculas, minúsculas y números." :
+                                         getCurrentLanguage() === 'ru' ? "Средний: Включите прописные, строчные буквы и цифры." :
+                                         "Середній: Включіть великі, малі літери та цифри.";
+          passwordStrength.style.color = "#feca57";
+        } else {
+          passwordStrength.textContent = getCurrentLanguage() === 'en' ? "Strong password!" :
+                                         getCurrentLanguage() === 'es' ? "¡Contraseña fuerte!" :
+                                         getCurrentLanguage() === 'ru' ? "Сильный пароль!" :
+                                         "Сильний пароль!";
+          passwordStrength.style.color = "#48dbfb";
+          isStrong = true;
+        }
+  
+        nextButton.disabled = !isStrong;
+      }
+  
+      function togglePasswordVisibility() {
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          togglePassword.textContent = getCurrentLanguage() === 'en' ? "Hide Password" :
+                                       getCurrentLanguage() === 'es' ? "Ocultar Contraseña" :
+                                       getCurrentLanguage() === 'ru' ? "Скрыть Пароль" :
+                                       "Приховати Пароль";
+        } else {
+          passwordInput.type = "password";
+          togglePassword.textContent = getCurrentLanguage() === 'en' ? "Show Password" :
+                                       getCurrentLanguage() === 'es' ? "Mostrar Contraseña" :
+                                       getCurrentLanguage() === 'ru' ? "Показать Пароль" :
+                                       "Показати Пароль";
+        }
+      }
+  
+      function showSection1() {
+        document.getElementById('section1').classList.remove('hidden');
+        document.getElementById('section2').classList.add('hidden');
+        document.getElementById('emailSection').classList.add('hidden');
+      }
+  
+      function showSection2() {
+        document.getElementById('section1').classList.add('hidden');
+        document.getElementById('section2').classList.remove('hidden');
+        document.getElementById('emailSection').classList.add('hidden');
+      }
+  
+      function generateLogin() {
+        const username = document.getElementById('username').value;
+        const password = passwordInput.value;
+        const firstName = document.getElementById('firstName').value;
+        const middleName = document.getElementById('middleName').value;
+        const lastName = document.getElementById('lastName').value;
+        const studentId = document.getElementById('studentId').value;
+        const schoolEmail = document.getElementById('schoolEmail').value;
+  
+        if (!username || !password || !firstName || !lastName || !schoolEmail) {
+          alert(getCurrentLanguage() === 'en' ? 'Please fill in all required fields.' :
+                getCurrentLanguage() === 'es' ? 'Por favor, complete todos los campos obligatorios.' :
+                getCurrentLanguage() === 'ru' ? 'Пожалуйста, заполните все обязательные поля.' :
+                'Будь ласка, заповніть усі обов\'язкові поля.');
+          return;
+        }
+  
+        if (password.length < 5) {
+          alert(getCurrentLanguage() === 'en' ? 'Password must be at least 5 characters long.' :
+                getCurrentLanguage() === 'es' ? 'La contraseña debe tener al menos 5 caracteres.' :
+                getCurrentLanguage() === 'ru' ? 'Пароль должен быть не менее 5 символов.' :
+                'Пароль повинен бути не менше 5 символів.');
+          return;
+        }
+  
+        if (commonPasswords.includes(password.toLowerCase())) {
+          alert(getCurrentLanguage() === 'en' ? 'Please choose a stronger password. This one is too common and easily guessed.' :
+                getCurrentLanguage() === 'es' ? 'Por favor, elija una contraseña más fuerte. Esta es demasiado común y fácil de adivinar.' :
+                getCurrentLanguage() === 'ru' ? 'Пожалуйста, выберите более надежный пароль. Этот слишком распространен и легко угадывается.' :
+                'Будь ласка, виберіть більш надійний пароль. Цей занадто поширений і легко вгадується.');
+          return;
+        }
+  
+        const loginData = {
+          username: username,
+          password: password,
+          firstName: firstName,
+          middleName: middleName,
+          lastName: lastName,
+          studentId: studentId,
+          schoolEmail: schoolEmail,
+          profilePicture: localStorage.getItem('profilePicture'),
+          schoolPhoto: localStorage.getItem('schoolPhoto')
+        };
+  
+        console.log('Login data:', loginData);
+        generatePDFAndZip(loginData);
+      }
+  
+      async function generatePDFAndZip(data) {
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text(getCurrentLanguage() === 'en' ? "Student Login Information" :
+                 getCurrentLanguage() === 'es' ? "Información de Inicio de Sesión del Estudiante" :
+                 getCurrentLanguage() === 'ru' ? "Информация о Входе Студента" :
+                 "Інформація про Вхід Студента", 20, 20);
+        
+        doc.setFontSize(12);
+        doc.text(`${getCurrentLanguage() === 'en' ? "Username" :
+                  getCurrentLanguage() === 'es' ? "Nombre de Usuario" :
+                  getCurrentLanguage() === 'ru' ? "Имя пользователя" :
+                  "Ім'я користувача"}: ${data.username}`, 20, 40);
+        doc.text(`${getCurrentLanguage() === 'en' ? "Password" :
+                  getCurrentLanguage() === 'es' ? "Contraseña" :
+                  getCurrentLanguage() === 'ru' ? "Пароль" :
+                  "Пароль"}: ${data.password}`, 20, 50);
+        doc.text(`${getCurrentLanguage() === 'en' ? "First Name" :
+                  getCurrentLanguage() === 'es' ? "Nombre" :
+                  getCurrentLanguage() === 'ru' ? "Имя" :
+                  "Ім'я"}: ${data.firstName}`, 20, 60);
+        doc.text(`${getCurrentLanguage() === 'en' ? "Middle Name" :
+                  getCurrentLanguage() === 'es' ? "Segundo Nombre" :
+                  getCurrentLanguage() === 'ru' ? "Отчество" :
+                  "По батькові"}: ${data.middleName || 'N/A'}`, 20, 70);
+        doc.text(`${getCurrentLanguage() === 'en' ? "Last Name" :
+                  getCurrentLanguage() === 'es' ? "Apellido" :
+                  getCurrentLanguage() === 'ru' ? "Фамилия" :
+                  "Прізвище"}: ${data.lastName}`, 20, 80);
+        doc.text(`${getCurrentLanguage() === 'en' ? "Student ID" :
+                  getCurrentLanguage() === 'es' ? "ID de Estudiante" :
+                  getCurrentLanguage() === 'ru' ? "ID Студента" :
+                  "ID Студента"}: ${data.studentId || 'N/A'}`, 20, 90);
+        doc.text(`${getCurrentLanguage() === 'en' ? "School Email" :
+                  getCurrentLanguage() === 'es' ? "Correo Escolar" :
+                  getCurrentLanguage() === 'ru' ? "Школьная Почта" :
+                  "Шкільна Пошта"}: ${data.schoolEmail}`, 20, 100);
+        
+        doc.text(getCurrentLanguage() === 'en' ? "This information is to make sure you are a student enrolled at Clackamas Highschool." :
+                 getCurrentLanguage() === 'es' ? "Esta información es para asegurarnos de que eres un estudiante matriculado en Clackamas Highschool." :
+                 getCurrentLanguage() === 'ru' ? "Эта информация нужна, чтобы убедиться, что вы являетесь учеником, зачисленным в Clackamas Highschool." :
+                 "Ця інформація потрібна, щоб переконатися, що ви є учнем, зарахованим до Clackamas Highschool.", 20, 120);
+        doc.text(getCurrentLanguage() === 'en' ? "This doubles as an anti-ban evasion measure." :
+                 getCurrentLanguage() === 'es' ? "Esto también sirve como medida anti-evasión de prohibiciones." :
+                 getCurrentLanguage() === 'ru' ? "Это также служит мерой против обхода запретов." :
+                 "Це також служить заходом проти обходу заборон.", 20, 130);
+        
+        if (data.profilePicture) {
+          doc.addImage(data.profilePicture, 'JPEG', 20, 150, 50, 50);
+          doc.text(getCurrentLanguage() === 'en' ? "Profile Picture" :
+                   getCurrentLanguage() === 'es' ? "Foto de Perfil" :
+                   getCurrentLanguage() === 'ru' ? "Фото Профиля" :
+                   "Фото Профілю", 20, 210);
+        }
+        
+        if (data.schoolPhoto) {
+          doc.addImage(data.schoolPhoto, 'JPEG', 100, 150, 50, 50);
+          doc.text(getCurrentLanguage() === 'en' ? "School Photo" :
+                   getCurrentLanguage() === 'es' ? "Foto Escolar" :
+                   getCurrentLanguage() === 'ru' ? "Школьное Фото" :
+                   "Шкільне Фото", 100, 210);
+        }
+        
+        const pdfName = `${data.lastName}_${data.firstName}_Login_Info.pdf`;
+        const pdfBlob = doc.output('blob');
+  
+        const zip = new JSZip();
+        zip.file(pdfName, pdfBlob);
+  
+        if (data.profilePicture) {
+          const profilePicBlob = await fetch(data.profilePicture).then(r => r.blob());
+          zip.file("profile_picture.jpg", profilePicBlob);
+        }
+  
+        if (data.schoolPhoto) {
+          const schoolPhotoBlob = await fetch(data.schoolPhoto).then(r => r.blob());
+          zip.file("school_photo.jpg", schoolPhotoBlob);
+        }
+  
+        zip.generateAsync({type:"blob"}).then(function(content) {
+          const zipFileName = `${data.lastName}_${data.firstName}_Login_Package.zip`;
+          saveAs(content, zipFileName);
+          
+          // Open email client
+          const subject = "Fracture login request";
+          const body = getCurrentLanguage() === 'en' ? `Please find attached the login request package for ${data.firstName} ${data.lastName}.` :
+                       getCurrentLanguage() === 'es' ? `Adjunto encontrará el paquete de solicitud de inicio de sesión para ${data.firstName} ${data.lastName}.` :
+                       getCurrentLanguage() === 'ru' ? `Пожалуйста, найдите прикрепленный пакет запроса на вход для ${data.firstName} ${data.lastName}.` :
+                       `Будь ласка, знайдіть прикріплений пакет запиту на вхід для ${data.firstName} ${data.lastName}.`;
+          const mailtoLink = `mailto:fracture.contact@aol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Show email section
+          document.getElementById('section2').classList.add('hidden');
+          document.getElementById('emailSection').classList.remove('hidden');
+        });
+      }
+  
+      function sendEmail() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const subject = "Fracture login request";
+        const body = getCurrentLanguage() === 'en' ? `Please find attached the login request package for ${firstName} ${lastName}.` :
+                     getCurrentLanguage() === 'es' ? `Adjunto encontrará el paquete de solicitud de inicio de sesión para ${firstName} ${lastName}.` :
+                     getCurrentLanguage() === 'ru' ? `Пожалуйста, найдите прикрепленный пакет запроса на вход для ${firstName} ${lastName}.` :
+                     `Будь ласка, знайдіть прикріплений пакет запиту на вхід для ${firstName} ${lastName}.`;
+        const mailtoLink = `mailto:fracture.contact@aol.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoLink, '_blank');
+      }
+  
+      // Load saved data from localStorage
+      window.addEventListener('load', () => {
+        const savedFields = ['username', 'password', 'firstName', 'middleName', 'lastName', 'studentId', 'schoolEmail'];
+        savedFields.forEach(field => {
+          const value = localStorage.getItem(field);
+          if (value) document.getElementById(field).value = value;
+        });
+  
+        const profilePicture = localStorage.getItem('profilePicture');
+        if (profilePicture) {
+          document.getElementById('profilePicture').innerHTML = `<img src="${profilePicture}" alt="Profile picture">`;
+        }
+  
+        const schoolPhoto = localStorage.getItem('schoolPhoto');
+        if (schoolPhoto) {
+          document.getElementById('schoolPhoto').innerHTML = `<img src="${schoolPhoto}" alt="School photo">`;
+        }
+  
+        checkPasswordStrength();
       });
-      checkPasswordStrength();
-    }
-
-    // Initial language setup
-    changeLanguage(getCurrentLanguage());
-  </script>
-</body>
-</html>
+  
+      // Save data to localStorage on input change
+      document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+          localStorage.setItem(input.id, input.value);
+        });
+      });
+  
+      function getCurrentLanguage() {
+        return localStorage.getItem('language') || 'en';
+      }
+  
+      function changeLanguage(lang) {
+        localStorage.setItem('language', lang);
+        document.querySelectorAll('[data-en]').forEach(el => {
+          el.textContent = el.getAttribute(`data-${lang}`);
+          if (el.tagName === 'INPUT') {
+            el.placeholder = el.getAttribute(`data-${lang}`);
+          }
+        });
+        checkPasswordStrength();
+      }
+  
+      // Initial language setup
+      changeLanguage(getCurrentLanguage());
+    </script>
+  </body>
+  </html>

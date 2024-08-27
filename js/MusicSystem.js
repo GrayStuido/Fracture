@@ -18,6 +18,7 @@ const musicFiles = [
     'Wii-Shop-Channel.mp3',
     'Swim_Free.mp3',
     'Bad_Piggies.mp3',
+    'Weird-Al-Hardware-Store.mp3',
     'skrillex.mp3'
 ];
 

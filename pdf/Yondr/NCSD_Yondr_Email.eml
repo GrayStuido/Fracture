@@ -1,0 +1,2089 @@
+Delivered-To: jusinoj08@gmail.com
+Received: by 2002:a17:906:5799:b0:a80:eb49:114a with SMTP id k25csp49834ejq;
+        Tue, 20 Aug 2024 16:23:28 -0700 (PDT)
+X-Received: by 2002:a05:6870:a11a:b0:270:2ceb:f212 with SMTP id 586e51a60fabf-2737ef51b02mr451810fac.29.1724196208616;
+        Tue, 20 Aug 2024 16:23:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1724196208; cv=none;
+        d=google.com; s=arc-20160816;
+        b=FTwXWbks4tiXJMQa5rfB3KAsS0bFLrnGXAy3hVa+FPcSz4CxtygJ7R+VeLsnyjqMx/
+         Ap91E29/ilEKJwBDiN+fPCMDiN3hJHASC+kzL38NVIWabLWAv/F17X+M7DFrUrOZ6Ofl
+         jm9FEkHs7fMUukbQQl0CqSel7uH9cCy22B4hWAXx1joDHV3VjfBJv7yY+ypga0Zv9i0t
+         9Qu5PYFm4XyB8Rc5cfk9HFxduKWkcU9IL/NudASN38jq2x+godlQh68jiQKD2JYRZQkm
+         ubYh0SNA94FazDYw1vWLAerWxZ3xcysbcmjRtZum11WS9OcQvtXPEZ3RyJZyCeOVptOH
+         +0Hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=mc8ttvAcfs241i6bcv7s0cJ/CL+rIoP5csZ9f6tM+gY=;
+        fh=wYDYpqIaw1UBd3qsXEEIplTBMp9Iz8Z/27CkZYv7HMM=;
+        b=ciK9O6C1ZxcFfTSqpO9ctjCMmhHnqp3wkKvyG+fW/QVsAEBsCFztuul3arFxHWRtI5
+         LzR34uAg84XiG0OiLMHTQEXLt9lYoQNoG6TWgFN73DPRVCCAP6w+id2Nrh58eOcKZ/9D
+         qp207soKtEY02P4xHkvIIFRLxszmmYmHabNEcyXuemtrsFbqEJlWsGwlJwjrqCN6Qmoh
+         WH7141GZ7UukvoGGYfUpUOvQR+iJSJREAbOpEfMWdfj6k9NMGywAmY/kbt89V/IS5Mh0
+         jLt6oRziwG/29u08iDM5VwL6uoVYTMjcSleYPUI8LT8rgjs6GmKhJljfciqKm7EYDjKf
+         ZXLQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vo+vcyBg;
+       spf=pass (google.com: domain of kjusino58@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=kjusino58@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <kjusino58@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 586e51a60fabf-270140dcf0dsor4625912fac.19.2024.08.20.16.23.28
+        for <jusinoj08@gmail.com>
+        (Google Transport Security);
+        Tue, 20 Aug 2024 16:23:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of kjusino58@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vo+vcyBg;
+       spf=pass (google.com: domain of kjusino58@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=kjusino58@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724196207; x=1724801007; dara=google.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mc8ttvAcfs241i6bcv7s0cJ/CL+rIoP5csZ9f6tM+gY=;
+        b=Vo+vcyBguBC+z/c6e8Lxk5YvY+r5grHrkWg020P+58bCvnt9cu5x+iGSDg4dRDV20m
+         R5WCy+F+kqtNM04Xt+MycBA+vov+xzfkeDtVvbp42tIdgaxa30moH0e6V/f4w10FRNm6
+         4Zru1w4Rq67Kk8fKuN2Vr42sktu+i9Xos7ICeB8FBN3jloy+HCAbNXFWu6uTTNR13SwK
+         RQttjxarj/vsnbZNedNXh1j7nP7OJ86XlUqVHEJTjvzjhQst8JGi4jT8M3ZdhVacdV/O
+         urAljDom7x1v+Y9Ih27B1ze5A0J3Zgc+YfPNUC/SMNX1wYRRPgV5gttzmoFXAEfVl82v
+         pK0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724196207; x=1724801007;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mc8ttvAcfs241i6bcv7s0cJ/CL+rIoP5csZ9f6tM+gY=;
+        b=sfAdaA/1mnD5DI24NGe4dyWSlNs+C9Gq6omXZfn22X3fqU9cQCIaaQ8jt/FrgkD3ab
+         c2o7KLK4ocj5neO19UC2Vsn3pk4EhJcjcS+x4mUAk+A2pkStJ1769AkrXnpYMoJbUcNT
+         e4a+/8IF/yDvpdEbw4h2LdESsJ0zadw0N/ORnGrzXNbhLxFKktuFxkSgVEsdh7mIzxyw
+         ponjQUsOyK1BGgKpv2Mz8TIbge5sUx1z2kyWGO9TmkOPV97WBUNNQCIG5trK1kSDPKHy
+         +v6zM/biNEReFWop+U1VTzbga8IfBqONOtM7PLU/Ipd4jINxnnADlCjD5HjT8aJDnocU
+         vokA==
+X-Gm-Message-State: AOJu0YxBRS8xoW1+zutGp7Xd1PUxzKgGiGSJ7DD1qqpYXc6bP0+38/I6
+	jdKYHSW7EPmnW/VGfby/QpwWyS64JqWaEPCQH0GJBpwSvDHIvuwEGKz++3SOjqj0RJuL+T/8zCZ
+	JFL69+BtBz2emPrb9AZzHI9PG+52GAg==
+X-Google-Smtp-Source: AGHT+IFJ+2tOWV21l6kYY4wlotbEmQ7gSthMsxhTleArjjr64XYzXDySIu+FS8/jKi4sAaRcZuMZ9pFHKiQ9rtYOYVI=
+X-Received: by 2002:a05:6870:e0d2:b0:261:1f7d:cf6e with SMTP id
+ 586e51a60fabf-2738be74af7mr525111fac.41.1724196207077; Tue, 20 Aug 2024
+ 16:23:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <66c4f20365a5a_e6f479b4421586@ip-10-3-12-13.us-east-1.compute.internal.mail>
+In-Reply-To: <66c4f20365a5a_e6f479b4421586@ip-10-3-12-13.us-east-1.compute.internal.mail>
+From: Kelley Jusino <kjusino58@gmail.com>
+Date: Tue, 20 Aug 2024 16:23:15 -0700
+Message-ID: <CAB1=zu=ZtLTS3fZU=A=2GYep2dwfAWrZqVQVEbWBT3AN4WYiTA@mail.gmail.com>
+Subject: Fwd: Supporting Student Wellness: Creating Phone-Free Spaces
+To: jusinoj08@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000007231a7062025b670"
+
+--0000000000007231a7062025b670
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+From: North Clackamas Schools via ParentSquare <
+donotreply+e3ffdcef-5faf-4f88-bf05-11923ab31d0c@parentsquare.com>
+Date: Tue, Aug 20, 2024, 12:44=E2=80=AFPM
+Subject: Supporting Student Wellness: Creating Phone-Free Spaces
+To: <kjusino58@gmail.com>
+
+
+[image: North Clackamas Schools] North Clackamas Schools
+
+
+
+North Clackamas Schools posted in North Clackamas Schools
+
+
+
+Supporting Student Wellness: Creating Phone-Free Spaces
+
+
+Supporting Student Wellness: Creating Phone-Free Spaces
+
+North Clackamas Schools aims to ensure that every student learns in a safe
+and distraction-free space. To help create this kind of environment, NCSD
+sought the perspective of students, staff and community members. Through
+this engagement, we understand the importance phones play in young people's
+lives and with families in our community. Students and parents surfaced the
+impact of phones in a learning environment like school.
+
+While NCSD has had years of implementing =E2=80=9Coff and away=E2=80=9D pho=
+ne environments,
+NCSD is committed to a phone-free learning environment. To help support
+this phone free commitment, starting in September 2024, students at all
+middle and high schools in NCSD must keep their phones, smartwatches, and
+earbuds in a special pouch provided by the school if they decide to bring
+them to school.
+
+The pouch has a magnetic lock that can only be opened with a unique key.
+Each student will get their own pouch at the start of the school year and
+will keep their devices in this locked pouch for the duration of the school
+day.
+[image: alt_text]
+
+
+
+
+
+*What Can Students Expect?*
+
+When students arrive at school, they turn off, or silence their devices and
+put them in their pouch. The pouch is then locked, and students can carry
+it with them throughout the day. At the end of the day, students can unlock
+their pouches at specific locations in the school.
+
+If a student has a medical condition requiring them to use their phone,
+like checking blood sugar, schools will work with families to accommodate
+the needs of their student.
+[image: alt_text]
+
+[image: alt_text]
+
+*What About During a Safety Event?*
+
+We carefully reviewed what to do in safety situations before recommending
+the use of pouches knowing safety is our top priority.
+
+We learned from safety experts that allowing students to use their phones
+during emergencies can make things less safe. Experts, including those from
+the National School Safety and Security Services, found that students often
+get distracted when using their phones during emergencies. Instead of
+following safety instructions from adults, they might try to make calls,
+send texts, or check social media, which can put students in additional
+danger.
+
+Once students are safe and the situation is under control, pouches can be
+opened so students can contact their families. The district has several
+handheld devices that can unlock the pouches anywhere in the school if
+needed during an emergency. In addition, the pouches don=E2=80=99t block ce=
+ll
+signals, and parents can still track their child=E2=80=99s location using s=
+ervices
+like Find My iPhone, FamilyLink, or Findmykids.
+
+Please check our FAQ section below for more details about how students can
+access their phones in emergencies.
+
+To conclude, know that this work is only starting and we will be surveying
+students, families, and staff to understand the impact of this change.  We
+are confident that creating phone free spaces will positively contribute to
+the wellbeing of students mental and emotional health as well as a
+distraction free environment.
+
+We are looking forward to partnering on this journey with you.
+
+
+
+
+*Resources For Families & Community*
+
+https://www.anxiousgeneration.com/resources
+<https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzcH-2=
+BzcLTPJcqzDEASlywyYyyrosJXJUELL6jMMzs1vVAnbE4olTSw5CwLKvOQDknNqV-2FuSqfenck=
+Q-3D-3DvlAD_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-=
+2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBavM=
+c8kLTcQdT-2FOfzY6BjumSV3iwmIi14Ffp-2Flur-2Bg5048fKnH5CUqmp5IXFqz5NG8CD7JX7J=
+1kKs5PllHD4pG-2B-2BR-2Fy0WBtrHn6RCw9vV91s762FpVhojdCfg2DP1XE3HO>
+[image: alt_text]
+
+
+*Pouches Frequently Asked Questions*
+
+   -
+
+   *What is a pouch?*
+   -
+
+      NCSD has partnered with YONDR for student pouches.  The Yondr pouch
+      is a secure bag that is used to store an individual=E2=80=99s mobile =
+device or
+      devices. It is secured and unlocked with a special locking device.
+      -
+
+   *How does it work?*
+   -
+
+      As students enter school, they place their phone, smartwatch, etc. in
+      their assigned pouch.
+      -
+
+      Students close and secure their pouch manually and keep it with them
+      throughout the day.
+      -
+
+      When leaving school, students tap their pouch on a base unit to
+      unlock it and have access to their devices. After emptying their pouc=
+h at
+      the end of the day we recommend locking it again to avoid having
+something
+      locked in the pouch while at home.
+      -
+
+      More information on how it works
+      <https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFW=
+AzcH-2BzcLTPJcqy43L5IO5T-2Btg91Eef8Sb0qSTgRAOVxl7KBg8SDW-2BcwK2Hos6-2Fp3g-2=
+BcampNsM6mB1w-3D-3D3G4i_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2=
+BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T=
+0Cj1BpJIBaG1fxu31Nis2Io8USgwan3-2BoX-2B7RGeI2xW9S2bykvq1sjYhFKtJ5aqOS2AW9Gq=
+nedgoixH1RvCffdnsfPF9fhJ369E9H3q3gntdN3sx4FcaJFJbShis1jScptkOxApScW>
+      -
+
+   *Why is North Clackamas introducing Yondr pouches?*
+   -
+
+      NCSD is committed to student wellness and success. Recent surveys
+      from our North Clackamas students indicate that cell phone use negati=
+vely
+      impacts grades, relationships, and mental health.
+      -
+
+         86% of NCSD students report using phones during class.
+         -
+
+         36% of NCSD students report being distracted by other students=E2=
+=80=99
+         use of phones.
+         -
+
+         49% of NCSD students report cell phones have negatively impacted
+         their grades.
+         -
+
+         47% of NCSD students report cell phones have negatively impacted
+         their mental health.
+         -
+
+         24% and 23% of NCSD students report cell phones have negatively
+         impacted their relationships with family and friends respectively.
+         -
+
+   *Why can=E2=80=99t the school just implement a zero-tolerance policy and=
+ allow
+   students to keep their phones put away?*
+   -
+
+      NCSD has tried this approach. Research shows that it has been
+      ineffective nationwide, as it has also been in our district. There is=
+ an
+      unneeded relationship strain between the adults who are trying to fol=
+low
+      the rules and the students who are trying to get to their devices. Is=
+sues
+      of addiction play into this dynamic. The pouches will reinforce
+the policy
+      and support students in managing the temptation of having
+students and all
+      of their friends have access to their devices during the school day.
+      Furthermore, the pouches will contribute to a sense of community in w=
+hich
+      all students will experience the same environment while also
+learning about
+      the balance of phone use and their wellbeing.
+      -
+
+   *How will students receive a Yondr pouch?*
+   -
+
+      During the first week of school, on Friday, September 6th, students
+      will receive a pouch during one of their classes along with a
+lesson about
+      why and how to use the pouch. The pouch is property of the school.
+      -
+
+   *How will the process work at arrival and dismissal?*
+   -
+
+      Upon entering school students will place their phone, smart watch,
+      and other phone-like devices in the pouch. When leaving the
+building at the
+      end of the day there will be unlocking stations set out throughout ea=
+ch
+      school=E2=80=99s campus.
+      -
+
+   *Will my student=E2=80=99s phone be safe?*
+   -
+
+      Just like current practice, students keep their phone with them
+      during the day.
+      -
+
+   *W**hat if a student needs to leave the building before dismissal?*
+   -
+
+      We will have unlocking stations in the office for students that have
+      verified absences or verified early releases.
+      -
+
+   *What if a parent/guardian wants to reach their child during the school
+   day?*
+   -
+
+      All students have access to chromebooks with email. One option is to
+      plan ahead by giving timely check-ins such as updating after
+school plans.
+      A guardian may say =E2=80=9Ccheck your email by 2:00pm and confirm yo=
+u got it by
+      emailing back.=E2=80=9D Students and parents can email one another
+during the day.
+      For emergency and timely issues parents can call the office and we ca=
+n
+      deliver messages or bring students to the office for any communicatio=
+n
+      needs.
+      -
+
+   *What if there is a school emergency?*
+   -
+
+      School safety experts share that students having access to cell
+      phones during school emergencies can negatively impact student
+safety for a
+      variety of reasons. For example:
+      -
+
+         Student use of cell phones during an emergency can distract their
+         attention from the critical safety and emergency directions
+given by staff.
+         -
+
+         Cell phone use by students during an emergency often results in
+         inaccurate or incomplete information and, in doing so, may disrupt=
+ and
+         delay effective public safety response.
+         -
+
+         Cell phone use by students can impede site safety by accelerating
+         parental and community arrival at the scene of an emergency
+during times
+         when officials may be attempting to evacuate students to another s=
+ite.
+         -
+
+         Student cell phone use during an emergency may overload cell tower
+         capacity, limiting critical school and first responder communicati=
+on.
+         -
+
+      Once students are safe, if necessary, pouches can be unlocked via
+      multiple handheld unlocking devices, so students can contact family
+      members. In cases of immediate crisis, pouches can be unlocked
+by any means
+      necessary.
+      -
+
+      Communication with parents will continue to occur through the
+      district=E2=80=99s mass notification and communication tools.
+      -
+
+   *What if a student has their phone out of their pouch?*
+   -
+
+      The pouch is property of the school. If a student is caught on their
+      phone, the school will take the following actions
+      -
+
+         First Incident: Schools will document the offense and ask the
+         student to solve the issue (in most cases this means put the
+phone in the
+         pouch)
+         -
+
+         Second Incident: Schools will reteach the =E2=80=9CWhy=E2=80=9D be=
+hind the
+         expectations, collect the phone in the office, and notify
+guardian(s). The
+         phone will be given back at the end of the day.
+         -
+
+         Third Incident: Schools will reteach the Why, collect the phone
+         and issue the phone back to the guardian(s), not the student.
+         -
+
+         Fourth Incident: Schools will meet with the student and
+         guardian(s) to construct a plan tailored to meet the needs of
+the student.
+         -
+
+   *What happens if a pouch is damaged?*
+   -
+
+      For pouches that are damaged, replacement pouches can be made
+      available. For excessive damage due to inappropriate use or
+vandalism (such
+      as cutting, ripping, or puncturing the pouch), incidents will be
+handled on
+      a case-by-case basis.
+      -
+
+   *What happens if a student doesn't have their pouch?*
+   -
+
+      Phones will be held in the office for students that don=E2=80=99t bri=
+ng their
+      pouch. We will have locked cabinets for students.
+      -
+
+   *What if a student needs their personal device for a medical issue?*
+   -
+
+      Students with notes from their medical professionals can be issued a
+      medical device bag which can ensure access to their phone is more rea=
+dily
+      available than the normal pouches. Like all medical protocols,
+we will work
+      with students and families to ensure medical needs are taken care of.
+      -
+
+   *W**ill students still be able to listen to music?*
+   -
+
+      Chromebooks have access to music with wired headsets. Bluetooth
+      devices should be held in the pouch and not be out. When it is
+appropriate,
+      students can still have access to music.
+      -
+
+   *What happens if a student forgets to unlock their pouch before leaving
+   the building?*
+   -
+
+      Schools have many after school programs and athletic events. Students
+      are welcome to return if the building is open to unlock their device.
+      -
+
+   *Can teachers have students use their personal devices for instructional
+   purposes?*
+   -
+
+      NCSD has issued chromebooks to every student taking the educational
+      need for phones away. Most academic benefits that come from
+phones are also
+      available on the district issued chromebooks.
+      -
+
+   *Do the pouches block cell signals or the internet?*
+   -
+
+      Pouches still allow for cell service. We know many families use
+      tracking devices to ensure the location of their students. This
+will still
+      be available even when the phone is in the pouch.
+      -
+
+   *How will this be enforced during school trips or other off-campus
+   activities?*
+   -
+
+      Mostly, the policy will remain "off and away" and pouches will remain
+      locked. On most trips we will bring unlocking devices in the event th=
+at
+      cell phones are needed.
+      -
+
+   *What about going to Sabin Schellenberg classes for high school
+   students?*
+   -
+
+      For students attending Sabin Schellenberg, the expectations will
+      still be that phones are kept off and away on the trip to and from Sa=
+bin
+      Schellenberg. Sabin Schellenberg will have access to unlocking statio=
+ns
+      just like all of our neighborhood schools in the event that students =
+have
+      emergencies or have a verified absence from a Sabin Schellenberg clas=
+s.
+      -
+
+   *For students planning to drive to Sabin Schellenberg, will they be
+   allowed access to their phone?*
+   -
+
+      The dangers of access to phones while driving, especially with
+      limited time to get from one class to another, far outweighs the bene=
+fits
+      of having a phone accessible during driving. We encourage all student=
+s to
+      utilize district transportation to and from Sabin Schellenberg classe=
+s.
+      -
+
+   *What about after school activities?*
+   -
+
+      Once the bell rings at the end of the day, all students will have
+      access to unlocking stations regardless of whether they are staying f=
+or
+      after school activities or not.
+      -
+
+   *Will elementary schools be using Yondr pouches?*
+   -
+
+      No, not at this time. Elementary schools will continue to be no-phone
+      spaces but there are no current plans to introduce pouches to element=
+ary.
+
+
+*Videos*
+
+   -
+
+   Yondr Case Study: https://www.youtube.com/watch?v=3DeeyGeT0mIDc
+   <https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzc=
+H-2BzcLTPJcqz22aohlLCqh8z5V0bhBu06vRwo0ZPmtNq1NxBXJwkUXmBuq-2BspcHF-2Fb-2B9=
+UwJLuc5Q-3D-3D7iyy_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5=
+qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1B=
+pJIBaaB9HMoVLmJjWeFndJJy0GDJSadV8eQ9iG2WoLXOtCyJjJLFSIoQHAY64QriTqTrc9vr8HD=
+PI4G2PspUNX-2FLgdbzSjo5AYVbUaGoGK6amoNrsB88OWymUuV643zffZUb0>
+   -
+
+   Kids talking about their experience with having a phone:
+   https://www.youtube.com/watch?v=3D-YXK2vy8Y90
+   <https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzc=
+H-2BzcLTPJcqz22aohlLCqh8z5V0bhBu06aMbCF7LbZpfm8evcRQZqNBsKamMFqoei7q-2BETwX=
+1y3w-3D-3DlV35_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPB=
+kO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIB=
+aF6cMXbx87dTBnEw-2BnlOk5mEnRsTqqwsncdPm3k8fZZcxjSqXoSj9jcith-2B-2FVnh6k2JIx=
+F3puivWiDjAD2RSjlSC5wwVPlE3s2rYItlbervpGKvuFUkIdz1e1Bl5ZvjCn>
+
+
+
+***This document as well as our website will continue to be updated as we
+learn more about implementing phone-free spaces.*
+
+
+
+View in ParentSquare
+<https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzcH-2=
+BzcLTPJcq1I4fzlysqcyybQU-2FRdJGt10Xl-2BmkcWGChs5lAkgT-2FigwmAfjbKutk6a54KZU=
+kZEZ78xylv9WA4097xdSoc5rmw57zRs2iE3yuJgG56bANpQFrp7Dm4t-2ByGgb7LchDwiBSBtZC=
+AaM8ngzBq9NtDAHq3nHCC54kxqczR7njk9SZaAtQxMxaeaC6jV-2FReXLhvKzpYpoWs2kEEZvRY=
+wxNdPSW3SDZQ5nRkPR927JUeX5UM40WqtYG5BcApmqMKLw-2FnvtIcPbqmDS0hDygBkRG03gvps=
+oEbVeDF5MX66itMBpCymodfGs-2FQB7QjqZfWVDTKDA1igYWoFzocBjZdQmdRy2MsbLhSSNnN-2=
+BkmdgNJvUe6l5P17-2Fvdf-2FKY7yXSXODZBsTA-3D-3DIjAy_QKX25DWc-2BBniJDwMH4SBiRJ=
+Lh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli=
+90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaNIrB5zfy0KsGgCc77WAIheBEUhg2huPceKzWO65=
+cmPg-2Fq8YZLqJYLS9eTlEBYR-2BQpH-2BD6z8AEo9XM3tjMhK-2BHJhd7M6YHzOFEvvGsVJ0UN=
+sqW9qgPkzuImFQRCtLZZ4k>
+
+
+
+Please do not reply to this email.
+
+
+
+Stay involved with your child=E2=80=99s learning and activities at school.
+[image: Download on the App Store]
+<https://email-link.parentsquare.com/ls/click?upn=3Du001.4DyFZtec2AgJoIx6mo=
+Sr58388srDgZVPUbbO2F4wjI2zePwopNikVaBmoDv8orTRO7mlq9sewtIukQHQZFUIcuwN0xMpz=
+9nlste5j6LAZ24-3DQYiM_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2Bc=
+bA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0C=
+j1BpJIBasxsHwIFR145JKOhBeXzPWctjT9815UG3RayNt3gBklWWqtjbAj-2Fh-2FTiPVe0vb84=
+Cvagps-2FMUL-2BK85-2Bj94hXc2r-2FANkrD-2B6nXsRvB2mspvhlcXRR0nTwn-2Fo5LV0tK7m=
+EJ>
+[image:
+Get it on Google Play]
+<https://email-link.parentsquare.com/ls/click?upn=3Du001.UYJHDbjRE-2BeGC4tz=
+93GhlQcyffmgb2YpIAn-2BjDL-2FW0DyZm4KFp5IMZ-2B6KtthH3JVtVKGON5CpQaQdoILdQvlf=
+pmBnK5Rv8IpuJVV9vUNwpLayAeo8gVaVzL37vP7K8dzhDUqKOnLi4H9WYlC2cD-2Bh578Qh0HRy=
+sHAvuKkRb2h3tyiyVZQUBDjWFApBj05qfZhWR5dhOief1bSnxV0dvSd21pET7818WrYFXHm1-2F=
+7NceyDtNYArsZzUQVSSXdm-2BmqPOW-2B9fA-2B2kOp5kkMp6KoWtXGMwzGxY9kKAf7DzsVrQE-=
+3Do8kL_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wu=
+JKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaP64gwrt=
+zh3Bib-2BeaJPOd17X69S5-2BQzXEgMHQk4eilsLH2jKNwaCPFd9DQkbSY9JfJ31iMkFFZPI5NW=
+U5hNTQjzQYNTykzMj2FiChQDPDoGLpi3T5lEioUy2X9sI8XhjL>
+
+
+You received this email because you are a ParentSquare user in North
+Clackamas Schools. If you received this email in error or wish to disable
+your account, click here to unsubscribe
+<https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzcH-2=
+BzcLTPJcq1I4fzlysqcyybQU-2FRdJGt09FpTBzoalzGcZx-2B1U33R2H-2F3edH0V4uG7vFTwv=
+2Ii9MN3ondk0Jp8-2BrWBiXYod7hE2iPFdMOWJtFS2NMysw9vCjDbQKoCL6g9TDhWXhKVS9v7nP=
+PPRe47bgQ-2BbD-2FjEuDxDXkHj7ciS5P6ubhJ2S2fxmmV964nwsFOMhBWejSoyFdGbwrPdzy-2=
+FkvVuG9AZsWVsQob-2FGPPOxumX1B0vvuPAp0McdNHvpI5uWmShYYQv8hkaYOyF4PFq6mlFmRs-=
+2F76QFrCg1aPG4sWTOdRtfTA20g306cbmz1rF9JOdSe5OwDOcx1JBtj8kDpc6hIeVs3Inv6rYjd=
+vfIizBO8ZgxgR3LKjG-2BeOqEU4xhxZMsG-2BBzt76R1tvFr3fd4Lk4Ogl8-2BVY-3Dxoej_QKX=
+25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi=
+9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaMjsGJy-2Bw4xOO4BQ=
+BEbx1YuOPrBUI6jbdYdIPjnEgEWBBL6BYlKgyakG1mFynGtKGcjHe3NyvqeoCYaO0Bi6DbtvrgC=
+bWSQdUuHhtdXOhF6EXKgUj4bPrHgNgwvCSHMd-2B>.
+
+
+ParentSquare Inc =C2=B7 6144 Calle Real, #200A =C2=B7 Goleta, CA 93117
+<https://www.google.com/maps/search/6144+Calle+Real,+%23200A+%C2%B7+Goleta,=
++CA+93117?entry=3Dgmail&source=3Dg>
+
+--0000000000007231a7062025b670
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">---------- Forwarded message ---------<br>From: <strong c=
+lass=3D"gmail_sendername" dir=3D"auto">North Clackamas Schools via ParentSq=
+uare</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:donotreply%2Be3ffdce=
+f-5faf-4f88-bf05-11923ab31d0c@parentsquare.com">donotreply+e3ffdcef-5faf-4f=
+88-bf05-11923ab31d0c@parentsquare.com</a>&gt;</span><br>Date: Tue, Aug 20, =
+2024, 12:44=E2=80=AFPM<br>Subject: Supporting Student Wellness: Creating Ph=
+one-Free Spaces<br>To:  &lt;<a href=3D"mailto:kjusino58@gmail.com">kjusino5=
+8@gmail.com</a>&gt;<br></div><br><br><u></u>
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+
+
+
+  <div style=3D"width:100%;height:100%;overflow-x:hidden;margin:0px;padding=
+:0px" bgcolor=3D"white">
+    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;fo=
+nt-size:14px;line-height:21px;color:#000000">
+      <tbody>
+        <tr>
+          <td align=3D"center" style=3D"font-family:&#39;Helvetica Neue&#39=
+;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;pad=
+ding-top:10px;padding-bottom:10px" bgcolor=3D"white">
+            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;font-size:14px;line-height:21px;color:#000000">
+              <tbody>
+                <tr>
+                  <td align=3D"center" style=3D"font-family:&#39;Helvetica =
+Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:=
+21px;border-bottom-width:1px;border-bottom-color:#dddddd;border-bottom-styl=
+e:solid">
+                    <center>
+                      <table align=3D"center" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" style=3D"font-family:&#39;Helvetica Neue=
+&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000=
+000;max-width:600px;min-height:70px;margin:auto" bgcolor=3D"white">
+                        <tbody>
+                          <tr>
+                                  <td style=3D"font-family:&#39;Helvetica N=
+eue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:2=
+1px;max-width:130px" align=3D"center"><img alt=3D"North Clackamas Schools" =
+src=3D"https://pubmedia.parentsquare.com/districts/logo_tns7mkLYQHCxOYfkZO5=
+n_2022_NCSD_full_color.png" style=3D"max-height:60px;max-width:100px"></td>
+                                <td style=3D"font-family:&#39;Helvetica Neu=
+e&#39;,Helvetica,Arial,sans-serif;color:#222222;font-size:20px;line-height:=
+normal;padding-left:5px;max-width:600px" align=3D"left">North Clackamas Sch=
+ools</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </center>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;font-size:14px;line-height:21px;color:#000000">
+                <tbody>
+                  <tr>
+                    <td align=3D"center" style=3D"font-family:&#39;Helvetic=
+a Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-heigh=
+t:21px;border-bottom-width:1px;border-bottom-color:#dddddd;border-bottom-st=
+yle:solid">
+                      <table align=3D"center" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" style=3D"font-family:&#39;Helvetica Neue=
+&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000=
+000;max-width:600px;margin:auto" bgcolor=3D"white">
+                        <tbody>
+                         =20
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                          <tr>
+                            <td style=3D"font-family:&#39;Helvetica Neue&#3=
+9;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;wi=
+dth:1.8%;min-width:14px"></td>
+                            <td width=3D"96%" valign=3D"top" style=3D"font-=
+family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-=
+size:14px;line-height:21px">
+                              <div style=3D"font-size:14px;line-height:22px=
+;color:#757575">North Clackamas Schools posted in North Clackamas Schools</=
+div>
+                            </td>
+                            <td style=3D"font-family:&#39;Helvetica Neue&#3=
+9;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;wi=
+dth:1.8%;min-width:14px"></td>
+                          </tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                         =20
+                            <tr>
+                              <td style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+width:1.8%;min-width:14px"></td>
+                              <td width=3D"96%" valign=3D"top" bgcolor=3D"#=
+ffffff" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-=
+serif;color:#333;font-size:14px;line-height:21px">
+                                <table border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" style=3D"font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000;tex=
+t-align:left;table-layout:fixed;border-width:0px">
+                                  <tbody>
+                                    <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+</tr>
+                                      <tr>
+    <td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-=
+serif;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+    <td width=3D"97%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helveti=
+ca,Arial,sans-serif;color:#333;font-size:14px;line-height:21px">
+        <div dir=3D"ltr" style=3D"color:#025093;font-size:18px;line-height:=
+24px;font-weight:bold">Supporting Student Wellness: Creating Phone-Free Spa=
+ces</div>
+      <div style=3D"font-size:12px;line-height:12px">=C2=A0</div>
+
+
+
+
+      <div class=3D"m_-4475084474463607437body-text" style=3D"word-wrap:bre=
+ak-word;word-break:break-word">
+        <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"fo=
+nt-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;fo=
+nt-size:14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-w=
+idth:800px;margin-left:auto;margin-right:auto"><table align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-447=
+5084474463607437tbl-rsp-columns" style=3D"font-family:&#39;Helvetica Neue&#=
+39;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#00000=
+0"><tbody><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:50%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" style=3D"margin-right:calc(0%);width:100%;font-family:&#39;Helvet=
+ica Neue&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;co=
+lor:#000000"><tbody><tr><td class=3D"m_-4475084474463607437tbl-rsp-left-col=
+umn" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-ser=
+if;color:#333;font-size:14px;line-height:21px;padding-right:8px;border-widt=
+h:0"><p><strong><img src=3D"https://s3.amazonaws.com/ps-feeds-production/in=
+line_images_1721765670598-2022_NCSD_full_color.png" style=3D"width:300px;di=
+splay:block;vertical-align:top;text-align:center;max-width:100%;margin:5px =
+auto"></strong></p></td></tr></tbody></table></td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td class=3D"m_-4475084=
+474463607437tbl-rsp-right-column" style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+padding-left:8px;border-width:0"><p><strong><img src=3D"https://s3.amazonaw=
+s.com/ps-feeds-production/inline_images_1721765713234-cellphone.jpg" style=
+=3D"width:300px;display:block;vertical-align:top;text-align:center;height:1=
+10px;max-width:100%;margin:5px auto"></strong></p></td></tr></tbody></table=
+></td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"font-family:&#=
+39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-heigh=
+t:21px;color:#000000"><tbody><tr><td style=3D"color:white;font-weight:bold;=
+font-size:1.1em;font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-s=
+erif;line-height:21px;padding:15px;border-width:0" align=3D"center" bgcolor=
+=3D"#025093"><span style=3D"font-size:32px">Supporting Student Wellness: Cr=
+eating Phone-Free Spaces</span></td></tr></tbody></table></div></td></tr></=
+tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-44750844744=
+63607437tbl-rsp-columns" style=3D"margin-right:calc(0%);width:100%;font-fam=
+ily:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:14px;line=
+-height:21px;color:#000000"><tbody><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td class=3D"m_-4475084=
+474463607437tbl-rsp-left-column" style=3D"font-family:&#39;Helvetica Neue&#=
+39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;p=
+adding-right:8px;border-width:0">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weight:4=
+00;font-style:normal;text-decoration:none;vertical-align:baseline">North Cl=
+ackamas Schools aims to ensure that every student learns in a safe and dist=
+raction-free space. To help create this kind of environment, NCSD sought th=
+e perspective of students, staff and community members. Through this engage=
+ment, we understand the importance phones play in young people&#39;s lives =
+and with families in our community. Students and parents surfaced the impac=
+t of phones in a learning environment like school.</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">While=
+ NCSD has had years of implementing =E2=80=9Coff and away=E2=80=9D phone en=
+vironments, NCSD is committed to a phone-free learning environment. To help=
+ support this phone free commitment, starting in September 2024, students a=
+t all middle and high schools in NCSD must keep their phones, smartwatches,=
+ and earbuds in a special pouch provided by the school if they decide to br=
+ing them to school.</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">The p=
+ouch has a magnetic lock that can only be opened with a unique key. Each st=
+udent will get their own pouch at the start of the school year and will kee=
+p their devices in this locked pouch for the duration of the school day.</s=
+pan></p>
+</td></tr></tbody></table></td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:33%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" vali=
+gn=3D"top" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sa=
+ns-serif;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td clas=
+s=3D"m_-4475084474463607437tbl-rsp-right-column" style=3D"font-family:&#39;=
+Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;li=
+ne-height:21px;padding-left:8px;border-width:0"><img width=3D"266" alt=3D"a=
+lt_text" border=3D"0" style=3D"width:100%;max-width:266px" class=3D"m_-4475=
+084474463607437tbl-rsp-image" src=3D"https://s3.amazonaws.com/ps-feeds-prod=
+uction/inline_images_1721766636802-Boyscrosscountry.jpeg"></td></tr></tbody=
+></table>
+<img src=3D"https://s3.amazonaws.com/ps-feeds-production/inline_images_1723=
+731991148-2X7A1125+%281%29.jpeg" style=3D"width:142px;display:block;vertica=
+l-align:top;text-align:center;max-width:100%;margin:5px auto"><img src=3D"h=
+ttps://s3.amazonaws.com/ps-feeds-production/inline_images_1723730828443-_MG=
+_0287.jpg" style=3D"width:160px;display:block;vertical-align:top;text-align=
+:center;max-width:100%;margin:5px auto">
+</td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><br></div=
+>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-44750844744=
+63607437tbl-rsp-columns" style=3D"margin-left:calc(0%);width:100%;font-fami=
+ly:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-=
+height:21px;color:#000000"><tbody><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:33%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px"><br></td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td class=3D"m_-4475084=
+474463607437tbl-rsp-right-column" style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+padding-left:8px;border-width:0"><br></td></tr></tbody></table></td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"fo=
+nt-size:2px;line-height:2px;width:100%;font-family:&#39;Helvetica Neue&#39;=
+,Helvetica,Arial,sans-serif;color:#333;border-width:0" bgcolor=3D"#dddddd">=
+=C2=A0</td></tr></tbody></table></div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-44750844744=
+63607437tbl-rsp-columns" style=3D"font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"><tbod=
+y><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td class=3D"m_-4475084=
+474463607437tbl-rsp-left-column" style=3D"font-family:&#39;Helvetica Neue&#=
+39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;p=
+adding-right:8px;border-width:0">
+<p><strong><span style=3D"font-size:18px;color:rgb(32,78,141)">What Can Stu=
+dents Expect?</span></strong></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weight:4=
+00;font-style:normal;text-decoration:none;vertical-align:baseline">When stu=
+dents arrive at school, they turn off, or silence their devices and put the=
+m in their pouch. The pouch is then locked, and students can carry it with =
+them throughout the day. At the end of the day, students can unlock their p=
+ouches at specific locations in the school.</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">If a =
+student has a medical condition requiring them to use their phone, like che=
+cking blood sugar, schools will work with families to accommodate the needs=
+ of their student. =C2=A0</span></p>
+</td></tr></tbody></table></td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:33%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" vali=
+gn=3D"top" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sa=
+ns-serif;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td clas=
+s=3D"m_-4475084474463607437tbl-rsp-right-column" style=3D"font-family:&#39;=
+Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;li=
+ne-height:21px;padding-left:8px;border-width:0"><img width=3D"266" alt=3D"a=
+lt_text" border=3D"0" style=3D"width:100%;max-width:266px" class=3D"m_-4475=
+084474463607437tbl-rsp-image" src=3D"https://s3.amazonaws.com/ps-feeds-prod=
+uction/inline_images_1721766961355-academics.jpeg"></td></tr></tbody></tabl=
+e>
+<img src=3D"https://s3.amazonaws.com/ps-feeds-production/inline_images_1723=
+732998327-MIddle+School.jpg" style=3D"width:170px;display:block;vertical-al=
+ign:top;text-align:center;max-width:100%;margin:5px auto">
+</td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"fo=
+nt-size:2px;line-height:2px;width:100%;font-family:&#39;Helvetica Neue&#39;=
+,Helvetica,Arial,sans-serif;color:#333;border-width:0" bgcolor=3D"#dddddd">=
+=C2=A0</td></tr></tbody></table></div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-44750844744=
+63607437tbl-rsp-columns" style=3D"font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"><tbod=
+y><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:33%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px">
+<img src=3D"https://s3.amazonaws.com/ps-feeds-production/inline_images_1721=
+767543047-Copy+of+IMG_0634.JPG" style=3D"width:300px;display:block;vertical=
+-align:top;text-align:center;max-width:100%;margin:5px auto"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" valign=3D"top" st=
+yle=3D"margin-right:calc(0%);width:100%;font-family:&#39;Helvetica Neue&#39=
+;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"=
+><tbody><tr><td class=3D"m_-4475084474463607437tbl-rsp-left-column" style=
+=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#=
+333;font-size:14px;line-height:21px;padding-right:8px;border-width:0">
+<img width=3D"266" alt=3D"alt_text" border=3D"0" style=3D"width:100%;max-wi=
+dth:266px" class=3D"m_-4475084474463607437tbl-rsp-image" src=3D"https://s3.=
+amazonaws.com/ps-feeds-production/inline_images_1721767442227-Copy+of+IMG_0=
+050.JPG"><img src=3D"https://s3.amazonaws.com/ps-feeds-production/inline_im=
+ages_1723732072610-IMG_0540.JPG" style=3D"width:300px;display:block;vertica=
+l-align:top;text-align:center;max-width:100%;margin:5px auto"><img src=3D"h=
+ttps://s3.amazonaws.com/ps-feeds-production/inline_images_1723732956688-Coo=
+king.jpg" style=3D"width:300px;display:block;vertical-align:top;text-align:=
+center;max-width:100%;margin:5px auto"><img src=3D"https://s3.amazonaws.com=
+/ps-feeds-production/inline_images_1723732978737-Graduation.jpg" style=3D"w=
+idth:300px;display:block;vertical-align:top;text-align:center;max-width:100=
+%;margin:5px auto">
+</td></tr></tbody></table>
+</td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"margin-left:calc(0%);width:100%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"><t=
+body><tr><td class=3D"m_-4475084474463607437tbl-rsp-right-column" style=3D"=
+font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;=
+font-size:14px;line-height:21px;padding-left:8px;border-width:0">
+<p><strong><span style=3D"font-size:18px;color:rgb(32,78,141)">What About D=
+uring a Safety Event?</span></strong></p>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weight:4=
+00;font-style:normal;text-decoration:none;vertical-align:baseline">We caref=
+ully reviewed what to do in safety situations before recommending the use o=
+f pouches knowing safety is our top priority.=C2=A0</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">We le=
+arned from safety experts that allowing students to use their phones during=
+ emergencies can make things less safe. Experts, including those from the N=
+ational School Safety and Security Services, found that students often get =
+distracted when using their phones during emergencies. Instead of following=
+ safety instructions from adults, they might try to make calls, send texts,=
+ or check social media, which can put students in additional danger.</span>=
+</p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">Once =
+students are safe and the situation is under control, pouches can be opened=
+ so students can contact their families. The district has several handheld =
+devices that can unlock the pouches anywhere in the school if needed during=
+ an emergency. In addition, the pouches don=E2=80=99t block cell signals, a=
+nd parents can still track their child=E2=80=99s location using services li=
+ke Find My iPhone, FamilyLink, or Findmykids.</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">Pleas=
+e check our FAQ section below for more details about how students can acces=
+s their phones in emergencies.=C2=A0</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">To co=
+nclude, know that this work is only starting and we will be surveying stude=
+nts, families, and staff to understand the impact of this change.=C2=A0 We =
+are confident that creating phone free spaces will positively contribute to=
+ the wellbeing of students mental and emotional health as well as a distrac=
+tion free environment. =C2=A0</span></p>
+<br><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span st=
+yle=3D"font-size:11pt;color:#0e101a;background-color:transparent;font-weigh=
+t:400;font-style:normal;text-decoration:none;vertical-align:baseline">We ar=
+e looking forward to partnering on this journey with you.=C2=A0</span></p>
+<p><span style=3D"font-size:11pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">=C2=A0</span></p>
+</td></tr></tbody></table></td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"fo=
+nt-size:2px;line-height:2px;width:100%;font-family:&#39;Helvetica Neue&#39;=
+,Helvetica,Arial,sans-serif;color:#333;border-width:0" bgcolor=3D"#dddddd">=
+=C2=A0</td></tr></tbody></table></div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m_-44750844744=
+63607437tbl-rsp-columns" style=3D"font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"><tbod=
+y><tr>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;color:#333;font-size:14px;line-height:21px;border-width:0">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td class=3D"m_-4475084=
+474463607437tbl-rsp-left-column" style=3D"font-family:&#39;Helvetica Neue&#=
+39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;p=
+adding-right:8px;border-width:0">
+<p><strong><span style=3D"font-size:18px;color:rgb(32,78,141)">Resources Fo=
+r Families &amp; Community</span></strong></p>
+<p><a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du001.w-2Fv=
+-2FxuFWAzcH-2BzcLTPJcqzDEASlywyYyyrosJXJUELL6jMMzs1vVAnbE4olTSw5CwLKvOQDknN=
+qV-2FuSqfenckQ-3D-3DvlAD_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-=
+2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4=
+T0Cj1BpJIBavMc8kLTcQdT-2FOfzY6BjumSV3iwmIi14Ffp-2Flur-2Bg5048fKnH5CUqmp5IXF=
+qz5NG8CD7JX7J1kKs5PllHD4pG-2B-2BR-2Fy0WBtrHn6RCw9vV91s762FpVhojdCfg2DP1XE3H=
+O" style=3D"text-decoration:none" target=3D"_blank" rel=3D"noreferrer"><spa=
+n style=3D"font-size:16px;color:rgb(17,85,204);background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:underline;vertical-align=
+:baseline">https://www.anxiousgeneration.com/resources</span></a></p>
+</td></tr></tbody></table></td>
+<td align=3D"center" valign=3D"top" class=3D"m_-4475084474463607437tbl-rsp-=
+column-container" style=3D"width:33%;font-family:&#39;Helvetica Neue&#39;,H=
+elvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;border=
+-width:0px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" valign=3D"top" style=3D"font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000"><tbod=
+y><tr><td class=3D"m_-4475084474463607437tbl-rsp-right-column" style=3D"fon=
+t-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;fon=
+t-size:14px;line-height:21px;padding-left:8px;border-width:0"><img width=3D=
+"266" alt=3D"alt_text" border=3D"0" style=3D"width:100%;max-width:266px" cl=
+ass=3D"m_-4475084474463607437tbl-rsp-image" src=3D"https://s3.amazonaws.com=
+/ps-feeds-production/inline_images_1721767676059-IMG_6585+copy.JPG"></td></=
+tr></tbody></table></td>
+</tr></tbody></table></div></td></tr></tbody></table>
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;font-size:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"fo=
+nt-size:2px;line-height:2px;width:100%;font-family:&#39;Helvetica Neue&#39;=
+,Helvetica,Arial,sans-serif;color:#333;border-width:0" bgcolor=3D"#dddddd">=
+<br></td></tr></tbody></table></div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0">
+<div style=3D"max-width:800px;margin-left:auto;margin-right:auto"><br></div=
+>
+<div align=3D"center"><strong><span style=3D"font-size:22px;color:rgb(32,78=
+,141)">Pouches Frequently Asked Questions</span></strong></div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"font-family:&#=
+39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-heigh=
+t:21px;color:#000000"><tbody><tr><td style=3D"font-family:&#39;Helvetica Ne=
+ue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21=
+px;border-width:0"><ul style=3D"margin-top:0;margin-bottom:0">
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What is a pouch?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:#ffffff;fon=
+t-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline=
+">NCSD has partnered with YONDR for student pouches.=C2=A0 The Yondr pouch =
+is a secure bag that is used to store an individual=E2=80=99s mobile device=
+ or devices. It is secured and unlocked with a special locking device.</spa=
+n></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>How does it work?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">As students enter school, they place=
+ their phone, smartwatch, etc. in their assigned pouch.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">Students close and secure their pouc=
+h manually and keep it with them throughout the day.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">When leaving school, students tap th=
+eir pouch on a base unit to unlock it and have access to their devices. Aft=
+er emptying their pouch at the end of the day we recommend locking it again=
+ to avoid having something locked in the pouch while at home.</span></p></l=
+i>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du0=
+01.w-2Fv-2FxuFWAzcH-2BzcLTPJcqy43L5IO5T-2Btg91Eef8Sb0qSTgRAOVxl7KBg8SDW-2Bc=
+wK2Hos6-2Fp3g-2BcampNsM6mB1w-3D-3D3G4i_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1Vs=
+psB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWE=
+O07CtAxGYYpHn4T0Cj1BpJIBaG1fxu31Nis2Io8USgwan3-2BoX-2B7RGeI2xW9S2bykvq1sjYh=
+FKtJ5aqOS2AW9GqnedgoixH1RvCffdnsfPF9fhJ369E9H3q3gntdN3sx4FcaJFJbShis1jScptk=
+OxApScW" style=3D"text-decoration:none" target=3D"_blank" rel=3D"noreferrer=
+"><span style=3D"font-size:12pt;color:#1155cc;background-color:transparent;=
+font-weight:400;font-style:normal;text-decoration:underline;vertical-align:=
+baseline">More information on how it works</span></a></p></li>
+</ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Why is North Clackamas introducing Yondr pouches?</str=
+ong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#0e101a;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline">NCSD is committed to student wellness and success. Recent surv=
+eys from our North Clackamas students indicate that cell phone use negative=
+ly impacts grades, relationships, and mental health.=C2=A0</span></p>
+<ul style=3D"margin-top:0;margin-bottom:0">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">86% of NCSD students report using phones during class.</span>=
+</p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">36% of NCSD students report being distracted by other student=
+s=E2=80=99 use of phones.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">49% of NCSD students report cell phones have negatively impac=
+ted their grades.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">47% of NCSD students report cell phones have negatively impac=
+ted their mental health.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">24% and 23% of NCSD students report cell phones have negative=
+ly impacted their relationships with family and friends respectively.</span=
+></p></li>
+</ul>
+</li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Why can=E2=80=99t the school just implement a zero-tol=
+erance policy and allow students to keep their phones put away?</strong></s=
+pan></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">NCSD has tried this approach. Research shows that it has been ineffec=
+tive nationwide, as it has also been in our district. There is an unneeded =
+relationship strain between the adults who are trying to follow the rules a=
+nd the students who are trying to get to their devices. Issues of addiction=
+ play into this dynamic. The pouches will reinforce the policy and support =
+students in managing the temptation of having students and all of their fri=
+ends have access to their devices during the school day. Furthermore, the p=
+ouches will contribute to a sense of community in which all students will e=
+xperience the same environment while also learning about the balance of pho=
+ne use and their wellbeing.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>How will students receive a Yondr pouch?</strong></spa=
+n></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">During the first week of school, on Friday, September 6th, students w=
+ill receive a pouch during one of their classes along with a lesson about w=
+hy and how to use the pouch. The pouch is property of the school.</span></p=
+></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>How will the process work at arrival and dismissal?</s=
+trong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Upon entering school students will place their phone, smart watch, an=
+d other phone-like devices in the pouch. When leaving the building at the e=
+nd of the day there will be unlocking stations set out throughout each scho=
+ol=E2=80=99s campus.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Will my student=E2=80=99s phone be safe?</strong></spa=
+n></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Just like current practice, students keep their phone with them durin=
+g the day.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>W</strong><strong>hat if a student needs to leave the =
+building before dismissal?</strong></span></p>
+<ul style=3D"margin-top:0;margin-bottom:0"><li style=3D"font-size:12pt;colo=
+r:#000000;background-color:transparent;font-weight:400;font-style:normal;te=
+xt-decoration:none;vertical-align:baseline"><p style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:12pt;color:#000000;background-color:transparent;font-weight:400;font-st=
+yle:normal;text-decoration:none;vertical-align:baseline">We will have unloc=
+king stations in the office for students that have verified absences or ver=
+ified early releases.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What if a parent/guardian wants to reach their child d=
+uring the school day?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">All students have access to chromebooks with email. One option is to =
+plan ahead by giving timely check-ins such as updating after school plans. =
+A guardian may say =E2=80=9Ccheck your email by 2:00pm and confirm you got =
+it by emailing back.=E2=80=9D Students and parents can email one another du=
+ring the day. For emergency and timely issues parents can call the office a=
+nd we can deliver messages or bring students to the office for any communic=
+ation needs.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What if there is a school emergency?</strong></span></=
+p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+>
+<p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margin=
+-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#000=
+000;background-color:transparent;font-weight:400;font-style:normal;text-dec=
+oration:none;vertical-align:baseline">School safety experts share that stud=
+ents having access to cell phones during school emergencies can negatively =
+impact student safety for a variety of reasons. For example:</span></p>
+<ul style=3D"margin-top:0;margin-bottom:0">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Student use of cell phones during an emergency can distract t=
+heir attention from the critical safety and emergency directions given by s=
+taff.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Cell phone use by students during an emergency often results =
+in inaccurate or incomplete information and, in doing so, may disrupt and d=
+elay effective public safety response.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Cell phone use by students can impede site safety by accelera=
+ting parental and community arrival at the scene of an emergency during tim=
+es when officials may be attempting to evacuate students to another site.</=
+span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Student cell phone use during an emergency may overload cell =
+tower capacity, limiting critical school and first responder communication.=
+</span></p></li>
+</ul>
+</li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">Once students are safe, if necessary=
+, pouches can be unlocked via multiple handheld unlocking devices, so stude=
+nts can contact family members. In cases of immediate crisis, pouches can b=
+e unlocked by any means necessary.</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:12pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#0=
+00000;background-color:transparent;font-weight:400;font-style:normal;text-d=
+ecoration:none;vertical-align:baseline">Communication with parents will con=
+tinue to occur through the district=E2=80=99s mass notification and communi=
+cation tools.</span></p></li>
+</ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What if a student has their phone out of their pouch?<=
+/strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline">
+<p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margin=
+-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#000=
+000;background-color:transparent;font-weight:400;font-style:normal;text-dec=
+oration:none;vertical-align:baseline">The pouch is property of the school. =
+If a student is caught on their phone, the school will take the following a=
+ctions</span></p>
+<ul style=3D"margin-top:0;margin-bottom:0">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">First Incident: Schools will documen=
+t the offense and ask the student to solve the issue (in most cases this me=
+ans put the phone in the pouch)</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">Second Incident: Schools will reteac=
+h the =E2=80=9CWhy=E2=80=9D behind the expectations, collect the phone in t=
+he office, and notify guardian(s). The phone will be given back at the end =
+of the day.=C2=A0</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">Third Incident: Schools will reteach=
+ the Why, collect the phone and issue the phone back to the guardian(s), no=
+t the student.=C2=A0</span></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;background-color:#ffffff;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:12pt;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;text-de=
+coration:none;vertical-align:baseline">Fourth Incident: Schools will meet w=
+ith the student and guardian(s) to construct a plan tailored to meet the ne=
+eds of the student.=C2=A0</span></p></li>
+</ul>
+</li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What happens if a pouch is damaged?</strong></span></p=
+>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">For pouches that are damaged, replacement pouches can be made availab=
+le. For excessive damage due to inappropriate use or vandalism (such as cut=
+ting, ripping, or puncturing the pouch), incidents will be handled on a cas=
+e-by-case basis.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What happens if a student doesn&#39;t have their pouch=
+?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Phones will be held in the office for students that don=E2=80=99t bri=
+ng their pouch. We will have locked cabinets for students.=C2=A0</span></p>=
+</li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What if a student needs their personal device for a me=
+dical issue?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Students with notes from their medical professionals can be issued a =
+medical device bag which can ensure access to their phone is more readily a=
+vailable than the normal pouches. Like all medical protocols, we will work =
+with students and families to ensure medical needs are taken care of.=C2=A0=
+</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>W</strong><strong>ill students still be able to listen=
+ to music?</strong></span></p>
+<ul style=3D"margin-top:0;margin-bottom:0"><li style=3D"font-size:12pt;colo=
+r:#000000;background-color:transparent;font-weight:400;font-style:normal;te=
+xt-decoration:none;vertical-align:baseline"><p style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:12pt;color:#000000;background-color:transparent;font-weight:400;font-st=
+yle:normal;text-decoration:none;vertical-align:baseline">Chromebooks have a=
+ccess to music with wired headsets. Bluetooth devices should be held in the=
+ pouch and not be out. When it is appropriate, students can still have acce=
+ss to music.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What happens if a student forgets to unlock their pouc=
+h before leaving the building?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Schools have many after school programs and athletic events. Students=
+ are welcome to return if the building is open to unlock their device.=C2=
+=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Can teachers have students use their personal devices =
+for instructional purposes?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">NCSD has issued chromebooks to every student taking the educational n=
+eed for phones away. Most academic benefits that come from phones are also =
+available on the district issued chromebooks.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Do the pouches block cell signals or the internet?</st=
+rong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Pouches still allow for cell service. We know many families use track=
+ing devices to ensure the location of their students. This will still be av=
+ailable even when the phone is in the pouch.</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>How will this be enforced during school trips or other=
+ off-campus activities?</strong>=C2=A0</span></p>
+<ul style=3D"margin-top:0;margin-bottom:0"><li style=3D"font-size:12pt;colo=
+r:#000000;background-color:transparent;font-weight:400;font-style:normal;te=
+xt-decoration:none;vertical-align:baseline"><p style=3D"line-height:1.38;ma=
+rgin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-s=
+ize:12pt;color:#000000;background-color:transparent;font-weight:400;font-st=
+yle:normal;text-decoration:none;vertical-align:baseline">Mostly, the policy=
+ will remain &quot;off and away&quot; and pouches will remain locked. On mo=
+st trips we will bring unlocking devices in the event that cell phones are =
+needed.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What about going to Sabin Schellenberg classes for hig=
+h school students?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">For students attending Sabin Schellenberg, the expectations will stil=
+l be that phones are kept off and away on the trip to and from Sabin Schell=
+enberg. Sabin Schellenberg will have access to unlocking stations just like=
+ all of our neighborhood schools in the event that students have emergencie=
+s or have a verified absence from a Sabin Schellenberg class.=C2=A0</span><=
+/p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>For students planning to drive to Sabin Schellenberg, =
+will they be allowed access to their phone?</strong></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">The dangers of access to phones while driving, especially with limite=
+d time to get from one class to another, far outweighs the benefits of havi=
+ng a phone accessible during driving. We encourage all students to utilize =
+district transportation to and from Sabin Schellenberg classes.=C2=A0</span=
+></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>What about after school activities?</strong></span></p=
+>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">Once the bell rings at the end of the day, all students will have acc=
+ess to unlocking stations regardless of whether they are staying for after =
+school activities or not.=C2=A0</span></p></li></ul>
+</li>
+<li style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:bold;font-style:normal;text-decoration:none;vertical-align:basel=
+ine">
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#000000;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:none;vertical-ali=
+gn:baseline"><strong>Will elementary schools be using Yondr pouches?</stron=
+g></span></p>
+<ul style=3D"margin-top:0px;margin-bottom:0px;font-weight:initial"><li styl=
+e=3D"font-size:12pt;color:#000000;background-color:transparent;font-weight:=
+400;font-style:normal;text-decoration:none;vertical-align:baseline"><p styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentatio=
+n"><span style=3D"font-size:12pt;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:none;vertical-align:base=
+line">No, not at this time. Elementary schools will continue to be no-phone=
+ spaces but there are no current plans to introduce pouches to elementary.=
+=C2=A0</span></p></li></ul>
+</li>
+</ul></td></tr></tbody></table></div></td></tr></tbody></table>
+</td></tr></tbody></table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;font-s=
+ize:14px;line-height:21px;color:#000000"><tbody><tr><td style=3D"font-famil=
+y:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:=
+14px;line-height:21px;padding:0;border-width:0"><div style=3D"max-width:800=
+px;margin-left:auto;margin-right:auto"><br></div></td></tr></tbody></table>
+<div align=3D"center"><strong><span style=3D"font-size:22px;color:rgb(32,78=
+,141)">Videos</span></strong></div>
+<ul style=3D"margin-top:0;margin-bottom:0">
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Yondr Case Study:=C2=A0</span><a href=3D"https://email-link.p=
+arentsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzcH-2BzcLTPJcqz22aohlLCqh8=
+z5V0bhBu06vRwo0ZPmtNq1NxBXJwkUXmBuq-2BspcHF-2Fb-2B9UwJLuc5Q-3D-3D7iyy_QKX25=
+DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Z=
+d-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaaB9HMoVLmJjWeFndJJy=
+0GDJSadV8eQ9iG2WoLXOtCyJjJLFSIoQHAY64QriTqTrc9vr8HDPI4G2PspUNX-2FLgdbzSjo5A=
+YVbUaGoGK6amoNrsB88OWymUuV643zffZUb0" style=3D"text-decoration:none" target=
+=3D"_blank" rel=3D"noreferrer"><span style=3D"font-size:12pt;color:#1155cc;=
+background-color:transparent;font-weight:400;font-style:normal;text-decorat=
+ion:underline;vertical-align:baseline">https://www.youtube.com/watch?v=3Dee=
+yGeT0mIDc</span></a></p></li>
+<li style=3D"font-size:12pt;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;text-decoration:none;vertical-align:baseline"=
+><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pre=
+sentation"><span style=3D"font-size:12pt;color:#000000;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:none;vertical-al=
+ign:baseline">Kids talking about their experience with having a phone:=C2=
+=A0</span><a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du00=
+1.w-2Fv-2FxuFWAzcH-2BzcLTPJcqz22aohlLCqh8z5V0bhBu06aMbCF7LbZpfm8evcRQZqNBsK=
+amMFqoei7q-2BETwX1y3w-3D-3DlV35_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEE=
+VjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAx=
+GYYpHn4T0Cj1BpJIBaF6cMXbx87dTBnEw-2BnlOk5mEnRsTqqwsncdPm3k8fZZcxjSqXoSj9jci=
+th-2B-2FVnh6k2JIxF3puivWiDjAD2RSjlSC5wwVPlE3s2rYItlbervpGKvuFUkIdz1e1Bl5Zvj=
+Cn" style=3D"text-decoration:none" target=3D"_blank" rel=3D"noreferrer"><sp=
+an style=3D"font-size:12pt;color:#1155cc;background-color:transparent;font-=
+weight:400;font-style:normal;text-decoration:underline;vertical-align:basel=
+ine">https://www.youtube.com/watch?v=3D-YXK2vy8Y90</span></a></p></li>
+</ul>
+<p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:12pt;color:#1155cc;background-color:tran=
+sparent;font-weight:400;font-style:normal;text-decoration:underline;vertica=
+l-align:baseline"><br></span></p>
+<div align=3D"center">
+<span style=3D"font-size:12pt;color:rgb(0,0,0);background-color:transparent=
+;font-weight:400;font-style:normal;text-decoration:underline;vertical-align=
+:baseline"><strong></strong></span><strong></strong><strong>**This document=
+ as well as our website will continue to be updated as we learn more about =
+implementing phone-free spaces.<br><img src=3D"https://s3.amazonaws.com/ps-=
+feeds-production/inline_images_1724182913211-2022_NCSD_full_color.png" styl=
+e=3D"width:126px;display:block;vertical-align:top;text-align:center;max-wid=
+th:100%;margin:5px auto"></strong><strong></strong><span style=3D"font-size=
+:12pt;color:rgb(0,0,0);background-color:transparent;font-weight:400;font-st=
+yle:normal;text-decoration:underline;vertical-align:baseline"><strong></str=
+ong></span><span style=3D"font-size:12pt;color:#1155cc;background-color:tra=
+nsparent;font-weight:400;font-style:normal;text-decoration:underline;vertic=
+al-align:baseline"><br></span>
+</div>
+<div align=3D"center"><br></div>
+      </div>
+      <div style=3D"font-size:4px;line-height:4px">=C2=A0</div>
+      <div style=3D"font-size:12px;line-height:12px">=C2=A0</div>
+
+
+
+
+
+
+
+
+    </td>
+
+    <td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-=
+serif;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+  </tr>
+
+    <tr>
+      <td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+      <td width=3D"97%" align=3D"left" valign=3D"middle" style=3D"font-fami=
+ly:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#aaaaaa;font-s=
+ize:14px;line-height:21px">
+            <a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du=
+001.w-2Fv-2FxuFWAzcH-2BzcLTPJcq1I4fzlysqcyybQU-2FRdJGt10Xl-2BmkcWGChs5lAkgT=
+-2FigwmAfjbKutk6a54KZUkZEZ78xylv9WA4097xdSoc5rmw57zRs2iE3yuJgG56bANpQFrp7Dm=
+4t-2ByGgb7LchDwiBSBtZCAaM8ngzBq9NtDAHq3nHCC54kxqczR7njk9SZaAtQxMxaeaC6jV-2F=
+ReXLhvKzpYpoWs2kEEZvRYwxNdPSW3SDZQ5nRkPR927JUeX5UM40WqtYG5BcApmqMKLw-2FnvtI=
+cPbqmDS0hDygBkRG03gvpsoEbVeDF5MX66itMBpCymodfGs-2FQB7QjqZfWVDTKDA1igYWoFzoc=
+BjZdQmdRy2MsbLhSSNnN-2BkmdgNJvUe6l5P17-2Fvdf-2FKY7yXSXODZBsTA-3D-3DIjAy_QKX=
+25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi=
+9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaNIrB5zfy0KsGgCc77=
+WAIheBEUhg2huPceKzWO65cmPg-2Fq8YZLqJYLS9eTlEBYR-2BQpH-2BD6z8AEo9XM3tjMhK-2B=
+HJhd7M6YHzOFEvvGsVJ0UNsqW9qgPkzuImFQRCtLZZ4k" style=3D"background-color:#02=
+5093;border-radius:4px;color:#ffffff;display:inline-block;max-width:98.5%;t=
+ext-decoration:none;text-align:center;font-family:&#39;Helvetica Neue&#39;,=
+Helvetica,Arial,sans-serif;font-size:14px;line-height:normal;font-weight:no=
+rmal;margin:0 auto;padding:7px 11px" target=3D"_blank" rel=3D"noreferrer">V=
+iew in ParentSquare</a>
+
+      </td>
+      <td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;color:#333;font-size:14px;line-height:21px;width:0%"></td>
+    </tr>
+
+                                    <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                              <td style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+width:1.8%;min-width:14px"></td>
+                            </tr>
+                         =20
+                            <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                            <tr>
+                              <td style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+width:1.8%;min-width:14px"></td>
+                              <td width=3D"96%" valign=3D"top" style=3D"fon=
+t-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#333;fon=
+t-size:14px;line-height:21px">
+                                <div style=3D"line-height:20px;color:#55555=
+5;font-style:italic">Please do not reply to this email.</div>
+                              </td>
+                              <td style=3D"font-family:&#39;Helvetica Neue&=
+#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-height:21px;=
+width:1.8%;min-width:14px"></td>
+                            </tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:12px;line-height:12px">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#333;font-size:14px;line-height:21px"></td>
+</tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;font-size:14px;line-height:21px;color:#000000">
+                <tbody>
+                  <tr>
+                    <td align=3D"center" style=3D"font-family:&#39;Helvetic=
+a Neue&#39;,Helvetica,Arial,sans-serif;color:#333;font-size:14px;line-heigh=
+t:21px">
+                      <table align=3D"center" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"100%" style=3D"font-family:&#39;Helvetica Neue=
+&#39;,Helvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000=
+000;max-width:600px;margin:auto">
+                        <tbody>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+</tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff"=
+ align=3D"left" style=3D"width:100%;font-family:&#39;Helvetica Neue&#39;,He=
+lvetica,Arial,sans-serif;font-size:14px;line-height:21px;color:#000000">
+  <tbody>
+  <tr>
+    <td style=3D"font-size:14px;font-family:&#39;Helvetica Neue&#39;,Helvet=
+ica,Arial,sans-serif;color:#757575;line-height:normal" align=3D"center">
+      Stay involved with your child=E2=80=99s learning and activities at sc=
+hool.
+    </td>
+  </tr>
+  <tr>
+    <td style=3D"padding-top:10px;font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;color:#757575;font-size:11px;line-height:normal" ali=
+gn=3D"center">
+      <a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du001.4D=
+yFZtec2AgJoIx6moSr58388srDgZVPUbbO2F4wjI2zePwopNikVaBmoDv8orTRO7mlq9sewtIuk=
+QHQZFUIcuwN0xMpz9nlste5j6LAZ24-3DQYiM_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1Vsp=
+sB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO=
+07CtAxGYYpHn4T0Cj1BpJIBasxsHwIFR145JKOhBeXzPWctjT9815UG3RayNt3gBklWWqtjbAj-=
+2Fh-2FTiPVe0vb84Cvagps-2FMUL-2BK85-2Bj94hXc2r-2FANkrD-2B6nXsRvB2mspvhlcXRR0=
+nTwn-2Fo5LV0tK7mEJ" style=3D"margin-right:1em;display:inline-block;color:#0=
+25093" target=3D"_blank" rel=3D"noreferrer">
+        <img alt=3D"Download on the App Store" style=3D"width:150px" src=3D=
+"https://d33ucr9836phdb.cloudfront.net/assets/email/app_store_badge-7aac819=
+6ba295c46db9366e19e6fa3ec7b50dd49ac9c650d22de3ebddda276db.png">
+      </a>
+      <a href=3D"https://email-link.parentsquare.com/ls/click?upn=3Du001.UY=
+JHDbjRE-2BeGC4tz93GhlQcyffmgb2YpIAn-2BjDL-2FW0DyZm4KFp5IMZ-2B6KtthH3JVtVKGO=
+N5CpQaQdoILdQvlfpmBnK5Rv8IpuJVV9vUNwpLayAeo8gVaVzL37vP7K8dzhDUqKOnLi4H9WYlC=
+2cD-2Bh578Qh0HRysHAvuKkRb2h3tyiyVZQUBDjWFApBj05qfZhWR5dhOief1bSnxV0dvSd21pE=
+T7818WrYFXHm1-2F7NceyDtNYArsZzUQVSSXdm-2BmqPOW-2B9fA-2B2kOp5kkMp6KoWtXGMwzG=
+xY9kKAf7DzsVrQE-3Do8kL_QKX25DWc-2BBniJDwMH4SBiRJLh1zzyYe1VspsB0pEEVjJdnK-2B=
+cbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli90njO9J3fWEO07CtAxGYYpHn4T0=
+Cj1BpJIBaP64gwrtzh3Bib-2BeaJPOd17X69S5-2BQzXEgMHQk4eilsLH2jKNwaCPFd9DQkbSY9=
+JfJ31iMkFFZPI5NWU5hNTQjzQYNTykzMj2FiChQDPDoGLpi3T5lEioUy2X9sI8XhjL" style=
+=3D"color:#025093" target=3D"_blank" rel=3D"noreferrer">
+        <img alt=3D"Get it on Google Play" style=3D"width:150px" src=3D"htt=
+ps://d33ucr9836phdb.cloudfront.net/assets/email/google_play_btn-eb026c0b147=
+41551418aaf12564bebac0706d3f70c74d1dd87fe9f3c6592065b.png">
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+</tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+</tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+</tr>
+                          <tr>
+                            <td style=3D"font-family:&#39;Helvetica Neue&#3=
+9;,Helvetica,Arial,sans-serif;color:#757575;font-size:11px;line-height:norm=
+al;width:1.8%;min-width:14px"></td>
+                            <td width=3D"96%" valign=3D"top" style=3D"font-=
+family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;color:#757575;fo=
+nt-size:11px;line-height:normal" align=3D"center">
+                                  You received this email because you are a=
+ ParentSquare user in North Clackamas Schools. If you received this email i=
+n error or wish to disable your account,  <a href=3D"https://email-link.par=
+entsquare.com/ls/click?upn=3Du001.w-2Fv-2FxuFWAzcH-2BzcLTPJcq1I4fzlysqcyybQ=
+U-2FRdJGt09FpTBzoalzGcZx-2B1U33R2H-2F3edH0V4uG7vFTwv2Ii9MN3ondk0Jp8-2BrWBiX=
+Yod7hE2iPFdMOWJtFS2NMysw9vCjDbQKoCL6g9TDhWXhKVS9v7nPPPRe47bgQ-2BbD-2FjEuDxD=
+XkHj7ciS5P6ubhJ2S2fxmmV964nwsFOMhBWejSoyFdGbwrPdzy-2FkvVuG9AZsWVsQob-2FGPPO=
+xumX1B0vvuPAp0McdNHvpI5uWmShYYQv8hkaYOyF4PFq6mlFmRs-2F76QFrCg1aPG4sWTOdRtfT=
+A20g306cbmz1rF9JOdSe5OwDOcx1JBtj8kDpc6hIeVs3Inv6rYjdvfIizBO8ZgxgR3LKjG-2BeO=
+qEU4xhxZMsG-2BBzt76R1tvFr3fd4Lk4Ogl8-2BVY-3Dxoej_QKX25DWc-2BBniJDwMH4SBiRJL=
+h1zzyYe1VspsB0pEEVjJdnK-2BcbA5qQPBkO-2F3wuJKzMNRRaJi9Zd-2F2gTZ3vR61j1cXwli9=
+0njO9J3fWEO07CtAxGYYpHn4T0Cj1BpJIBaMjsGJy-2Bw4xOO4BQBEbx1YuOPrBUI6jbdYdIPjn=
+EgEWBBL6BYlKgyakG1mFynGtKGcjHe3NyvqeoCYaO0Bi6DbtvrgCbWSQdUuHhtdXOhF6EXKgUj4=
+bPrHgNgwvCSHMd-2B" style=3D"color:#025093" target=3D"_blank" rel=3D"norefer=
+rer">click here to unsubscribe</a>.
+
+
+                              <br><br>
+                              ParentSquare Inc =C2=B7 <a href=3D"https://ww=
+w.google.com/maps/search/6144+Calle+Real,+%23200A+%C2%B7+Goleta,+CA+93117?e=
+ntry=3Dgmail&amp;source=3Dg">6144 Calle Real, #200A =C2=B7 Goleta, CA 93117=
+</a>
+                            </td>
+                            <td style=3D"font-family:&#39;Helvetica Neue&#3=
+9;,Helvetica,Arial,sans-serif;color:#757575;font-size:11px;line-height:norm=
+al;width:1.8%;min-width:14px"></td>
+                          </tr>
+                          <tr>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal">=C2=A0</td>
+<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-seri=
+f;color:#757575;font-size:11px;line-height:normal"></td>
+</tr>
+                        </tbody>
+                      </table>
+                   =20
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <img src=3D"https://email-link.parentsquare.com/wf/open?upn=3Du001.VfxPuI=
+zmd2gw2WDxwu9C9zHsxwTyPoMcitumlwJPaC7wYS-2BmK3GdochWa-2BZrcoCIEN0PomAZKrAHC=
+-2BlZttl-2BqRFyVU4EHIF0-2BmLQX0-2FULkbXBvxDVDw7J8Ar8qM82XIIl65KUmZwOTpXC2do=
+FrYYpV82bJQsFW3k8K2ljfoH01e-2F9MJY7IZtFWJmRM2EYzrMLPwWtUZKmI0fcx8KLwNhJ1H-2=
+Fiu7NjqU-2Bv1-2FB7z0I5UdI-2BV34zgwo7NwIvBEkSw0Nr-2FxvAJDBIaojJWKCLSwm9g-3D-=
+3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px!impo=
+rtant;width:1px!important;border-width:0!important;margin-top:0!important;m=
+argin-bottom:0!important;margin-right:0!important;margin-left:0!important;p=
+adding-top:0!important;padding-bottom:0!important;padding-right:0!important=
+;padding-left:0!important"></div>
+
+</div>
+
+--0000000000007231a7062025b670--

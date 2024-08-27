@@ -7,93 +7,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive Documentation Template</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Fira+Code&display=swap');
+        
         :root {
             --primary-color: #bb86fc;
+            --primary-variant: #3700b3;
             --secondary-color: #03dac6;
-            --background-color: #2a2a2a;
-            --text-color: #f0f0f0;
-            --code-background: #1a1a1a;
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --error-color: #cf6679;
+            --text-color: #ffffff;
+            --on-primary: #000000;
+            --on-secondary: #000000;
+            --on-background: #ffffff;
+            --on-surface: #ffffff;
+            --on-error: #000000;
+            --code-background: #2c2c2c;
             --border-color: #444;
         }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
+            color: var(--on-background);
             background-color: var(--background-color);
             padding: 20px;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            transition: all 0.3s ease;
         }
+        
         h1, h2, h3, h4, h5, h6 {
             color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
         }
+        
         a {
             color: var(--secondary-color);
             text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
         }
+        
         a:hover {
+            color: var(--primary-color);
             text-decoration: underline;
         }
+        
         pre, code {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Fira Code', 'Courier New', monospace;
             background-color: var(--code-background);
             border-radius: 5px;
         }
+        
         pre {
             padding: 15px;
             overflow-x: auto;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        
         code {
             padding: 2px 4px;
         }
+        
         table {
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             width: 100%;
             margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
         }
+        
         th, td {
             border: 1px solid var(--border-color);
-            padding: 8px;
+            padding: 12px;
             text-align: left;
         }
+        
         th {
-            background-color: var(--code-background);
+            background-color: var(--surface-color);
+            font-weight: bold;
+            text-transform: uppercase;
         }
+        
         .note, .warning, .tip, .important {
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
             background-color: #3a3a3a;
         }
+        
         .note { border-left: 5px solid var(--secondary-color); }
-        .warning { border-left: 5px solid #cf6679; }
+        .warning { border-left: 5px solid var(--error-color); }
         .tip { border-left: 5px solid var(--primary-color); }
         .important { border-left: 5px solid #ffd700; }
+        
         .flex-container {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 20px;
         }
+        
         .flex-item {
-            flex-basis: 48%;
+            flex-basis: calc(50% - 10px);
             margin-bottom: 20px;
         }
+        
         .image-container {
             text-align: center;
             margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        
         .image-container img {
             max-width: 100%;
             height: auto;
+            transition: transform 0.3s ease;
         }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
         .caption {
             font-style: italic;
-            color: #aaa;
-            margin-top: 5px;
+            color: #bdbdbd;
+            margin-top: 10px;
         }
+        
         .accordion {
-            background-color: #3a3a3a;
-            color: var(--text-color);
+            background-color: var(--surface-color);
+            color: var(--on-surface);
             cursor: pointer;
             padding: 18px;
             width: 100%;
@@ -101,66 +152,217 @@
             border: none;
             outline: none;
             transition: 0.4s;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1em;
         }
-        .accordion:hover {
-            background-color: #4a4a4a;
+        
+        .accordion:hover, .accordion.active {
+            background-color: var(--primary-variant);
         }
+        
         .panel {
             padding: 0 18px;
-            background-color: var(--background-color);
+            background-color: var(--surface-color);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.2s ease-out;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0 0 5px 5px;
         }
+        
         .tabs {
             display: flex;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
+        
         .tab-label {
-            padding: 10px 20px;
-            background-color: #3a3a3a;
+            padding: 12px 24px;
+            background-color: var(--surface-color);
             cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
         }
+        
         .tab-content {
             order: 99;
             width: 100%;
             display: none;
             padding: 20px;
-            background-color: #3a3a3a;
+            background-color: var(--surface-color);
+            border-radius: 0 5px 5px 5px;
         }
+        
         .tab-input {
             display: none;
         }
+        
         .tab-input:checked + .tab-label {
             background-color: var(--primary-color);
-            color: var(--background-color);
+            color: var(--on-primary);
         }
+        
         .tab-input:checked + .tab-label + .tab-content {
             display: block;
         }
+        
         .progress-bar {
             width: 100%;
-            background-color: #3a3a3a;
+            background-color: var(--surface-color);
             border-radius: 5px;
             margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
+        
         .progress {
             width: 75%;
-            height: 20px;
+            height: 24px;
             background-color: var(--primary-color);
-            border-radius: 5px;
             text-align: center;
-            line-height: 20px;
-            color: var(--background-color);
+            line-height: 24px;
+            color: var(--on-primary);
+            transition: width 0.5s ease-in-out;
         }
+        
         .card {
-            background-color: #3a3a3a;
+            background-color: var(--surface-color);
             border-radius: 5px;
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-    </style>
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .flex-item {
+                flex-basis: 100%;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--background-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-variant);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        /* Additional utility classes */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .p-1 { padding: 1rem; }
+        .rounded { border-radius: 5px; }
+        .shadow { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--surface-color);
+            color: var(--on-surface);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .dark-mode-toggle:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        /* New additions */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--on-primary);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-variant);
+            transform: translateY(-2px);
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--primary-color);
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--surface-color);
+            color: var(--on-surface);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .highlight {
+            background-color: rgba(187, 134, 252, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        </style>
 </head>
 <body>
     <h1>Comprehensive Documentation Title</h1>

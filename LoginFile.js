@@ -61,6 +61,17 @@ function login() {
     }, 500);
 }
 
+function loginGuest() {
+
+    localStorage.setItem('premium', 'Guest');
+    localStorage.setItem('loggedInUser', 'Guest');
+    
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+
+}
+
 function displayError(message) {
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.textContent = message;
