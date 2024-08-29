@@ -1,0 +1,215 @@
+<html><head><base href="https://example.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fracture Server Information</title>
+    <style>
+        :root {
+            /* Main color palette */
+            --color-primary: #1b0e23;
+            --color-secondary: #2b1d37;
+            --color-accent: #bc93e3;
+            --color-text: #d2c9d6;
+            --color-text-muted: #a693b5;
+    
+            /* Additional colors for variety */
+            --color-background-light: rgba(43, 29, 55, 0.5);
+            --color-highlight: #7c4dff;
+            --color-error: #ff6b6b;
+            --color-success: #4caf50;
+        }
+    
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+        }
+    
+        .info-panel {
+            background-color: var(--color-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 28px;
+        }
+    
+        .server-info, .relay-info, .instructions {
+            margin-bottom: 20px;
+        }
+    
+        .relay {
+            margin-bottom: 15px;
+            background-color: var(--color-background-light);
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .relay-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+    
+        .relay-description {
+            color: var(--color-text-muted);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    
+        strong {
+            color: var(--color-highlight);
+            font-size: 18px;
+        }
+    
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    
+        .play-button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 20px;
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    
+        .play-button:hover {
+            background-color: var(--color-highlight);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(124, 77, 255, 0.3);
+        }
+    
+        .play-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(124, 77, 255, 0.3);
+        }
+    
+        .ping {
+            font-size: 14px;
+            color: var(--color-accent);
+            margin-left: 10px;
+        }
+    
+        .instructions {
+            background-color: var(--color-background-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+        }
+    
+        .instructions h3 {
+            color: var(--color-accent);
+            margin-top: 0;
+        }
+    
+        .instructions ol {
+            padding-left: 20px;
+        }
+    
+        .instructions li {
+            margin-bottom: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="info-panel">
+            <h2>Fracture Server Info</h2>
+            <div class="server-info">
+                <strong>Server Address:</strong>
+                <p>wss://musical-palm-tree-p45q44669j9h64w-8081.app.github.dev/</p>
+            </div>
+            <div class="relay-info">
+                <strong>Relays:</strong>
+                <div class="relay">
+                    <div class="relay-content">
+                        <p>wss://eaglerrelay.glitch.me/</p>
+                        <div class="relay-description">(fastest)</div>
+                    </div>
+                    <span class="ping" id="ping1">Pinging...</span>
+                </div>
+                <div class="relay">
+                    <div class="relay-content">
+                        <p>wss://lan-relay.glitch.me/</p>
+                        <div class="relay-description">(sometimes slower)</div>
+                    </div>
+                    <span class="ping" id="ping2">Pinging...</span>
+                </div>
+            </div>
+            <div class="instructions">
+                <h3>How to Add a Relay:</h3>
+                <ol>
+                    <li>Copy the link to a relay or server.</li>
+                    <li>Go to "Multiplayer" in the top left corner.</li>
+                    <li>Click on "Network Settings" (this is for relays).</li>
+                    <li>Click "Add Relay".</li>
+                    <li>Paste in the copied link.</li>
+                    <li>Click "Add Relay" after pasting the link.</li>
+                </ol>
+            </div>
+        </div>
+        <button class="play-button" onclick="playGame()">Play</button>
+    
+        <script>
+            function playGame() {
+                window.location.href = 'StudentVUE/1.8_u35_Offline_Signed.html';
+            }
+    
+            function pingRelay(url, pingElement) {
+                const startTime = Date.now();
+                const ws = new WebSocket(url);
+    
+                ws.onopen = function() {
+                    const latency = Date.now() - startTime;
+                    pingElement.textContent = `${latency}ms`;
+                    ws.close();
+                };
+    
+                ws.onerror = function() {
+                    pingElement.textContent = 'Error';
+                };
+    
+                // Set a timeout in case the connection takes too long
+                setTimeout(() => {
+                    if (ws.readyState === WebSocket.CONNECTING) {
+                        ws.close();
+                        pingElement.textContent = 'Timeout';
+                    }
+                }, 5000);
+            }
+    
+            // Ping the relays
+            pingRelay('wss://eaglerrelay.glitch.me/', document.getElementById('ping1'));
+            pingRelay('wss://lan-relay.glitch.me/', document.getElementById('ping2'));
+        </script>
+    </body>
+    </html>
