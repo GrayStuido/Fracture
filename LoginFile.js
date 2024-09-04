@@ -26,6 +26,7 @@ const users = [
     { username: "hevdogbf", password: "hevdogbf", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Alex Emerson
     { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ben Reverez
     { username: "Junior?", password: "060871", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
+    { username: "Pepsi", password: "Aboutchicken298", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Pepsi.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
 
