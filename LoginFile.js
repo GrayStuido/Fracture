@@ -28,7 +28,7 @@ const users = [
     { username: "Junior?", password: "060871", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
     { username: "Pepsi", password: "Aboutchicken298", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Pepsi.png"  }, // Katie
     { username: "Guitar Man", password: "Met4llic4", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Wess.jpg"  }, // Wes Porter
-    { username: "Kingalm24", password: "W4k3yW4k3y", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Wess.jpg"  }, // Alex Partan
+    { username: "Kingalm24", password: "W4k3yW4k3y", banned: false, banReason: "", premium: true, profilePicture: "UserImages/nimrod.png"  }, // Alex Partan
     { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
 
