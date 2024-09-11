@@ -18,7 +18,7 @@ const users = [
     { username: "Khoa", password: "Khoadaog", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Khoa Nguyen
     { username: "Simone", password: "801888avasimone", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ava S
     { username: "Markeshka", password: "80396012", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Mark
-    { username: "cole", password: "123abc", banned: false, banReason: "", premium: true, profilePicture: "UserImages/PutinGriddy.gif"  }, // Cole Anthoney
+    { username: "colebubby", password: "123abc", banned: false, banReason: "", premium: true, profilePicture: "UserImages/PutinGriddy.gif"  }, // Cole Anthoney
     { username: "baba yaga", password: "baba yaga 123", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Carson Parrot
     { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Nate
     { username: "1234", password: "1234", banned: true, banReason: "Really?", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Hayden Coe
