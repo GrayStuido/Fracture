@@ -30,6 +30,15 @@ const users = [
     { username: "Guitar Man", password: "Met4llic4", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Wess.jpg"  }, // Wes Porter
     { username: "Kingalm24", password: "W4k3yW4k3y", banned: false, banReason: "", premium: true, profilePicture: "UserImages/nimrod.png"  }, // Alex Partan
     { username: "uhyeah", password: "Ba11ler", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Dickens.png"  }, // Fason Dickens
+    { username: "Atomically", password: "", banned: false, banReason: "Ifarted500times1123", premium: false, profilePicture: "UserImages/hao.jpg"  }, // Sy\ky Hao
+    { username: "Hazzled", password: "Hazzled1", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Nikita Shpak
+    { username: "Toptoast", password: "NerfMiner0", banned: false, banReason: "", premium: false, profilePicture: "UserImages/dylan.jpg"  }, // Dylan Austen
+    { username: "NIko", password: "NikoFromOneShot22", banned: false, banReason: "", premium: false, profilePicture: "UserImages/marcelo.jpg"  }, // Marcelo Lujan
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
 
