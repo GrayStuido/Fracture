@@ -49,7 +49,7 @@ function login() {
     const user = users.find(u => u.username === username);
     
     if (!user) {
-        displayError("There is no account attached with this name, please create a login (IF YOU ARE GETTING THIS PLEASE RESUBMIT IF YOU DONT ALREADY HAVE A SUBMISSION IN THE FORM MOST OF THE LOGINS HAVE BEEN LOST)");
+        displayError("There is no account attached with this name, please create a login");
         return;
     }
     
