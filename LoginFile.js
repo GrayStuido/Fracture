@@ -2,44 +2,44 @@
 
 const users = [
     { username: "jusinoj", password: "theearthisflat", banned: false, banReason: "", premium: true, profilePicture: "UserImages/jusino.png"  }, // Jayden Jusino
-    { username: "mindGoblin", password: "personiscool", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Katie Gladysh
-    { username: "Nooblet12905", password: "ImStupid12905", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // derpler
-    { username: "Misha", password: "ballz4252", banned: false, banReason: "Drew Melon", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Marcelo Lujan
-    { username: "dew.k_", password: "mumlover73", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Drew Melon
-    { username: "Brennan", password: "carson", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Brennan McCoskery
-    { username: "Martin the Destroyer", password: "stupid martin stupid little shit", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Eli Lubbe
+    { username: "mindGoblin", password: "personiscool", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Katie Gladysh
+    { username: "Nooblet12905", password: "ImStupid12905", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // derpler
+    { username: "Misha", password: "ballz4252", banned: false, banReason: "Drew Melon", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Marcelo Lujan
+    { username: "dew.k_", password: "mumlover73", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Drew Melon
+    { username: "Brennan", password: "carson", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Brennan McCoskery
+    { username: "Martin the Destroyer", password: "stupid martin stupid little shit", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Eli Lubbe
     { username: "sillybilly", password: "sillybilly0924", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Simon Collins
     { username: "RiceSpice", password: "BigBirthdayCakeAbriviated", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Jason Yee
-    { username: "AstroFlqr3", password: "As709166", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Jack Floor
+    { username: "AstroFlqr3", password: "As709166", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Jack Floor
     { username: "Potato", password: "ShangChi", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Austin Nguyen
     { username: "Ethan crivoloni", password: "1234567", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Brayden Siegner
     { username: "jamison", password: "Ghost242", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Jamison Austad
     { username: "Tea", password: "123abcmarryme", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Scarlett Castro
     { username: "Khoa", password: "Khoadaog", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Khoa Nguyen
-    { username: "Simone", password: "801888avasimone", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ava S
+    { username: "Simone", password: "801888avasimone", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Ava S
     { username: "Markeshka", password: "80396012", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Mark
     { username: "colebubby", password: "123abc", banned: false, banReason: "", premium: true, profilePicture: "UserImages/PutinGriddy.gif"  }, // Cole Anthoney
     { username: "baba yaga", password: "baba yaga 123", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Carson Parrot
-    { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Nate
+    { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Nate
     { username: "1234", password: "1234", banned: true, banReason: "Really?", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Hayden Coe
     { username: "block'o_cheese3", password: "1234567890", banned: false, banReason: "Ur still banned buddy", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ignatius O'Dell
     { username: "hevdogbf", password: "hevdogbf", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Alex Emerson
-    { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ben Reverez
-    { username: "Junior?", password: "060871", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
+    { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Ben Reverez
+    { username: "Junior?", password: "060871", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
     { username: "Pepsi", password: "Aboutchicken298", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Pepsi.png"  }, // Katie
     { username: "Guitar Man", password: "Met4llic4", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Wess.jpg"  }, // Wes Porter
     { username: "Kingalm24", password: "W4k3yW4k3y", banned: false, banReason: "", premium: true, profilePicture: "UserImages/nimrod.png"  }, // Alex Partan
     { username: "uhyeah", password: "Ba11ler", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Dickens.png"  }, // Fason Dickens
-    { username: "Atomically", password: "", banned: false, banReason: "Ifarted500times1123", premium: false, profilePicture: "UserImages/hao.jpg"  }, // Sy\ky Hao
-    { username: "Hazzled", password: "Hazzled1", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Nikita Shpak
-    { username: "Toptoast", password: "NerfMiner0", banned: false, banReason: "", premium: false, profilePicture: "UserImages/dylan.jpg"  }, // Dylan Austen
-    { username: "NIko", password: "NikoFromOneShot22", banned: false, banReason: "", premium: false, profilePicture: "UserImages/marcelo.jpg"  }, // Marcelo Lujan
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: false, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "Atomically", password: "", banned: false, banReason: "Ifarted500times1123", premium: true, profilePicture: "UserImages/hao.jpg"  }, // Sy\ky Hao
+    { username: "Hazzled", password: "Hazzled1", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Nikita Shpak
+    { username: "Toptoast", password: "NerfMiner0", banned: false, banReason: "", premium: true, profilePicture: "UserImages/dylan.jpg"  }, // Dylan Austen
+    { username: "NIko", password: "NikoFromOneShot22", banned: false, banReason: "", premium: true, profilePicture: "UserImages/marcelo.jpg"  }, // Marcelo Lujan
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
 
 function login() {
