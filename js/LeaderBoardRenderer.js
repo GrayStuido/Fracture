@@ -190,7 +190,7 @@ const leaderboardsData = {
       { name: 'Oskie Ayala', score: 0 },
       { name: 'Sal A.M.', score: 0 },
       { name: 'Tyson Fahlman', score: 0 },
-      { name: 'Wes Porter', score: 0 }
+      { name: 'Wes Porter', score: 157190 }
     ], 
     
     dragonvsbricks: [
