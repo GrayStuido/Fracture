@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="js/theme-switcher.js"></script>
+  <link rel="stylesheet" href="css/theme-index.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <script src="js/navgen.js"></script>
   <script src="js/lastpage.js"></script>
@@ -70,18 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
   <title>Fracture | Leaderboard</title>
   <style>
-    :root {
-      --color-major: #1e0041;
-      --color-minor: #330c4d;
-      --color-accent: #9900ff;
-      --color-text: #ffffff;
-      --color-first: #d9ad00;
-      --color-second: #cccccc;
-      --color-third: #ba6600;
-    }
     
     body {
-      color: var(--color-text);
+      color: var(--color-text-light);
       background: black;
       margin: 0;
       padding: 0;
@@ -103,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     .leaderboard {
-      border: 5px solid var(--color-accent);
+      border: 5px solid var(--color-accent2);
       max-width: 400px;
       width: 350px;
       margin: 20px;
@@ -143,17 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     .leaderboard-item-first {
       border-color: var(--color-first);
-      background-color: rgba(161, 133, 22, 0.8);
+      background-color: var(--color-first-bg);
     }
     
     .leaderboard-item-second {
       border-color: var(--color-second);
-      background-color: rgba(176, 176, 176, 0.8);
+      background-color: var(--color-second-bg);
     }
     
     .leaderboard-item-third {
-      border-color: var(--color-third);
-      background-color: rgba(194, 129, 50, 0.8);
+      border-color: var(--color-third-bg);
+      background-color: var(--color-third-bg);
     }
     
     .year-selector {
@@ -206,12 +199,6 @@ background-color: black;
 }
     </style>
       <style>
-        :root {
-            --primary-color1: #8A2BE2;
-            --secondary-color1: #180025;
-            --text-color1: #cea3ff;
-            --hover-color1: #8621c09a;
-        }
         .container1 {
             width: 100%;
             max-width: 1200px;

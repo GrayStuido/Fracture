@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/theme-index.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <script src="js/navgen.js"></script>
   <script src="js/ErudaConsole.js"></script>
@@ -32,13 +33,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools</title>
     <style>
-:root {
-  --color-major: #2d0a3b;
-  --color-minor: #390e5c;
-  --color-accent: #8a2bd8;
-  --color-text: #ecf0f1;
-  --color-highlight: #7416a0;
-}
 
 body {
   font-family: Arial, sans-serif;
@@ -85,7 +79,7 @@ body {
 .tool-name {
   font-size: 18px;
   margin-bottom: 15px;
-  color: var(--color-accent);
+  color: var(--text-color1);
 }
 
 .open-btn, .open-btn-link {
@@ -153,17 +147,31 @@ img {
     object-fit: cover; /* The image will cover the container while maintaining its aspect ratio */
   }
   </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <style>
-    :root {
-        --primary-color: #8A2BE2;
-        --secondary-color: #180025;
-        --text-color: #cea3ff;
-        --hover-color: #8621c09a;
-    }
+
     body {
         font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        background-color: var(--secondary-color);
-        color: var(--text-color);
+        background-color: var(--color-major);
+        color: var(--color-text);
         margin: 0;
         padding: 0;
         display: flex;
@@ -179,14 +187,14 @@ img {
     h1 {
         font-size: 3rem;
         font-weight: 700;
-        color: var(--primary-color);
+        color: var(--primary-color1);
         margin-bottom: 1rem;
         text-align: center;
     }
     h3 {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--primary-color);
+        color: var(--primary-color1);
         margin-bottom: 1rem;
         text-align: center;
     }
@@ -200,7 +208,7 @@ img {
     }
     nav a {
         text-decoration: none;
-        color: var(--text-color);
+        color: var(--text-color1);
         font-size: 1rem;
         font-weight: 500;
         transition: color 0.3s ease, background-color 0.3s ease;
@@ -209,12 +217,12 @@ img {
     }
     nav a:hover {
         color:white;
-        background-color: var(--hover-color);
+        background-color: var(--hover-color1);
     }
     .divider {
         width: 100%;
         height: 5px;
-        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+        background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
         margin-bottom: 2rem;
     }
     .content {

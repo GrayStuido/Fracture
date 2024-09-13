@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/theme-index.css">
+    <script src="js/theme-switcher.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--color-major);
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .theme-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .theme-button, .action-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: var(--color-button);
+            color: var(--color-text);
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-button:hover, .action-button:hover {
+            background-color: var(--color-button-hover);
+        }
+
+        .custom-theme {
+            margin-top: 40px;
+        }
+
+        .color-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .color-input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="color"] {
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Theme Settings</h1>
+        <div class="theme-buttons">
+            <button class="theme-button" data-theme="light">Fracture</button>
+            <button class="theme-button" data-theme="cherry">Cherry</button>
+        </div>
+
+        <div class="custom-theme">
+            <h2>Customize Theme</h2>
+            <input type="text" id="theme-name" placeholder="Custom Theme Name" required>
+            <div class="color-inputs">
+                <div class="color-input">
+                    <label for="color-major">Major Color:</label>
+                    <input type="color" id="color-major" name="color-major">
+                </div>
+                <div class="color-input">
+                    <label for="color-minor">Minor Color:</label>
+                    <input type="color" id="color-minor" name="color-minor">
+                </div>
+                <div class="color-input">
+                    <label for="color-major-lesser">Major Lesser Color:</label>
+                    <input type="color" id="color-major-lesser" name="color-major-lesser">
+                </div>
+                <div class="color-input">
+                    <label for="color-minor-lesser">Minor Lesser Color:</label>
+                    <input type="color" id="color-minor-lesser" name="color-minor-lesser">
+                </div>
+                <div class="color-input">
+                    <label for="color-accent">Accent Color:</label>
+                    <input type="color" id="color-accent" name="color-accent">
+                </div>
+                <div class="color-input">
+                    <label for="color-accent2">Accent 2 Color:</label>
+                    <input type="color" id="color-accent2" name="color-accent2">
+                </div>
+                <div class="color-input">
+                    <label for="color-button">Button Color:</label>
+                    <input type="color" id="color-button" name="color-button">
+                </div>
+                <div class="color-input">
+                    <label for="color-button-hover">Button Hover Color:</label>
+                    <input type="color" id="color-button-hover" name="color-button-hover">
+                </div>
+                <div class="color-input">
+                    <label for="color-background">Background Color:</label>
+                    <input type="color" id="color-background" name="color-background">
+                </div>
+                <div class="color-input">
+                    <label for="color-accent-hover">Accent Hover Color:</label>
+                    <input type="color" id="color-accent-hover" name="color-accent-hover">
+                </div>
+                <div class="color-input">
+                    <label for="color-text">Text Color:</label>
+                    <input type="color" id="color-text" name="color-text">
+                </div>
+                <div class="color-input">
+                    <label for="color-text-muted">Muted Text Color:</label>
+                    <input type="color" id="color-text-muted" name="color-text-muted">
+                </div>
+                <div class="color-input">
+                    <label for="color-accent-2">Accent 2 Color:</label>
+                    <input type="color" id="color-accent-2" name="color-accent-2">
+                </div>
+                <div class="color-input">
+                    <label for="color-text-light">Light Text Color:</label>
+                    <input type="color" id="color-text-light" name="color-text-light">
+                </div>
+                <div class="color-input">
+                    <label for="color-text-dark">Dark Text Color:</label>
+                    <input type="color" id="color-text-dark" name="color-text-dark">
+                </div>
+                <div class="color-input">
+                    <label for="color-border">Border Color:</label>
+                    <input type="color" id="color-border" name="color-border">
+                </div>
+                <div class="color-input">
+                    <label for="color-uninstall">Uninstall Color:</label>
+                    <input type="color" id="color-uninstall" name="color-uninstall">
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-button" id="apply-theme">Apply Theme</button>
+                <button class="action-button" id="reset-theme">Reset to Defaults</button>
+                <button class="action-button" id="export-theme">Export Theme</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

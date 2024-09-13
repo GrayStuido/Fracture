@@ -188,8 +188,8 @@ color: white;
   bottom: 22.2%;
   right: 10%;
   text-align: center;
-  border: 2px solid #7800FF;
-  background-color: #2C0656;
+  border: 2px solid var(--color-button);
+  background-color: var(--color-minor);
   padding: 20px;
   border-radius: 15px;
 }
@@ -221,8 +221,8 @@ color: white;
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  border: 2px solid #7800FF;
-  background-color: #2C0656;
+  border: 2px solid var(--color-button);
+  background-color: var(--color-minor);
   color: #B16BFF;
   color: white;
   cursor: pointer;
@@ -232,7 +232,7 @@ color: white;
 
 .logout-button:hover {
   transition: all 0.3s ease-in-out;
-  border: 2px solid #7800FF;
-  background-color: #2C0656;
+  border: 2px solid var(--color-accent2);
+  background-color: var(--color-button-hover);
   color: #B16BFF;
 }

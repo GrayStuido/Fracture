@@ -1,0 +1,77 @@
+:root {
+    --color-major: #090013;
+    --color-minor: #360A67;
+    --color-major-lesser: #0d1117;
+    --color-minor-lesser: rgba(43, 29, 55, 0.5);
+    --color-accent: #200e35;
+    --color-accent2: #9900ff;
+    --color-button: #6e08e2;
+    --color-button-hover: #B16BFF;
+    --color-background: #000000;
+    --color-button-hover: #560FA6;
+    --color-accent-hover: #7800FF;
+    --color-text: #c9d1d9;
+    --color-text-muted: #8b949e;
+    --color-accent-2: #58a6ff;
+
+    --color-text-light: #ddd;
+    --color-text-dark: #999;
+    --color-border: #333;
+    --color-uninstall: #dc3545;
+
+    --primary-color1: #8A2BE2;
+    --secondary-color1: #000000;
+    --text-color1: #cea3ff;
+    --hover-color1: #8621c09a;
+
+    --color-text: #ffffff;
+    --color-first: #ffcc00;
+    --color-second: #cccccc;
+    --color-third: #ba6600;
+    --color-first-bg: rgb(161, 133, 22);
+    --color-second-bg: rgb(176, 176, 176);
+    --color-third-bg: rgba(194, 129, 50, 0.8);
+
+    --color-major-games: #1e0041;
+    --color-minor-games: #360d45;
+    --color-accent-games: #d76bff;
+}
+
+[data-theme="cherry"] {
+    --color-major: #130012;
+    --color-minor: #670a62;
+    --color-major-lesser: #170d17;
+    --color-minor-lesser: rgba(54, 29, 55, 0.5);
+    --color-accent: #c45abe;
+    --color-accent2: #ff00f2;
+    --color-button: #e208d0;
+    --color-button-hover: #ff6bff;
+    --color-background: #000000;
+    --color-button-hover: #a60f92;
+    --color-accent-hover: #ea00ff;
+    --color-text: #d8c9d9;
+    --color-text-muted: #9e8b9d;
+    --color-accent-2: #ec58ff;
+
+    --color-text-light: #dddddd;
+    --color-text-dark: #999999;
+    --color-border: #333;
+    --color-uninstall: #dc357b;
+
+    --primary-color1: #e22be2;
+    --secondary-color1: #000000;
+    --text-color1: #ffa3eb;
+    --hover-color1: #bb21c09a;
+
+    --color-text: #ffffff;
+    --color-first: #ffcc00;
+    --color-second: #cccccc;
+    --color-third: #ba6600;
+    --color-first-bg: rgb(161, 133, 22);
+    --color-second-bg: rgb(176, 176, 176);
+    --color-third-bg: rgba(194, 129, 50, 0.8);
+
+    --color-major-games: #1e0041;
+    --color-minor-games: #360d45;
+    --color-accent-games: #ff6be6;
+}

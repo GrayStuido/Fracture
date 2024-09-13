@@ -1,6 +1,8 @@
 <html>
 <head>
+  <script src="js/theme-switcher.js"></script>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/theme-index.css">
   <script src="js/navgen.js"></script>
   <script src="js/ErudaConsole.js"></script>
   <script src="js/ColorPicker.js"></script>
@@ -40,16 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <style>
-  :root {
-      --primary-color: #8A2BE2;
-      --secondary-color: #E6E6FA;
-      --text-color: #cea3ff;
-      --hover-color: #8621c09a;
-  }
   body {
       font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-      background-color: var(--secondary-color);
-      color: var(--text-color);
+      background-color: var(--secondary-color1);
+      color: var(--text-color1);
       margin: 0;
       padding: 0;
       display: flex;
@@ -65,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   h1 {
       font-size: 3rem;
       font-weight: 700;
-      color: var(--primary-color);
+      color: var(--primary-color1);
       margin-bottom: 1rem;
       text-align: center;
   }
@@ -78,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   nav a {
       text-decoration: none;
-      color: var(--text-color);
+      color: var(--text-color1);
       font-size: 1rem;
       font-weight: 500;
       transition: color 0.3s ease, background-color 0.3s ease;
@@ -86,13 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
       border-radius: 5px;
   }
   nav a:hover {
-      color: var(--secondary-color);
-      background-color: var(--hover-color);
+      color: var(--secondary-color1);
+      background-color: var(--hover-color1);
   }
   .divider {
       width: 100%;
       height: 5px;
-      background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+      background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
       margin-bottom: 2rem;
   }
   .content {
@@ -479,11 +475,7 @@ padding: 0;
 </body>
 </html>
 <style>
-:root {
-  --color-major: #1e0041;
-  --color-minor: #360d45;
-  --color-accent: #d76bff;
-}
+
 
 body {
   color: var(--color-major);
@@ -618,12 +610,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid var(--color-major);
+  border: 2px solid var(--color-major-games);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: var(--color-minor);
+  background-color: var(--color-minor-games);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -636,8 +628,8 @@ body {
   font-size: 18px;
   text-align: center;
   padding: 10px;
-  color: var(--color-accent);
-  background-color: var(--color-major);
+  color: var(--color-accent-games);
+  background-color: var(--color-major-games);
   width: 100%;
 }
 
@@ -645,7 +637,7 @@ body {
   text-align: center;
   margin-top: 50px;
   display: none;
-  color: var(--color-accent);
+  color: var(--color-accent-games);
 }
 
 .nogames h1 {
@@ -657,9 +649,9 @@ body {
   width: 90%;
   height: 80%;
   margin: 10px auto;
-  border: 2px solid var(--color-major);
+  border: 2px solid var(--color-major-games);
   border-radius: 5px;
-  background: var(--color-major);
+  background: var(--color-major-games);
   display: flex;
   justify-content: center;
   align-items: center;
