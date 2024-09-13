@@ -1,10 +1,4 @@
 :root {
-    /* Main color scheme */
-    --color-major: #1b0e23;
-    --color-minor: #2b1d37;
-    --color-accent: #bc93e3;
-    --color-text: #d2c9d6;
-    --color-text-muted: #a693b5;
   
     /* Additional color variations */
     --color-major-light: #2d1a3b;
