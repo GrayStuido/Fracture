@@ -1,3 +1,4 @@
+
 class ThemeSwitcher {
     constructor(options = {}) {
         this.options = {
@@ -148,8 +149,11 @@ class ThemeSwitcher {
         const { color: rgbColor } = getComputedStyle(tempElem);
         document.body.removeChild(tempElem);
 
-        const [, r, g, b] = /^rgba?\((\d+),\s*(\d+),\s*(\d+)\)/.exec(rgbColor) || [0, 0, 0];
-        return [parseInt(r), parseInt(g), parseInt(b)];
+        const match = /^rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(rgbColor);
+        if (match) {
+            return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+        }
+        return [0, 0, 0];
     }
 
     saveTheme(theme) {
