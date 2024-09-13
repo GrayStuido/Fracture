@@ -35,8 +35,8 @@ const users = [
     { username: "Toptoast", password: "NerfMiner0", banned: false, banReason: "", premium: true, profilePicture: "UserImages/dylan.jpg"  }, // Dylan Austen
     { username: "NIko", password: "NikoFromOneShot22", banned: false, banReason: "", premium: true, profilePicture: "UserImages/marcelo.jpg"  }, // Marcelo Lujan
     { username: "Vafu moo", password: "807962807962", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Baby.gif"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "soup", password: "812182", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "Kai", password: "6969420", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
