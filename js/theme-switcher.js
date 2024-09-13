@@ -1,85 +1,93 @@
-(function() {
-    let originalTheme = {};
-    let currentTheme = 'light';
+class ThemeSwitcher {
+    constructor(options = {}) {
+        this.options = {
+            defaultTheme: 'light',
+            storageKey: 'user-theme',
+            ...options
+        };
+        this.currentTheme = this.options.defaultTheme;
+        this.originalTheme = {};
+        this.init();
+    }
 
-    function initThemeSwitcher() {
-        const buttons = document.querySelectorAll('.theme-button');
-        const colorInputs = document.querySelectorAll('.color-input input[type="color"]');
+    init() {
+        this.loadTheme();
+        this.bindEvents();
+        this.updateColorInputs();
+    }
+
+    loadTheme() {
+        try {
+            const savedTheme = localStorage.getItem(this.options.storageKey);
+            this.applyTheme(savedTheme || this.options.defaultTheme);
+        } catch (e) {
+            console.warn('Unable to access localStorage. Falling back to default theme.');
+            this.applyTheme(this.options.defaultTheme);
+        }
+    }
+
+    bindEvents() {
+        document.querySelectorAll('.theme-button').forEach(button => {
+            button.addEventListener('click', () => this.handleThemeButtonClick(button));
+        });
+
+        document.querySelectorAll('.color-input input[type="color"]').forEach(input => {
+            input.addEventListener('input', (e) => this.updateLiveTheme(e));
+        });
+
         const applyButton = document.getElementById('apply-theme');
         const resetButton = document.getElementById('reset-theme');
         const exportButton = document.getElementById('export-theme');
-        
-        // Load saved theme from localStorage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            applyTheme(savedTheme);
-        } else {
-            // Set default theme if no theme is saved
-            applyTheme('light');
-        }
 
-        // Add click event listeners to preset theme buttons
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.getAttribute('data-theme');
-                applyTheme(theme);
-                localStorage.setItem('theme', theme);
-            });
-        });
-
-        // Add change event listeners to color inputs
-        colorInputs.forEach(input => {
-            input.addEventListener('input', updateLiveTheme);
-        });
-
-        // Add click event listeners to action buttons
-        applyButton.addEventListener('click', applyCustomTheme);
-        resetButton.addEventListener('click', resetToDefaults);
-        exportButton.addEventListener('click', exportCustomTheme);
-
-        // Initialize color inputs with current theme colors
-        updateColorInputs();
+        if (applyButton) applyButton.addEventListener('click', () => this.applyCustomTheme());
+        if (resetButton) resetButton.addEventListener('click', () => this.resetToDefaults());
+        if (exportButton) exportButton.addEventListener('click', () => this.exportCustomTheme());
     }
 
-    function applyTheme(theme) {
-        currentTheme = theme;
+    handleThemeButtonClick(button) {
+        const theme = button.getAttribute('data-theme');
+        this.applyTheme(theme);
+        this.saveTheme(theme);
+    }
+
+    applyTheme(theme) {
+        this.currentTheme = theme;
         document.body.setAttribute('data-theme', theme);
-        updateColorInputs();
+        this.updateColorInputs();
     }
 
-    function updateColorInputs() {
-        const colorInputs = document.querySelectorAll('.color-input input[type="color"]');
-        colorInputs.forEach(input => {
+    updateColorInputs() {
+        document.querySelectorAll('.color-input input[type="color"]').forEach(input => {
             const propertyName = `--${input.name}`;
             const color = getComputedStyle(document.body).getPropertyValue(propertyName).trim();
-            input.value = colorToHex(color);
+            input.value = this.colorToHex(color);
         });
-        originalTheme = getCurrentThemeColors();
+        this.originalTheme = this.getCurrentThemeColors();
     }
 
-    function updateLiveTheme(event) {
+    updateLiveTheme(event) {
         const propertyName = `--${event.target.name}`;
         document.body.style.setProperty(propertyName, event.target.value);
     }
 
-    function applyCustomTheme() {
-        const themeName = document.getElementById('theme-name').value || 'custom';
-        const colors = getCurrentThemeColors();
-        localStorage.setItem('theme', themeName);
+    applyCustomTheme() {
+        const themeName = document.getElementById('theme-name')?.value || 'custom';
+        const colors = this.getCurrentThemeColors();
+        this.saveTheme(themeName);
         localStorage.setItem(themeName, JSON.stringify(colors));
-        applyTheme(themeName);
+        this.applyTheme(themeName);
     }
 
-    function resetToDefaults() {
-        Object.entries(originalTheme).forEach(([prop, value]) => {
+    resetToDefaults() {
+        Object.entries(this.originalTheme).forEach(([prop, value]) => {
             document.body.style.setProperty(`--${prop}`, value);
         });
-        updateColorInputs();
+        this.updateColorInputs();
     }
 
-    function exportCustomTheme() {
-        const themeName = document.getElementById('theme-name').value || 'custom';
-        const colors = getCurrentThemeColors();
+    exportCustomTheme() {
+        const themeName = document.getElementById('theme-name')?.value || 'custom';
+        const colors = this.getCurrentThemeColors();
         let cssContent = `[data-theme="${themeName}"] {\n`;
         Object.entries(colors).forEach(([prop, value]) => {
             cssContent += `    --${prop}: ${value};\n`;
@@ -97,7 +105,7 @@
         URL.revokeObjectURL(url);
     }
 
-    function getCurrentThemeColors() {
+    getCurrentThemeColors() {
         const colorInputs = document.querySelectorAll('.color-input input[type="color"]');
         const colors = {};
         colorInputs.forEach(input => {
@@ -106,51 +114,48 @@
         return colors;
     }
 
-    function colorToHex(color) {
-        if (color.substr(0, 1) === '#') {
-            return expandShorthandHex(color);
+    colorToHex(color) {
+        if (color.startsWith('#')) {
+            return this.expandShorthandHex(color);
         }
-        if (color.indexOf('rgb') > -1) {
-            if (color.indexOf('rgba') === 0) {
-                color = color.match(/^rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+.*\d*)\s*\)$/i);
-                return rgbToHex(parseInt(color[1]), parseInt(color[2]), parseInt(color[3]));
-            } else {
-                color = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
-                return rgbToHex(parseInt(color[1]), parseInt(color[2]), parseInt(color[3]));
-            }
-        }
-        // If color is in named color format (e.g., 'red', 'blue'), create a temporary div to get its RGB value
-        var tempElem = document.createElement('div');
+        const [r, g, b] = this.getRgbValues(color);
+        return this.rgbToHex(r, g, b);
+    }
+
+    expandShorthandHex(hex) {
+        if (hex.length === 7) return hex;
+        hex = hex.slice(1); // Remove the #
+        return hex.length === 3 ? `#${hex.split('').map(x => x + x).join('')}` : `#${hex}`;
+    }
+
+    rgbToHex(r, g, b) {
+        return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
+    }
+
+    getRgbValues(color) {
+        const tempElem = document.createElement('div');
         tempElem.style.color = color;
         document.body.appendChild(tempElem);
-        var computedColor = window.getComputedStyle(tempElem).color;
+        const { color: rgbColor } = getComputedStyle(tempElem);
         document.body.removeChild(tempElem);
-        return colorToHex(computedColor);
+
+        const [, r, g, b] = /^rgba?\((\d+),\s*(\d+),\s*(\d+)\)/.exec(rgbColor) || [0, 0, 0];
+        return [parseInt(r), parseInt(g), parseInt(b)];
     }
 
-    function expandShorthandHex(hex) {
-        // Check if it's already a full hex code
-        if (hex.length === 7) {
-            return hex;
+    saveTheme(theme) {
+        try {
+            localStorage.setItem(this.options.storageKey, theme);
+        } catch (e) {
+            console.warn('Unable to save theme to localStorage.');
         }
-        // Remove the hash at the start if it's there
-        hex = hex.replace(/^#/, '');
-        // Expand the shorthand
-        if (hex.length === 3) {
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-        }
-        // Add the hash back and return
-        return '#' + hex;
     }
+}
 
-    function rgbToHex(r, g, b) {
-        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).padStart(6, '0');
-    }
-
-    // Run the initialization function when the DOM is fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initThemeSwitcher);
-    } else {
-        initThemeSwitcher();
-    }
-})();
+// Initialize the theme switcher when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeSwitcher({
+        defaultTheme: 'light',
+        storageKey: 'user-theme'
+    });
+});
