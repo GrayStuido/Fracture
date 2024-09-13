@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Redirect to index.html after 3 seconds
         setTimeout(function() {
-            window.location.href = 'index.html';
+            window.location.href = '';
         }, 3000);
     }
 });
