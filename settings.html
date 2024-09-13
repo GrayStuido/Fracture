@@ -74,93 +74,90 @@
             margin-top: 20px;
         }
     </style>
+              <style>
+                .wrapper-menu {
+    
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    }
+    
+                .container1 {
+                    width: 100%;
+                    max-width: 1200px;
+                    padding: 2rem;
+                    
+                }
+                .Menuh1 {
+                    font-size: 3rem;
+                    font-weight: 700;
+                    color: var(--primary-color1);
+                    margin-bottom: 1rem;
+                    text-align: center;
+                }
+                .Menuh3 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--primary-color1);
+                    margin-bottom: 1rem;
+                    text-align: center;
+                }
+                .NavMenu {
+                  color:white;
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-bottom: 2rem;
+                    flex-wrap: wrap;
+                }
+                .NavMenu a {
+                    text-decoration: none;
+                    color: var(--text-color1);
+                    font-size: 1rem;
+                    font-weight: 500;
+                    transition: color 0.3s ease, background-color 0.3s ease;
+                    padding: 0.5rem 1rem;
+                    border-radius: 5px;
+                }
+                .NavMenu a:hover {
+                    color:white;
+                    background-color: var(--hover-color1);
+                }
+                .divider {
+                    width: 100%;
+                    height: 5px;
+                    background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+                    margin-bottom: 2rem;
+                }
+                .content {
+                    background-color: #ffffff;
+                    padding: 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+                }
+              </style>
+    <script src="js/navgen.js"></script>
 </head>
 <body>
+    <div class="wrapper-menu">
+        <div class="container1">
+            <nav class="NavMenu" id="main-nav"></nav>
+            <div class="divider"></div>
+          </div>
+        </div>
+
     <div class="container">
         <h1>Theme Settings</h1>
         <div class="theme-buttons">
             <button class="theme-button" data-theme="light">Fracture</button>
             <button class="theme-button" data-theme="cherry">Cherry</button>
         </div>
-
-        <div class="custom-theme">
-            <h2>Customize Theme</h2>
-            <input type="text" id="theme-name" placeholder="Custom Theme Name" required>
-            <div class="color-inputs">
-                <div class="color-input">
-                    <label for="color-major">Major Color:</label>
-                    <input type="color" id="color-major" name="color-major">
-                </div>
-                <div class="color-input">
-                    <label for="color-minor">Minor Color:</label>
-                    <input type="color" id="color-minor" name="color-minor">
-                </div>
-                <div class="color-input">
-                    <label for="color-major-lesser">Major Lesser Color:</label>
-                    <input type="color" id="color-major-lesser" name="color-major-lesser">
-                </div>
-                <div class="color-input">
-                    <label for="color-minor-lesser">Minor Lesser Color:</label>
-                    <input type="color" id="color-minor-lesser" name="color-minor-lesser">
-                </div>
-                <div class="color-input">
-                    <label for="color-accent">Accent Color:</label>
-                    <input type="color" id="color-accent" name="color-accent">
-                </div>
-                <div class="color-input">
-                    <label for="color-accent2">Accent 2 Color:</label>
-                    <input type="color" id="color-accent2" name="color-accent2">
-                </div>
-                <div class="color-input">
-                    <label for="color-button">Button Color:</label>
-                    <input type="color" id="color-button" name="color-button">
-                </div>
-                <div class="color-input">
-                    <label for="color-button-hover">Button Hover Color:</label>
-                    <input type="color" id="color-button-hover" name="color-button-hover">
-                </div>
-                <div class="color-input">
-                    <label for="color-background">Background Color:</label>
-                    <input type="color" id="color-background" name="color-background">
-                </div>
-                <div class="color-input">
-                    <label for="color-accent-hover">Accent Hover Color:</label>
-                    <input type="color" id="color-accent-hover" name="color-accent-hover">
-                </div>
-                <div class="color-input">
-                    <label for="color-text">Text Color:</label>
-                    <input type="color" id="color-text" name="color-text">
-                </div>
-                <div class="color-input">
-                    <label for="color-text-muted">Muted Text Color:</label>
-                    <input type="color" id="color-text-muted" name="color-text-muted">
-                </div>
-                <div class="color-input">
-                    <label for="color-accent-2">Accent 2 Color:</label>
-                    <input type="color" id="color-accent-2" name="color-accent-2">
-                </div>
-                <div class="color-input">
-                    <label for="color-text-light">Light Text Color:</label>
-                    <input type="color" id="color-text-light" name="color-text-light">
-                </div>
-                <div class="color-input">
-                    <label for="color-text-dark">Dark Text Color:</label>
-                    <input type="color" id="color-text-dark" name="color-text-dark">
-                </div>
-                <div class="color-input">
-                    <label for="color-border">Border Color:</label>
-                    <input type="color" id="color-border" name="color-border">
-                </div>
-                <div class="color-input">
-                    <label for="color-uninstall">Uninstall Color:</label>
-                    <input type="color" id="color-uninstall" name="color-uninstall">
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="action-button" id="apply-theme">Apply Theme</button>
-                <button class="action-button" id="reset-theme">Reset to Defaults</button>
-                <button class="action-button" id="export-theme">Export Theme</button>
-            </div>
         </div>
     </div>
 </body>
