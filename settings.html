@@ -25,11 +25,19 @@
         }
 
         .theme-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.theme-button {
+    flex: 1 1 calc(20% - 10px); /* 20% width minus the gap */
+    max-width: calc(20% - 10px); /* ensures no overflow due to gap */
+    box-sizing: border-box; /* include padding and border in width calculation */
+}
+
 
         .theme-button, .action-button {
             padding: 10px 20px;
@@ -72,6 +80,34 @@
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
+        }
+
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-size 0.3s, background-position 0.3s;
+        }
+
+        .background-container.fit {
+            background-size: contain;
+        }
+
+        .background-container.stretch {
+            background-size: 100% 100%;
+        }
+
+        .background-container.tiles {
+            background-size: auto;
+            background-repeat: repeat;
+        }
+
+        .background-container.fit-centered {
+            background-size: contain;
+            background-position: center;
         }
     </style>
               <style>
@@ -142,6 +178,70 @@
                     box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
                 }
               </style>
+              <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #f0f0f0;
+                }
+                .container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    background-color: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                }
+                h1 {
+                    color: #333;
+                }
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+                .dropbtn {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: none;
+                    cursor: pointer;
+                }
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #f9f9f9;
+                    min-width: 160px;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    z-index: 1;
+                    padding: 12px;
+                }
+                .dropdown:hover .dropdown-content {
+                    display: block;
+                }
+                .dropdown-settings button {
+                    display: block;
+                    width: 100%;
+                    padding: 8px;
+                    text-align: left;
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                }
+                .dropdown-settings button:hover {
+                    background-color: #f1f1f1;
+                }
+                #bg-upload, #clear-bg, #apply-bg {
+                    margin-bottom: 10px;
+                }
+                .slider-container {
+                    margin-top: 10px;
+                }
+                #blur-slider {
+                    width: 100%;
+                }
+                </style>
     <script src="js/navgen.js"></script>
 </head>
 <body>
@@ -152,13 +252,64 @@
           </div>
         </div>
 
-    <div class="container">
-        <h1>Theme Settings</h1>
-        <div class="theme-buttons">
-            <button class="theme-button" data-theme="light">Fracture</button>
-            <button class="theme-button" data-theme="cherry">Cherry</button>
+        <div class="container">
+            <h1>Theme Settings</h1>
+            <div class="theme-buttons">
+                <button class="theme-button" data-theme="light">Fracture</button>
+                <button class="theme-button" data-theme="cherry">Cherry</button>
+                <button class="theme-button" data-theme="ocean">Ocean</button>
+                <button class="theme-button" data-theme="forest">Forest</button>
+                <button class="theme-button" data-theme="sunset">Sunset</button>
+                <button class="theme-button" data-theme="cyberpunk">Cyberpunk</button>
+                <button class="theme-button" data-theme="vaporwave">Vaporwave</button>
+                <button class="theme-button" data-theme="90s">90's</button>
+                <button class="theme-button" data-theme="nocturnal">Nocturnal</button>
+                <button class="theme-button" data-theme="pastel">Pastel</button>
+                <button class="theme-button" data-theme="high-contrast">High Contrast</button>
+                <button class="theme-button" data-theme="neon">Neon</button>
+                <button class="theme-button" data-theme="retro-gaming">Retro Gaming</button>
+                <button class="theme-button" data-theme="monochrome">Monochrome</button>
+                <button class="theme-button" data-theme="galaxy">Galaxy</button>
+                <button class="theme-button" data-theme="winter">Winter</button>
+                <button class="theme-button" data-theme="autumn">Autumn</button>
+                <button class="theme-button" data-theme="spring">Spring</button>
+                <button class="theme-button" data-theme="summer">Summer</button>
+                <button class="theme-button" data-theme="midnight">Midnight</button>
+                <button class="theme-button" data-theme="desert">Desert</button>
+                <button class="theme-button" data-theme="arctic">Arctic</button>
+                <button class="theme-button" data-theme="jungle">Jungle</button>
+                <button class="theme-button" data-theme="volcanic">Volcanic</button>
+                <button class="theme-button" data-theme="steampunk">Steampunk</button>
+                <button class="theme-button" data-theme="underwater">Underwater</button>
+                <button class="theme-button" data-theme="neon-noir">Neon Noir</button>
+                <button class="theme-button" data-theme="pastel-goth">Pastel Goth</button>
+                <button class="theme-button" data-theme="synthwave">Synthwave</button>
+            </div>
         </div>
+            
+        <div class="container">
+            <h1>Background Switcher with Improved Fit to Page</h1>
+            <div class="dropdown">
+                <button class="dropbtn">Background Image</button>
+                <div class="dropdown-content">
+                    <input type="file" id="bg-upload" accept="image/*">
+                    <button id="clear-bg">Clear Background</button>
+                    <button id="apply-bg">Apply</button>
+                    <div class="dropdown-settings">
+                        <button data-bg-image="fit">Fit to Page</button>
+                        <button data-bg-image="stretch">Stretch to Fit</button>
+                        <button data-bg-image="tiles">Tiles</button>
+                        <button data-bg-image="fit-centered">Fit Centered</button>
+                    </div>
+                    <div class="slider-container">
+                        <label for="blur-slider">Blur: <span id="blur-value">0</span>px</label>
+                        <input type="range" id="blur-slider" min="0" max="20" value="0">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    
+        <script src="js/theme-switcher.js"></script>
+        <script src="js/background-switcher.js"></script>
+    </body>
+    </html>

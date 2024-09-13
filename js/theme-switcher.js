@@ -51,9 +51,18 @@ class ThemeSwitcher {
     }
 
     applyTheme(theme) {
+        console.log(`Applying theme: ${theme}`);
         this.currentTheme = theme;
         document.body.setAttribute('data-theme', theme);
         this.updateColorInputs();
+        this.updateThemeIndicator(theme);
+    }
+
+    updateThemeIndicator(theme) {
+        const indicator = document.querySelector('#current-theme span');
+        if (indicator) {
+            indicator.textContent = theme;
+        }
     }
 
     updateColorInputs() {
