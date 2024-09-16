@@ -37,7 +37,8 @@ const users = [
     { username: "Vafu moo", password: "807962807962", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Baby.gif"  }, //
     { username: "soup", password: "812182", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "Kai", password: "6969420", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "Dvid", password: "Davidgame1.", banned: false, banReason: "", premium: true, profilePicture: "UserImages/david.jpg"  }, //
+    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // David Chorny
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
 ];
