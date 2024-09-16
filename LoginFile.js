@@ -39,8 +39,8 @@ const users = [
     { username: "Kai", password: "6969420", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
     { username: "Dvid", password: "Davidgame1.", banned: false, banReason: "", premium: true, profilePicture: "UserImages/david.jpg"  }, //
     { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // David Chorny
-    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
-    { username: "", password: "", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, //
+    { username: "Reidak", password: "thokbest877!!", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Adison Burck
+    { username: "Salm", password: "Hundawg", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Sal Aultman-meltz
 ];
 
 function login() {
