@@ -22,7 +22,7 @@ const users = [
     { username: "baba yaga", password: "baba yaga 123", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Carson Parrot
     { username: "unskatz", password: "hamburger4587", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Nate
     { username: "1234", password: "1234", banned: true, banReason: "Really?", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Hayden Coe
-    { username: "block'o_cheese3", password: "1234567890", banned: false, banReason: "Ur still banned buddy", premium: false, profilePicture: "UserImages/Placeholder.png"  }, // Ignatius O'Dell
+    { username: "block'o_cheese3", password: "1234567890", banned: false, banReason: "Ur still banned buddy", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Ignatius O'Dell
     { username: "hevdogbf", password: "hevdogbf", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Alex Emerson
     { username: "BenSkibidi", password: "Benskibidi1.", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Ben Reverez
     { username: "Junior?", password: "060871", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Robert Delgado
