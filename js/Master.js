@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "../js/ErudaConsole.js",
         "../js/LoadingScreen.js",
         "../js/NotSlick.js",
-        "../js/DebuggerCat.js"
+        "../js/DebuggerCat.js",
+        "../js/BanLogout.js"
     ];
     function loadScripts(urls) {
         if (urls.length === 0) return;
