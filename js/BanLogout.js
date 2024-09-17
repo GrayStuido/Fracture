@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Object to store banned users with their usernames as keys
     const bannedUsers = {
-        "1234": true,
+        "uhyeah": true,
         "1234": true,
         "1234": true,
         "1234": true,
