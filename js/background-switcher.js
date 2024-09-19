@@ -21,9 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             backgroundContainer.style.left = '0';
             backgroundContainer.style.width = '100%';
             backgroundContainer.style.height = '100%';
-            backgroundContainer.style.backgroundSize = 'cover';
-            backgroundContainer.style.backgroundPosition = 'center';
-            backgroundContainer.style.backgroundRepeat = 'no-repeat';
             backgroundContainer.style.zIndex = '-1';
 
             document.body.insertBefore(backgroundContainer, document.body.firstChild);
@@ -34,14 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function clearBackgroundStyles(backgroundContainer) {
+        backgroundContainer.style.backgroundImage = '';
+        backgroundContainer.style.backgroundSize = '';
+        backgroundContainer.style.backgroundPosition = '';
+        backgroundContainer.style.backgroundRepeat = '';
+        backgroundContainer.style.filter = '';
+    }
+
     function applyBackgroundSettings(backgroundContainer, settings) {
         try {
             if (!backgroundContainer) throw new Error("Background container is null.");
 
+            clearBackgroundStyles(backgroundContainer); // Clear existing styles
+
             if (settings.url) {
                 backgroundContainer.style.backgroundImage = `url(${settings.url})`;
-            } else {
-                backgroundContainer.style.backgroundImage = ''; // Clear if no URL
             }
 
             if (settings.position) {
@@ -138,8 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearBg.addEventListener('click', () => {
         try {
             if (backgroundContainer) {
-                backgroundContainer.style.backgroundImage = '';
-                backgroundContainer.style.filter = 'none';
+                clearBackgroundStyles(backgroundContainer); // Clear all styles
             }
             savedBgSettings = {};
             localStorage.removeItem('bgSettings');
