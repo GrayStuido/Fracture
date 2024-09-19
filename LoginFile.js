@@ -43,6 +43,107 @@ const users = [
     { username: "Salm", password: "Hundawg", banned: false, banReason: "", premium: true, profilePicture: "UserImages/The-Company-Drip.gif"  }, // Sal Aultman-meltz
 ];
 
+// Utility functions for encoding/decoding
+function encodeToBase64(str) {
+    return btoa(encodeURIComponent(str));
+}
+
+function decodeFromBase64(str) {
+    return decodeURIComponent(atob(str));
+}
+
+function inflate(str, level = 1, customInflator = null) {
+    const defaultInflator = (char, lvl) => char.repeat(lvl + 1);
+    const inflator = customInflator || defaultInflator;
+    
+    return str.split('')
+        .map((char, index) => {
+            const inflationFactor = Math.min(level, 10);
+            const asciiCode = char.charCodeAt(0);
+            const modifiedLevel = (inflationFactor + index) % 10 + 1;
+            
+            if (/[a-zA-Z]/.test(char)) {
+                const shiftedChar = String.fromCharCode(
+                    (asciiCode - (asciiCode <= 90 ? 65 : 97) + modifiedLevel) % 26 
+                    + (asciiCode <= 90 ? 65 : 97)
+                );
+                return inflator(shiftedChar, modifiedLevel);
+            } else {
+                return inflator(char, modifiedLevel);
+            }
+        })
+        .join('');
+}
+
+function deflate(str, level = 1, customDeflator = null) {
+    const defaultDeflator = (subStr, lvl) => subStr[0];
+    const deflator = customDeflator || defaultDeflator;
+    
+    const chunks = str.match(new RegExp(`.{1,${level + 1}}`, 'g')) || [];
+    
+    return chunks.map((chunk, index) => {
+        const deflationFactor = Math.min(level, 10);
+        const modifiedLevel = (deflationFactor + index) % 10 + 1;
+        
+        if (/[a-zA-Z]/.test(chunk[0])) {
+            const asciiCode = chunk[0].charCodeAt(0);
+            const shiftedChar = String.fromCharCode(
+                (asciiCode - (asciiCode <= 90 ? 65 : 97) - modifiedLevel + 26) % 26 
+                + (asciiCode <= 90 ? 65 : 97)
+            );
+            return deflator(shiftedChar + chunk.slice(1), modifiedLevel);
+        } else {
+            return deflator(chunk, modifiedLevel);
+        }
+    }).join('');
+}
+
+// Function to save login data
+function saveLoginData(username, LoginFix) {
+    const data = {
+        username: username,
+        LoginFix: LoginFix,
+        LoginScriptCheck: JSON.stringify(users)
+    };
+
+    const encodedData = encodeToBase64(JSON.stringify(data));
+    const inflatedData = inflate(encodedData);
+
+    localStorage.setItem('LoginFix', inflatedData);
+}
+
+// Function to check login data
+function checkLoginData() {
+    const inflatedData = localStorage.getItem('LoginFix');
+    if (!inflatedData) return false;
+
+    const deflatedData = deflate(inflatedData);
+    const decodedData = JSON.parse(decodeFromBase64(deflatedData));
+
+    const storedUsername = decodedData.username;
+    const storedLoginFix = decodedData.LoginFix;
+    const storedLoginScriptCheck = JSON.parse(decodedData.LoginScriptCheck);
+
+    const currentUser = users.find(u => u.username === storedUsername);
+
+    if (!currentUser) return false;
+
+    if (storedLoginFix !== localStorage.getItem('loggedInUser')) {
+        logout();
+        return false;
+    }
+
+    const currentUserIndex = users.findIndex(u => u.username === storedUsername);
+    if (JSON.stringify(users[currentUserIndex]) !== JSON.stringify(storedLoginScriptCheck[currentUserIndex])) {
+        if (currentUser.banned !== storedLoginScriptCheck[currentUserIndex].banned) {
+            logout();
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -70,20 +171,24 @@ function login() {
     localStorage.setItem('loggedInUser', user.username);
     localStorage.setItem('profilePicture', user.profilePicture);
     
+    // Save login data for security check
+    saveLoginData(user.username, user.username);
+    
     setTimeout(() => {
         window.location.reload();
     }, 500);
 }
 
 function loginGuest() {
-
     localStorage.setItem('premium', 'Guest');
     localStorage.setItem('loggedInUser', 'Guest');
+    
+    // Save guest login data
+    saveLoginData('Guest', 'Guest');
     
     setTimeout(() => {
         window.location.reload();
     }, 500);
-
 }
 
 function displayError(message) {
@@ -122,6 +227,7 @@ function logout() {
     localStorage.removeItem('premium');
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('profilePicture');
+    localStorage.removeItem('LoginFix');
     updateUIAfterLogout();
     location.reload();
 }
@@ -140,6 +246,11 @@ function banUser(username, reason) {
 function checkLoginStatus() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const premiumStatus = localStorage.getItem('premium') === 'true';
+    
+    if (loggedInUser && !checkLoginData()) {
+        logout();
+        return { isLoggedIn: false, username: null, isPremium: false };
+    }
     
     return {
         isLoggedIn: !!loggedInUser,
@@ -200,6 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginStatus = checkLoginStatus();
     if (loginStatus.isLoggedIn) {
         updateUIAfterLogin(loginStatus.username, loginStatus.isPremium);
+    } else {
+        updateUIAfterLogout();
     }
 
     const logoutButton = document.querySelector('.container button');
@@ -210,6 +323,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('loginButton');
     if (loginButton) {
         loginButton.addEventListener('click', login);
+    }
+
+    const guestLoginButton = document.getElementById('guestLoginButton');
+    if (guestLoginButton) {
+        guestLoginButton.addEventListener('click', loginGuest);
     }
 
     const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
