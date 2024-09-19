@@ -42,70 +42,6 @@ const users = [
     { username: "Reidak", password: "thokbest877!!", banned: false, banReason: "", premium: true, profilePicture: "UserImages/reidak.webp"  }, // Adison Burck
     { username: "Salm", password: "Hundawg", banned: false, banReason: "", premium: true, profilePicture: "UserImages/The-Company-Drip.gif"  }, // Sal Aultman-meltz
 ];
-// Utility functions for encoding/decoding
-function encodeToBase64(str) {
-    return btoa(encodeURIComponent(str));
-}
-
-function decodeFromBase64(str) {
-    return decodeURIComponent(atob(str));
-}
-
-// Simple "inflation" function
-function inflate(str) {
-    return str.split('').map(char => char + char).join('');
-}
-
-// Simple "deflation" function
-function deflate(str) {
-    return str.split('').filter((_, i) => i % 2 === 0).join('');
-}
-
-// Function to save login data
-function saveLoginData(username, LoginFix) {
-    const data = {
-        username: username,
-        LoginFix: LoginFix,
-        LoginScriptCheck: JSON.stringify(users)
-    };
-
-    const encodedData = encodeToBase64(JSON.stringify(data));
-    const inflatedData = inflate(encodedData);
-
-    localStorage.setItem('LoginFix', inflatedData);
-}
-
-// Function to check login data
-function checkLoginData() {
-    const inflatedData = localStorage.getItem('LoginFix');
-    if (!inflatedData) return false;
-
-    const deflatedData = deflate(inflatedData);
-    const decodedData = JSON.parse(decodeFromBase64(deflatedData));
-
-    const storedUsername = decodedData.username;
-    const storedLoginFix = decodedData.LoginFix;
-    const storedLoginScriptCheck = JSON.parse(decodedData.LoginScriptCheck);
-
-    const currentUser = users.find(u => u.username === storedUsername);
-
-    if (!currentUser) return false;
-
-    if (storedLoginFix !== localStorage.getItem('loggedInUser')) {
-        logout();
-        return false;
-    }
-
-    const currentUserIndex = users.findIndex(u => u.username === storedUsername);
-    if (JSON.stringify(users[currentUserIndex]) !== JSON.stringify(storedLoginScriptCheck[currentUserIndex])) {
-        if (currentUser.banned !== storedLoginScriptCheck[currentUserIndex].banned) {
-            logout();
-            return false;
-        }
-    }
-
-    return true;
-}
 
 function login() {
     const username = document.getElementById('username').value;
@@ -134,24 +70,20 @@ function login() {
     localStorage.setItem('loggedInUser', user.username);
     localStorage.setItem('profilePicture', user.profilePicture);
     
-    // Save login data for security check
-    saveLoginData(user.username, user.username);
-    
     setTimeout(() => {
         window.location.reload();
     }, 500);
 }
 
 function loginGuest() {
+
     localStorage.setItem('premium', 'Guest');
     localStorage.setItem('loggedInUser', 'Guest');
-    
-    // Save guest login data
-    saveLoginData('Guest', 'Guest');
     
     setTimeout(() => {
         window.location.reload();
     }, 500);
+
 }
 
 function displayError(message) {
@@ -190,7 +122,6 @@ function logout() {
     localStorage.removeItem('premium');
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('profilePicture');
-    localStorage.removeItem('LoginFix');
     updateUIAfterLogout();
     location.reload();
 }
@@ -209,11 +140,6 @@ function banUser(username, reason) {
 function checkLoginStatus() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const premiumStatus = localStorage.getItem('premium') === 'true';
-    
-    if (loggedInUser && !checkLoginData()) {
-        logout();
-        return { isLoggedIn: false, username: null, isPremium: false };
-    }
     
     return {
         isLoggedIn: !!loggedInUser,
@@ -274,8 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginStatus = checkLoginStatus();
     if (loginStatus.isLoggedIn) {
         updateUIAfterLogin(loginStatus.username, loginStatus.isPremium);
-    } else {
-        updateUIAfterLogout();
     }
 
     const logoutButton = document.querySelector('.container button');
@@ -286,11 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('loginButton');
     if (loginButton) {
         loginButton.addEventListener('click', login);
-    }
-
-    const guestLoginButton = document.getElementById('guestLoginButton');
-    if (guestLoginButton) {
-        guestLoginButton.addEventListener('click', loginGuest);
     }
 
     const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
