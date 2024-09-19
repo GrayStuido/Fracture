@@ -30,14 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return backgroundContainer;
         } catch (error) {
             console.error('Error in getOrCreateBackgroundContainer:', error);
+            return null; // Fail-safe return
         }
     }
 
     function applyBackgroundSettings(backgroundContainer, settings) {
         try {
+            if (!backgroundContainer) throw new Error("Background container is null.");
+
             if (settings.url) {
                 backgroundContainer.style.backgroundImage = `url(${settings.url})`;
+            } else {
+                backgroundContainer.style.backgroundImage = ''; // Clear if no URL
             }
+
             if (settings.position) {
                 switch (settings.position) {
                     case 'fit':
@@ -62,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                 }
             }
-            if (settings.blur !== undefined) {
+
+            if (settings.blur !== undefined && !isNaN(settings.blur)) {
                 backgroundContainer.style.filter = `blur(${settings.blur}px)`;
                 blurSlider.value = settings.blur;
                 blurValue.textContent = settings.blur;
@@ -99,12 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const backgroundContainer = getOrCreateBackgroundContainer();
-    applyBackgroundSettings(backgroundContainer, savedBgSettings);
+    if (backgroundContainer) {
+        applyBackgroundSettings(backgroundContainer, savedBgSettings);
+    }
 
     bgUpload.addEventListener('change', () => {
         try {
             const file = bgUpload.files[0];
             if (file) {
+                if (!file.type.startsWith('image/')) {
+                    console.error('Selected file is not an image.');
+                    return;
+                }
+
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     savedBgSettings.url = e.target.result;
@@ -123,8 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     clearBg.addEventListener('click', () => {
         try {
-            backgroundContainer.style.backgroundImage = '';
-            backgroundContainer.style.filter = 'none';
+            if (backgroundContainer) {
+                backgroundContainer.style.backgroundImage = '';
+                backgroundContainer.style.filter = 'none';
+            }
             savedBgSettings = {};
             localStorage.removeItem('bgSettings');
             blurSlider.value = 0;
@@ -138,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const activeButton = document.querySelector('.dropdown-settings button.active');
             if (activeButton) {
-                savedBgSettings.position = activeButton.dataset.bgImage;
+                savedBgSettings.position = activeButton.dataset.bgImage || 'cover'; // Fallback position
                 applyBackgroundSettings(backgroundContainer, savedBgSettings);
                 localStorage.setItem('bgSettings', JSON.stringify(savedBgSettings));
             }
@@ -160,11 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     blurSlider.addEventListener('input', () => {
         try {
-            const blurAmount = blurSlider.value;
-            backgroundContainer.style.filter = `blur(${blurAmount}px)`;
-            blurValue.textContent = blurAmount;
-            savedBgSettings.blur = parseInt(blurAmount);
-            localStorage.setItem('bgSettings', JSON.stringify(savedBgSettings));
+            const blurAmount = parseInt(blurSlider.value, 10);
+            if (!isNaN(blurAmount)) {
+                backgroundContainer.style.filter = `blur(${blurAmount}px)`;
+                blurValue.textContent = blurAmount;
+                savedBgSettings.blur = blurAmount;
+                localStorage.setItem('bgSettings', JSON.stringify(savedBgSettings));
+            }
         } catch (error) {
             console.error('Error in blurSlider input event:', error);
         }
@@ -172,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', () => {
         try {
-            if (savedBgSettings.position === 'fit') {
+            if (savedBgSettings.position === 'fit' && savedBgSettings.url) {
                 fitToPage(backgroundContainer, savedBgSettings.url);
             }
         } catch (error) {
