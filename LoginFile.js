@@ -42,7 +42,6 @@ const users = [
     { username: "Reidak", password: "thokbest877!!", banned: false, banReason: "", premium: true, profilePicture: "UserImages/reidak.webp"  }, // Adison Burck
     { username: "Salm", password: "Hundawg", banned: false, banReason: "", premium: true, profilePicture: "UserImages/The-Company-Drip.gif"  }, // Sal Aultman-meltz
 ];
-
 // Utility functions for encoding/decoding
 function encodeToBase64(str) {
     return btoa(encodeURIComponent(str));
@@ -52,50 +51,14 @@ function decodeFromBase64(str) {
     return decodeURIComponent(atob(str));
 }
 
-function inflate(str, level = 1, customInflator = null) {
-    const defaultInflator = (char, lvl) => char.repeat(lvl + 1);
-    const inflator = customInflator || defaultInflator;
-    
-    return str.split('')
-        .map((char, index) => {
-            const inflationFactor = Math.min(level, 10);
-            const asciiCode = char.charCodeAt(0);
-            const modifiedLevel = (inflationFactor + index) % 10 + 1;
-            
-            if (/[a-zA-Z]/.test(char)) {
-                const shiftedChar = String.fromCharCode(
-                    (asciiCode - (asciiCode <= 90 ? 65 : 97) + modifiedLevel) % 26 
-                    + (asciiCode <= 90 ? 65 : 97)
-                );
-                return inflator(shiftedChar, modifiedLevel);
-            } else {
-                return inflator(char, modifiedLevel);
-            }
-        })
-        .join('');
+// Simple "inflation" function
+function inflate(str) {
+    return str.split('').map(char => char + char).join('');
 }
 
-function deflate(str, level = 1, customDeflator = null) {
-    const defaultDeflator = (subStr, lvl) => subStr[0];
-    const deflator = customDeflator || defaultDeflator;
-    
-    const chunks = str.match(new RegExp(`.{1,${level + 1}}`, 'g')) || [];
-    
-    return chunks.map((chunk, index) => {
-        const deflationFactor = Math.min(level, 10);
-        const modifiedLevel = (deflationFactor + index) % 10 + 1;
-        
-        if (/[a-zA-Z]/.test(chunk[0])) {
-            const asciiCode = chunk[0].charCodeAt(0);
-            const shiftedChar = String.fromCharCode(
-                (asciiCode - (asciiCode <= 90 ? 65 : 97) - modifiedLevel + 26) % 26 
-                + (asciiCode <= 90 ? 65 : 97)
-            );
-            return deflator(shiftedChar + chunk.slice(1), modifiedLevel);
-        } else {
-            return deflator(chunk, modifiedLevel);
-        }
-    }).join('');
+// Simple "deflation" function
+function deflate(str) {
+    return str.split('').filter((_, i) => i % 2 === 0).join('');
 }
 
 // Function to save login data
