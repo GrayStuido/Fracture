@@ -69,6 +69,7 @@ function login() {
     localStorage.setItem('premium', user.premium);
     localStorage.setItem('loggedInUser', user.username);
     localStorage.setItem('profilePicture', user.profilePicture);
+    localStorage.setItem('userVar', JSON.stringify(user));  // Save user object to local storage
     
     setTimeout(() => {
         window.location.reload();
@@ -76,14 +77,13 @@ function login() {
 }
 
 function loginGuest() {
-
     localStorage.setItem('premium', 'Guest');
     localStorage.setItem('loggedInUser', 'Guest');
+    localStorage.setItem('userVar', JSON.stringify({ username: 'Guest', premium: false }));
     
     setTimeout(() => {
         window.location.reload();
     }, 500);
-
 }
 
 function displayError(message) {
@@ -122,6 +122,7 @@ function logout() {
     localStorage.removeItem('premium');
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('profilePicture');
+    localStorage.removeItem('userVar');  // Remove user object from local storage
     updateUIAfterLogout();
     location.reload();
 }
@@ -194,7 +195,37 @@ function hideTermsAndConditions() {
     }
 }
 
+function checkUserData() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const storedUserVar = localStorage.getItem('userVar');
+
+    if (!loggedInUser || !storedUserVar) {
+        logout();
+        return;
+    }
+
+    if (loggedInUser === 'Guest') {
+        return; // Guest login doesn't need further verification
+    }
+
+    const storedUser = JSON.parse(storedUserVar);
+    const currentUser = users.find(u => u.username === loggedInUser);
+
+    if (!currentUser) {
+        logout();
+        return;
+    }
+
+    // Check if any user data has changed
+    if (JSON.stringify(currentUser) !== JSON.stringify(storedUser)) {
+        logout();
+        return;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    checkUserData();  // Check user data on script load
+
     setupInputNavigation();
 
     const loginStatus = checkLoginStatus();
@@ -210,6 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('loginButton');
     if (loginButton) {
         loginButton.addEventListener('click', login);
+    }
+
+    const guestLoginButton = document.getElementById('guestLoginButton');
+    if (guestLoginButton) {
+        guestLoginButton.addEventListener('click', loginGuest);
     }
 
     const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
