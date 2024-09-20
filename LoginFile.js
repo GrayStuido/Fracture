@@ -101,8 +101,10 @@ function logoutChange() {
 
 // Function to check and handle single reload
 function checkSingleReload() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
     const singleReload = localStorage.getItem('singleReload');
-    if (singleReload === '1') {
+
+    if (singleReload === '1' && loggedInUser !== 'loggedOut') {
         localStorage.setItem('singleReload', '0');
         window.location.reload();
     }
@@ -113,6 +115,7 @@ function checkUserState() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const userVar = localStorage.getItem('userVar');
 
+    // If the user is logged out, prevent further checks and operations
     if (!loggedInUser || !userVar || loggedInUser === 'loggedOut' || userVar === 'loggedOut') {
         logoutChange();
         return;
