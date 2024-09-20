@@ -43,6 +43,7 @@ const users = [
     { username: "Salm", password: "Hundawg", banned: false, banReason: "", premium: true, profilePicture: "UserImages/The-Company-Drip.gif"  }, // Sal Aultman-meltz
 ];
 
+// Login function
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -66,51 +67,89 @@ function login() {
     
     clearError();
     
-    // Set all keys to 'loggedOut' first
-    setAllKeysToLoggedOut();
-    
-    // Then set the actual values
+    // Save user data to localStorage
     localStorage.setItem('premium', user.premium);
     localStorage.setItem('loggedInUser', user.username);
     localStorage.setItem('profilePicture', user.profilePicture);
     localStorage.setItem('userVar', JSON.stringify(user));
     
-    updateUIAfterLogin(user.username, user.premium);
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
 }
 
+// Guest login function
 function loginGuest() {
-    setAllKeysToLoggedOut();
-    
-    localStorage.setItem('premium', 'false');
+    localStorage.setItem('premium', 'Guest');
     localStorage.setItem('loggedInUser', 'Guest');
-    localStorage.setItem('userVar', JSON.stringify({ username: 'Guest', premium: false }));
     
-    updateUIAfterLogin('Guest', false);
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
 }
 
-function logout() {
-    setAllKeysToLoggedOut();
+// New logout function
+function logoutChange() {
+    localStorage.setItem('premium', 'loggedOut');
+    localStorage.setItem('loggedInUser', 'loggedOut');
+    localStorage.setItem('profilePicture', 'loggedOut');
+    localStorage.setItem('userVar', 'loggedOut');
+    localStorage.setItem('singleReload', '1');
+    
     updateUIAfterLogout();
 }
 
-function setAllKeysToLoggedOut() {
-    ['premium', 'loggedInUser', 'profilePicture', 'userVar'].forEach(key => {
-        localStorage.setItem(key, 'loggedOut');
-    });
+// Function to check and handle single reload
+function checkSingleReload() {
+    const singleReload = localStorage.getItem('singleReload');
+    if (singleReload === '1') {
+        localStorage.setItem('singleReload', '0');
+        window.location.reload();
+    }
 }
 
+// Function to check user state
+function checkUserState() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const userVar = localStorage.getItem('userVar');
+
+    if (!loggedInUser || !userVar || loggedInUser === 'loggedOut' || userVar === 'loggedOut') {
+        logoutChange();
+        return;
+    }
+
+    const storedUser = JSON.parse(userVar);
+    const currentUser = users.find(u => u.username === loggedInUser);
+
+    if (!currentUser) {
+        logoutChange();
+        return;
+    }
+
+    if (JSON.stringify(currentUser) !== JSON.stringify(storedUser)) {
+        logoutChange();
+        return;
+    }
+
+    // User state is valid, update UI
+    updateUIAfterLogin(currentUser.username, currentUser.premium);
+}
+
+// Display error message
 function displayError(message) {
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.textContent = message;
     errorMessage.style.display = 'block';
 }
 
+// Clear error message
 function clearError() {
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.textContent = '';
     errorMessage.style.display = 'none';
 }
 
+// Set up input navigation
 function setupInputNavigation() {
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -131,6 +170,7 @@ function setupInputNavigation() {
     });
 }
 
+// Ban user function
 function banUser(username, reason) {
     const user = users.find(u => u.username === username);
     if (user) {
@@ -142,42 +182,7 @@ function banUser(username, reason) {
     }
 }
 
-function checkUserData() {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    const storedUserVar = localStorage.getItem('userVar');
-
-    if (loggedInUser === 'loggedOut' || storedUserVar === 'loggedOut') {
-        updateUIAfterLogout();
-        return;
-    }
-
-    if (loggedInUser === 'Guest') {
-        updateUIAfterLogin('Guest', false);
-        return;
-    }
-
-    try {
-        const storedUser = JSON.parse(storedUserVar);
-        const currentUser = users.find(u => u.username === loggedInUser);
-
-        if (!currentUser) {
-            logout();
-            return;
-        }
-
-        // Check if any user data has changed
-        if (JSON.stringify(currentUser) !== JSON.stringify(storedUser)) {
-            logout();
-            return;
-        }
-
-        updateUIAfterLogin(currentUser.username, currentUser.premium);
-    } catch (error) {
-        console.error("Error parsing stored user data:", error);
-        logout();
-    }
-}
-
+// Update UI after login
 function updateUIAfterLogin(username, isPremium) {
     document.getElementById('loginDiv').style.display = 'none';
     document.querySelector('.container').style.display = 'block';
@@ -186,28 +191,23 @@ function updateUIAfterLogin(username, isPremium) {
     if (isPremium) {
         premiumStatusElement.textContent = 'Premium Account';
         premiumStatusElement.classList.add('premium');
-        premiumStatusElement.classList.remove('non-premium');
     } else {
         premiumStatusElement.textContent = 'Standard Account';
         premiumStatusElement.classList.add('non-premium');
-        premiumStatusElement.classList.remove('premium');
     }
     
-    const profilePicturePath = localStorage.getItem('profilePicture');
-    if (profilePicturePath && profilePicturePath !== 'loggedOut') {
-        const img = new Image();
-        img.onload = function() {
-            document.getElementById('profilePicture').src = profilePicturePath;
-        };
-        img.onerror = function() {
-            document.getElementById('profilePicture').src = 'UserImages/Placeholder.png';
-        };
-        img.src = profilePicturePath;
-    } else {
+    const profilePicturePath = localStorage.getItem('profilePicture') || 'UserImages/Placeholder.png';
+    const img = new Image();
+    img.onload = function() {
+        document.getElementById('profilePicture').src = profilePicturePath;
+    };
+    img.onerror = function() {
         document.getElementById('profilePicture').src = 'UserImages/Placeholder.png';
-    }
+    };
+    img.src = profilePicturePath;
 }
 
+// Update UI after logout
 function updateUIAfterLogout() {
     document.getElementById('loginDiv').style.display = 'flex';
     document.querySelector('.container').style.display = 'none';
@@ -216,6 +216,7 @@ function updateUIAfterLogout() {
     document.getElementById('errorMessage').textContent = '';
 }
 
+// Show terms and conditions
 function showTermsAndConditions() {
     const termsContainer = document.getElementById('termsContainer');
     if (termsContainer) {
@@ -223,6 +224,7 @@ function showTermsAndConditions() {
     }
 }
 
+// Hide terms and conditions
 function hideTermsAndConditions() {
     const termsContainer = document.getElementById('termsContainer');
     if (termsContainer) {
@@ -230,24 +232,20 @@ function hideTermsAndConditions() {
     }
 }
 
+// Main execution when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    checkUserData();  // Check user data on script load
-
     setupInputNavigation();
+    checkSingleReload();
+    checkUserState();
 
     const logoutButton = document.querySelector('.container button');
     if (logoutButton) {
-        logoutButton.addEventListener('click', logout);
+        logoutButton.addEventListener('click', logoutChange);
     }
 
     const loginButton = document.getElementById('loginButton');
     if (loginButton) {
         loginButton.addEventListener('click', login);
-    }
-
-    const guestLoginButton = document.getElementById('guestLoginButton');
-    if (guestLoginButton) {
-        guestLoginButton.addEventListener('click', loginGuest);
     }
 
     const termsAccepted = localStorage.getItem('termsAccepted') === 'true';
