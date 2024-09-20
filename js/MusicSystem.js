@@ -11,6 +11,7 @@ const injectMusicSystem = () => {
     musicSystemDiv.className = 'corner-div-MusicSystem';
     musicSystemDiv.id = 'corner-div';
     musicSystemDiv.innerHTML = `
+  <link rel="stylesheet" href="css/MusicSystem.css">
         <div class="info-MusicSystem">
             <div id="file-name">Loading...</div>
             <div id="artist-name"></div>
