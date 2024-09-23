@@ -2,6 +2,7 @@
 
 const users = [
     { username: "jusinoj", password: "theearthisflat", banned: false, banReason: "test", premium: true, profilePicture: "UserImages/jusino.png"  }, // Jayden Jusino
+    { username: "brenden", password: "807962", banned: false, banReason: "test", premium: true, profilePicture: "UserImages/The-Company-Drip"  }, // Brenden Wesdal
     { username: "mindGoblin", password: "personiscool", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Katie Gladysh
     { username: "Nooblet12905", password: "ImStupid12905", banned: false, banReason: "", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // derpler
     { username: "Misha", password: "ballz4252", banned: false, banReason: "Drew Melon", premium: true, profilePicture: "UserImages/Placeholder.png"  }, // Marcelo Lujan
