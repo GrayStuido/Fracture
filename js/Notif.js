@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const FNotificationId = 'Welcome'; // Change this for each new notification
+    const FNotificationId = 'Updates09876567'; // Change this for each new notification
     const FNotificationImportance = 1; // Change this to set importance level (1, 2, or 3)
   
     const FNotificationStyles = `
@@ -200,15 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
       modal.className = 'FNotification-modal';
       modal.innerHTML = `
         <div class="FNotification-modal-content">
-          <h2>Hello!</h2>
+          <h2>:(</h2>
           <p>
-          Welcome to Fracture 6.0.0!<br>
-          Things are different and the whole website has been given a new coat of paint!<br>
-          I hope you like the new features and enjoy the new look! Please, please, please,<br>
-          send me an email if there is something wrong or for improvements<br>
-          Anyways enjoy your first day of school</p>
-          <br>
-          <p>Ps- Sorry for the login debocle
+          Sorry for the login problems!!<br>
           </p>
           <button class="FNotification-close-btn" onclick="FNotificationClose()">Close Notification</button>
         </div>

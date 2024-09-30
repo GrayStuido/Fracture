@@ -1,0 +1,211 @@
+<html><head>
+    <script src="js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="css/theme-index.css">
+<title>Fracture | Sync</title>
+<style>
+body {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.center-div {
+    width: 200px;
+    height: 200px;
+    background-color: var(--color-minor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+.center-div p {
+    color: var(--color-text);
+    font-size: 18px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.sync-button {
+    background-color: var(--color-button);
+    color: var(--color-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sync-button:hover {
+    background-color: var(--color-button-hover);
+}
+
+#fileInput {
+    display: none;
+}
+</style>
+<style>
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        background-color: var(--secondary-color1);
+        color: var(--text-color1);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 2rem;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color1);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    nav a {
+        text-decoration: none;
+        color: var(--text-color1);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+    nav a:hover {
+        color: var(--secondary-color1);
+        background-color: var(--hover-color1);
+    }
+    .divider {
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+        margin-bottom: 2rem;
+    }
+    .content {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+    }
+  </style>
+</head>
+<body>
+    <div class="center-div">
+        <p>Sync Fracture Sites</p>
+    </div>
+    <div class="button-container">
+        <button class="sync-button" id="exportBtn">Export</button>
+        <button class="sync-button" id="importBtn">Import</button>
+    </div>
+    <input type="file" id="fileInput" accept=".txt">
+
+    <script>
+        function getCurrentDateTime() {
+            const now = new Date();
+            return now.toISOString().replace(/[-:]/g, '').replace('T', '').split('.')[0];
+        }
+
+        function exportLocalStorage() {
+            const centerDiv = document.querySelector('.center-div p');
+            centerDiv.textContent = 'Exporting...';
+
+            const localStorageData = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                localStorageData[key] = localStorage.getItem(key);
+            }
+
+            const jsonString = JSON.stringify(localStorageData);
+            const base64Encoded = btoa(jsonString);
+
+            const filename = `Fracture-Sync${getCurrentDateTime()}.txt`;
+            const blob = new Blob([base64Encoded], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            centerDiv.textContent = 'Export Complete!';
+            setTimeout(() => {
+                centerDiv.textContent = 'Sync Fracture Sites';
+            }, 2000);
+        }
+
+        function importLocalStorage(file) {
+            const centerDiv = document.querySelector('.center-div p');
+            centerDiv.textContent = 'Importing...';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const base64Encoded = e.target.result;
+                    const jsonString = atob(base64Encoded);
+                    const importedData = JSON.parse(jsonString);
+
+                    for (const [key, value] of Object.entries(importedData)) {
+                        localStorage.setItem(key, value);
+                    }
+
+                    centerDiv.textContent = 'Import Complete!';
+                    
+                    // Reload the page after a short delay
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } catch (error) {
+                    centerDiv.textContent = 'Import Failed!';
+                    console.error('Import error:', error);
+                    
+                    setTimeout(() => {
+                        centerDiv.textContent = 'Sync Content';
+                    }, 2000);
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        document.getElementById('exportBtn').addEventListener('click', exportLocalStorage);
+
+        document.getElementById('importBtn').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                importLocalStorage(e.target.files[0]);
+            }
+        });
+    </script>
+</body>
+</html>
