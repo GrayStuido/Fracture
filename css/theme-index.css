@@ -1105,3 +1105,237 @@
     --color-minor-games: #2b2b2b;
     --color-accent-games: #ff99cc;
 }
+
+[data-theme="cosmic-fusion"] {
+    --color-major: #0a001a;
+    --color-minor: #1c0033;
+    --color-major-lesser: #0d0020;
+    --color-minor-lesser: rgba(28, 0, 51, 0.5);
+    --color-accent: #ff00cc;
+    --color-accent2: #00ffff;
+    --color-button: #9900cc;
+    --color-button-hover: #cc33ff;
+    --color-background: #000000;
+    --color-button-hover: #7700a6;
+    --color-accent-hover: #ff66e6;
+    --color-text: #e6e6ff;
+    --color-text-muted: #b3b3cc;
+    --color-accent-2: #66ffff;
+
+    --color-text-light: #ffffff;
+    --color-text-dark: #9999cc;
+    --color-border: #330066;
+    --color-uninstall: #ff3366;
+
+    --primary-color1: #ff00cc;
+    --secondary-color1: #000000;
+    --text-color1: #e6e6ff;
+    --hover-color1: #ff66e6;
+
+    --color-text: #e6e6ff;
+    --color-first: #ff00cc;
+    --color-second: #00ffff;
+    --color-third: #9900cc;
+    --color-first-bg: rgb(255, 0, 204);
+    --color-second-bg: rgb(0, 255, 255);
+    --color-third-bg: rgba(153, 0, 204, 0.8);
+
+    --color-major-games: #0d0020;
+    --color-minor-games: #1c0033;
+    --color-accent-games: #ff00cc;
+}
+
+[data-theme="arctic-aurora"] {
+    --color-major: #001433;
+    --color-minor: #002952;
+    --color-major-lesser: #001a40;
+    --color-minor-lesser: rgba(0, 41, 82, 0.5);
+    --color-accent: #00ff99;
+    --color-accent2: #ff66b2;
+    --color-button: #0099cc;
+    --color-button-hover: #00ccff;
+    --color-background: #000a1a;
+    --color-button-hover: #007aa3;
+    --color-accent-hover: #66ffcc;
+    --color-text: #e6f7ff;
+    --color-text-muted: #b3d9ff;
+    --color-accent-2: #ff99cc;
+
+    --color-text-light: #ffffff;
+    --color-text-dark: #80bfff;
+    --color-border: #004080;
+    --color-uninstall: #ff3366;
+
+    --primary-color1: #00ff99;
+    --secondary-color1: #000a1a;
+    --text-color1: #e6f7ff;
+    --hover-color1: #66ffcc;
+
+    --color-text: #e6f7ff;
+    --color-first: #00ff99;
+    --color-second: #ff66b2;
+    --color-third: #0099cc;
+    --color-first-bg: rgb(0, 255, 153);
+    --color-second-bg: rgb(255, 102, 178);
+    --color-third-bg: rgba(0, 153, 204, 0.8);
+
+    --color-major-games: #001a40;
+    --color-minor-games: #002952;
+    --color-accent-games: #00ff99;
+}
+
+[data-theme="desert-mirage"] {
+    --color-major: #1a0d00;
+    --color-minor: #331a00;
+    --color-major-lesser: #200f00;
+    --color-minor-lesser: rgba(51, 26, 0, 0.5);
+    --color-accent: #ff9933;
+    --color-accent2: #00cccc;
+    --color-button: #cc6600;
+    --color-button-hover: #ff8000;
+    --color-background: #0d0600;
+    --color-button-hover: #b35900;
+    --color-accent-hover: #ffb366;
+    --color-text: #ffe6cc;
+    --color-text-muted: #d9b38c;
+    --color-accent-2: #66e6e6;
+
+    --color-text-light: #fff2e6;
+    --color-text-dark: #bf8040;
+    --color-border: #663300;
+    --color-uninstall: #ff3333;
+
+    --primary-color1: #ff9933;
+    --secondary-color1: #0d0600;
+    --text-color1: #ffe6cc;
+    --hover-color1: #ffb366;
+
+    --color-text: #ffe6cc;
+    --color-first: #ff9933;
+    --color-second: #00cccc;
+    --color-third: #cc6600;
+    --color-first-bg: rgb(255, 153, 51);
+    --color-second-bg: rgb(0, 204, 204);
+    --color-third-bg: rgba(204, 102, 0, 0.8);
+
+    --color-major-games: #200f00;
+    --color-minor-games: #331a00;
+    --color-accent-games: #ff9933;
+}
+
+[data-theme="cyber-punk-pastel"] {
+    --color-major: #1a1a2e;
+    --color-minor: #16213e;
+    --color-major-lesser: #1e1e35;
+    --color-minor-lesser: rgba(22, 33, 62, 0.5);
+    --color-accent: #ff9999;
+    --color-accent2: #99ffff;
+    --color-button: #ff6699;
+    --color-button-hover: #ff99cc;
+    --color-background: #0f0f1a;
+    --color-button-hover: #ff3377;
+    --color-accent-hover: #ffcccc;
+    --color-text: #e6e6ff;
+    --color-text-muted: #b3b3cc;
+    --color-accent-2: #ccffff;
+
+    --color-text-light: #ffffff;
+    --color-text-dark: #9999b3;
+    --color-border: #2a2a4d;
+    --color-uninstall: #ff3333;
+
+    --primary-color1: #ff9999;
+    --secondary-color1: #0f0f1a;
+    --text-color1: #e6e6ff;
+    --hover-color1: #ffcccc;
+
+    --color-text: #e6e6ff;
+    --color-first: #ff9999;
+    --color-second: #99ffff;
+    --color-third: #ff6699;
+    --color-first-bg: rgb(255, 153, 153);
+    --color-second-bg: rgb(153, 255, 255);
+    --color-third-bg: rgba(255, 102, 153, 0.8);
+
+    --color-major-games: #1e1e35;
+    --color-minor-games: #16213e;
+    --color-accent-games: #ff9999;
+}
+
+[data-theme="ethereal-nebula"] {
+    --color-major: #150033;
+    --color-minor: #2a0066;
+    --color-major-lesser: #1a003d;
+    --color-minor-lesser: rgba(42, 0, 102, 0.5);
+    --color-accent: #cc66ff;
+    --color-accent2: #66ffcc;
+    --color-button: #9933ff;
+    --color-button-hover: #b366ff;
+    --color-background: #0a001a;
+    --color-button-hover: #7f00ff;
+    --color-accent-hover: #d999ff;
+    --color-text: #f0e6ff;
+    --color-text-muted: #ccb3ff;
+    --color-accent-2: #99ffe6;
+
+    --color-text-light: #ffffff;
+    --color-text-dark: #aa80ff;
+    --color-border: #3d0099;
+    --color-uninstall: #ff3366;
+
+    --primary-color1: #cc66ff;
+    --secondary-color1: #0a001a;
+    --text-color1: #f0e6ff;
+    --hover-color1: #d999ff;
+
+    --color-text: #f0e6ff;
+    --color-first: #cc66ff;
+    --color-second: #66ffcc;
+    --color-third: #9933ff;
+    --color-first-bg: rgb(204, 102, 255);
+    --color-second-bg: rgb(102, 255, 204);
+    --color-third-bg: rgba(153, 51, 255, 0.8);
+
+    --color-major-games: #1a003d;
+    --color-minor-games: #2a0066;
+    --color-accent-games: #cc66ff;
+}
+
+[data-theme="crimson-night"] {
+    --color-major: #1a0000;
+    --color-minor: #330000;
+    --color-major-lesser: #220000;
+    --color-minor-lesser: rgba(51, 0, 0, 0.5);
+    --color-accent: #ff3333;
+    --color-accent2: #ff6666;
+    --color-button: #cc0000;
+    --color-button-hover: #ff4d4d;
+    --color-background: #0a0000;
+    --color-button-hover: #b30000;
+    --color-accent-hover: #ff5c5c;
+    --color-text: #ffcccc;
+    --color-text-muted: #ff9999;
+    --color-accent-2: #ff8080;
+
+    --color-text-light: #ffcccc;
+    --color-text-dark: #ff9999;
+    --color-border: #660000;
+    --color-uninstall: #ff00ff;
+
+    --primary-color1: #ff3333;
+    --secondary-color1: #0a0000;
+    --text-color1: #ffcccc;
+    --hover-color1: #ff5c5c;
+
+    --color-text: #ffcccc;
+    --color-first: #ff3333;
+    --color-second: #ff6666;
+    --color-third: #ff8080;
+    --color-first-bg: rgb(204, 0, 0);
+    --color-second-bg: rgb(255, 102, 102);
+    --color-third-bg: rgba(255, 128, 128, 0.8);
+
+    --color-major-games: #220000;
+    --color-minor-games: #330000;
+    --color-accent-games: #ff3333;
+}
