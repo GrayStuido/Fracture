@@ -112,11 +112,11 @@ const leaderboardsData = {
     tetris: [
       { name: 'Addison Burck', score: 0 },
       { name: 'Alex Partan', score: 0 },
-      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Brendan Westdahl', score: 207 },
       { name: 'Brennan McCoskery', score: 0 },
       { name: 'Clark Chaney', score: 0 },
       { name: 'Griffon Piazzisi', score: 0 },
-      { name: 'Jayden Jusino', score: 152 },
+      { name: 'Jayden Jusino', score: 247 },
       { name: 'Oskie Ayala', score: 0 },
       { name: 'Sal A.M.', score: 0 },
       { name: 'Tyson Fahlman', score: 0 },
