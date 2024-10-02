@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const FNotificationId = 'Updates09876567'; // Change this for each new notification
-    const FNotificationImportance = 1; // Change this to set importance level (1, 2, or 3)
+    const FNotificationId = 'SCH00LEMAILblockingAndMonItOrInG'; // Change this for each new notification
+    const FNotificationImportance = 3; // Change this to set importance level (1, 2, or 3)
   
     const FNotificationStyles = `
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
@@ -200,9 +200,13 @@ document.addEventListener('DOMContentLoaded', function() {
       modal.className = 'FNotification-modal';
       modal.innerHTML = `
         <div class="FNotification-modal-content">
-          <h2>:(</h2>
+          <h2>! DO NOT SHARE LINKS OF ANY KIND THROUGH EMAIL !</h2>
           <p>
-          Sorry for the login problems!!<br>
+
+          The school has decided to double down on the monitoring<br>
+          of students and emails so any links sent will be caught and<br>
+          most likely blocked, even normal websites (I have no idea why they care this much)<
+          
           </p>
           <button class="FNotification-close-btn" onclick="FNotificationClose()">Close Notification</button>
         </div>
