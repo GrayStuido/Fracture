@@ -1,211 +1,225 @@
-<html><head>
-    <script src="js/theme-switcher.js"></script>
-    <link rel="stylesheet" href="css/theme-index.css">
-<title>Fracture | Sync</title>
-<style>
-body {
-    background-color: var(--color-background);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/theme-index.css">
+    <script src="../js/theme-switcher.js"></script>
+    <title>Fracture | Sync</title>
+    <style>
+        body {
+            background-color: var(--color-background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-.center-div {
-    width: 200px;
-    height: 200px;
-    background-color: var(--color-minor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px var(--color-accent);
-}
+        .center-div {
+            width: 300px;
+            height: 200px;
+            background-color: var(--color-minor);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--color-accent);
+            padding: 20px;
+            text-align: center;
+        }
 
-.center-div p {
-    color: var(--color-text);
-    font-size: 18px;
-    text-align: center;
-}
+        .center-div p {
+            color: var(--color-text);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-.button-container {
-    display: flex;
-    gap: 10px;
-}
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: var(--color-background);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
 
-.sync-button {
-    background-color: var(--color-button);
-    color: var(--color-text);
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
 
-.sync-button:hover {
-    background-color: var(--color-button-hover);
-}
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
 
-#fileInput {
-    display: none;
-}
-</style>
-<style>
-    body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        background-color: var(--secondary-color1);
-        color: var(--text-color1);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-    }
-    .container {
-        width: 100%;
-        max-width: 1200px;
-        padding: 2rem;
-    }
-    h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--primary-color1);
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
-    nav a {
-        text-decoration: none;
-        color: var(--text-color1);
-        font-size: 1rem;
-        font-weight: 500;
-        transition: color 0.3s ease, background-color 0.3s ease;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-    }
-    nav a:hover {
-        color: var(--secondary-color1);
-        background-color: var(--hover-color1);
-    }
-    .divider {
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
-        margin-bottom: 2rem;
-    }
-    .content {
-        background-color: #ffffff;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
-    }
-  </style>
+        .sync-button {
+            background-color: var(--color-button);
+            color: var(--color-text);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sync-button:hover {
+            background-color: var(--color-button-hover);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <div class="center-div">
-        <p>Sync Fracture Sites</p>
+        <p id="statusText">Sync Fracture Sites</p>
+        <div class="progress-bar">
+            <div id="progressBar" class="progress"></div>
+        </div>
+        <p id="errorMessage" class="error-message"></p>
     </div>
     <div class="button-container">
         <button class="sync-button" id="exportBtn">Export</button>
         <button class="sync-button" id="importBtn">Import</button>
     </div>
-    <input type="file" id="fileInput" accept=".txt">
+    <input type="file" id="fileInput" accept=".json">
 
     <script>
-        function getCurrentDateTime() {
-            const now = new Date();
-            return now.toISOString().replace(/[-:]/g, '').replace('T', '').split('.')[0];
+// Utility functions
+const getCurrentDateTime = () => new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
+
+const updateUI = (() => {
+    const statusText = document.getElementById('statusText');
+    const progressBar = document.getElementById('progressBar');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    return {
+        status: (message, progress = null) => {
+            statusText.textContent = message;
+            if (progress !== null) {
+                progressBar.style.width = `${progress}%`;
+            }
+        },
+        error: (message) => {
+            errorMessage.textContent = message;
+        },
+        reset: () => {
+            statusText.textContent = 'Sync Fracture Sites';
+            progressBar.style.width = '0%';
+            errorMessage.textContent = '';
         }
+    };
+})();
 
-        function exportLocalStorage() {
-            const centerDiv = document.querySelector('.center-div p');
-            centerDiv.textContent = 'Exporting...';
+// Chunk processing function
+const processInChunks = async (items, processItem, updateProgress) => {
+    const chunkSize = 100;
+    const totalItems = items.length;
 
-            const localStorageData = {};
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
+    for (let i = 0; i < totalItems; i += chunkSize) {
+        const chunk = items.slice(i, Math.min(i + chunkSize, totalItems));
+        await Promise.all(chunk.map(processItem));
+        updateProgress(Math.min(i + chunkSize, totalItems), totalItems);
+        // Allow UI to update and other tasks to run
+        await new Promise(resolve => setTimeout(resolve, 0));
+    }
+};
+
+// Export function
+const exportLocalStorage = async () => {
+    updateUI.status('Preparing export...', 0);
+    updateUI.error('');
+
+    try {
+        const keys = Object.keys(localStorage);
+        const totalItems = keys.length;
+        const localStorageData = {};
+
+        await processInChunks(
+            keys,
+            async (key) => {
                 localStorageData[key] = localStorage.getItem(key);
+            },
+            (processed, total) => {
+                updateUI.status(`Exporting... ${processed}/${total}`, (processed / total) * 100);
             }
+        );
 
-            const jsonString = JSON.stringify(localStorageData);
-            const base64Encoded = btoa(jsonString);
+        const blob = new Blob([JSON.stringify(localStorageData)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Fracture-Sync${getCurrentDateTime()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
 
-            const filename = `Fracture-Sync${getCurrentDateTime()}.txt`;
-            const blob = new Blob([base64Encoded], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
+        updateUI.status('Export Complete!', 100);
+    } catch (error) {
+        console.error('Export error:', error);
+        updateUI.status('Export Failed!', 0);
+        updateUI.error(`Error: ${error.message}`);
+    }
 
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+    setTimeout(updateUI.reset, 2000);
+};
 
-            centerDiv.textContent = 'Export Complete!';
-            setTimeout(() => {
-                centerDiv.textContent = 'Sync Fracture Sites';
-            }, 2000);
-        }
+// Import function
+const importLocalStorage = async (file) => {
+    updateUI.status('Preparing import...', 0);
+    updateUI.error('');
 
-        function importLocalStorage(file) {
-            const centerDiv = document.querySelector('.center-div p');
-            centerDiv.textContent = 'Importing...';
+    try {
+        const text = await file.text();
+        const importedData = JSON.parse(text);
+        const keys = Object.keys(importedData);
+        const totalItems = keys.length;
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const base64Encoded = e.target.result;
-                    const jsonString = atob(base64Encoded);
-                    const importedData = JSON.parse(jsonString);
+        localStorage.clear();
 
-                    for (const [key, value] of Object.entries(importedData)) {
-                        localStorage.setItem(key, value);
-                    }
-
-                    centerDiv.textContent = 'Import Complete!';
-                    
-                    // Reload the page after a short delay
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                } catch (error) {
-                    centerDiv.textContent = 'Import Failed!';
-                    console.error('Import error:', error);
-                    
-                    setTimeout(() => {
-                        centerDiv.textContent = 'Sync Content';
-                    }, 2000);
-                }
-            };
-
-            reader.readAsText(file);
-        }
-
-        document.getElementById('exportBtn').addEventListener('click', exportLocalStorage);
-
-        document.getElementById('importBtn').addEventListener('click', function() {
-            document.getElementById('fileInput').click();
-        });
-
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            if (e.target.files.length > 0) {
-                importLocalStorage(e.target.files[0]);
+        await processInChunks(
+            keys,
+            async (key) => {
+                localStorage.setItem(key, importedData[key]);
+            },
+            (processed, total) => {
+                updateUI.status(`Importing... ${processed}/${total}`, (processed / total) * 100);
             }
-        });
+        );
+
+        updateUI.status('Import Complete!', 100);
+        setTimeout(() => location.reload(), 1000);
+    } catch (error) {
+        console.error('Import error:', error);
+        updateUI.status('Import Failed!', 0);
+        updateUI.error(`Error: ${error.message}`);
+        setTimeout(updateUI.reset, 2000);
+    }
+};
+
+// Event listeners
+document.getElementById('exportBtn').addEventListener('click', exportLocalStorage);
+document.getElementById('importBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+document.getElementById('fileInput').addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        importLocalStorage(e.target.files[0]);
+    }
+});
     </script>
 </body>
 </html>

@@ -1,0 +1,589 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fracture | mp3 player</title>
+    <link rel="stylesheet" href="../css/theme-index.css">
+    <script src="../js/theme-switcher.js"></script>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .player-container {
+            background-color: var(--color-major);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+        }
+
+        .cover-art-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 10px;
+        }
+
+        .thumbnail {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .song-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        .progress-container {
+            background-color: var(--color-minor-lesser);
+            height: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--color-accent2);
+            border-radius: 5px;
+            width: 0%;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background-color: var(--color-button);
+            color: var(--color-text);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--color-button-hover);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .upload-btn {
+            background-color: var(--color-accent);
+            color: var(--color-text);
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .upload-btn:hover {
+            background-color: var(--color-accent-hover);
+        }
+
+        .upload-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: var(--color-major-lesser);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .upload-panel.open {
+            right: 0;
+        }
+
+        #toggleUploadPanel {
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .upload-content {
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #playlist li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        #playlist li span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 10px;
+        }
+
+        .remove-btn {
+            background-color: var(--color-uninstall);
+            color: var(--color-text);
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #volumeSlider {
+            width: 100%;
+            margin: 0 10px;
+        }
+
+        #volumeValue {
+            min-width: 40px;
+        }
+
+        .warning-icon {
+            color: yellow;
+            margin-right: 5px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+</head>
+<body>
+    <div class="player-container">
+        <div class="cover-art-container">
+            <img id="thumbnail" class="thumbnail" src="https://soggy.cat/img/soggycat.webp" alt="Song thumbnail">
+        </div>
+        <div class="song-info">
+            <div id="songTitle" class="song-title">No song loaded</div>
+            <div id="songArtist" class="song-artist">Unknown artist</div>
+        </div>
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div class="time-info">
+            <span id="currentTime">00:00</span>
+            <span id="duration">00:00</span>
+        </div>
+        <div class="controls">
+            <button id="prevBtn">⏮</button>
+            <button id="playPauseBtn">▶</button>
+            <button id="nextBtn">⏭</button>
+            <button id="shuffleBtn">🔀</button>
+        </div>
+        <div class="volume-control">
+            <label for="volumeSlider">Volume:</label>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+            <span id="volumeValue">100%</span>
+        </div>
+        <div class="upload-panel">
+            <button id="toggleUploadPanel">⇄</button>
+            <div class="upload-content">
+                <label for="fileInput" class="upload-btn">Upload MP3</label>
+                <input type="file" id="fileInput" accept="audio/*" multiple>
+                <ul id="playlist"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script>
+        let db;
+        const DB_NAME = 'AudioPlayerDB';
+        const STORE_NAME = 'audioFiles';
+        const fallbackImageUrl = '../icons/cat-swag-awesome.gif';
+
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, 1);
+                request.onerror = (event) => reject("IndexedDB error: " + event.target.error);
+                request.onsuccess = (event) => {
+                    db = event.target.result;
+                    resolve(db);
+                };
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    db.createObjectStore(STORE_NAME, { keyPath: "name" });
+                };
+            });
+        }
+
+        function saveAudioFile(file) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], "readwrite");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.put({ name: file.name, file: file });
+                request.onerror = (event) => reject("Error saving file: " + event.target.error);
+                request.onsuccess = (event) => resolve(event.target.result);
+            });
+        }
+
+        function getAudioFile(fileName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.get(fileName);
+                request.onerror = (event) => reject("Error getting file: " + event.target.error);
+                request.onsuccess = (event) => resolve(event.target.result ? event.target.result.file : null);
+            });
+        }
+
+        function getAllAudioFiles() {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+                request.onerror = (event) => reject("Error getting all files: " + event.target.error);
+                request.onsuccess = (event) => {
+                    const files = event.target.result.map(item => {
+                        return new File([item.file], item.name, { type: item.file.type });
+                    });
+                    resolve(files);
+                };
+            });
+        }
+
+        function removeAudioFile(fileName) {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([STORE_NAME], "readwrite");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.delete(fileName);
+                request.onerror = (event) => reject("Error removing file: " + event.target.error);
+                request.onsuccess = (event) => resolve();
+            });
+        }
+
+        const audio = new Audio();
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const fileInput = document.getElementById('fileInput');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const songTitleEl = document.getElementById('songTitle');
+        const songArtistEl = document.getElementById('songArtist');
+        const thumbnailEl = document.getElementById('thumbnail');
+        const toggleUploadPanelBtn = document.getElementById('toggleUploadPanel');
+        const uploadPanel = document.querySelector('.upload-panel');
+        const playlistEl = document.getElementById('playlist');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeValue = document.getElementById('volumeValue');
+
+        let playlist = [];
+        let currentIndex = 0;
+        let shuffleMode = false;
+        let shuffleQueue = [];
+        let songCooldowns = {};
+
+        function updateSongCooldowns() {
+            const cooldownPeriod = Math.floor(playlist.length / 2);
+            for (let song in songCooldowns) {
+                if (songCooldowns[song] > 0) {
+                    songCooldowns[song]--;
+                }
+            }
+        }
+
+        function getAvailableSongs() {
+            return playlist.filter(song => !songCooldowns[song.name] || songCooldowns[song.name] === 0);
+        }
+
+        function addToShuffleQueue() {
+            const availableSongs = getAvailableSongs();
+            if (availableSongs.length === 0) {
+                songCooldowns = {};
+                return addToShuffleQueue();
+            }
+            const randomIndex = Math.floor(Math.random() * availableSongs.length);
+            const selectedSong = availableSongs[randomIndex];
+            shuffleQueue.push(selectedSong);
+            songCooldowns[selectedSong.name] = Math.floor(playlist.length / 2);
+        }
+
+        function fillShuffleQueue() {
+            while (shuffleQueue.length < 3 && shuffleQueue.length < playlist.length) {
+                addToShuffleQueue();
+            }
+        }
+
+        function toggleShuffle() {
+            shuffleMode = !shuffleMode;
+            shuffleBtn.style.color = shuffleMode ? 'var(--color-accent2)' : 'var(--color-text)';
+            
+            if (shuffleMode) {
+                shuffleQueue = [];
+                songCooldowns = {};
+                fillShuffleQueue();
+                playNextShuffled();
+            }
+        }
+
+        function playNextShuffled() {
+            if (shuffleQueue.length === 0) {
+                fillShuffleQueue();
+            }
+            const nextSong = shuffleQueue.shift();
+            currentIndex = playlist.indexOf(nextSong);
+            loadSong(nextSong).then(() => {
+                audio.play().catch(error => console.log("Play shuffled song error:", error));
+                playPauseBtn.textContent = '⏸';
+            });
+            updateSongCooldowns();
+            fillShuffleQueue();
+        }
+
+        async function loadSong(fileOrBlob) {
+            return new Promise((resolve, reject) => {
+                let blob;
+                if (fileOrBlob instanceof Blob) {
+                    blob = fileOrBlob;
+                } else if (fileOrBlob instanceof File) {
+                    blob = new Blob([fileOrBlob], { type: fileOrBlob.type });
+                } else {
+                    reject(new Error('Invalid input: expected File or Blob'));
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    audio.src = e.target.result;
+                    audio.volume = parseFloat(volumeSlider.value);
+                    
+                    jsmediatags.read(blob, {
+                        onSuccess: function(tag) {
+                            songTitleEl.textContent = tag.tags.title || fileOrBlob.name;
+                            songArtistEl.textContent = tag.tags.artist || 'Unknown artist';
+                            if (tag.tags.picture) {
+                                const { data, format } = tag.tags.picture;
+                                let base64String = "";
+                                for (let i = 0; i < data.length; i++) {
+                                    base64String += String.fromCharCode(data[i]);
+                                }
+                                thumbnailEl.src = `data:${format};base64,${btoa(base64String)}`;
+                            } else {
+                                thumbnailEl.src = fallbackImageUrl;
+                            }
+                            resolve();
+                        },
+                        onError: function(error) {
+                            console.log('Error reading tags:', error.type, error.info);
+                            songTitleEl.textContent = fileOrBlob.name;
+                            songArtistEl.textContent = 'Unknown artist';
+                            thumbnailEl.src = fallbackImageUrl;
+                            resolve();
+                        }
+                    });
+                }
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        async function loadPlaylistFromIndexedDB() {
+            playlist = await getAllAudioFiles();
+            currentIndex = 0;
+            if (playlist.length > 0) {
+                await loadSong(playlist[currentIndex]);
+            }
+            updatePlaylist();
+        }
+
+        function updateProgress() {
+            const { currentTime, duration } = audio;
+            const progress = (currentTime / duration) * 100;
+            progressBar.style.width = `${progress}%`;
+            currentTimeEl.textContent = formatTime(currentTime);
+            durationEl.textContent = formatTime(duration);
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function playPause() {
+            if (audio.paused) {
+                audio.play().catch(error => {
+                    console.log("Play error:", error);
+                    setTimeout(() => audio.play().catch(e => console.log("Retry play error:", e)), 300);
+                });
+                playPauseBtn.textContent = '⏸';
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶';
+            }
+        }
+
+        function playNext() {
+            currentIndex = (currentIndex + 1) % playlist.length;
+            loadSong(playlist[currentIndex]).then(() => {
+                audio.play().catch(error => console.log("Play next error:", error));
+                playPauseBtn.textContent = '⏸';
+            });
+        }
+
+        function playPrev() {
+            currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+            loadSong(playlist[currentIndex]).then(() => {
+                audio.play().catch(error => console.log("Play prev error:", error));
+                playPauseBtn.textContent = '⏸';
+            });
+        }
+
+        async function removeSong(index) {
+            const removedSong = playlist[index];
+            playlist.splice(index, 1);
+            if (index < currentIndex) {
+                currentIndex--;
+            } else if (index === currentIndex) {
+                if (playlist.length > 0) {
+                    await loadSong(playlist[currentIndex % playlist.length]);
+                } else {
+                    audio.pause();
+                    audio.src = '';
+                    songTitleEl.textContent = 'No song loaded';
+                    songArtistEl.textContent = 'Unknown artist';
+                    thumbnailEl.src = fallbackImageUrl;
+                }
+            }
+            
+            try {
+                await removeAudioFile(removedSong.name);
+            } catch (error) {
+                console.error("Error removing song from IndexedDB:", error);
+            }
+            
+            updatePlaylist();
+        }
+
+        function updatePlaylist() {
+            playlistEl.innerHTML = '';
+            playlist.forEach((file, index) => {
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                span.textContent = file.name;
+                li.appendChild(span);
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.addEventListener('click', () => removeSong(index));
+                li.appendChild(removeBtn);
+                playlistEl.appendChild(li);
+            });
+        }
+
+        volumeSlider.addEventListener('input', () => {
+            const volume = parseFloat(volumeSlider.value);
+            audio.volume = volume;
+            volumeValue.textContent = `${Math.round(volume * 100)}%`;
+        });
+
+        const progressContainer = document.querySelector('.progress-container');
+
+        progressContainer.addEventListener('mousedown', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = pos * audio.duration;
+        });
+
+        playPauseBtn.addEventListener('click', playPause);
+        nextBtn.addEventListener('click', () => {
+            if (shuffleMode) {
+                playNextShuffled();
+            } else {
+                playNext();
+            }
+        });
+        prevBtn.addEventListener('click', () => {
+            if (shuffleMode) {
+                playNextShuffled();
+            } else {
+                playPrev();
+            }
+        });
+        shuffleBtn.addEventListener('click', toggleShuffle);
+        toggleUploadPanelBtn.addEventListener('click', () => {
+            uploadPanel.classList.toggle('open');
+        });
+
+        fileInput.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            for (const file of files) {
+                await saveAudioFile(file);
+            }
+            await loadPlaylistFromIndexedDB();
+            if (playlist.length > 0) {
+                await loadSong(playlist[currentIndex]);
+                if (!audio.paused) {
+                    audio.play().catch(error => console.log("Auto-play error:", error));
+                }
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            if (shuffleMode) {
+                playNextShuffled();
+            } else {
+                playNext();
+            }
+        });
+        audio.addEventListener('timeupdate', updateProgress);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initDB();
+            await loadPlaylistFromIndexedDB();
+        });
+    </script>
+</body>
+</html>
