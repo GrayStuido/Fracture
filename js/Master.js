@@ -1,3 +1,26 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // Create a container for the scripts and link
+    const container = document.createElement('div');
+
+    // Insert the script tags
+    const script1 = document.createElement('script');
+    script1.src = "../js/background-switcher.js";
+    container.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.src = "../js/theme-switcher.js";
+    container.appendChild(script2);
+
+    // Insert the link tag
+    const link = document.createElement('link');
+    link.rel = "stylesheet";
+    link.href = "../css/theme-index.css";
+    container.appendChild(link);
+
+    // Append the container to the head or body (adjust as needed)
+    document.head.appendChild(container);
+});
+
 // auth-check.js
 
 // Check if user is logged in
