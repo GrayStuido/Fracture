@@ -16,8 +16,8 @@
 .trigger-div {
     width: 60px;
     height: 60px;
-    background-color: #3b1c5f;
-    border: 3px solid #560fa6;
+    background-color: var(--color-minor);
+    border: 3px solid var(--color-button-hover);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -74,7 +74,7 @@
 }
 
 .menu-section:hover {
-    fill: #560fa6;
+    fill: var(--color-button-hover);
 }
 
 .menu-text {
@@ -93,13 +93,13 @@
 }
 
 .menu-section.screenshot:hover {
-    fill: #760fa6; /* LimeGreen color */
+    fill: var(--color-button-hover);
 }
 
 #textDiv, #gridDiv {
     position: fixed;
     z-index: 1002;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--color-minor-lesser);
     padding: 10px;
     border-radius: 5px;
 }
