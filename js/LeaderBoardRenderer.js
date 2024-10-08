@@ -140,7 +140,7 @@ const leaderboardsData = {
     tanuki: [
       { name: 'Addison Burck', score: 0 },
       { name: 'Alex Partan', score: 0 },
-      { name: 'Brendan Westdahl', score: 0 },
+      { name: 'Brendan Westdahl', score: 61533 },
       { name: 'Brennan McCoskery', score: 0 },
       { name: 'Clark Chaney', score: 0 },
       { name: 'Griffon Piazzisi', score: 0 },
