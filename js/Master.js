@@ -67,10 +67,12 @@ console.log(asciiArt1);
 document.addEventListener("DOMContentLoaded", function() {
     const scriptUrls = [
         "../js/gamer.js",
+        "../js/chromebookcheck.js",
         "../js/ErudaConsole.js",
         "../js/LoadingScreen.js",
         "../js/NotSlick.js",
         "../js/DebuggerCat.js",
+        "../js/theme-html.js",
         "../js/BanLogout.js"
     ];
     function loadScripts(urls) {

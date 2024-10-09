@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const FNotificationId = 'musimisumicsumisumusiv'; // Change this for each new notification
+  const FNotificationId = 'accountRemoveal'; // Change this for each new notification
   const FNotificationImportance = 1; // Change this to set importance level (1, 2, or 3)
 
   const FNotificationStyles = `
@@ -200,9 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.className = 'FNotification-modal';
     modal.innerHTML = `
       <div class="FNotification-modal-content">
-        <h2>Never gonna let you down</h2>
+        <h2>Accounts have been removed</h2>
         <p>
-        Mp3 Player is in tools!!!<br>
+        Enjoy fracture fully without restriction<br>
         </p>
         <button class="FNotification-close-btn" onclick="FNotificationClose()">Close Notification</button>
       </div>

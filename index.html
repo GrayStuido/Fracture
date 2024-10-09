@@ -1,4 +1,6 @@
 <head>
+  <script src="js/chromebookcheck.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/BranchUni.js"></script>
   <script src="js/background-switcher.js"></script>
   <script src="js/theme-switcher.js"></script>
@@ -85,7 +87,7 @@ document.addEventListener('keydown', handleKonamiCode);
 </script>
 </body>
 <div style="position: fixed; bottom: 10px; right: 10px; background-color: rgba(204, 0, 255, 0.075); padding: 10px; border-radius: 5px;">
-    <p id="fractureVersionNumber" style="margin: 0;">6.3.0</p>
+    <p id="fractureVersionNumber" style="margin: 0;">6.4.0</p>
 </div>
 <br>
 <script>
@@ -433,20 +435,6 @@ body {
             background-color: red;
         }
     </style>
-    <div class="full-page-div" id="loginDiv">
-        <div>
-            <h1>Fracture Login</h1>
-            <p>If you want a login, make a request for one <a href="LoginForm.html" style="color: lightblue;">here</a>.</p>
-        </div>
-        <br>
-        <div class="login-container">
-            <input type="text" autocomplete="off" placeholder="Username" id="username">
-            <input type="password" autocomplete="off" placeholder="Password" id="password">
-            <button id="loginButton" onclick="login()">Login</button>
-            <button id="loginButton" onclick="loginGuest()">Guest</button>
-            <p id="errorMessage" class="error-message"></p>
-        </div>
-    </div>
 
     <script src="LoginFile.js"></script>
     <script>
@@ -538,12 +526,4 @@ window.onload = function() {
   }
 };
 </script>
-
-<div class="container">
-  <img src="Icons/Loading.gif" alt="Profile Picture" class="profile-picture" id="profilePicture">
-  <div class="name" id="name">Name</div>
-  <div class="premium-status" id="premiumStatus"></div>
-  <button class="logout-button" onclick="logout()">Logout</button>
-</div>
-
 
