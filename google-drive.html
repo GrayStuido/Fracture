@@ -19,6 +19,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools</title>
+  <style>
+
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        background-color: var(--color-major);
+        color: var(--color-text);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 2rem;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color1);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color1);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    nav {
+      color:white;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    nav a {
+        text-decoration: none;
+        color: var(--text-color1);
+        font-size: 1rem;
+        font-weight: 500;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+    nav a:hover {
+        color:white;
+        background-color: var(--hover-color1);
+    }
+    .divider {
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+        margin-bottom: 2rem;
+    }
+    .content {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+    }
+  </style>
     <style>
 /* Reset and base styles */
 * {
