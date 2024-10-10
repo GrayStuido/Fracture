@@ -11,23 +11,6 @@
   <script src="js/ErudaConsole.js"></script>
   <script src="js/lastpage.js"></script>
   <link rel="stylesheet" href="css/MusicSystem.css">
-  <div class="corner-div-MusicSystem" id="corner-div">
-      <div class="info-MusicSystem">
-          <div id="file-name">Loading...</div>
-          <div id="artist-name"></div>
-          <div id="time-info">0:00 | 0:00</div>
-      </div>
-      <div class="controls-MusicSystem">
-          <button id="play-pause-button">⏸</button>
-          <button id="skip-button">⏭</button>
-          <div class="speed-control-MusicSystem">
-              <button id="speed-up-button">⬆️</button>
-              <div id="speed-display">1.0x</div>
-              <button id="speed-down-button">⬇️</button>
-          </div>
-      </div>
-      <img id="spinning-img" src="https://static.vecteezy.com/system/resources/thumbnails/009/393/830/small_2x/black-vinyl-disc-record-for-music-album-cover-design-free-png.png" alt="Spinning Image">
-  </div>
   <audio id="audio"></audio>
   <script src="js/MusicSystem.js"></script>
   <script src="js/Lobotomy.js"></script>
@@ -37,204 +20,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools</title>
     <style>
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-major);
-  color: var(--color-text);
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
 }
 
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Navigation styles */
+nav {
+  background-color: #444;
+  padding: 0.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin: 0.5rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+}
+
+/* Tools container */
 .tools-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
+  justify-content: center;
+  padding: 20px 0;
 }
 
+/* Individual tool card */
 .tool {
-  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   padding: 15px;
-  background-color: var(--color-minor);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
 }
 
 .tool:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.image-placeholder {
+.tool img {
   width: 100%;
   height: 150px;
-  background-color: var(--color-highlight);
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-  border-radius: 6px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .tool-name {
   font-size: 18px;
-  margin-bottom: 15px;
-  color: var(--text-color1);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.open-btn, .open-btn-link {
-  padding: 10px 20px;
-  background-color: var(--color-accent);
-  color: var(--color-text);
+.open-btn {
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 3px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s;
+}
+
+.open-btn-link {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.open-btn-link:hover {
+  background-color: #0056b3;
 }
 
 .open-btn:hover {
-  background-color: var(--color-highlight);
-  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
-.overlay {
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(44, 62, 80, 0.9);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.overlay.show {
-  display: flex;
-  opacity: 1;
-}
-
-iframe {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-major);
-  border: 2px solid var(--color-accent);
-}
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  color: var(--color-text);
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.close-btn:hover {
-  color: #e74c3c;
-  transform: scale(1.1);
-}
-
-img {
-    width: 100%; /* The image will take the full width of its container */
-    height: 150px; /* Set a specific height */
-    object-fit: cover; /* The image will cover the container while maintaining its aspect ratio */
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .tool {
+    width: 100%;
   }
-  </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <style>
-
-    body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        background-color: var(--color-major);
-        color: var(--color-text);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-    }
-    .container {
-        width: 100%;
-        max-width: 1200px;
-        padding: 2rem;
-    }
-    h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--primary-color1);
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-    h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-color1);
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-    nav {
-      color:white;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
-    nav a {
-        text-decoration: none;
-        color: var(--text-color1);
-        font-size: 1rem;
-        font-weight: 500;
-        transition: color 0.3s ease, background-color 0.3s ease;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-    }
-    nav a:hover {
-        color:white;
-        background-color: var(--hover-color1);
-    }
-    .divider {
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
-        margin-bottom: 2rem;
-    }
-    .content {
-        background-color: #ffffff;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
-    }
+}
   </style>
   <script>
     // Power User Achievement Script
@@ -269,13 +191,7 @@ document.addEventListener('DOMContentLoaded', trackPowerUser);
         <img src="icons/WormholeIcon.png" alt="Image 1" class="image-placeholder">
         <div class="tool-name">Wormhole File Share</div>
         <button class="open-btn-link" onclick="openWormhole()">Open</button>
-    </div
-
-      <div class="tool">
-        <div class="image-placeholder">May Thy Browser Be Unblocked</div>
-            <div class="tool-name">Proxy</div>
-            <button class="open-btn" data-tool="Tools/cooliotoolio.html">Open</button>
-        </div>
+    </div>
 
     <div class="tool">
       <div class="image-placeholder">Sync.png</div>
@@ -284,10 +200,18 @@ document.addEventListener('DOMContentLoaded', trackPowerUser);
     </div>
 
     <div class="tool">
+      <div class="image-placeholder">May Thy Browser Be Unblocked</div>
+        <div class="tool-name">Proxy</div>
+        <button class="open-btn" data-tool="Tools/cooliotoolio.html">Open</button>
+    </div>
+
+    <div class="tool">
       <img src="icons/cat-swag-awesome.gif" alt="Image 1" class="image-placeholder">
         <div class="tool-name">mp3 player</div>
         <button class="open-btn" data-tool="Tools/player.html">Open</button>
     </div>
+    
+    
 
       <div class="tool">
         <img src="icons/RGC-Tool-Icon.png" alt="Image 1" class="image-placeholder">
