@@ -1,12 +1,9 @@
 // navigation-generator.js
 
-// Global variable to store navigation state
-window.navState = {
-    links: [],
-    lastClicked: null
-};
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Set Noconfirm to 0 on page load
+    localStorage.setItem('Noconfirm', '0');
+
     const navItems = [
         { name: 'Home', link: 'index.html' },
         { name: 'Games', link: 'google-classroom.html' },
@@ -26,21 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
             link.textContent = item.name;
             link.id = `navgen-${index}`;
             link.addEventListener('click', (event) => {
-                // Update global state
-                window.navState.lastClicked = {
-                    index: index,
-                    time: Date.now(),
-                    isNavGen: true
-                };
+                // Set Noconfirm to 1 when a navigation link is clicked
+                localStorage.setItem('Noconfirm', '1');
                 
                 // Dispatch custom event
                 const navClickEvent = new CustomEvent('navLinkClicked', { 
-                    detail: { linkIndex: index, isNavGen: true } 
+                    detail: { linkIndex: index } 
                 });
                 document.dispatchEvent(navClickEvent);
             });
             nav.appendChild(link);
-            window.navState.links.push({ clicked: false, isNavGen: true });
         });
     }
 
