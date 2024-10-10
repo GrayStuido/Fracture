@@ -1,29 +1,5 @@
 // page-exit-handler.js
 
-document.addEventListener('click', (event) => {
-    const clickedElement = event.target.closest('a');
-    if (clickedElement) {
-        const isNavGen = clickedElement.id.startsWith('navgen');
-        const linkIndex = isNavGen ? parseInt(clickedElement.id.split('-')[1]) : -1;
-
-        window.navState.lastClicked = {
-            index: linkIndex,
-            time: Date.now(),
-            isNavGen: isNavGen
-        };
-
-        if (isNavGen) {
-            window.navState.links[linkIndex].clicked = true;
-        }
-
-        // Dispatch custom event
-        const navClickEvent = new CustomEvent('navLinkClicked', { 
-            detail: { linkIndex: linkIndex, isNavGen: isNavGen } 
-        });
-        document.dispatchEvent(navClickEvent);
-    }
-});
-
 window.addEventListener('beforeunload', function (e) {
     // Check if GGBlock is installed
     if (localStorage.getItem('GGBlock') !== 'installed') {
@@ -31,14 +7,23 @@ window.addEventListener('beforeunload', function (e) {
         return;
     }
 
-    const lastClicked = window.navState.lastClicked;
-    const recentNavClick = lastClicked && 
-                           (Date.now() - lastClicked.time < 1000) && 
-                           lastClicked.isNavGen;
-
-    if (!recentNavClick) {
-        var confirmationMessage = 'Are you sure you want to leave this page?';
-        (e || window.event).returnValue = confirmationMessage;
-        return confirmationMessage;
+    // Check if Noconfirm is set to 1
+    if (localStorage.getItem('Noconfirm') === '1') {
+        // If Noconfirm is 1, don't show the confirmation dialog
+        return;
     }
+
+    // If Noconfirm is not 1, show the confirmation dialog
+    var confirmationMessage = 'Are you sure you want to leave this page?';
+    (e || window.event).returnValue = confirmationMessage;
+    return confirmationMessage;
+});
+
+// Reset Noconfirm to 0 when a new page starts loading
+window.addEventListener('unload', function() {
+    localStorage.setItem('Noconfirm', '0');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    localStorage.setItem('Noconfirm', '0');
 });
