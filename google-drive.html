@@ -87,6 +87,40 @@
   </style>
     <style>
 /* Reset and base styles */
+:root {
+    --color-major: #090013;
+    --color-minor: #360A67;
+    --color-major-lesser: #0d1117;
+    --color-minor-lesser: rgba(43, 29, 55, 0.5);
+    --color-accent: #200e35;
+    --color-accent2: #9900ff;
+    --color-button: #6e08e2;
+    --color-button-hover: #B16BFF;
+    --color-background: #000000;
+    --color-button-hover: #560FA6;
+    --color-accent-hover: #7800FF;
+    --color-text: #c9d1d9;
+    --color-text-muted: #8b949e;
+    --color-accent-2: #58a6ff;
+    --color-text-light: #ddd;
+    --color-text-dark: #999;
+    --color-border: #333;
+    --color-uninstall: #dc3545;
+    --primary-color1: #8A2BE2;
+    --secondary-color1: #000000;
+    --text-color1: #cea3ff;
+    --hover-color1: #8621c09a;
+    --color-first: #ffcc00;
+    --color-second: #cccccc;
+    --color-third: #ba6600;
+    --color-first-bg: rgb(161, 133, 22);
+    --color-second-bg: rgb(176, 176, 176);
+    --color-third-bg: rgba(194, 129, 50, 0.8);
+    --color-major-games: #1e0041;
+    --color-minor-games: #360d45;
+    --color-accent-games: #d76bff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -96,8 +130,8 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f4f4f4;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 .container {
@@ -109,8 +143,8 @@ body {
 
 /* Header styles */
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-major);
+  color: var(--color-text);
   text-align: center;
   padding: 1rem;
 }
@@ -121,7 +155,7 @@ h1 {
 
 /* Navigation styles */
 nav {
-  background-color: #444;
+  background-color: var(--color-minor);
   padding: 0.5rem;
 }
 
@@ -137,7 +171,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #fff;
+  color: var(--color-text);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 3px;
@@ -145,7 +179,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #555;
+  background-color: var(--color-accent);
 }
 
 /* Tools container */
@@ -159,8 +193,8 @@ nav ul li a:hover {
 
 /* Individual tool card */
 .tool {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--color-major-lesser);
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   padding: 15px;
   width: 250px;
@@ -171,7 +205,7 @@ nav ul li a:hover {
 }
 
 .tool:hover {
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px var(--color-minor-lesser);
 }
 
 .tool img {
@@ -193,6 +227,8 @@ nav ul li a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: var(--color-minor-lesser);
+  color: var(--color-text-muted);
 }
 
 .tool-name {
@@ -200,11 +236,12 @@ nav ul li a:hover {
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
+  color: var(--color-text);
 }
 
-.open-btn {
-  background-color: #007bff;
-  color: #fff;
+.open-btn, .open-btn-link {
+  background-color: var(--color-button);
+  color: var(--color-text);
   border: none;
   padding: 8px 16px;
   border-radius: 3px;
@@ -212,22 +249,8 @@ nav ul li a:hover {
   transition: background-color 0.3s;
 }
 
-.open-btn-link {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.open-btn-link:hover {
-  background-color: #0056b3;
-}
-
-.open-btn:hover {
-  background-color: #0056b3;
+.open-btn:hover, .open-btn-link:hover {
+  background-color: var(--color-button-hover);
 }
 
 /* Responsive adjustments */
