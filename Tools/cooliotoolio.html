@@ -1,51 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="../js/chromebookcheck.js"></script>
-  <script src="../js/background-switcher.js"></script>
-  <script src="../js/theme-switcher.js"></script>
-  <link rel="stylesheet" href="../css/Menu.css">
-  <div class="RadialMenu" id="radialMenu">
-    <div class="trigger-div" onclick="toggleRadialMenu()">
-        <div class="menu-icon"></div>
-    </div>
-    <svg class="radial-items" id="radialItems" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="90" fill="#3b1c5f" stroke="#560fa6" stroke-width="2"/>
-        <!-- Sections will be added here dynamically -->
-    </svg>
-  </div>
-<script src="../js/menu.js"></script>
-<script src="../js/UpdateValues.js"></script>
-<script src="../js/Lobotomy.js"></script>
-<script src="../js/Shutdown.js"></script>
-<script src="../js/SystemInfoLog.js"></script>
-<script src="../js/cloakpage.js"></script>
-<script src="../js/AntiTabClose.js"></script>
-<script src="../js/Master.js"></script>
-  <link rel="stylesheet" href="../css/MusicSystem.css">
-  <div class="corner-div-MusicSystem" id="corner-div">
-      <div class="info-MusicSystem">
-          <div id="file-name">Loading...</div>
-          <div id="artist-name"></div>
-          <div id="time-info">0:00 | 0:00</div>
-      </div>
-      <div class="controls-MusicSystem">
-          <button id="play-pause-button">⏸</button>
-          <button id="skip-button">⏭</button>
-          <div class="speed-control-MusicSystem">
-              <button id="speed-up-button">⬆️</button>
-              <div id="speed-display">1.0x</div>
-              <button id="speed-down-button">⬇️</button>
-          </div>
-      </div>
-      <img id="spinning-img" src="../icons/Disk.png" alt="Spinning Image">
-  </div>
-  <audio id="audio"></audio>
-  <script src="../js/MusicSystem.js"></script>
+  <script src="js/background-switcher.js"></script>
+  <script src="js/theme-switcher.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/index.css">
-<link rel="icon" type="image/png" href="../favicon.ico">
   <title>StudentVUE</title>
   <style>
     body, html {
@@ -53,68 +12,77 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background-color: #000000;
+      font-family: Arial, sans-serif;
     }
 
-    nav {
-      background-color: #311F3B;
-      overflow: hidden;
-      z-index: 100; /* Ensure the nav menu stays on top */
+    #cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-major);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
 
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+    .loadButton {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: var(--color-button);
+      color: var(--color-text);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px;
     }
 
-    li {
-      float: left;
-    }
-
-    a {
-      display: block;
-      color: #A37AB9;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
+    .loadButton:hover {
+      background-color: var(--color-button-hover);
     }
 
     iframe {
       width: 100%;
-      height: calc(100% - 50px); /* Adjust the height based on your nav menu height */
+      height: 100%;
       border: none;
     }
   </style>
 </head>
-<body onload="changeText()">
+<body>
+  <div id="cover"></div>
 
-<iframe src="https://luhtrissy.com/" frameborder="0"></iframe>
+  <iframe id="contentFrame" style="display:none;"></iframe>
 
+  <script>
+    // Modular links object
+    const links = {
+      'Lucid (Contains Ads)': 'https://luhtrissy.com/',
+      'Rammerhead': 'https://kjms.edu.ehcp.eu/'
+    };
 
+    // Function to create buttons
+    function createButtons() {
+      const cover = document.getElementById('cover');
+      const contentFrame = document.getElementById('contentFrame');
+
+      for (const [name, url] of Object.entries(links)) {
+        const button = document.createElement('button');
+        button.textContent = `${name}`;
+        button.className = 'loadButton';
+        button.addEventListener('click', () => {
+          contentFrame.src = url;
+          contentFrame.style.display = 'block';
+          cover.style.display = 'none';
+        });
+        cover.appendChild(button);
+      }
+    }
+
+    // Create buttons immediately
+    createButtons();
+  </script>
 </body>
-<script src="cloak.js">
-      var url = document.getElementById("url-target");
-      var urlObj = new window.URL(window.location.href);
-      document.getElementById("create").onclick = function () {
-        if (url.value.substring(0, 8) !== 'https://' && url.value.substring(0, 7) !== 'http://') {
-    		url.value = 'https://' + url.value.split('https://').pop();
-        } else if (url.value.substring(0, 7) == 'http://'){
-        	url.value = 'https://' + url.value.split('http://').pop();
-        };
-        win = window.open();
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
-        var iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerpolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = url.value;
-        win.document.body.appendChild(iframe);
-      };
-</script>
 </html>
