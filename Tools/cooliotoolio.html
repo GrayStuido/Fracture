@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="js/background-switcher.js"></script>
-  <script src="js/theme-switcher.js"></script>
+  <script src="../js/background-switcher.js"></script>
+  <script src="../js/theme-switcher.js"></script>
+  <link rel="stylesheet" href="../css/theme-index.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StudentVUE</title>
@@ -30,15 +31,19 @@
     }
 
     .loadButton {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: var(--color-button);
-      color: var(--color-text);
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin: 5px;
-    }
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: var(--color-button);
+  color: var(--color-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+}
+
 
     .loadButton:hover {
       background-color: var(--color-button-hover);

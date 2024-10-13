@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/theme-index.css">
+    <script src="js/chromebookcheck.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/BranchUni.js"></script>
+    <script src="js/background-switcher.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fracture | Fork Tutorial</title>
+    <style>
+:root {
+    --color-major: #090013;
+    --color-minor: #360A67;
+    --color-major-lesser: #0d1117;
+    --color-minor-lesser: rgba(43, 29, 55, 0.5);
+    --color-accent: #200e35;
+    --color-accent2: #9900ff;
+    --color-button: #6e08e2;
+    --color-button-hover: #560FA6;
+    --color-background: #000000;
+    --color-text: #ffffff;
+    --color-text-muted: #8b949e;
+    --color-accent-2: #58a6ff;
+    --color-text-light: #ddd;
+    --color-text-dark: #999;
+    --color-border: #333;
+    --color-uninstall: #dc3545;
+    --primary-color1: #8A2BE2;
+    --secondary-color1: #000000;
+    --text-color1: #cea3ff;
+    --hover-color1: #8621c09a;
+    --color-first: #ffcc00;
+    --color-second: #cccccc;
+    --color-third: #ba6600;
+    --color-first-bg: rgb(161, 133, 22);
+    --color-second-bg: rgb(176, 176, 176);
+    --color-third-bg: rgba(194, 129, 50, 0.8);
+    --color-major-games: #1e0041;
+    --color-minor-games: #360d45;
+    --color-accent-games: #d76bff;
+    --font-family: Arial, sans-serif;
+    --line-height: 1.6;
+    --max-width: 800px;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: var(--color-accent-2);
+    text-align: center;
+}
+
+h2 {
+    color: var(--color-text-light);
+}
+
+.step {
+    background-color: var(--color-major-lesser);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.step h2 {
+    margin-top: 0;
+}
+
+a {
+    color: var(--color-accent-2);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--color-accent-hover);
+}
+
+.note {
+    background-color: var(--color-minor-lesser);
+    border: 1px solid var(--color-accent);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.definition {
+    background-color: var(--color-minor);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+    </style>
+</head>
+<body>
+    <h1>How to make a Fracture Instance</h1>
+    
+    <div class="step">
+        <h2>Introduction</h2>
+        <p>This tutorial will guide you through setting up GitHub and Bitwarden, two essential tools for modern web development and online security. We'll then use these tools to fork a repository and set up a GitHub Pages website.</p>
+        
+        <div class="definition">
+            <strong>GitHub</strong>: A platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+        </div>
+        
+        <div class="definition">
+            <strong>Bitwarden</strong>: A secure and free password manager that stores encrypted passwords online.
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Step 1: Create a GitHub Account</h2>
+        <ol>
+            <li>Go to <a href="https://github.com/" target="_blank">GitHub's website</a>.</li>
+            <li>Click on "Sign up" in the top-right corner.</li>
+            <li>Enter your email address, create a password, and choose a username.</li>
+            <li>Complete the verification process.</li>
+        </ol>
+        <div class="note">
+            <p>Your GitHub username will be visible in your project URLs, so make sure its not a blocked keyword</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Step 2: Create a Bitwarden Account</h2>
+        <ol>
+            <li>Visit <a href="https://bitwarden.com/" target="_blank">Bitwarden's website</a>.</li>
+            <li>Click on "Create Account" in the top-right corner.</li>
+            <li>Enter your email address and create a strong master password.</li>
+            <li>Complete the registration process.</li>
+        </ol>
+        <div class="note">
+            <p>Your master password should be a new password. Make it strong and memorable, as Bitwarden cannot recover it if you forget</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Step 3: Install Bitwarden Extension</h2>
+        <ol>
+            <li>Go to the <a href="https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb" target="_blank">Bitwarden Chrome Extension page</a>.</li>
+            <li>Click "Add to Chrome" (or your browser's equivalent).</li>
+            <li>Confirm the installation when prompted.</li>
+            <li>Once installed, click on the Bitwarden icon in your browser toolbar.</li>
+            <li>Log in with your Bitwarden account credentials.</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2>Step 4: Set Up a Passkey for GitHub with Bitwarden</h2>
+        <ol>
+            <li>Ensure you're logged into the Bitwarden extension.</li>
+            <li>Go to GitHub and log out if you're currently logged in.</li>
+            <li>Log back into GitHub.</li>
+            <li>You should be prompted to add a passkey with Bitwarden. Follow the prompts to set it up.</li>
+        </ol>
+        <div class="note">
+            <p>If you're not prompted, you can manually add a passkey by following <a href="https://docs.github.com/en/authentication/authenticating-with-a-passkey/managing-your-passkeys#adding-a-passkey-to-your-account" target="_blank">GitHub's guide on adding a passkey</a>.</p>
+        </div>
+        <p>Using a passkey allows for more secure and convenient logins without needing your phone for two-factor authentication.</p>
+    </div>
+
+    <div class="step">
+        <h2>Step 5: Fork the Fracture Repository</h2>
+        <ol>
+            <li>Go to the <a href="https://github.com/GrayStuido/Fracture" target="_blank">Fracture GitHub repository</a>.</li>
+            <li>Click the "Fork" button in the top-right corner of the page.</li>
+            <li>Choose where to fork the repository (your personal account).</li>
+            <li>Wait for GitHub to create a copy of the repository under your account.</li>
+        </ol>
+        <img src="icons/fork.png" alt="Fork button location" />
+        <div class="definition">
+            <strong>Forking</strong>: Creating a personal copy of someone else's project. It allows you to freely experiment with changes without affecting the original project.
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Step 6: Set Up GitHub Pages</h2>
+        <ol>
+            <li>Go to your forked repository's page on GitHub.</li>
+            <li>Click on the "Settings" tab near the top of the page.</li>
+            <img src="icons/settings.png" alt="Fork button location" />
+            <li>In the left sidebar, click on "Pages".</li>
+            <img src="icons/pages.png" alt="Fork button location" />
+            <li>Under "Build and deployment", set "Source" to "Deploy from a branch".</li>
+            <li>Select "main" as the branch.</li>
+            <li>Click "Save".</li>
+        </ol>
+        <img src="icons/deploy.png" alt="GitHub Pages settings" />
+        <div class="definition">
+            <strong>GitHub Pages</strong>: A free hosting service provided by GitHub that allows you to publish your website directly from your GitHub repository.
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Step 7: Check Your Deployment</h2>
+        <ol>
+            <li>Go to the "Actions" tab in your repository.</li>
+            <li>You should see a workflow running to deploy your site.</li>
+            <li>Wait for 2-3 minutes until you see a green checkmark, indicating successful deployment.</li>
+            <li>Click on the completed workflow to find the link to your deployed page.</li>
+        </ol>
+        <div class="note">
+            <p>Your site will be available at https://[your-username].github.io/[whatever-you-named-it]</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>Conclusion</h2>
+        <p>Congratulations! You've now:</p>
+        <ul>
+            <li>Set up GitHub and Bitwarden accounts</li>
+            <li>Installed the Bitwarden browser extension</li>
+            <li>Created a secure passkey for GitHub</li>
+            <li>Forked a repository</li>
+            <li>Deployed a website using GitHub Pages</li>
+        </ul>
+        <p>These skills form a great foundation for further web development projects and maintaining good online security practices.</p>
+    </div>
+</body>
+</html>

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="js/Lobotomy.js"></script>
+  <script src="js/cloakpage.js"></script>
   <script src="js/chromebookcheck.js"></script>
-  <script src=js/BanLogout.js" </script>
+  <script src="js/BanLogout.js"></script>
   <script src="js/background-switcher.js"></script>
   <script src="js/theme-switcher.js"></script>
   <link rel="stylesheet" href="css/theme-index.css">
@@ -19,7 +21,7 @@
   <script src="js/SystemInfoLog.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools</title>
+    <title>Fracture | Extras</title>
   <style>
 
     body {
@@ -232,6 +234,7 @@ nav ul li a:hover {
   color: var(--color-text-muted);
 }
 
+
 .tool-name {
   font-size: 18px;
   font-weight: bold;
@@ -260,25 +263,73 @@ nav ul li a:hover {
     width: 100%;
   }
 }
-  </style>
-  <script>
-    // Power User Achievement Script
-function trackPowerUser() {
-    let toolsVisits = parseInt(localStorage.getItem('toolsVisits') || '0');
-    toolsVisits++;
-    localStorage.setItem('toolsVisits', toolsVisits);
-    localStorage.setItem('achievement_power_user', toolsVisits >= 30);
+
+.overlay {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 62, 80, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-// Run this function when the page loads
-document.addEventListener('DOMContentLoaded', trackPowerUser);
-  </script>
+.overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-major);
+  border: 2px solid var(--color-accent);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.divider {
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+            margin-bottom: 2rem;
+        }
+
+        .main-nav {
+      color:white;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        background-color: transparent;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Fracture Tools</h1>
-    <h3>Random assortment of tools</h3>
-    <nav id="main-nav"></nav>
+    <h3>Random assortment of extra features</h3>
+    <nav class="main-nav" id="main-nav"></nav>
     <div class="divider"></div>
 </div>
 
@@ -291,7 +342,7 @@ document.addEventListener('DOMContentLoaded', trackPowerUser);
         </div>
 
       <div class="tool">
-        <img src="icons/WormholeIcon.png" alt="Image 1" class="image-placeholder">
+        <img src="icons/WormholeIcon.png" alt="Image 1" class="image-placeholder-2">
         <div class="tool-name">Wormhole File Share</div>
         <button class="open-btn-link" onclick="openWormhole()">Open</button>
     </div>
@@ -303,7 +354,7 @@ document.addEventListener('DOMContentLoaded', trackPowerUser);
     </div>
 
     <div class="tool">
-      <div class="image-placeholder">May Thy Browser Be Unblocked</div>
+      <img src="icons/Proxy.png" alt="May Thy Browser Be Unblocked" class="image-placeholder">
         <div class="tool-name">Proxy</div>
         <button class="open-btn" data-tool="Tools/cooliotoolio.html">Open</button>
     </div>
@@ -342,42 +393,45 @@ document.addEventListener('DOMContentLoaded', trackPowerUser);
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const overlay = document.getElementById("overlay");
-            const iframe = document.getElementById("tool-iframe");
-            const closeBtn = document.getElementById("close-btn");
-            let currentOpenTool = null;
+      document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("overlay");
+    const iframe = document.getElementById("tool-iframe");
+    const closeBtn = document.getElementById("close-btn");
+    let currentOpenTool = null;
 
-            document.querySelectorAll(".open-btn").forEach(button => {
-                button.addEventListener("click", (e) => {
-                    const toolSrc = e.target.dataset.tool;
+    // Check if elements exist before adding event listeners
+    if (overlay && iframe && closeBtn) {
+        document.querySelectorAll(".open-btn").forEach(button => {
+            button.addEventListener("click", (e) => {
+                const toolSrc = e.target.dataset.tool;
 
-                    if (currentOpenTool !== toolSrc) {
-                        currentOpenTool = toolSrc;
-                        iframe.src = toolSrc; // Set the source of the iframe to the tool's HTML file
-                        fadeInOverlay();
-                    }
-                });
+                if (currentOpenTool !== toolSrc) {
+                    currentOpenTool = toolSrc;
+                    iframe.src = toolSrc; // Set the source of the iframe to the tool's HTML file
+                    fadeInOverlay();
+                }
             });
-
-            closeBtn.addEventListener("click", fadeOutOverlay);
-
-            function fadeInOverlay() {
-                overlay.style.display = "flex";
-                setTimeout(() => {
-                    overlay.classList.add("show");
-                }, 10);
-            }
-
-            function fadeOutOverlay() {
-                overlay.classList.remove("show");
-                setTimeout(() => {
-                    overlay.style.display = "none";
-                    iframe.src = ""; // Clear the iframe source
-                    currentOpenTool = null;
-                }, 300);
-            }
         });
+
+        closeBtn.addEventListener("click", fadeOutOverlay);
+    }
+
+    function fadeInOverlay() {
+        overlay.style.display = "flex";
+        setTimeout(() => {
+            overlay.classList.add("show");
+        }, 10);
+    }
+
+    function fadeOutOverlay() {
+        overlay.classList.remove("show");
+        setTimeout(() => {
+            overlay.style.display = "none";
+            iframe.src = ""; // Clear the iframe source
+            currentOpenTool = null;
+        }, 300);
+    }
+});
     </script>
 
 <script>

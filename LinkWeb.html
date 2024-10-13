@@ -1,0 +1,272 @@
+<html><head>
+    <script src="js/Lobotomy.js"></script>
+    <script src="js/cloakpage.js"></script>
+    <script src="js/navgen.js"></script>
+    <script src="js/background-switcher.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/theme-index.css">
+    <script src="js/chromebookcheck.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/BranchUni.js"></script>
+    <script src="js/background-switcher.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <link rel="stylesheet" href="css/theme-index.css">
+    <title>Fracture | LinkWeb</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/achivements.js"></script>
+    <script src="js/UpdateValues.js"></script>
+    <script src="js/lastpage.js"></script>
+    <script src="js/MainMaster.js"></script>
+    <script src="js/ErudaConsole.js"></script>
+    <script src="js/Lobotomy.js"></script>
+    <script src="js/BanLogout.js"></script>
+    <script src="js/Notif.js"></script>
+    <script src="js/Shutdown.js"></script>
+    <script src="js/cloakpage.js"></script>
+    <script src="js/AntiTabClose.js"></script>
+    <script src="js/earn-achievements.js"></script>
+    <script src="js/secret.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--secondary-color1);
+            color: var(--text-color1);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color1);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-color1);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            color: var(--secondary-color1);
+            background-color: var(--hover-color1);
+        }
+        .divider {
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--primary-color1), transparent);
+            margin-bottom: 2rem;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(138, 43, 226, 0.1);
+        }
+      </style>
+    <style>
+        :root {
+            --color-major: #090013;
+            --color-minor: #360A67;
+            --color-major-lesser: #0d1117;
+            --color-minor-lesser: rgba(43, 29, 55, 0.5);
+            --color-accent: #200e35;
+            --color-accent2: #9900ff;
+            --color-button: #6e08e2;
+            --color-button-hover: #B16BFF;
+            --color-background: #000000;
+            --color-button-hover: #560FA6;
+            --color-accent-hover: #7800FF;
+            --color-text: #c9d1d9;
+            --color-text-muted: #8b949e;
+            --color-accent-2: #58a6ff;
+
+            --color-text-light: #ddd;
+            --color-text-dark: #999;
+            --color-border: #333;
+            --color-uninstall: #dc3545;
+
+            --primary-color1: #8A2BE2;
+            --secondary-color1: #000000;
+            --text-color1: #cea3ff;
+            --hover-color1: #8621c09a;
+
+            --color-text: #ffffff;
+            --color-first: #ffcc00;
+            --color-second: #cccccc;
+            --color-third: #ba6600;
+            --color-first-bg: rgb(161, 133, 22);
+            --color-second-bg: rgb(176, 176, 176);
+            --color-third-bg: rgba(194, 129, 50, 0.8);
+
+            --color-major-games: #1e0041;
+            --color-minor-games: #360d45;
+            --color-accent-games: #d76bff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h2 {
+            text-align: center;
+            color: var(--color-accent2);
+        }
+        .link-web-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--color-minor-lesser);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            justify-content: center;
+        }
+        .link-grid.two-links {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .link-grid.one-link {
+            grid-template-columns: 1fr;
+        }
+        .link-node {
+            display: inline-block;
+            padding: 2px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            word-break: break-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .link-node:hover {
+            opacity: 0.8;
+            color: var(--color-accent-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav id="main-nav"></nav>
+        <div class="divider"></div>
+      </div>
+    <div class="link-web-container">
+        <div id="sections"></div>
+    </div>
+
+    <script>
+        function generateAccessibleColors(count) {
+            const baseHues = [0, 30, 60, 120, 180, 240, 270, 300, 330];
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = baseHues[i % baseHues.length];
+                const saturation = 70 + Math.random() * 20;
+                const lightness = 45 + Math.random() * 15;
+                colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
+            }
+            return colors;
+        }
+
+        function truncateUrl(url, maxLength) {
+            let cleanUrl = url.replace(/^https?:\/\//, '');
+            
+            if (cleanUrl.length <= maxLength) return url;
+            
+            let protocol = url.startsWith('https://') ? 'https://' : 'http://';
+            return protocol + cleanUrl.substr(0, maxLength - 3) + '...';
+        }
+
+        async function fetchLinks() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/GrayStuido/GrayStuido/refs/heads/main/links.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                const sectionsContainer = document.getElementById('sections');
+
+                const colors = generateAccessibleColors(data.sections.length);
+
+                data.sections.forEach((section, sectionIndex) => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'section';
+                    const sectionTitle = document.createElement('h2');
+                    sectionTitle.textContent = section.title;
+                    sectionDiv.appendChild(sectionTitle);
+                    
+                    const linkGrid = document.createElement('div');
+                    linkGrid.className = 'link-grid';
+                    if (section.links.length === 2) {
+                        linkGrid.classList.add('two-links');
+                    } else if (section.links.length === 1) {
+                        linkGrid.classList.add('one-link');
+                    }
+
+                    const sectionColor = colors[sectionIndex];
+
+                    section.links.forEach(link => {
+                        const linkNode = document.createElement('a');
+                        linkNode.href = link.url;
+                        linkNode.className = 'link-node';
+                        
+                        linkNode.textContent = `[${truncateUrl(link.url, 30)}]`;
+                        
+                        linkNode.style.color = sectionColor;
+
+                        linkGrid.appendChild(linkNode);
+                    });
+
+                    sectionDiv.appendChild(linkGrid);
+                    sectionsContainer.appendChild(sectionDiv);
+                });
+            } catch (error) {
+                console.error('Error fetching links:', error);
+                const sectionsContainer = document.getElementById('sections');
+                sectionsContainer.innerHTML = '<p>Error loading links. Please try again later.</p>';
+            }
+        }
+
+        fetchLinks();
+    </script>
+</body>
+</html>

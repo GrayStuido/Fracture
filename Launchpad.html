@@ -327,44 +327,4 @@ background-color: black;
 <div class="background">
   <canvas class="MatrixBackground" id="MatrixBackground"></canvas>
 </div>
- <script>
-      window.onload = function() {
-        const canvas = document.getElementById('MatrixBackground');
-        const chars = 'abcdefgyzhijklmnopQRSTUVABCDEFGYZ109467ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日¦｜:・."=*+-<>'; // Your chosen characters
-        const duration = 10000; // Duration of the matrix effect in milliseconds
-
-        // Get canvas context and set canvas size
-        const ctx = canvas.getContext('2d');
-        const w = canvas.width = window.innerWidth;
-        const h = canvas.height = window.innerHeight;
-
-        // Calculate number of columns and initialize y positions
-        const cols = Math.floor(w / 20) + 1;
-        const ypos = Array(cols).fill(0);
-
-        // Fill canvas with black color
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, w, h);
-
-        // Create matrix effect function
-        const matrix = () => {
-          ctx.fillStyle = '#0001';
-          ctx.fillRect(0, 0, w, h);
-
-          ctx.fillStyle = '#C800FF';
-          ctx.font = '15pt monospace';
-
-          ypos.forEach((y, ind) => {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = ind * 20;
-            ctx.fillText(text, x, y);
-            if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-            else ypos[ind] = y + 20;
-          });
-        };
-
-        // Call matrix effect function every 50 milliseconds
-        const matrixInterval = setInterval(matrix, 50);
-      };
-    </script>
 </html>

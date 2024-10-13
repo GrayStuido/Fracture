@@ -92,7 +92,11 @@ document.addEventListener("DOMContentLoaded", function() {
     loadScripts(scriptUrls);
 });
 
-
+const faviconLink = document.createElement('link');
+faviconLink.rel = 'icon';
+faviconLink.type = 'image/x-icon';
+faviconLink.href = '../favicon.ico';
+document.head.appendChild(faviconLink);
 
 document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('ErduaConsoleActive') === 'true') {
