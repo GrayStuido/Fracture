@@ -145,7 +145,7 @@ const leaderboardsData = {
       { name: 'Clark Chaney', score: 0 },
       { name: 'Griffon Piazzisi', score: 0 },
       { name: 'Jayden Jusino', score: 0 },
-      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Oskie Ayala', score: 73993 },
       { name: 'Sal A.M.', score: 0 },
       { name: 'Tyson Fahlman', score: 0 },
       { name: 'Wes Porter', score: 0 }
@@ -173,7 +173,7 @@ const leaderboardsData = {
       { name: 'Clark Chaney', score: 0 },
       { name: 'Griffon Piazzisi', score: 0 },
       { name: 'Jayden Jusino', score: 0 },
-      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Oskie Ayala', score: 69 },
       { name: 'Sal A.M.', score: 0 },
       { name: 'Tyson Fahlman', score: 0 },
       { name: 'Wes Porter', score: 0 }
@@ -215,7 +215,7 @@ const leaderboardsData = {
       { name: 'Clark Chaney', score: 0 },
       { name: 'Griffon Piazzisi', score: 0 },
       { name: 'Jayden Jusino', score: 0 },
-      { name: 'Oskie Ayala', score: 0 },
+      { name: 'Oskie Ayala', score: 148400 },
       { name: 'Sal A.M.', score: 0 },
       { name: 'Tyson Fahlman', score: 0 },
       { name: 'Wes Porter', score: 0 }
