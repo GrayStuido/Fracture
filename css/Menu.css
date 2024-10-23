@@ -16,8 +16,8 @@
 .trigger-div {
     width: 60px;
     height: 60px;
-    background-color: var(--color-minor);
-    border: 3px solid var(--color-button-hover);
+    background-color: var(--color-button-hover);
+    border: 3px solid var(--color-minor);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
